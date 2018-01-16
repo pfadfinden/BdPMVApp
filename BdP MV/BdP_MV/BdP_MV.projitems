@@ -21,12 +21,16 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\MitgliedDetail.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Nachricht.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Settings.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Taetigkeit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ext_Packages\BaseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ext_Packages\Grouping.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ext_Packages\ObservableObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ext_Packages\ObservableRangeCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ext_Packages\Utils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\MainController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\MVConnector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\test.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AboutViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseNavigationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ItemDetailViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ItemsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml.cs">
@@ -77,5 +81,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Ext_Packages\MvvmHelpers.csproj" />
   </ItemGroup>
 </Project>
