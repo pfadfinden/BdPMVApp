@@ -4,7 +4,11 @@ using System.Text;
 
 namespace BdP_MV.Services
 {
-    class Group_Control
+    public class Group_Control
     {
+        public Group_Control()
+        {
+
+        }
     }
 }

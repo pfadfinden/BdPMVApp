@@ -45,6 +45,7 @@ namespace BdP_MV.Model
         public DateTime? entries_austrittsDatum { get; set; }
         public string entries_genericField2 { get; set; }
         public string entries_telefax { get; set; }
+        public string anspechname { get; set; }
         
         public string Gruppe { get; set; }
     }

@@ -16,10 +16,10 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <Picker Title="Select a monkey" ItemsSource="{Binding gruppen}" ItemDisplayBinding="{Binding descriptor}" />
-        <ListView x:Name="EmployeeView">
+        <ListView x:Name="MitgliedView">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding DisplayName}" />
+                    <TextCell Text="{Binding }" />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
