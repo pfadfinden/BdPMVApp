@@ -30,7 +30,12 @@ namespace BdP_MV.View
         {
             ViewModel.loginData.Username = usernameEntry.Text;
             ViewModel.loginData.Password = passwordEntry.Text;
-            Boolean isValid = true;          
+            Boolean isValid = false;
+            String response = await Task.Run(async () => await ViewModel.CheckLogin()); 
+            if (String.IsNullOrEmpty(response))
+            {
+                isValid = true;
+            }
             if (isValid)
             {
                 Navigation.InsertPageBefore(new ItemsPage(), this);
@@ -38,7 +43,7 @@ namespace BdP_MV.View
             }
             else
             {
-                messageLabel.Text = "Login failed";
+                messageLabel.Text = response;
                 passwordEntry.Text = string.Empty;
             }
         }

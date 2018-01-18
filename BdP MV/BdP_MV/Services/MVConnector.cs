@@ -18,7 +18,7 @@ namespace BdP_MV.Services
 
         public bool IsLoggedIn { get => isLoggedIn; }
 
-        public async void LoginMV(Connector_LoginDaten LoginDaten)
+        public async Task<int> LoginMV(Connector_LoginDaten LoginDaten)
         {
 
 
@@ -26,7 +26,7 @@ namespace BdP_MV.Services
             {
                 if (isLoggedIn)
                 {
-                    return;
+                    return 1; //Ist Bereits eingeloggt
                 }
                 HttpWebRequest request_first;
                 if (qa)
@@ -89,17 +89,20 @@ namespace BdP_MV.Services
                 if (nachricht.success)
                 {
                     isLoggedIn = true;
+                    return 0;
 
                 }
                 else
                 {
                     cookieContainer = new CookieContainer();
+                    return 2; //Falsche LoginDaten
                 }
 
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
+                return 3;
 
             }
 

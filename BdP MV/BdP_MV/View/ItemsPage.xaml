@@ -15,36 +15,14 @@
         <ToolbarItem x:Name="addAcquaintanceToolbarItem" Icon="add.png" Text="New" Command="{Binding NewAcquaintanceCommand}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <OnPlatform x:TypeArguments="View">
-            <AbsoluteLayout>
-                <AbsoluteLayout.Children>
-                    <ListView ItemsSource="{Binding Acquaintances}" CachingStrategy="RecycleElement" RowHeight="60" HasUnevenRows="false" ItemTapped="ItemTapped" IsPullToRefreshEnabled="true" RefreshCommand="{Binding RefreshAcquaintancesCommand}" IsRefreshing="{Binding IsBusy, Mode=OneWay}" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell StyleId="disclosure" Height="60">
-                                    <ViewCell.ContextActions>
-                                        <MenuItem Text="Email" Command="{Binding Source={x:Reference acquaintanceListPage}, Path=BindingContext.EmailCommand}" CommandParameter="{Binding Id}" />
-                                        <MenuItem Text="Text" Command="{Binding Source={x:Reference acquaintanceListPage}, Path=BindingContext.MessageNumberCommand}" CommandParameter="{Binding Id}" />
-                                        <MenuItem Text="Call" Command="{Binding Source={x:Reference acquaintanceListPage}, Path=BindingContext.DialNumberCommand}" CommandParameter="{Binding Id}" />
-                                    </ViewCell.ContextActions>
-                                    <ContentView Padding="10,0">
-                                        <StackLayout Orientation="Horizontal" Spacing="0">
+        <Picker Title="Select a monkey" ItemsSource="{Binding gruppen}" ItemDisplayBinding="{Binding descriptor}" />
+        <ListView x:Name="EmployeeView">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding DisplayName}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
-                                            <ContentView Padding="10,0,0,0">
-                                                <StackLayout Spacing="0">
-                                                    <Label Text="{Binding DisplayLastNameFirst}" HeightRequest="20" VerticalTextAlignment="End" LineBreakMode="TailTruncation" />
-                                                    <Label Text="{Binding Company}" HeightRequest="20" VerticalTextAlignment="End" FontSize="Micro" LineBreakMode="TailTruncation" />
-                                                    <Label Text="{Binding JobTitle}" HeightRequest="20" VerticalTextAlignment="Start" FontSize="Micro" LineBreakMode="TailTruncation" TextColor="Silver" />
-                                                </StackLayout>
-                                            </ContentView>
-                                        </StackLayout>
-                                    </ContentView>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-xmlns:local="clr-namespace:BdP_MV.View"                </AbsoluteLayout.Children>
-            </AbsoluteLayout>
-        </OnPlatform>
     </ContentPage.Content>
 </ContentPage>
