@@ -31,7 +31,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\MainController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Mitgleider_Control.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\MVConnector.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\test.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\AboutViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\BaseNavigationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ItemDetailViewModel.cs" />
@@ -70,7 +69,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ItemDetailPage.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ItemsPage.xaml">
       <SubType>Designer</SubType>

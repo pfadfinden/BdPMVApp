@@ -19,7 +19,6 @@ namespace BdP_MV.View
         public ItemDetailPage(ItemDetailViewModel viewModel)
         {
             InitializeComponent();
-
             BindingContext = this.viewModel = viewModel;
 
         }
