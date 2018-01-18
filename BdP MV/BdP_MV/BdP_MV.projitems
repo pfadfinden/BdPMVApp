@@ -36,19 +36,20 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ItemDetailViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ItemsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\LoginViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)View\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\ItemDetailPage.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)View\ItemDetailPage.xaml.cs">
       <DependentUpon>ItemDetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\ItemsPage.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)View\ItemsPage.xaml.cs">
       <DependentUpon>ItemsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\Login.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)View\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\NewItemPage.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)View\NewItemPage.xaml.cs">
       <DependentUpon>NewItemPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -63,26 +64,29 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\AboutPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ItemDetailPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\ItemDetailPage.xaml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ItemsPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\ItemsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Login.xaml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\NewItemPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\NewItemPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Ext_Packages\MvvmHelpers.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

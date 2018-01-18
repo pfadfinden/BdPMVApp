@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BdP_MV.View.ItemsPage" xmlns:local="clr-namespace:BdP_MV.View"
+		Title="Mitgliederliste">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:BooleanInverter x:Key="BooleanInverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <!-- The Refresh ToolBarItem is only for UWP. See code-behind. -->
+        <ToolbarItem x:Name="refreshToolbarItem" Icon="refresh.png" Text="Refresh" Command="{Binding RefreshAcquaintancesCommand}" />
+        <!-- The Settings ToolBarItem is present on all platforms. -->
+        <ToolbarItem x:Name="settingsToolbarItem" Icon="settings.png" Text="Settings" Command="{Binding ShowSettingsCommand}" />
+        <!-- The Add Acquaintance ToolBarItem is removed for Android. See code-behind.  -->
+        <ToolbarItem x:Name="addAcquaintanceToolbarItem" Icon="add.png" Text="New" Command="{Binding NewAcquaintanceCommand}" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <OnPlatform x:TypeArguments="View">
+            <AbsoluteLayout>
+                <AbsoluteLayout.Children>
+                    <ListView ItemsSource="{Binding Acquaintances}" CachingStrategy="RecycleElement" RowHeight="60" HasUnevenRows="false" ItemTapped="ItemTapped" IsPullToRefreshEnabled="true" RefreshCommand="{Binding RefreshAcquaintancesCommand}" IsRefreshing="{Binding IsBusy, Mode=OneWay}" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell StyleId="disclosure" Height="60">
+                                    <ViewCell.ContextActions>
+                                        <MenuItem Text="Email" Command="{Binding Source={x:Reference acquaintanceListPage}, Path=BindingContext.EmailCommand}" CommandParameter="{Binding Id}" />
+                                        <MenuItem Text="Text" Command="{Binding Source={x:Reference acquaintanceListPage}, Path=BindingContext.MessageNumberCommand}" CommandParameter="{Binding Id}" />
+                                        <MenuItem Text="Call" Command="{Binding Source={x:Reference acquaintanceListPage}, Path=BindingContext.DialNumberCommand}" CommandParameter="{Binding Id}" />
+                                    </ViewCell.ContextActions>
+                                    <ContentView Padding="10,0">
+                                        <StackLayout Orientation="Horizontal" Spacing="0">
+
+                                            <ContentView Padding="10,0,0,0">
+                                                <StackLayout Spacing="0">
+                                                    <Label Text="{Binding DisplayLastNameFirst}" HeightRequest="20" VerticalTextAlignment="End" LineBreakMode="TailTruncation" />
+                                                    <Label Text="{Binding Company}" HeightRequest="20" VerticalTextAlignment="End" FontSize="Micro" LineBreakMode="TailTruncation" />
+                                                    <Label Text="{Binding JobTitle}" HeightRequest="20" VerticalTextAlignment="Start" FontSize="Micro" LineBreakMode="TailTruncation" TextColor="Silver" />
+                                                </StackLayout>
+                                            </ContentView>
+                                        </StackLayout>
+                                    </ContentView>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+xmlns:local="clr-namespace:BdP_MV.View"                </AbsoluteLayout.Children>
+            </AbsoluteLayout>
+        </OnPlatform>
+    </ContentPage.Content>
+</ContentPage>
