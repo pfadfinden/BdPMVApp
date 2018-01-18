@@ -2,7 +2,7 @@ using System;
 
 namespace BdP_MV.Model
 {
-    class Connector_LoginDaten
+    public class Connector_LoginDaten
     {
         string username;
         string password;

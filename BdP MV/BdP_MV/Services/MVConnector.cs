@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace BdP_MV.Services
 {
-    class MVConnector
+    public class MVConnector
     {
         private bool isLoggedIn = false;
         private CookieContainer cookieContainer = new CookieContainer();
