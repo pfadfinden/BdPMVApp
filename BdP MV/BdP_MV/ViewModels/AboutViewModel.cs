@@ -1,9 +1,10 @@
-﻿using System;
+﻿using MvvmHelpers;
+using System;
 using System.Windows.Input;
 
 using Xamarin.Forms;
 
-namespace BdP_MV
+namespace BdP_MV.ViewModel
 {
     public class AboutViewModel : BaseViewModel
     {

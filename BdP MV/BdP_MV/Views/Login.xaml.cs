@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
 
-namespace BdP_MV.Views
+namespace BdP_MV.View
 {
     public partial class Login : ContentPage
     {
 
         public Login()
         {
-          //  InitializeComponent();
+            InitializeComponent();
 
 
 

@@ -1,3 +1,4 @@
+using BdP_MV.Model;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,25 +8,25 @@ using Xamarin.Forms;
 
 namespace BdP_MV.ViewModel
 {
-    public class AcquaintanceDetailViewModel : BaseNavigationViewModel
+    public class ItemDetailViewModel : BaseNavigationViewModel
     {
-        public AcquaintanceDetailViewModel(Mitglied mitglied)
+        public ItemDetailViewModel(Mitglied mitglied)
         {
            
         }
 
-        public Acquaintance Acquaintance { private set; get; }
+        public Mitglied Acquaintance { private set; get; }
 
-        public bool HasEmailAddress => !string.IsNullOrWhiteSpace(Acquaintance?.Email);
+        public bool HasEmailAddress => !string.IsNullOrWhiteSpace(Acquaintance?.entries_email);
 
-        public bool HasPhoneNumber => !string.IsNullOrWhiteSpace(Acquaintance?.Phone);
+        public bool HasPhoneNumber => !string.IsNullOrWhiteSpace(Acquaintance?.entries_telefon1);
 
-        public bool HasAddress => !string.IsNullOrWhiteSpace(Acquaintance?.AddressString);
+        public bool HasAddress => !string.IsNullOrWhiteSpace(Acquaintance?.entries_status);
 
         // this is just a utility service that we're using in this demo app to mitigate some limitations of the iOS simulator
-        readonly ICapabilityService _CapabilityService;
+        
 
-        readonly Geocoder _Geocoder;
+        
 
         Command _EditAcquaintanceCommand;
 
@@ -40,7 +41,7 @@ namespace BdP_MV.ViewModel
 
         async Task ExecuteEditAcquaintanceCommand()
         {
-            await PushAsync(new AcquaintanceEditPage() { BindingContext = new AcquaintanceEditViewModel(Acquaintance) });
+            //await PushAsync(new AcquaintanceEditPage() { BindingContext = new AcquaintanceEditViewModel(Acquaintance) });
         }
 
         Command _DeleteAcquaintanceCommand;
@@ -59,7 +60,7 @@ namespace BdP_MV.ViewModel
 
         void ExecuteDialNumberCommand()
         {
-            if (string.IsNullOrWhiteSpace(Acquaintance.Phone))
+            if (string.IsNullOrWhiteSpace(Acquaintance.entries_telefon1))
                 return;
 
            
@@ -72,7 +73,7 @@ namespace BdP_MV.ViewModel
 
         void ExecuteMessageNumberCommand()
         {
-            if (string.IsNullOrWhiteSpace(Acquaintance.Phone))
+            if (string.IsNullOrWhiteSpace(Acquaintance.entries_telefon2))
                 return;
 
         
@@ -85,7 +86,7 @@ namespace BdP_MV.ViewModel
 
         void ExecuteEmailCommandCommand()
         {
-            if (string.IsNullOrWhiteSpace(Acquaintance.Email))
+            if (string.IsNullOrWhiteSpace(Acquaintance.entries_email))
                 return;
 
          
@@ -93,15 +94,15 @@ namespace BdP_MV.ViewModel
 
         Command _GetDirectionsCommand;
 
-        public Command GetDirectionsCommand
-        {
+        //public Command GetDirectionsCommand
+       // {
            // get
            // {
                // return _GetDirectionsCommand ??
                 //(_GetDirectionsCommand = new Command(async () =>
                   //      await ExecuteGetDirectionsCommand()));
             //}
-        }
+       // }
 
        
        

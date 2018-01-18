@@ -1,4 +1,4 @@
-﻿using BdP_MV.Views;
+﻿using BdP_MV.View;
 using System;
 
 using Xamarin.Forms;

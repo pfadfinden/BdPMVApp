@@ -18,6 +18,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Connector_LoginDaten.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Gruppierung.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Item.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Mitglied.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\MitgliedDetail.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Nachricht.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Settings.cs" />
@@ -26,7 +27,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Ext_Packages\ObservableObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Ext_Packages\ObservableRangeCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Ext_Packages\Utils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Group_Control.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\MainController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Mitgleider_Control.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\MVConnector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\test.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AboutViewModel.cs" />
@@ -45,7 +48,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\MainPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\NewItemPage.xaml.cs">
       <DependentUpon>NewItemPage.xaml</DependentUpon>
     </Compile>

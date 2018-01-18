@@ -2,7 +2,7 @@
 
 using Xamarin.Forms;
 
-namespace BdP_MV
+namespace BdP_MV.View
 {
 	public partial class AboutPage : ContentPage
 	{

@@ -1,9 +1,9 @@
-﻿using BdP_MV.Model;
+﻿using BdP_MV.ViewModel;
 using System;
 
 using Xamarin.Forms;
 
-namespace BdP_MV
+namespace BdP_MV.View
 {
     public partial class ItemDetailPage : ContentPage
     {
