@@ -1,28 +1,28 @@
 using System;
 using Xamarin.Forms;
 using BdP_MV.ViewModel;
-
-
+using BdP_MV.Services;
 
 namespace BdP_MV.View
 {
 	public partial class ItemsPage : ContentPage
 	{
-		protected ItemsViewModel ViewModel => BindingContext as ItemsViewModel;
+        protected ItemsViewModel viewModel;
 
-		public ItemsPage()
+		public ItemsPage(MainController mainCo)
 		{
-            InitializeComponent();
-			// on Android, we use a floating action button, so clear the ToolBarItems collection
-			
-		}
 
-		/// <summary>
-		/// The action to take when a list item is tapped.
-		/// </summary>
-		/// <param name="sender"> The sender.</param>
-		/// <param name="e">The ItemTappedEventArgs</param>
-		void ItemTapped(object sender, ItemTappedEventArgs e)
+            InitializeComponent();
+            BindingContext = this.viewModel = new ItemsViewModel(mainCo);
+
+        }
+
+        /// <summary>
+        /// The action to take when a list item is tapped.
+        /// </summary>
+        /// <param name="sender"> The sender.</param>
+        /// <param name="e">The ItemTappedEventArgs</param>
+        void ItemTapped(object sender, ItemTappedEventArgs e)
 		{
 			//Navigation.PushAsync(new ItemDetailPage() { BindingContext = new ItemDetailViewModel((Acquaintance)e.Item) });
 

@@ -9,7 +9,7 @@ namespace BdP_MV.ViewModel
 {
     public class LoginViewModel : BaseNavigationViewModel
     {
-        MainController mainc;
+        public MainController mainc;
         public Connector_LoginDaten loginData;
         public LoginViewModel()
         {

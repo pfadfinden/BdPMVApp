@@ -11,7 +11,7 @@ namespace BdP_MV.Services
         public MainController()
         {
             mVConnector = new MVConnector();
-            groupControl = new Group_Control();
+            groupControl = new Group_Control(this);
         }
           
     }

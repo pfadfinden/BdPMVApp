@@ -38,7 +38,7 @@ namespace BdP_MV.View
             }
             if (isValid)
             {
-                Navigation.InsertPageBefore(new ItemsPage(), this);
+                Navigation.InsertPageBefore(new ItemsPage(ViewModel.mainc), this);
                 await Navigation.PopAsync();
             }
             else
