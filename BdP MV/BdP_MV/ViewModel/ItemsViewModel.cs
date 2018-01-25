@@ -12,6 +12,7 @@ namespace BdP_MV.ViewModel
     {
         private MainController mainC;
         public List<Gruppe> alleGruppen;
+        public Gruppe aktGruppe;
         public ItemsViewModel(MainController mainCo)
         {
             mainC = mainCo;

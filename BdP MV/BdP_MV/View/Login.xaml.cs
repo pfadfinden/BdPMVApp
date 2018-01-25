@@ -13,25 +13,33 @@ namespace BdP_MV.View
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class Login : ContentPage
 	{
-        protected LoginViewModel ViewModel => BindingContext as LoginViewModel;
+        LoginViewModel ViewModel;
 
         public Login ()
 		{
-			InitializeComponent ();
-            
+           
+
+            InitializeComponent ();
+            ViewModel = new LoginViewModel();
+            BindingContext = ViewModel;
+            Debug();
 
         }
         async void OnSignUpButtonClicked(object sender, EventArgs e)
         {
          //   await Navigation.PushAsync(new SignUpPage());
         }
-
+        private void Debug()
+        {
+            usernameEntry.Text = "API_User.WeisseRose_Tool";
+            passwordEntry.Text = "apiapi123";
+        }
         async void OnLoginButtonClicked(object sender, EventArgs e)
         {
-            ViewModel.loginData.Username = usernameEntry.Text;
-            ViewModel.loginData.Password = passwordEntry.Text;
+
+            IsBusy = true;
             Boolean isValid = false;
-            String response = await Task.Run(async () => await ViewModel.CheckLogin()); 
+            String response = await Task.Run(async () => await ViewModel.CheckLogin(usernameEntry.Text,passwordEntry.Text)); 
             if (String.IsNullOrEmpty(response))
             {
                 isValid = true;
@@ -46,6 +54,7 @@ namespace BdP_MV.View
                 messageLabel.Text = response;
                 passwordEntry.Text = string.Empty;
             }
+            IsBusy = false;
         }
 
      
