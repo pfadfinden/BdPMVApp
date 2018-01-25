@@ -12,21 +12,31 @@ namespace BdP_MV.ViewModel
     {
         private MainController mainC;
         public List<Gruppe> alleGruppen {get; set; }
-        public Gruppe aktGruppe;
+        public Gruppe aktGruppe { get; set; }
         public ItemsViewModel(MainController mainCo)
         {
             mainC = mainCo;
 
-            
-            mainC.groupControl.AlleGruppenAbrufen(0);
+
+            Task task = GruppenLaden();
+            task.Wait();
             alleGruppen = mainC.groupControl.alleGruppen;
 
 
         }
         private async Task GruppenLaden()
         {
-          //  await Task.Run(async () => await mainC.groupControl.GetAlleGruppen(0));
+            IsBusy = true;
+           await mainC.groupControl.AlleGruppenAbrufen(0);
             alleGruppen = mainC.groupControl.alleGruppen;
+            IsBusy = false;
+        }
+        public async Task MitgliederAusGruppeLaden()
+        {
+            IsBusy = true;
+            mainC.einsteillungen.aktuelleGruppe = aktGruppe.id;
+            await mainC.mitgliederController.MitgliederAktualisierenByGroup();
+            IsBusy = false;
         }
     }
 }

@@ -15,9 +15,16 @@
     <ContentPage.Content>
         <AbsoluteLayout>
             <StackLayout Spacing="0" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <ActivityIndicator 
+                       IsVisible="{Binding IsBusy}"
+                       IsRunning="{Binding IsBusy}"
+                       VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="CenterAndExpand"
+                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.33}" />
                 <Picker 
                     x:Name="testpicker" 
             Title="Gruppe auswählen"
+                    SelectedIndexChanged="thePickerSelectedIndexChanged"
                     ItemDisplayBinding="{Binding descriptor}"
                     SelectedItem="{Binding aktGruppe}"
             ItemsSource="{Binding alleGruppen}"

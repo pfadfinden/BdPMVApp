@@ -16,7 +16,7 @@ namespace BdP_MV.Services
             alleGruppen = new List<Gruppe>();
         }
        //
-        public void AlleGruppenAbrufen(int id)
+        public async Task AlleGruppenAbrufen(int id)
         {
             List<Gruppe> tempGruppen = new List<Gruppe>();
             tempGruppen = mainC.mVConnector.GetGroups(id);
@@ -24,7 +24,7 @@ namespace BdP_MV.Services
                 foreach (Gruppe aktGruppe in tempGruppen)
                 {
                     alleGruppen.Add(aktGruppe);
-                    AlleGruppenAbrufen(aktGruppe.id);
+                    await AlleGruppenAbrufen(aktGruppe.id);
                 }
 
         }

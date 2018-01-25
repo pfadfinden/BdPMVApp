@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BdP_MV.Services
 {
-    class Mitgleider_Control
+    public class Mitglieder_Control
 
     {
         private MainController mainC;
@@ -16,7 +16,7 @@ namespace BdP_MV.Services
         public List<Mitglied> AlleMitglieder { get => alleMitglieder; set => alleMitglieder = value; }
         public List<Mitglied> AktiveMitglieder { get => aktiveMitglieder; set => aktiveMitglieder = value; }
 
-        public Mitgleider_Control(MainController mainCo)
+        public Mitglieder_Control(MainController mainCo)
         {
             mainC = mainCo;
         }
@@ -39,8 +39,23 @@ namespace BdP_MV.Services
                     {
                         AktiveMitglieder.Add(aktuellesMitglied);
                     }
+                    aktuellesMitglied.anspechname = ChooseAnsprechname(aktuellesMitglied);
                 });
             }
+
+        }
+        private String ChooseAnsprechname(Mitglied mitglied)
+        {
+            string ansprechname;
+            if (String.IsNullOrEmpty(mitglied.entries_spitzname))
+            {
+                ansprechname = mitglied.entries_vorname;
+            }
+            else
+            {
+                ansprechname = mitglied.entries_spitzname;
+            }
+            return ansprechname;
 
         }
         public async Task MitgliederAktualisierenByGroup()

@@ -12,7 +12,6 @@ namespace BdP_MV.View
     public partial class ItemsPage : ContentPage
 	{
         protected ItemsViewModel viewModel;
-        private List<Gruppe> alleGruppenView;
 
 
 		public ItemsPage(MainController mainCo)
@@ -26,6 +25,11 @@ namespace BdP_MV.View
 
 
 
+        }
+        public async void thePickerSelectedIndexChanged(object sender, EventArgs e)
+        {
+            await DisplayAlert("Ausgewählte Gruppe", viewModel.aktGruppe.id.ToString(), "OK");//Method call every time when picker selection changed.
+            await viewModel.MitgliederAusGruppeLaden();
         }
 
         /// <summary>
