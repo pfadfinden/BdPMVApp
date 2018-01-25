@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BdP_MV.Model
 {
-    public class Einsteillungen
+    public class Einstellungen
     {
         public Boolean loadKleingruppen { get; set; }
         public int threshold_An_Eltern_senden { get; set; }
