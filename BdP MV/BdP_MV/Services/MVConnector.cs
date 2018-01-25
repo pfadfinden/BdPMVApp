@@ -79,7 +79,7 @@ namespace BdP_MV.Services
                 
                 request_nachricht.CookieContainer = cookieContainer;
 
-                HttpWebResponse response_nachricht = (HttpWebResponse)request_nachricht.GetResponse();
+                HttpWebResponse response_nachricht = (HttpWebResponse)await request_nachricht.GetResponseAsync();
                 string response_nachricht_String = new StreamReader(response_nachricht.GetResponseStream()).ReadToEnd();
                 if (debug)
                 {
@@ -107,7 +107,7 @@ namespace BdP_MV.Services
             }
 
         }
-        public async Task<List<Gruppe>> GetGroups(int id)
+        public List<Gruppe> GetGroups(int id)
 
         {
             string idname;
@@ -131,7 +131,7 @@ namespace BdP_MV.Services
             HttpWebRequest request;
             if (qa)
             {
-                request = (HttpWebRequest)WebRequest.Create("https://mv.meinbdp.de/ica/rest/nami/gruppierungen/filtered-for-navigation/gruppierung/node/" + idname);
+                request = (HttpWebRequest)WebRequest.Create("https://qa.mv.meinbdp.de/ica/rest/nami/gruppierungen/filtered-for-navigation/gruppierung/node/" + idname);
             }
             else
             {
@@ -141,8 +141,9 @@ namespace BdP_MV.Services
             request.Method = "GET";
             request.CookieContainer = cookieContainer;
             request.ContentType = "application/x-www-form-urlencoded";
-
-            WebResponse response = await request.GetResponseAsync();
+            
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Console.WriteLine("abc");
             string responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
 
             if (debug)
@@ -225,7 +226,7 @@ namespace BdP_MV.Services
             request.Method = "GET";
             request.CookieContainer = cookieContainer;
             request.ContentType = "application/x-www-form-urlencoded";
-            WebResponse response = await request.GetResponseAsync();
+            WebResponse response = (HttpWebResponse)await request.GetResponseAsync();
             string responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
             if (debug)
             {

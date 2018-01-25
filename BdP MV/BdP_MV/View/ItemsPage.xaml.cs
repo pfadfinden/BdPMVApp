@@ -2,18 +2,29 @@ using System;
 using Xamarin.Forms;
 using BdP_MV.ViewModel;
 using BdP_MV.Services;
+using System.Collections.Generic;
+using BdP_MV.Model;
+using Xamarin.Forms.Xaml;
 
 namespace BdP_MV.View
 {
-	public partial class ItemsPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ItemsPage : ContentPage
 	{
         protected ItemsViewModel viewModel;
+        private List<Gruppe> alleGruppenView;
+
 
 		public ItemsPage(MainController mainCo)
 		{
-
+            
+            
             InitializeComponent();
-            BindingContext = this.viewModel = new ItemsViewModel(mainCo);
+            viewModel = new ItemsViewModel(mainCo);
+            BindingContext = viewModel;
+
+
+
 
         }
 
@@ -44,9 +55,10 @@ namespace BdP_MV.View
 		{
 			base.OnAppearing();
 
-			// The navigation logic startup needs to diverge per platform in order to meet the UX design requirements
-			
-		}
-	}
+
+            // The navigation logic startup needs to diverge per platform in order to meet the UX design requirements
+            
+        }
+    }
 }
 

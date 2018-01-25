@@ -13,18 +13,19 @@ namespace BdP_MV.Services
         public Group_Control(MainController mainCo)
         {
             mainC = mainCo;
+            alleGruppen = new List<Gruppe>();
         }
-        public async Task GetAlleGruppen(int id)
+       //
+        public void AlleGruppenAbrufen(int id)
         {
-            
-                List<Gruppe> tempGruppen = new List<Gruppe>();
-                tempGruppen = await mainC.mVConnector.GetGroups(id);
-                if (tempGruppen.Count > 0)
-                    foreach (Gruppe aktGruppe in tempGruppen)
-                    {
-                        alleGruppen.Add(aktGruppe);
-                    await GetAlleGruppen(aktGruppe.id);
-                    }
+            List<Gruppe> tempGruppen = new List<Gruppe>();
+            tempGruppen = mainC.mVConnector.GetGroups(id);
+            if (tempGruppen.Count > 0)
+                foreach (Gruppe aktGruppe in tempGruppen)
+                {
+                    alleGruppen.Add(aktGruppe);
+                    AlleGruppenAbrufen(aktGruppe.id);
+                }
 
         }
 

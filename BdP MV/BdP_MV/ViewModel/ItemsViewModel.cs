@@ -11,19 +11,21 @@ namespace BdP_MV.ViewModel
     public class ItemsViewModel : BaseNavigationViewModel
     {
         private MainController mainC;
-        public List<Gruppe> alleGruppen;
+        public List<Gruppe> alleGruppen {get; set; }
         public Gruppe aktGruppe;
         public ItemsViewModel(MainController mainCo)
         {
             mainC = mainCo;
-            IsBusy = true;
-            Task.Run(async () => await GruppenLaden());
-            IsBusy = false;
+
+            
+            mainC.groupControl.AlleGruppenAbrufen(0);
+            alleGruppen = mainC.groupControl.alleGruppen;
+
 
         }
         private async Task GruppenLaden()
         {
-            await Task.Run(async () => await mainC.groupControl.GetAlleGruppen(0));
+          //  await Task.Run(async () => await mainC.groupControl.GetAlleGruppen(0));
             alleGruppen = mainC.groupControl.alleGruppen;
         }
     }
