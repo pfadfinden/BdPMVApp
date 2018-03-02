@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BdP_MV.View.ItemsPage" xmlns:local="clr-namespace:BdP_MV.View" xmlns:userControls="clr-namespace:BdP_MV.View"
-		Title="Mitgliederliste">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BdP_MV.View.ItemsPage"
+             Title="Mitgliederliste">
     <ContentPage.Resources>
         
     </ContentPage.Resources>
@@ -28,7 +30,25 @@
                     ItemDisplayBinding="{Binding descriptor}"
                     SelectedItem="{Binding aktGruppe}"
             ItemsSource="{Binding alleGruppen}"
-                />  
+                />
+                <ListView x:Name="MitgliedView">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Vertical">
+                                <Label Text="{Binding ansprechname}"></Label>
+                                        <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding entries_vorname}" TextColor="Gray"></Label>
+                                        <Label Text="{Binding entries_nachname}"  TextColor="Gray"></Label>
+                                    </StackLayout>
+                                   
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+
             </StackLayout>
         </AbsoluteLayout>
     </ContentPage.Content>

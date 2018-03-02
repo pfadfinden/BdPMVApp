@@ -73,7 +73,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\ItemsPage.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\NewItemPage.xaml">
       <SubType>Designer</SubType>

@@ -39,8 +39,9 @@ namespace BdP_MV.Services
                     {
                         AktiveMitglieder.Add(aktuellesMitglied);
                     }
-                    aktuellesMitglied.anspechname = ChooseAnsprechname(aktuellesMitglied);
+                    aktuellesMitglied.ansprechname = ChooseAnsprechname(aktuellesMitglied);
                 });
+                AktiveMitglieder.Sort((p1, p2) => p1.entries_nachname.CompareTo(p2.entries_nachname));
             }
 
         }
@@ -63,7 +64,7 @@ namespace BdP_MV.Services
             //AlleMitglieder = await Task<List<Mitglied>>.Run(() => mainC.MvConnector.Mitglieder(mainC.gruppencontroller.AktuelleGruppe, true));
 
 
-            AlleMitglieder = await mainC.mVConnector.Mitglieder(mainC.einsteillungen.aktuelleGruppe, true);
+            AlleMitglieder =  await mainC.mVConnector.Mitglieder(mainC.einsteillungen.aktuelleGruppe, true);
             MitgliederNachbearbeiten();
             Console.WriteLine("Mitglieder_Gefiltert");
 

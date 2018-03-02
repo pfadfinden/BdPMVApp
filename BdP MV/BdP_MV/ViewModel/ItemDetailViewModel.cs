@@ -15,13 +15,13 @@ namespace BdP_MV.ViewModel
            
         }
 
-        public Mitglied Acquaintance { private set; get; }
+        public Mitglied mitglied { private set; get; }
 
-        public bool HasEmailAddress => !string.IsNullOrWhiteSpace(Acquaintance?.entries_email);
+        public bool HasEmailAddress => !string.IsNullOrWhiteSpace(mitglied?.entries_email);
 
-        public bool HasPhoneNumber => !string.IsNullOrWhiteSpace(Acquaintance?.entries_telefon1);
+        public bool HasPhoneNumber => !string.IsNullOrWhiteSpace(mitglied?.entries_telefon1);
 
-        public bool HasAddress => !string.IsNullOrWhiteSpace(Acquaintance?.entries_status);
+        public bool HasAddress => !string.IsNullOrWhiteSpace(mitglied?.entries_status);
 
         // this is just a utility service that we're using in this demo app to mitigate some limitations of the iOS simulator
         
@@ -60,7 +60,7 @@ namespace BdP_MV.ViewModel
 
         void ExecuteDialNumberCommand()
         {
-            if (string.IsNullOrWhiteSpace(Acquaintance.entries_telefon1))
+            if (string.IsNullOrWhiteSpace(mitglied.entries_telefon1))
                 return;
 
            
@@ -73,7 +73,7 @@ namespace BdP_MV.ViewModel
 
         void ExecuteMessageNumberCommand()
         {
-            if (string.IsNullOrWhiteSpace(Acquaintance.entries_telefon2))
+            if (string.IsNullOrWhiteSpace(mitglied.entries_telefon2))
                 return;
 
         
@@ -86,7 +86,7 @@ namespace BdP_MV.ViewModel
 
         void ExecuteEmailCommandCommand()
         {
-            if (string.IsNullOrWhiteSpace(Acquaintance.entries_email))
+            if (string.IsNullOrWhiteSpace(mitglied.entries_email))
                 return;
 
          

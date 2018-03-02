@@ -13,14 +13,20 @@ namespace BdP_MV.ViewModel
         private MainController mainC;
         public List<Gruppe> alleGruppen {get; set; }
         public Gruppe aktGruppe { get; set; }
+        public List<Mitglied> ausgewaehlteMitglieder { get; set; }
         public ItemsViewModel(MainController mainCo)
         {
             mainC = mainCo;
 
 
-            Task task = GruppenLaden();
+            Task task = GruppenLaden();//TODO: Muss noch Schöner gemacht werden! Läft zzt. syncron
             task.Wait();
             alleGruppen = mainC.groupControl.alleGruppen;
+            ausgewaehlteMitglieder = new List<Mitglied>();
+            Mitglied test = new Mitglied();
+            test.ansprechname = "test";
+            ausgewaehlteMitglieder.Add(test);
+            
 
 
         }
@@ -35,7 +41,9 @@ namespace BdP_MV.ViewModel
         {
             IsBusy = true;
             mainC.einsteillungen.aktuelleGruppe = aktGruppe.id;
-            await mainC.mitgliederController.MitgliederAktualisierenByGroup();
+            await Task.Run(async () => await mainC.mitgliederController.MitgliederAktualisierenByGroup());
+
+            ausgewaehlteMitglieder = mainC.mitgliederController.AktiveMitglieder;
             IsBusy = false;
         }
     }

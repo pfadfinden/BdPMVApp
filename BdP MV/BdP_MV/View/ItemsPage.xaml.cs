@@ -5,6 +5,7 @@ using BdP_MV.Services;
 using System.Collections.Generic;
 using BdP_MV.Model;
 using Xamarin.Forms.Xaml;
+using System.Threading.Tasks;
 
 namespace BdP_MV.View
 {
@@ -21,6 +22,9 @@ namespace BdP_MV.View
             InitializeComponent();
             viewModel = new ItemsViewModel(mainCo);
             BindingContext = viewModel;
+            
+            
+            
 
 
 
@@ -28,8 +32,11 @@ namespace BdP_MV.View
         }
         public async void thePickerSelectedIndexChanged(object sender, EventArgs e)
         {
-            await DisplayAlert("Ausgewählte Gruppe", viewModel.aktGruppe.id.ToString(), "OK");//Method call every time when picker selection changed.
-            await viewModel.MitgliederAusGruppeLaden();
+            await DisplayAlert("Ausgewählte Gruppe", viewModel.aktGruppe.id.ToString(), "OK");//Method call every time when picker selection changed
+            await Task.Run(async () => await this.viewModel.MitgliederAusGruppeLaden());
+            MitgliedView.ItemsSource = viewModel.ausgewaehlteMitglieder;
+            
+            
         }
 
         /// <summary>

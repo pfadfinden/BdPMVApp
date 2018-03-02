@@ -14,7 +14,7 @@ namespace BdP_MV.Services
         private bool isLoggedIn = false;
         private CookieContainer cookieContainer = new CookieContainer();
         private bool debug = false;
-        Boolean qa = true;
+        Boolean qa = false;
 
         public bool IsLoggedIn { get => isLoggedIn; }
 
@@ -177,7 +177,7 @@ namespace BdP_MV.Services
             request.CookieContainer = cookieContainer;
             request.ContentType = "application/x-www-form-urlencoded";
 
-            WebResponse response = await request.GetResponseAsync();
+            HttpWebResponse response = (HttpWebResponse)await request.GetResponseAsync();
             string responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
 
             if (debug)
