@@ -79,6 +79,7 @@ namespace BdP_MV.Model
         public string plz { get; set; }
         public string gruppe { get; set; }
         public int alter { get; set; }
+        public string ansprechname { get; set; }
     }
 
     public class RootObjectMitgliedDetails
