@@ -3,7 +3,8 @@
 ################################################################################
 
 /.vs/BdP MV/v15
-/BdP MV/BdP_MV.Android/obj/Debug
+/BdP MV/BdP_MV.Android/obj
+/BdP MV/BdP_MV.Android/bin
 /BdP MV/BdP_MV.iOS/obj
 /BdP MV/BdP_MV.iOS/bin
 /packages
