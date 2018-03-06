@@ -212,12 +212,12 @@ namespace BdP_MV.Services
         //    return taetigkeiten;
         //}
 
-        public async  Task<MitgliedDetails> MitgliedDetails(int idMitglied)
+        public async Task<MitgliedDetails> MitgliedDetails(int idMitglied)
         {
             HttpWebRequest request;
             if (qa)
             {
-                request = (HttpWebRequest)WebRequest.Create("https://mv.meinbdp.de/ica/rest/nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/448/" + idMitglied);
+                request = (HttpWebRequest)WebRequest.Create("https://qa.mv.meinbdp.de/ica/rest/nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/448/" + idMitglied);
             }
             else
             {

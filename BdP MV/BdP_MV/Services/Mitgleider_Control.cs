@@ -83,7 +83,9 @@ namespace BdP_MV.Services
         }
         public async Task<MitgliedDetails> MitgliedDetailsAbrufen(int id)
         {
-            MitgliedDetails mitglied= await mainC.mVConnector.MitgliedDetails(id);
+            MitgliedDetails mitglied = new MitgliedDetails();
+            mitglied =  await mainC.mVConnector.MitgliedDetails(id);
+
             mitglied.ansprechname = ChooseAnsprechnameDetails(mitglied);
             try
             {
