@@ -25,8 +25,8 @@ namespace BdP_MV.Services
             AktiveMitglieder = new List<Mitglied>();
             if (AlleMitglieder != null)
             {
-                Parallel.ForEach(AlleMitglieder, (aktuellesMitglied) =>
-                {
+                foreach (Mitglied aktuellesMitglied in AlleMitglieder)
+                    {
 
                     if (aktuellesMitglied.entries_status.Equals("Aktiv"))
                     {
@@ -40,8 +40,9 @@ namespace BdP_MV.Services
                         AktiveMitglieder.Add(aktuellesMitglied);
                     }
                     aktuellesMitglied.ansprechname = ChooseAnsprechname(aktuellesMitglied);
-                });
+                }
                 AktiveMitglieder.Sort((p1, p2) => p1.entries_nachname.CompareTo(p2.entries_nachname));
+
             }
 
         }
@@ -59,6 +60,46 @@ namespace BdP_MV.Services
             return ansprechname;
 
         }
+        private String ChooseAnsprechnameDetails(MitgliedDetails mitglied)
+        {
+            string ansprechname;
+            if (String.IsNullOrEmpty(mitglied.spitzname))
+            {
+                ansprechname = mitglied.vorname;
+            }
+            else
+            {
+                ansprechname = mitglied.spitzname;
+            }
+            return ansprechname;
+
+        }
+        private int GetAgeFromDate(DateTime birthday)
+        {
+            int years = DateTime.Now.Year - birthday.Year;
+            birthday = birthday.AddYears(years);
+            if (DateTime.Now.CompareTo(birthday) < 0) { years--; }
+            return years;
+        }
+        public async Task<MitgliedDetails> MitgliedDetailsAbrufen(int id)
+        {
+            MitgliedDetails mitglied= await mainC.mVConnector.MitgliedDetails(id);
+            mitglied.ansprechname = ChooseAnsprechnameDetails(mitglied);
+            try
+            {
+                DateTime geburtsDatum = (DateTime)mitglied.geburtsDatum;
+                mitglied.alter = GetAgeFromDate(geburtsDatum);
+            }
+            catch (Exception e)
+            {
+                mitglied.alter = 0;
+            }
+
+            return mitglied;
+
+
+        }
+
         public async Task MitgliederAktualisierenByGroup()
         {
             //AlleMitglieder = await Task<List<Mitglied>>.Run(() => mainC.MvConnector.Mitglieder(mainC.gruppencontroller.AktuelleGruppe, true));
@@ -66,6 +107,7 @@ namespace BdP_MV.Services
 
             AlleMitglieder =  await mainC.mVConnector.Mitglieder(mainC.einsteillungen.aktuelleGruppe, true);
             MitgliederNachbearbeiten();
+
             Console.WriteLine("Mitglieder_Gefiltert");
 
         }
@@ -91,13 +133,6 @@ namespace BdP_MV.Services
         //    return gruppe;
 
         //}
-        public static int GetAgeFromDate(DateTime birthday)
-        {
-            int years = DateTime.Now.Year - birthday.Year;
-            birthday = birthday.AddYears(years);
-            if (DateTime.Now.CompareTo(birthday) < 0) { years--; }
-            return years;
-        }
         //public MitgliedDetails MitgliedDetailsFinden(int id)
         //{
         //    Mitglied mitgliedAusUebersicht = alleMitglieder.Find(x => x.entries_id == id);

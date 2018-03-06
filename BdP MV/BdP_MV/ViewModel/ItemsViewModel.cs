@@ -10,7 +10,7 @@ namespace BdP_MV.ViewModel
 {
     public class ItemsViewModel : BaseNavigationViewModel
     {
-        private MainController mainC;
+        public MainController mainC;
         public List<Gruppe> alleGruppen {get; set; }
         public Gruppe aktGruppe { get; set; }
         public List<Mitglied> ausgewaehlteMitglieder { get; set; }
@@ -46,6 +46,7 @@ namespace BdP_MV.ViewModel
             ausgewaehlteMitglieder = mainC.mitgliederController.AktiveMitglieder;
             IsBusy = false;
         }
+
     }
 }
 

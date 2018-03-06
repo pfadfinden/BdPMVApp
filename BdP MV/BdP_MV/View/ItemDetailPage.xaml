@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BdP_MV.View.ItemDetailPage" xmlns:local="clr-namespace:BdP_MV.View"
-		Title="Mitgliederliste">
+		Title="{Binding mitglied.ansprechname}">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <local:BooleanInverter x:Key="BooleanInverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
-        <ContentView IsEnabled="{Binding IsEditable}" IsVisible="{Binding IsEditable}">
-            <ToolbarItem Text="Delete" Icon="delete.png" Command="{Binding DeleteAcquaintanceCommand}" />
-            <ToolbarItem Text="Edit" Icon="edit.png" Command="{Binding EditAcquaintanceCommand}" />
-        </ContentView>
+        
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <AbsoluteLayout>
@@ -22,8 +18,8 @@
                                 <StackLayout Orientation="Vertical">
                                     <Label Text="{Binding mitglied.ansprechname}"></Label>
                                     <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding mitglied.entries_vorname}" TextColor="Gray"></Label>
-                                        <Label Text="{Binding mitglied.entries_nachname}"  TextColor="Gray"></Label>
+                                        <Label Text="{Binding mitglied.vorname}" TextColor="Gray"></Label>
+                                        <Label Text="{Binding mitglied.nachname}"  TextColor="Gray"></Label>
                                     </StackLayout>
 
                                 </StackLayout>
@@ -36,23 +32,43 @@
                                         </Image.GestureRecognizers>
                                     </Image>
                                     <StackLayout Spacing="0">
-                                        <Label Text="{Binding mitglied.Street}" FontSize="Micro" LineBreakMode="TailTruncation" />
-                                        <Label Text="{Binding mitglied.City}" FontSize="Micro" LineBreakMode="TailTruncation" />
-                                        <Label Text="{Binding mitglied.StatePostal}" FontSize="Micro" LineBreakMode="TailTruncation" />
+                                        <ContentView IsEnabled="{Binding HasZusatzAdresse}" IsVisible="{Binding HasZusatzAdresse}">
+                                            <Label Text="{Binding mitglied.nameZusatz}" FontSize="Default" LineBreakMode="TailTruncation" />
+                                        </ContentView>
+                                        <Label Text="{Binding mitglied.strasse}" FontSize="Default" LineBreakMode="TailTruncation" />
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding mitglied.plz}" FontSize="Default" LineBreakMode="TailTruncation" />
+                                            <Label Text="{Binding mitglied.ort}" FontSize="Default" LineBreakMode="TailTruncation" />
+                                        </StackLayout>
                                     </StackLayout>
                                 </StackLayout>
                             </ContentView>
                             <ContentView IsEnabled="{Binding HasPhoneNumber}" IsVisible="{Binding HasPhoneNumber}">
                                 <StackLayout Orientation="Horizontal" Spacing="10">
+                                    <Image Source="phone.png" Aspect="AspectFit" HeightRequest="20" WidthRequest="20">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding DialNumberCommand}" NumberOfTapsRequired="1" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                    <Label Text="{Binding mitglied.telefon1}" FontSize="Default" HeightRequest="20" VerticalTextAlignment="Center" LineBreakMode="TailTruncation" />
                                     <Image Source="message.png" Aspect="AspectFit" HeightRequest="20" WidthRequest="20">
                                         <Image.GestureRecognizers>
                                             <TapGestureRecognizer Command="{Binding MessageNumberCommand}" NumberOfTapsRequired="1" />
                                         </Image.GestureRecognizers>
                                     </Image>
-                                    <Label Text="{Binding mitglied.Phone}" FontSize="Small" HeightRequest="20" VerticalTextAlignment="Center" LineBreakMode="TailTruncation" />
+                                </StackLayout>
+                            </ContentView>
+                            <ContentView IsEnabled="{Binding HasCellphoneNumber}" IsVisible="{Binding HasCellphoneNumber}">
+                                <StackLayout Orientation="Horizontal" Spacing="10">
                                     <Image Source="phone.png" Aspect="AspectFit" HeightRequest="20" WidthRequest="20">
                                         <Image.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding DialNumberCommand}" NumberOfTapsRequired="1" />
+                                            <TapGestureRecognizer Command="{Binding DialCellphoneNumberCommand}" NumberOfTapsRequired="1" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                    <Label Text="{Binding mitglied.telefon3}" FontSize="Default" HeightRequest="20" VerticalTextAlignment="Center" LineBreakMode="TailTruncation" />
+                                    <Image Source="message.png" Aspect="AspectFit" HeightRequest="20" WidthRequest="20">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding DialCellphoneNumberCommand}" NumberOfTapsRequired="1" />
                                         </Image.GestureRecognizers>
                                     </Image>
                                 </StackLayout>
@@ -64,7 +80,17 @@
                                             <TapGestureRecognizer Command="{Binding EmailCommand}" NumberOfTapsRequired="1" />
                                         </Image.GestureRecognizers>
                                     </Image>
-                                    <Label Text="{Binding mitglied.Email}" FontSize="Micro" HeightRequest="20" LineBreakMode="TailTruncation" VerticalTextAlignment="Center" />
+                                    <Label Text="{Binding mitglied.email}" FontSize="Small" HeightRequest="20" LineBreakMode="TailTruncation" VerticalTextAlignment="Center" />
+                                </StackLayout>
+                            </ContentView>
+                            <ContentView IsEnabled="{Binding HasParentEmailAddress}" IsVisible="{Binding HasParentEmailAddress}">
+                                <StackLayout Orientation="Horizontal" Spacing="10">
+                                    <Image Source="email.png" Aspect="AspectFit" HeightRequest="20" WidthRequest="20">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding _ParentEmailCommand}" NumberOfTapsRequired="1" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                    <Label Text="{Binding mitglied.emailVertretungsberechtigter}" FontSize="Small" HeightRequest="20" LineBreakMode="TailTruncation" VerticalTextAlignment="Center" />
                                 </StackLayout>
                             </ContentView>
                         </StackLayout>

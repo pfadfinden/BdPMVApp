@@ -22,18 +22,14 @@ namespace BdP_MV.View
             InitializeComponent ();
             ViewModel = new LoginViewModel();
             BindingContext = ViewModel;
-            Debug();
+        
 
         }
         async void OnSignUpButtonClicked(object sender, EventArgs e)
         {
          //   await Navigation.PushAsync(new SignUpPage());
         }
-        private void Debug()
-        {
-            usernameEntry.Text = "API_User.WeisseRose_Tool";
-            passwordEntry.Text = "apiapi123";
-        }
+   
         async void OnLoginButtonClicked(object sender, EventArgs e)
         {
 

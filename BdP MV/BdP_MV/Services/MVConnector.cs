@@ -212,7 +212,7 @@ namespace BdP_MV.Services
         //    return taetigkeiten;
         //}
 
-        public async Task<MitgliedDetails> MitgliedDetails(int idMitglied)
+        public async  Task<MitgliedDetails> MitgliedDetails(int idMitglied)
         {
             HttpWebRequest request;
             if (qa)

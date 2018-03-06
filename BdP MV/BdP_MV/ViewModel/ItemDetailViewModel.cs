@@ -1,4 +1,6 @@
+
 using BdP_MV.Model;
+using BdP_MV.Services;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,23 +12,31 @@ namespace BdP_MV.ViewModel
 {
     public class ItemDetailViewModel : BaseNavigationViewModel
     {
-        public ItemDetailViewModel(Mitglied mitglied)
+        public ItemDetailViewModel(MitgliedDetails mitgliedDetails, MainController mainCo)
         {
-           
+            mainC = mainCo;
+
+            mitglied = mitgliedDetails;
         }
+    
+        MainController mainC;
 
-        public Mitglied mitglied { private set; get; }
+        public bool HasZusatzAdresse;
+        public MitgliedDetails mitglied { private set; get; }
 
-        public bool HasEmailAddress => !string.IsNullOrWhiteSpace(mitglied?.entries_email);
+        public bool HasPhoneNumber => !string.IsNullOrWhiteSpace(mitglied?.telefon1);
+        public bool HasCellphoneNumber => !string.IsNullOrWhiteSpace(mitglied?.telefon3);
 
-        public bool HasPhoneNumber => !string.IsNullOrWhiteSpace(mitglied?.entries_telefon1);
+        public bool HasAddress => true;
+        public bool HasEmailAddress => !string.IsNullOrWhiteSpace(mitglied?.email);
+        public bool HasParentEmailAddress => !string.IsNullOrWhiteSpace(mitglied?.emailVertretungsberechtigter);
+        public bool IsEditable = true;
 
-        public bool HasAddress => !string.IsNullOrWhiteSpace(mitglied?.entries_status);
 
         // this is just a utility service that we're using in this demo app to mitigate some limitations of the iOS simulator
-        
 
-        
+       
+       
 
         Command _EditAcquaintanceCommand;
 
@@ -60,8 +70,12 @@ namespace BdP_MV.ViewModel
 
         void ExecuteDialNumberCommand()
         {
-            if (string.IsNullOrWhiteSpace(mitglied.entries_telefon1))
+            if (string.IsNullOrWhiteSpace(mitglied.telefon1))
                 return;
+            else
+            {
+                Device.OpenUri(new Uri("tel:"+mitglied.telefon1.ToString()));
+            }
 
            
         }
@@ -73,12 +87,40 @@ namespace BdP_MV.ViewModel
 
         void ExecuteMessageNumberCommand()
         {
-            if (string.IsNullOrWhiteSpace(mitglied.entries_telefon2))
+            if (string.IsNullOrWhiteSpace(mitglied.telefon1))
                 return;
 
         
         }
+        Command _DialCellphoneNumberCommand;
 
+        public Command DialCellphoneNumberCommand => _DialCellphoneNumberCommand ??
+                                            (_DialCellphoneNumberCommand = new Command(ExecuteDialCellphoneNumberCommand));
+
+        void ExecuteDialCellphoneNumberCommand()
+        {
+            if (string.IsNullOrWhiteSpace(mitglied.telefon3))
+                return;
+            else
+            {
+                
+                Device.OpenUri(new Uri("tel:" + mitglied.telefon3.ToString()));
+            }
+
+        }
+
+        Command _MessageCellphoneNumberCommand;
+
+        public Command MessageCellphoneNumberCommand => _MessageNumberCommand ??
+                                               (_MessageNumberCommand = new Command(ExecuteCellphoneMessageNumberCommand));
+
+        void ExecuteCellphoneMessageNumberCommand()
+        {
+            if (string.IsNullOrWhiteSpace(mitglied.telefon3))
+                return;
+
+
+        }
         Command _EmailCommand;
 
         public Command EmailCommand => _EmailCommand ??
@@ -86,24 +128,32 @@ namespace BdP_MV.ViewModel
 
         void ExecuteEmailCommandCommand()
         {
-            if (string.IsNullOrWhiteSpace(mitglied.entries_email))
+            if (string.IsNullOrWhiteSpace(mitglied.email))
                 return;
+            else
+            {
+                Device.OpenUri(new Uri("mailto:" + mitglied.email));
+            }
 
          
         }
+        Command _ParentEmailCommand;
 
-        Command _GetDirectionsCommand;
+        public Command ParentEmailCommand => _ParentEmailCommand ??
+                                       (_ParentEmailCommand = new Command(ExecuteParentEmailCommandCommand));
 
-        //public Command GetDirectionsCommand
-       // {
-           // get
-           // {
-               // return _GetDirectionsCommand ??
-                //(_GetDirectionsCommand = new Command(async () =>
-                  //      await ExecuteGetDirectionsCommand()));
-            //}
-       // }
+        void ExecuteParentEmailCommandCommand()
+        {
+            if (string.IsNullOrWhiteSpace(mitglied.emailVertretungsberechtigter))
+                return;
+            else
+            {
+                Device.OpenUri(new Uri("mailto:" + mitglied.emailVertretungsberechtigter));
+            }
 
+        }
+
+       
        
        
 
