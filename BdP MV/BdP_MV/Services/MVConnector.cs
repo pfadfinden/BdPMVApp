@@ -108,6 +108,65 @@ namespace BdP_MV.Services
             }
 
         }
+        public async Task<int> RequestNewPassword(ResetPassword resetPassword)
+        {
+            try
+            {
+                if (isLoggedIn)
+                {
+                    return 1; //Ist Bereits eingeloggt
+                }
+                HttpWebRequest request_first;
+                if (qa)
+                {
+                    request_first = (HttpWebRequest)HttpWebRequest.Create("https://qa.mv.meinbdp.de/");
+                }
+                else
+                {
+                    request_first = (HttpWebRequest)HttpWebRequest.Create("https://mv.meinbdp.de/");
+                }
+                request_first.CookieContainer = cookieContainer;
+
+                HttpWebResponse response_first = (HttpWebResponse)await request_first.GetResponseAsync();
+                int cookieCount = cookieContainer.Count;
+                HttpWebRequest request;
+                if (qa)
+                {
+                    request = (HttpWebRequest)WebRequest.Create("https://qa.mv.meinbdp.de/ica/rest/nami/auth/resetPassword");
+                }
+                else
+                {
+                    request = (HttpWebRequest)WebRequest.Create("https://mv.meinbdp.de/ica/rest/nami/auth/resetPassword");
+                }
+                request.Method = "POST";
+                request.CookieContainer = cookieContainer;
+                request.ContentType = "application/x-www-form-urlencoded; charset=utf-8";
+                string postData = "mitgliedsNummer=" + resetPassword.MitgliedsNummer + "&geburtsDatum=" + resetPassword.geburtsDatum + "&emailTo=" + resetPassword.emailTo+"&Login=Neues+Passwort+zusenden";
+                Encoding iso = Encoding.GetEncoding("ISO-8859-1");
+                byte[] bytes = iso.GetBytes(postData);
+                request.ContentLength = bytes.Length;
+                using (Stream stream = request.GetRequestStream())
+                {
+                    stream.Write(bytes, 0, bytes.Length);
+                }
+                WebResponse response = (HttpWebResponse)await request.GetResponseAsync();
+                string responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                if (responseString.Contains("Ein neues Passwort wurde an Ihre hinterlegte E-Mail-Adresse versendet"))
+                    return 0;
+                else if (responseString.Contains("Ein neues Passwort wurde an Ihre hinterlegte E-Mail-Adresse versendet"))
+                    return 2;
+                else return 3;
+               
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return 3;
+
+            }
+        }
+
         public List<Gruppe> GetGroups(int id)
 
         {
@@ -243,6 +302,17 @@ namespace BdP_MV.Services
            
             MitgliedDetails mitgliedDetais = new MitgliedDetails();
             RootObjectMitgliedDetails listeAllerMitglieder = JsonConvert.DeserializeObject<RootObjectMitgliedDetails>(responseString);
+            if (listeAllerMitglieder.success == false)
+            {
+                if (listeAllerMitglieder.responseType.Equals("ERROR") && listeAllerMitglieder.message.Equals("Session expired"))
+                {
+                    throw new NewLoginException("Bitte neu einloggen.");
+                }
+                if (listeAllerMitglieder.responseType.Equals("EXCEPTION") && listeAllerMitglieder.message.Equals("Access denied - no right for requested operation"))
+                {
+                    throw new NoRightsException("Versucht Kontext aufzurufen, für das der Nutzer keine Rechte hat.");
+                }
+            }
             mitgliedDetais = listeAllerMitglieder.data;
             
             return mitgliedDetais;

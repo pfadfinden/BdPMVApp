@@ -54,7 +54,7 @@ namespace BdP_MV.View
             }
             catch (WebException e)
             {
-                await DisplayAlert("Fehler", "Fehler beim Herstellen der Internetverbinugn", "OK");
+                await DisplayAlert("Fehler", "Fehler beim Herstellen der Internetverbindung", "OK");
 
 
             }
@@ -70,11 +70,38 @@ namespace BdP_MV.View
     
         public async void thePickerSelectedIndexChanged(object sender, EventArgs e)
         {
-            //await DisplayAlert("Ausgewählte Gruppe", viewModel.aktGruppe.id.ToString(), "OK");//Method call every time when picker selection changed
-            await Task.Run(async () => await this.viewModel.MitgliederAusGruppeLaden());
-            MitgliedView.ItemsSource = viewModel.ausgewaehlteMitglieder;
-            
-            
+            try
+            {
+                //await DisplayAlert("Ausgewählte Gruppe", viewModel.aktGruppe.id.ToString(), "OK");//Method call every time when picker selection changed
+                await Task.Run(async () => await this.viewModel.MitgliederAusGruppeLaden());
+                MitgliedView.ItemsSource = viewModel.ausgewaehlteMitglieder;
+            }
+
+            catch (NewLoginException ex)
+            {
+                await DisplayAlert("Fehler", "Deine Sitzung ist abgelaufen. Bitte logge dich neu in die App ein.", "OK");
+                Navigation.InsertPageBefore(new Login(), this);
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+                await Navigation.PopAsync();
+
+            }
+            catch (WebException ex)
+            {
+                await DisplayAlert("Fehler", "Fehler beim Herstellen der Internetverbindung", "OK");
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+
+
+            }
+            catch (NoRightsException ex)
+            {
+                await DisplayAlert("Fehler", "Für diesen Vorgang hast du keine Rechte.", "OK");
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+
+            }
+
         }
 
         /// <summary>
@@ -85,15 +112,44 @@ namespace BdP_MV.View
         async void ItemTapped(object sender, ItemTappedEventArgs e)
         {
             IsBusy = true;
-            Mitglied selected = (Mitglied)MitgliedView.SelectedItem;
-            int selectedId = selected.id;
-            MitgliedDetails mitDetails = await viewModel.mainC.mitgliederController.MitgliedDetailsAbrufen(selectedId);
-            await Navigation.PushAsync(new ItemDetailPage( new ItemDetailViewModel(mitDetails, viewModel.mainC)));
+            try
+            {
 
-            // prevents the list from displaying the navigated item as selected when navigating back to the list
-            ((ListView)sender).SelectedItem = null;
-            IsBusy=false;
-        }
+                Mitglied selected = (Mitglied)MitgliedView.SelectedItem;
+                int selectedId = selected.id;
+                MitgliedDetails mitDetails = await viewModel.mainC.mitgliederController.MitgliedDetailsAbrufen(selectedId);
+                await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(mitDetails, viewModel.mainC)));
+
+                // prevents the list from displaying the navigated item as selected when navigating back to the list
+                ((ListView)sender).SelectedItem = null;
+            }
+            catch (NewLoginException ex)
+            {
+                await DisplayAlert("Fehler", "Deine Sitzung ist abgelaufen. Bitte logge dich neu in die App ein.", "OK");
+                Navigation.InsertPageBefore(new Login(), this);
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+                await Navigation.PopAsync();
+
+            }
+            catch (WebException ex)
+            {
+                await DisplayAlert("Fehler", "Fehler beim Herstellen der Internetverbindung", "OK");
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+
+
+            }
+            catch (NoRightsException ex)
+            {
+                await DisplayAlert("Fehler", "Für diesen Vorgang hast du keine Rechte.", "OK");
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+
+            }
+            IsBusy = false;
+        
+    }
 
         /// <summary>
         /// The action to take when the + ToolbarItem is clicked on Android.

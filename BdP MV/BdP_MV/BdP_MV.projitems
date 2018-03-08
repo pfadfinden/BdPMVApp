@@ -13,16 +13,18 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Exceptions\NewLoginExeption.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Exceptions\NoRightsException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Connector_LoginDaten.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Gruppierung.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Item.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Mitglied.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\MitgliedDetail.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Nachricht.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Settings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Connector_LoginDaten.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Gruppierung.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Item.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Mitglied.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\MitgliedDetail.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Nachricht.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\ResetPassword.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Settings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Ext_Packages\BaseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Ext_Packages\Grouping.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Ext_Packages\ObservableObject.cs" />
@@ -34,11 +36,16 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\MVConnector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\AboutViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\BaseNavigationViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ForgotPWViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ItemDetailViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ItemsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\LoginViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)View\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\ForgotPW.xaml.cs">
+      <DependentUpon>ForgotPW.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\ItemDetailPage.xaml.cs">
       <DependentUpon>ItemDetailPage.xaml</DependentUpon>
@@ -88,6 +95,11 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\ForgotPW.xaml">
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
 </Project>

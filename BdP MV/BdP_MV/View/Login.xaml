@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BdP_MV.View.Login">
+             x:Class="BdP_MV.View.Login"
+             Title="BdP Mitgliederverwaltung">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Sign Up" Clicked="OnSignUpButtonClicked" />
     </ContentPage.ToolbarItems>
@@ -20,6 +21,8 @@
             <Label Text="Password" />
             <Entry x:Name="passwordEntry" IsPassword="true" />
             <Button Text="Login" Clicked="OnLoginButtonClicked" />
+            <Button Text="Passwort Vergessen" Clicked="OnPWLostButtonClicked" />
+
             <Label x:Name="messageLabel" />
         </StackLayout>
     </ContentPage.Content>
