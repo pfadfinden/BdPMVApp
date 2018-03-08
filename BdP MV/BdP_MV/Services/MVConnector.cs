@@ -4,6 +4,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using BdP_MV.Exceptions;
 using BdP_MV.Model;
 using Newtonsoft.Json;
 
@@ -128,6 +129,7 @@ namespace BdP_MV.Services
                 }
                 idname = id.ToString();
             }
+           
             HttpWebRequest request;
             if (qa)
             {
@@ -143,7 +145,6 @@ namespace BdP_MV.Services
             request.ContentType = "application/x-www-form-urlencoded";
             
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            Console.WriteLine("abc");
             string responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
 
             if (debug)
@@ -153,6 +154,13 @@ namespace BdP_MV.Services
             List<Gruppe> gruppen = new List<Gruppe>();
 
             GroupList listeAllerUntergruppen =  JsonConvert.DeserializeObject<GroupList>(responseString);
+            if (listeAllerUntergruppen.success==false)
+            {
+                if (listeAllerUntergruppen.responseType.Equals("ERROR")&& listeAllerUntergruppen.message.Equals("Session expired"))
+                {
+                    throw new NewLoginException("Bitte neu einloggen.");
+                }
+            }
 
             gruppen = listeAllerUntergruppen.data;
 

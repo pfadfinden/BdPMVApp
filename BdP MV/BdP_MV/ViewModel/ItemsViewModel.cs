@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BdP_MV.Exceptions;
 using BdP_MV.Model;
 using BdP_MV.Services;
 using MvvmHelpers;
@@ -19,8 +20,7 @@ namespace BdP_MV.ViewModel
             mainC = mainCo;
 
 
-            Task task = GruppenLaden();//TODO: Muss noch Schöner gemacht werden! Läft zzt. syncron
-            task.Wait();
+          
             alleGruppen = mainC.groupControl.alleGruppen;
             ausgewaehlteMitglieder = new List<Mitglied>();
             Mitglied test = new Mitglied();
@@ -30,12 +30,15 @@ namespace BdP_MV.ViewModel
 
 
         }
-        private async Task GruppenLaden()
+        public async Task GruppenLaden()
         {
-            IsBusy = true;
-           await mainC.groupControl.AlleGruppenAbrufen(0);
-            alleGruppen = mainC.groupControl.alleGruppen;
-            IsBusy = false;
+            
+                IsBusy = true;
+                await mainC.groupControl.AlleGruppenAbrufen(0);
+                alleGruppen = mainC.groupControl.alleGruppen;
+                IsBusy = false;
+           
+          
         }
         public async Task MitgliederAusGruppeLaden()
         {

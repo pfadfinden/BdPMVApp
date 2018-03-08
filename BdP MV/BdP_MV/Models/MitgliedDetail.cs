@@ -36,7 +36,7 @@ namespace BdP_MV.Model
         public bool sonst01 { get; set; }
         public bool sonst02 { get; set; }
         public string spitzname { get; set; }
-        public int landId { get; set; }
+        public int? landId { get; set; }
         public string staatsangehoerigkeitText { get; set; }
         public int gruppierungId { get; set; }
         public string mglTypeId { get; set; }
@@ -53,7 +53,7 @@ namespace BdP_MV.Model
         public object pfadfinder { get; set; }
         public string telefon3 { get; set; }
         public KontoverbindungMitglied kontoverbindung { get; set; }
-        public int geschlechtId { get; set; }
+        public int? geschlechtId { get; set; }
         public string land { get; set; }
         public string email { get; set; }
         public string telefon1 { get; set; }

@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using BdP_MV.Model;
 using Xamarin.Forms.Xaml;
 using System.Threading.Tasks;
+using BdP_MV.Exceptions;
+using System.Net;
+using Xamarin.Forms.Internals;
 
 namespace BdP_MV.View
 {
@@ -15,21 +18,56 @@ namespace BdP_MV.View
         protected ItemsViewModel viewModel;
 
 
-		public ItemsPage(MainController mainCo)
-		{
-            
-            
+        public ItemsPage(MainController mainCo)
+        {
+
+
             InitializeComponent();
+
             viewModel = new ItemsViewModel(mainCo);
+
             BindingContext = viewModel;
-            
-            
-            
-
-
-
-
         }
+
+
+         protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            //Other code etc.
+            try
+            {
+                await Task.Run(async () => await viewModel.GruppenLaden());
+                Console.WriteLine(viewModel.alleGruppen.ToString());
+                testpicker.ItemsSource = viewModel.alleGruppen;
+
+            }
+
+             catch (NewLoginException e)
+            {
+                await DisplayAlert("Fehler", "Deine Sitzung ist abgelaufen. Bitte logge dich neu in die App ein.", "OK");
+                Navigation.InsertPageBefore(new Login(), this);
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace);
+                await Navigation.PopAsync();
+                
+            }
+            catch (WebException e)
+            {
+                await DisplayAlert("Fehler", "Fehler beim Herstellen der Internetverbinugn", "OK");
+
+
+            }
+
+
+            //etc, etc,
+        }
+
+
+
+
+
+    
         public async void thePickerSelectedIndexChanged(object sender, EventArgs e)
         {
             //await DisplayAlert("Ausgewählte Gruppe", viewModel.aktGruppe.id.ToString(), "OK");//Method call every time when picker selection changed
@@ -67,14 +105,7 @@ namespace BdP_MV.View
 			
 		}
 
-		protected override async void OnAppearing()
-		{
-			base.OnAppearing();
-
-
-            // The navigation logic startup needs to diverge per platform in order to meet the UX design requirements
-            
-        }
+		
     }
 }
 

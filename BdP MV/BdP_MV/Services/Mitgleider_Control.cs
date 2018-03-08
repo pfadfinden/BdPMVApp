@@ -96,7 +96,16 @@ namespace BdP_MV.Services
             {
                 mitglied.alter = 0;
             }
-
+            if (mitglied.geschlechtId == null)
+            {
+                mitglied.geschlechtId = 3;
+                mitglied.geschlecht = "n/a";
+            }
+            if (mitglied.landId == null)
+            {
+                mitglied.landId = 1;
+                mitglied.land = "Deutschland";
+            }
             return mitglied;
 
 

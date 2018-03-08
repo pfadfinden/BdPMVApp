@@ -29,8 +29,9 @@
                     SelectedIndexChanged="thePickerSelectedIndexChanged"
                     ItemDisplayBinding="{Binding descriptor}"
                     SelectedItem="{Binding aktGruppe}"
-            ItemsSource="{Binding alleGruppen}"
+           
                 />
+                <!--ItemsSource="{Binding alleGruppen}"-->
                 <ListView x:Name="MitgliedView" ItemTapped="ItemTapped" >
                     <ListView.ItemTemplate>
                         <DataTemplate>
