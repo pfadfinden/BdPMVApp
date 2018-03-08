@@ -17,7 +17,6 @@ namespace BdP_MV.View
 
         public Login ()
 		{
-           
 
             InitializeComponent ();
             ViewModel = new LoginViewModel();
@@ -57,7 +56,7 @@ namespace BdP_MV.View
             }
             else
             {
-                messageLabel.Text = response;
+                await DisplayAlert("Fehler bei der Anmeldung", response, "OK");
                 passwordEntry.Text = string.Empty;
             }
             IsBusy = false;
