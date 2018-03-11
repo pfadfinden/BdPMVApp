@@ -31,11 +31,7 @@ namespace BdP_MV.View
 
         async void OnPWLostButtonClicked(object sender, EventArgs e)
         {
-            //ResetPassword pwR = new ResetPassword();
-            //pwR.geburtsDatum = "20.12.2017";
-            //pwR.emailTo = "atd@pfadfinder-dortmund.de";
-            //pwR.MitgliedsNummer = "API_User.WeisseRose_Tool";
-            //int answer = await Task.Run(async () => await ViewModel.mainc.mVConnector.RequestNewPassword(pwR));
+            
             await Navigation.PushAsync(new ForgotPW(ViewModel.mainc));
 
         }

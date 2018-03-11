@@ -15,7 +15,7 @@ namespace BdP_MV.Services
         private bool isLoggedIn = false;
         private CookieContainer cookieContainer = new CookieContainer();
         private bool debug = false;
-        Boolean qa = true;
+        Boolean qa = false;
 
         public bool IsLoggedIn { get => isLoggedIn; }
 
@@ -153,7 +153,7 @@ namespace BdP_MV.Services
                 string responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
                 if (responseString.Contains("Ein neues Passwort wurde an Ihre hinterlegte E-Mail-Adresse versendet"))
                     return 0;
-                else if (responseString.Contains("Ein neues Passwort wurde an Ihre hinterlegte E-Mail-Adresse versendet"))
+                else if (responseString.Contains("Ihre Angaben sind nicht korrekt"))
                     return 2;
                 else return 3;
                

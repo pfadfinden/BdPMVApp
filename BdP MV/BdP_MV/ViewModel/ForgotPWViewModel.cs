@@ -23,9 +23,32 @@ namespace BdP_MV.ViewModel
             pwData.emailTo = email;
             pwData.geburtsDatum = gebDatum;
             pwData.MitgliedsNummer = username;
+            String rueckmeldung;
+            if (String.IsNullOrEmpty(pwData.emailTo)||String.IsNullOrEmpty(pwData.MitgliedsNummer))
+            {
+                rueckmeldung = "Bitte fülle alle Felder aus";
+            }
+
+            else
+            {
+                int result = await mainC.mVConnector.RequestNewPassword(pwData);
+                if (result ==2)
+                {
+                    rueckmeldung = "Das Passwort konnte nicht zurück gesetzt werden, bitte gib korrekte Daten ein.";
+                }
+                else if (result ==3)
+                {
+                    rueckmeldung = " Fehler bei der Internetanbindung";
+                }
+                else
+                {
+                    rueckmeldung = "";
+                }
+                
+            }
 
             IsBusy = false;
-            return "";
+            return rueckmeldung;
         }
     }
 }

@@ -29,19 +29,33 @@ namespace BdP_MV.View
         }
         async void OnPWLostButtonClicked(object sender, EventArgs e)
         {
+            IsBusy = true;
             try
             {
                 DateTime test = birthdate.Date;
                 CultureInfo ci = new CultureInfo("de-DE");
                 string geburtsdatum  = test.ToString("d", ci);
-                
+                Boolean isValid = false;
                 String response = await Task.Run(async () => await viewModel.resetPW(usernameEntry.Text, geburtsdatum, emailEntry.Text));
-
+                if (String.IsNullOrEmpty(response))
+                {
+                    isValid = true;
+                }
+                if (isValid)
+                {
+                    Navigation.InsertPageBefore(new Login(), this);
+                    await Navigation.PopAsync();
+                }
+                else
+                {
+                    await DisplayAlert("Fehler bei der Anmeldung", response, "OK");
+                }
             }
             catch (Exception ex)
             {
 
             }
+            IsBusy = false;
         }
 
     }
