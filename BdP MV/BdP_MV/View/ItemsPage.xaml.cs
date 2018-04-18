@@ -10,6 +10,7 @@ using BdP_MV.Exceptions;
 using System.Net;
 using Xamarin.Forms.Internals;
 
+
 namespace BdP_MV.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -128,7 +129,7 @@ namespace BdP_MV.View
                 Mitglied selected = (Mitglied)MitgliedView.SelectedItem;
                 int selectedId = selected.id;
                 MitgliedDetails mitDetails = await viewModel.mainC.mitgliederController.MitgliedDetailsAbrufen(selectedId);
-                await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(mitDetails, viewModel.mainC)));
+                await Navigation.PushAsync(new MitgliederDetails.TabbedMitgliederDetails(new ItemDetailViewModel(mitDetails, viewModel.mainC)));
 
                 // prevents the list from displaying the navigated item as selected when navigating back to the list
                 ((ListView)sender).SelectedItem = null;

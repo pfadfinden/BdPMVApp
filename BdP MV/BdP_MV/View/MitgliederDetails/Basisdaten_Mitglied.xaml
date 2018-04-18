@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BdP_MV.View.MitgliederDetails.Basisdaten_Mitglied"
+             Title="Basisdaten">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <StackLayout Spacing="0" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <ContentView Padding="10">
+                    <StackLayout Orientation="Horizontal" Spacing="10">
+
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="{Binding mitglied.ansprechname}"></Label>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding mitglied.vorname}" TextColor="Gray"></Label>
+                                <Label Text="{Binding mitglied.nachname}"  TextColor="Gray"></Label>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Mitglieds ID:" TextColor="Gray"></Label>
+                                <Label Text="{Binding mitglied.id}"  TextColor="Gray"></Label>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Status:" TextColor="Gray"></Label>
+                                <Label Text="{Binding mitglied.status}"  TextColor="Gray"></Label>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Eintrittsdatum:" TextColor="Gray"></Label>
+                                <Label Text="{Binding EintrittsdatumString}"  TextColor="Gray"></Label>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Geburtsdatum:" TextColor="Gray"></Label>
+                                <Label Text="{Binding GeburtsdatumString}"  TextColor="Gray"></Label>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Alter:" TextColor="Gray"></Label>
+                                <Label Text="{Binding mitglied.alter}"  TextColor="Gray"></Label>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Status:" TextColor="Gray"></Label>
+                                <Label Text="{Binding mitglied.status}"  TextColor="Gray"></Label>
+                            </StackLayout>
+                        </StackLayout>
+
+                    </StackLayout>
+                </ContentView>
+                <ContentView HeightRequest="1" BackgroundColor="Silver" />
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

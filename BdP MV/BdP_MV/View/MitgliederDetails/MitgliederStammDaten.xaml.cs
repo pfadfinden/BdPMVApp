@@ -3,20 +3,21 @@ using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace BdP_MV.View
+namespace BdP_MV.View.MitgliederDetails
 {
-    public partial class ItemDetailPage : ContentPage
+    public partial class MitgliederStammDaten : ContentPage
     {
         ItemDetailViewModel viewModel;
 
         // Note - The Xamarin.Forms Previewer requires a default, parameterless constructor to render a page.
-        public ItemDetailPage()
+        public MitgliederStammDaten()
         {
+            InitializeComponent();
 
-            
+
         }
 
-        public ItemDetailPage(ItemDetailViewModel viewModel)
+        public MitgliederStammDaten(ItemDetailViewModel viewModel)
         {
             InitializeComponent();
             BindingContext = this.viewModel = viewModel;

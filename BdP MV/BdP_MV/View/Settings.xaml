@@ -11,6 +11,6 @@
             <Label Text="{Binding mitglied.nachname}"  TextColor="Gray"></Label>
         </StackLayout>
 
-        </StackLayout>
+        
     </ContentPage.Content>
 </ContentPage>
