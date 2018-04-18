@@ -6,7 +6,7 @@
     
     
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Sign Up" Clicked="OnSignUpButtonClicked" />
+       <!--- <ToolbarItem Text="Sign Up" Clicked="OnSignUpButtonClicked" />-->
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <Grid x:Name="grdMain" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" RowSpacing="0">

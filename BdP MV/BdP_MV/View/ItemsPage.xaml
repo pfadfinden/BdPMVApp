@@ -8,11 +8,11 @@
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
         <!-- The Refresh ToolBarItem is only for UWP. See code-behind. -->
-        <ToolbarItem x:Name="refreshToolbarItem" Icon="refresh.png" Text="Refresh" Command="{Binding RefreshAcquaintancesCommand}" />
+        <!-- <ToolbarItem x:Name="refreshToolbarItem" Icon="refresh.png" Text="Refresh" Command="{Binding RefreshAcquaintancesCommand}" />-->
         <!-- The Settings ToolBarItem is present on all platforms. -->
-        <ToolbarItem x:Name="settingsToolbarItem" Icon="settings.png" Text="Settings" Command="{Binding ShowSettingsCommand}" />
+        <!---  <ToolbarItem x:Name="settingsToolbarItem" Icon="settings.png" Text="Settings" Command="{Binding ShowSettingsCommand}" />-->
         <!-- The Add Acquaintance ToolBarItem is removed for Android. See code-behind.  -->
-        <ToolbarItem x:Name="addAcquaintanceToolbarItem" Icon="add.png" Text="New" Command="{Binding NewAcquaintanceCommand}" />
+        <!-- <ToolbarItem x:Name="addAcquaintanceToolbarItem" Icon="add.png" Text="New" Command="{Binding NewAcquaintanceCommand}" /> -->
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <AbsoluteLayout>

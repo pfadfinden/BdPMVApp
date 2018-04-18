@@ -42,12 +42,12 @@ namespace BdP_MV.ViewModel
         }
         public async Task MitgliederAusGruppeLaden()
         {
-            IsBusy = true;
+            
             mainC.einsteillungen.aktuelleGruppe = aktGruppe.id;
             await Task.Run(async () => await mainC.mitgliederController.MitgliederAktualisierenByGroup());
 
             ausgewaehlteMitglieder = mainC.mitgliederController.AktiveMitglieder;
-            IsBusy = false;
+            
         }
 
     }

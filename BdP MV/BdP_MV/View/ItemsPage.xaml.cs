@@ -32,14 +32,18 @@ namespace BdP_MV.View
 
          protected async override void OnAppearing()
         {
+            IsBusy = true;
             base.OnAppearing();
 
             //Other code etc.
             try
             {
-                await Task.Run(async () => await viewModel.GruppenLaden());
-                Console.WriteLine(viewModel.alleGruppen.ToString());
-                testpicker.ItemsSource = viewModel.alleGruppen;
+                if (this.viewModel.alleGruppen.Count == 0)
+                {
+                    await Task.Run(async () => await viewModel.GruppenLaden());
+                    Console.WriteLine(viewModel.alleGruppen.ToString());
+                    testpicker.ItemsSource = viewModel.alleGruppen;
+                }
 
             }
 
@@ -55,11 +59,12 @@ namespace BdP_MV.View
             catch (WebException e)
             {
                 await DisplayAlert("Fehler", "Fehler beim Herstellen der Internetverbindung", "OK");
-
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace);
 
             }
 
-
+            IsBusy = false;
             //etc, etc,
         }
 
@@ -70,11 +75,14 @@ namespace BdP_MV.View
     
         public async void thePickerSelectedIndexChanged(object sender, EventArgs e)
         {
+           
             try
             {
                 //await DisplayAlert("Ausgewählte Gruppe", viewModel.aktGruppe.id.ToString(), "OK");//Method call every time when picker selection changed
+                IsBusy = true;
                 await Task.Run(async () => await this.viewModel.MitgliederAusGruppeLaden());
                 MitgliedView.ItemsSource = viewModel.ausgewaehlteMitglieder;
+                IsBusy = false;
             }
 
             catch (NewLoginException ex)
@@ -101,6 +109,8 @@ namespace BdP_MV.View
                 Console.WriteLine(ex.StackTrace);
 
             }
+            IsBusy = false;
+
 
         }
 
