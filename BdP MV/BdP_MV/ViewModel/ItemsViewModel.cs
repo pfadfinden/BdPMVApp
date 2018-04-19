@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BdP_MV.Exceptions;
+using BdP_MV.Model.Mitglied;
 using BdP_MV.Model;
 using BdP_MV.Services;
 using MvvmHelpers;

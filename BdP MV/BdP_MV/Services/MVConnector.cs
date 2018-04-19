@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BdP_MV.Exceptions;
 using BdP_MV.Model;
+using BdP_MV.Model.Mitglied;
 using Newtonsoft.Json;
 
 namespace BdP_MV.Services

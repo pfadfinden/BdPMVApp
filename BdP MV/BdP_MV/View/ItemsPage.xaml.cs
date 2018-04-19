@@ -3,7 +3,7 @@ using Xamarin.Forms;
 using BdP_MV.ViewModel;
 using BdP_MV.Services;
 using System.Collections.Generic;
-using BdP_MV.Model;
+using BdP_MV.Model.Mitglied;
 using Xamarin.Forms.Xaml;
 using System.Threading.Tasks;
 using BdP_MV.Exceptions;

@@ -1,5 +1,5 @@
 
-using BdP_MV.Model;
+using BdP_MV.Model.Mitglied;
 using BdP_MV.Services;
 using System;
 using System.Linq;

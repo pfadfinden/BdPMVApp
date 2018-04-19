@@ -1,4 +1,4 @@
-﻿using BdP_MV.Model;
+﻿using BdP_MV.Model.Mitglied;
 using System;
 using System.Collections.Generic;
 using System.Text;
