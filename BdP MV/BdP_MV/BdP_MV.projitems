@@ -30,6 +30,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Ext_Packages\ObservableObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Ext_Packages\ObservableRangeCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Ext_Packages\Utils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Taetigkeit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Group_Control.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\MainController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Mitgleider_Control.cs" />
