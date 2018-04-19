@@ -23,6 +23,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\Mitglied\Ausbildung.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Mitglied\Mitglied.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Mitglied\MitgliedDetail.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Mitglied\SGB8.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Nachricht.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\ResetPassword.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Settings.cs" />
