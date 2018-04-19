@@ -39,6 +39,10 @@
                                 <Label Text="Status:" TextColor="Gray"></Label>
                                 <Label Text="{Binding mitglied.status}"  TextColor="Gray"></Label>
                             </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Versand Pfade:" TextColor="Gray"></Label>
+                                <Label Text="{Binding mitglied.status}"  TextColor="Gray"></Label>
+                            </StackLayout>
                         </StackLayout>
 
                     </StackLayout>

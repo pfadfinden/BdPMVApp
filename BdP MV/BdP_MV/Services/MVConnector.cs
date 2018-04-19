@@ -15,7 +15,7 @@ namespace BdP_MV.Services
         private bool isLoggedIn = false;
         private CookieContainer cookieContainer = new CookieContainer();
         private bool debug = false;
-        Boolean qa = true;
+        Boolean qa = false;
 
         public bool IsLoggedIn { get => isLoggedIn; }
 
