@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 
-namespace BdP_MV.Model
+namespace BdP_MV.Model.Mitglied
 {
     public class Mitglied
     {

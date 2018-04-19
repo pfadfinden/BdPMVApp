@@ -1,6 +1,6 @@
 using System;
 
-namespace BdP_MV.Model
+namespace BdP_MV.Model.Mitglied
 {
     public class KontoverbindungMitglied
     {

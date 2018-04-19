@@ -20,6 +20,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\Connector_LoginDaten.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Gruppierung.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Item.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Mitglied\Ausbildung.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Mitglied\Mitglied.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Mitglied\MitgliedDetail.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Nachricht.cs" />
@@ -133,8 +134,5 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Model\Mitglied\" />
   </ItemGroup>
 </Project>
