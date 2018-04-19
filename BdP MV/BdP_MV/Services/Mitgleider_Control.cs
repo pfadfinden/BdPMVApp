@@ -81,10 +81,10 @@ namespace BdP_MV.Services
             if (DateTime.Now.CompareTo(birthday) < 0) { years--; }
             return years;
         }
-        public async Task<MitgliedDetails> MitgliedDetailsAbrufen(int id)
+        public async Task<MitgliedDetails> MitgliedDetailsAbrufen(int idMitglied, int idGruppe)
         {
             MitgliedDetails mitglied = new MitgliedDetails();
-            mitglied =  await mainC.mVConnector.MitgliedDetails(id);
+            mitglied =  await mainC.mVConnector.MitgliedDetails(idMitglied, idGruppe);
 
             mitglied.ansprechname = ChooseAnsprechnameDetails(mitglied);
             try

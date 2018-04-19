@@ -189,23 +189,8 @@ namespace BdP_MV.Services
                 }
                 idname = id.ToString();
             }
-           
-            HttpWebRequest request;
-            if (qa)
-            {
-                request = (HttpWebRequest)WebRequest.Create("https://qa.mv.meinbdp.de/ica/rest/nami/gruppierungen/filtered-for-navigation/gruppierung/node/" + idname);
-            }
-            else
-            {
-                request = (HttpWebRequest)WebRequest.Create("https://mv.meinbdp.de/ica/rest/nami/gruppierungen/filtered-for-navigation/gruppierung/node/" + idname);
-            }
-           
-            request.Method = "GET";
-            request.CookieContainer = cookieContainer;
-            request.ContentType = "application/x-www-form-urlencoded";
-            
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            string responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+            String anfrage = "nami/gruppierungen/filtered-for-navigation/gruppierung/node/" + idname;
+            string responseString = GetApiResultString(anfrage);
 
             if (debug)
             {
@@ -231,30 +216,9 @@ namespace BdP_MV.Services
         //public async Task<List<Mitglied>> Mitglieder(int idGruppe, bool nurAktiv)
         public async Task<List<Mitglied>> Mitglieder(int idGruppe, bool nurAktiv)
         {
-            HttpWebRequest request;
-            if (qa)
-            {
-                request = (HttpWebRequest)WebRequest.Create("https://qa.mv.meinbdp.de/ica/rest/nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/" + idGruppe + "/flist");
-            }
-            else
-            {
-                request = (HttpWebRequest)WebRequest.Create("https://mv.meinbdp.de/ica/rest/nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/" + idGruppe + "/flist");
-            }
-         
-            request.Method = "GET";
-            request.CookieContainer = cookieContainer;
-            request.ContentType = "application/x-www-form-urlencoded";
-
-            HttpWebResponse response = (HttpWebResponse)await request.GetResponseAsync();
-            string responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
-
-            if (debug)
-            {
-                Console.WriteLine(responseString);
-            }
+            String anfrage = "nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/" + idGruppe + "/flist";
+            string responseString = await GetApiResultStringAsync(anfrage);
             List<Mitglied> mitglieder = new List<Mitglied>();
-            
-
             MitgliederListe listeAllerMitglieder = JsonConvert.DeserializeObject<MitgliederListe>(responseString);
             mitglieder = listeAllerMitglieder.data;
 
@@ -280,27 +244,22 @@ namespace BdP_MV.Services
         //    return taetigkeiten;
         //}
 
-        public async Task<MitgliedDetails> MitgliedDetails(int idMitglied)
+        public async Task<List<Taetigkeit>> Taetigkeiten (int idMitglied)
         {
-            HttpWebRequest request;
-            if (qa)
-            {
-                request = (HttpWebRequest)WebRequest.Create("https://qa.mv.meinbdp.de/ica/rest/nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/448/" + idMitglied);
-            }
-            else
-            {
-                request = (HttpWebRequest)WebRequest.Create("https://mv.meinbdp.de/ica/rest/nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/448/" + idMitglied);
-            }
-            request.Method = "GET";
-            request.CookieContainer = cookieContainer;
-            request.ContentType = "application/x-www-form-urlencoded";
-            WebResponse response = (HttpWebResponse)await request.GetResponseAsync();
-            string responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
-            if (debug)
-            {
-                Console.WriteLine(responseString);
-            }
-           
+            string anfrage = "/nami/zugeordnete-taetigkeiten/filtered-for-navigation/gruppierung-mitglied/mitglied/" + idMitglied + "/flist";
+            string responseString = await GetApiResultStringAsync(anfrage);
+            List<Taetigkeit> taetigkeiten = new List<Taetigkeit>();
+            RootObject_Taetigkeit rootObjectTaetigkeiten = JsonConvert.DeserializeObject<RootObject_Taetigkeit>(responseString);
+            taetigkeiten = rootObjectTaetigkeiten.data;
+            return taetigkeiten;
+        }
+
+        public async Task<MitgliedDetails> MitgliedDetails(int idMitglied, int idGruppe)
+        {
+            
+            String anfrage =" nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/"+idGruppe+"/"+idMitglied;
+            String responseString = await GetApiResultStringAsync(anfrage);
+
             MitgliedDetails mitgliedDetais = new MitgliedDetails();
             RootObjectMitgliedDetails listeAllerMitglieder = JsonConvert.DeserializeObject<RootObjectMitgliedDetails>(responseString);
             if (listeAllerMitglieder.success == false)
@@ -317,6 +276,54 @@ namespace BdP_MV.Services
             mitgliedDetais = listeAllerMitglieder.data;
             
             return mitgliedDetais;
+        }
+        private async Task<String> GetApiResultStringAsync(string anfrageURL)
+        {
+            HttpWebRequest request;
+            if (qa)
+            {
+                request = (HttpWebRequest)WebRequest.Create("https://qa.mv.meinbdp.de/ica/rest/"+anfrageURL);
+            }
+            else
+            {
+                request = (HttpWebRequest)WebRequest.Create("https://mv.meinbdp.de/ica/rest/" + anfrageURL);
+            }
+            request.Method = "GET";
+            request.CookieContainer = cookieContainer;
+            request.ContentType = "application/x-www-form-urlencoded";
+            WebResponse response = (HttpWebResponse)await request.GetResponseAsync();
+            string responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+            if (debug)
+            {
+                Console.WriteLine(responseString);
+            }
+            return responseString;
+
+
+        }
+        private String GetApiResultString(string anfrageURL)
+        {
+            HttpWebRequest request;
+            if (qa)
+            {
+                request = (HttpWebRequest)WebRequest.Create("https://qa.mv.meinbdp.de/ica/rest/" + anfrageURL);
+            }
+            else
+            {
+                request = (HttpWebRequest)WebRequest.Create("https://mv.meinbdp.de/ica/rest/" + anfrageURL);
+            }
+            request.Method = "GET";
+            request.CookieContainer = cookieContainer;
+            request.ContentType = "application/x-www-form-urlencoded";
+            WebResponse response = (HttpWebResponse)request.GetResponse();
+            string responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+            if (debug)
+            {
+                Console.WriteLine(responseString);
+            }
+            return responseString;
+
+
         }
 
     }

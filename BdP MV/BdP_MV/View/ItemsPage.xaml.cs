@@ -128,7 +128,7 @@ namespace BdP_MV.View
 
                 Mitglied selected = (Mitglied)MitgliedView.SelectedItem;
                 int selectedId = selected.id;
-                MitgliedDetails mitDetails = await viewModel.mainC.mitgliederController.MitgliedDetailsAbrufen(selectedId);
+                MitgliedDetails mitDetails = await viewModel.mainC.mitgliederController.MitgliedDetailsAbrufen(selectedId, viewModel.aktGruppe.id);
                 await Navigation.PushAsync(new MitgliederDetails.TabbedMitgliederDetails(new ItemDetailViewModel(mitDetails, viewModel.mainC)));
 
                 // prevents the list from displaying the navigated item as selected when navigating back to the list
