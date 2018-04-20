@@ -14,18 +14,20 @@ namespace BdP_MV.View.MitgliederDetails
     public partial class TabbedMitgliederDetails : TabbedPage
     {
         string ansprechname;
+        ItemDetailViewModel viewModel;
         public TabbedMitgliederDetails ()
         {
             InitializeComponent();
         }
-        public TabbedMitgliederDetails(ItemDetailViewModel viewModel)
+        public TabbedMitgliederDetails(ItemDetailViewModel p_ViewModel)
         {
-            ansprechname = viewModel.mitglied.ansprechname;
+            ansprechname = p_ViewModel.mitglied.ansprechname;
             InitializeComponent();
-            this.Children.Add(new MitgliederStammDaten(viewModel));
-            this.Children.Add(new Basisdaten_Mitglied(viewModel));
+            this.Children.Add(new MitgliederStammDaten(p_ViewModel));
+            this.Children.Add(new Basisdaten_Mitglied(p_ViewModel));
 
         }
        
+
     }
 }

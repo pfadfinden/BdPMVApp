@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System;
 
 namespace BdP_MV.Model.Mitglied
@@ -78,8 +79,12 @@ namespace BdP_MV.Model.Mitglied
         public int beitragsartId { get; set; }
         public string plz { get; set; }
         public string gruppe { get; set; }
+        [JsonIgnore]
         public int alter { get; set; }
+        [JsonIgnore]
         public string ansprechname { get; set; }
+        [JsonIgnore]
+        public string kleingruppe { get; set; }
     }
 
     public class RootObjectMitgliedDetails

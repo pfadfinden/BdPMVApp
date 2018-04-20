@@ -60,7 +60,7 @@ namespace BdP_MV.Services
             return ansprechname;
 
         }
-        private String ChooseAnsprechnameDetails(MitgliedDetails mitglied)
+        private String ChooseAnsprechname(MitgliedDetails mitglied)
         {
             string ansprechname;
             if (String.IsNullOrEmpty(mitglied.spitzname))
@@ -86,7 +86,7 @@ namespace BdP_MV.Services
             MitgliedDetails mitglied = new MitgliedDetails();
             mitglied =  await mainC.mVConnector.MitgliedDetails(idMitglied, idGruppe);
 
-            mitglied.ansprechname = ChooseAnsprechnameDetails(mitglied);
+            mitglied.ansprechname = ChooseAnsprechname(mitglied);
             try
             {
                 DateTime geburtsDatum = (DateTime)mitglied.geburtsDatum;
@@ -109,6 +109,12 @@ namespace BdP_MV.Services
             return mitglied;
 
 
+        }
+        public async Task<List<Taetigkeit>> TaetigkeitenAbrufen (int idMitglied)
+        {
+            List<Taetigkeit> taetigkeiten = new List<Taetigkeit>();
+            taetigkeiten = await mainC.mVConnector.Taetigkeiten(idMitglied);
+            return taetigkeiten;
         }
 
         public async Task MitgliederAktualisierenByGroup()
