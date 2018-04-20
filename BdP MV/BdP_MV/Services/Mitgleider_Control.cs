@@ -136,6 +136,20 @@ namespace BdP_MV.Services
             }
             return taetigkeiten;
         }
+        public async Task<List<Ausbildung>> AusbildungenAbrufen(int idMitglied)
+        {
+            List<Ausbildung> ausbildungen = new List<Ausbildung>();
+            ausbildungen = await mainC.mVConnector.Ausbildung(idMitglied);
+           
+            return ausbildungen;
+        }
+        public async Task<List<SGB8>> Sgb8Abrufen(int idMitglied)
+        {
+            List<SGB8> fuehrungszeugnisse = new List<SGB8>();
+            fuehrungszeugnisse = await mainC.mVConnector.SGB8(idMitglied);
+
+            return fuehrungszeugnisse;
+        }
 
         public async Task MitgliederAktualisierenByGroup()
         {

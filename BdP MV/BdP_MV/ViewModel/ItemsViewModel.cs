@@ -53,13 +53,19 @@ namespace BdP_MV.ViewModel
         public async Task<ItemDetailViewModel> mitgliedDetailsVorladen(int idMitglied)
         {
             int idGruppe = aktGruppe.id;
-            Task<MitgliedDetails> mitgliederLaden = mainC.mitgliederController.MitgliedDetailsAbrufen(idMitglied, aktGruppe.id);
             Task<List<Taetigkeit>> taetigkeitenLaden = mainC.mitgliederController.TaetigkeitenAbrufen(idMitglied);
             taetigkeitenLaden.Start();
+            Task<List<Ausbildung>> ausbildungLaden = mainC.mitgliederController.AusbildungenAbrufen(idMitglied);
+            ausbildungLaden.Start();
+            Task<List<SGB8>> fuehrungszeugnisseLaden = mainC.mitgliederController.Sgb8Abrufen(idMitglied);
+            fuehrungszeugnisseLaden.Start();
+            Task<MitgliedDetails> mitgliederLaden = mainC.mitgliederController.MitgliedDetailsAbrufen(idMitglied, aktGruppe.id);
             mitgliederLaden.Start();
             MitgliedDetails mitgliedDetails = await mitgliederLaden;
-            List<Taetigkeit> taetigkeiten = await taetigkeitenLaden;
             ItemDetailViewModel viewModelMitgliedDetails = new ItemDetailViewModel(mitgliedDetails, mainC);
+            viewModelMitgliedDetails.sgb8 = await fuehrungszeugnisseLaden;
+            viewModelMitgliedDetails.ausbildung = await ausbildungLaden;
+            viewModelMitgliedDetails.taetigkeiten = await taetigkeitenLaden;
             return viewModelMitgliedDetails;
 
 
