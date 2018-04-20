@@ -4,13 +4,14 @@
              x:Class="BdP_MV.View.Settings"
              Title="Einstellungen">
     <ContentPage.Content>
-        StackLayout Orientation="Vertical">
+        <StackLayout Orientation="Vertical">
         <Label Text="Standardgruppe"></Label>
         <StackLayout Orientation="Horizontal">
             <Label Text="Funktion aktiv" TextColor="Gray"></Label>
             <Label Text="{Binding mitglied.nachname}"  TextColor="Gray"></Label>
         </StackLayout>
+        </StackLayout>
 
-        
+
     </ContentPage.Content>
 </ContentPage>

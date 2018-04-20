@@ -244,6 +244,16 @@ namespace BdP_MV.Services
         //    return taetigkeiten;
         //}
 
+        public async Task<List<SGB8>> SGB8(int idMitglied)
+        {
+            string anfrage = "/nami/mitglied-sgb-acht/filtered-for-navigation/empfaenger/empfaenger/" + idMitglied + "/flist";
+            string responseString = await GetApiResultStringAsync(anfrage);
+            List<SGB8> fuehrungszeugnisse = new List<SGB8>();
+            RootObject_SGB8 rootFZ = JsonConvert.DeserializeObject<RootObject_SGB8>(responseString);
+            fuehrungszeugnisse = rootFZ.data;
+            return fuehrungszeugnisse;
+        }
+        
         public async Task<List<Taetigkeit>> Taetigkeiten (int idMitglied)
         {
             string anfrage = "/nami/zugeordnete-taetigkeiten/filtered-for-navigation/gruppierung-mitglied/mitglied/" + idMitglied + "/flist";
