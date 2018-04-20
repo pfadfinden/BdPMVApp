@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -20,7 +21,9 @@ namespace BdP_MV.Model.Mitglied
             public string entries_gruppierung { get; set; }
             public int id { get; set; }
             public string entries_mitglied { get; set; }
-        }
+        [JsonIgnore]
+        public Boolean aktiv { get; set; }
+    }
 
         public class Field
         {

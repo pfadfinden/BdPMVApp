@@ -253,6 +253,15 @@ namespace BdP_MV.Services
             taetigkeiten = rootObjectTaetigkeiten.data;
             return taetigkeiten;
         }
+        public async Task<List<Ausbildung>> Ausbildung(int idMitglied)
+        {
+            string anfrage = "nami/mitglied-ausbildung/filtered-for-navigation/mitglied/mitglied/" + idMitglied + "/flist";
+            string responseString = await GetApiResultStringAsync(anfrage);
+            List<Ausbildung> ausbildungen = new List<Ausbildung>();
+            RootObject_Ausbildung rootObject= JsonConvert.DeserializeObject<RootObject_Ausbildung>(responseString);
+            ausbildungen = rootObject.data;
+            return ausbildungen;
+        }
 
         public async Task<MitgliedDetails> MitgliedDetails(int idMitglied, int idGruppe)
         {

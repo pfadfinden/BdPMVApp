@@ -114,6 +114,26 @@ namespace BdP_MV.Services
         {
             List<Taetigkeit> taetigkeiten = new List<Taetigkeit>();
             taetigkeiten = await mainC.mVConnector.Taetigkeiten(idMitglied);
+            foreach (Taetigkeit t in taetigkeiten)
+            {
+                //überprüfen ob die Tätigkeit aktiv ist.
+                if (t.entries_aktivBis.HasValue)
+                {
+                    
+                    if (DateTime.Compare((DateTime)t.entries_aktivBis,DateTime.Now)<=0)
+                    {
+                        t.aktiv = false;
+                    }
+                    else
+                    {
+                        t.aktiv = true; 
+                    }
+                }
+                else
+                {
+                    t.aktiv = true;
+                }
+            }
             return taetigkeiten;
         }
 
