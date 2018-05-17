@@ -24,6 +24,7 @@ namespace BdP_MV.View.MitgliederDetails
             
             InitializeComponent();
             BindingContext = this.viewModel = viewModel;
+            
           
         }
     }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace BdP_MV.Services
@@ -20,9 +21,12 @@ namespace BdP_MV.Services
         {
             List<Gruppe> tempGruppen = new List<Gruppe>();
             tempGruppen = mainC.mVConnector.GetGroups(id);
+            Regex reg = new Regex(@"(\s)*([0-9]+)");
             if (tempGruppen.Count > 0)
                 foreach (Gruppe aktGruppe in tempGruppen)
                 {
+                    
+                    aktGruppe.descriptor = reg.Replace(aktGruppe.descriptor, "$1");
                     alleGruppen.Add(aktGruppe);
                     await AlleGruppenAbrufen(aktGruppe.id);
                 }

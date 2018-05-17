@@ -18,8 +18,7 @@ namespace BdP_MV.ViewModel
             mainC = mainCo;
 
             mitglied = mitgliedDetails;
-            GeburtsdatumString = String.Format("{0:d/M/yyyy}", mitglied.geburtsDatum);
-            EintrittsdatumString = String.Format("{0:d/M/yyyy}", mitglied.eintrittsdatum);
+
         }
     
         MainController mainC;
@@ -32,20 +31,24 @@ namespace BdP_MV.ViewModel
 
         public bool HasPhoneNumber => !string.IsNullOrWhiteSpace(mitglied?.telefon1);
         public bool HasCellphoneNumber => !string.IsNullOrWhiteSpace(mitglied?.telefon3);
+        public bool HasKleingruppe;
 
         public bool HasAddress => true;
         public bool HasEmailAddress => !string.IsNullOrWhiteSpace(mitglied?.email);
         public bool HasParentEmailAddress => !string.IsNullOrWhiteSpace(mitglied?.emailVertretungsberechtigter);
         public bool IsEditable = true;
-        string EintrittsdatumString;
-        string GeburtsdatumString;
 
 
         // this is just a utility service that we're using in this demo app to mitigate some limitations of the iOS simulator
 
 
 
+        public void Nachbearbeitung()
+        {
+            mitglied.kleingruppe = mainC.mitgliederController.GruppennameHerausfinden(taetigkeiten);
+            HasKleingruppe = !string.IsNullOrWhiteSpace(mitglied?.kleingruppe);
 
+    }
         Command _EditAcquaintanceCommand;
 
         public Command EditAcquaintanceCommand

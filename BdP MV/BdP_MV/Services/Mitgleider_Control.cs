@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace BdP_MV.Services
@@ -26,7 +27,7 @@ namespace BdP_MV.Services
             if (AlleMitglieder != null)
             {
                 foreach (Mitglied aktuellesMitglied in AlleMitglieder)
-                    {
+                {
 
                     if (aktuellesMitglied.entries_status.Equals("Aktiv"))
                     {
@@ -84,7 +85,7 @@ namespace BdP_MV.Services
         public async Task<MitgliedDetails> MitgliedDetailsAbrufen(int idMitglied, int idGruppe)
         {
             MitgliedDetails mitglied = new MitgliedDetails();
-            mitglied =  await mainC.mVConnector.MitgliedDetails(idMitglied, idGruppe);
+            mitglied = await mainC.mVConnector.MitgliedDetails(idMitglied, idGruppe);
 
             mitglied.ansprechname = ChooseAnsprechname(mitglied);
             try
@@ -110,23 +111,25 @@ namespace BdP_MV.Services
 
 
         }
-        public async Task<List<Taetigkeit>> TaetigkeitenAbrufen (int idMitglied)
+        public async Task<List<Taetigkeit>> TaetigkeitenAbrufen(int idMitglied)
         {
             List<Taetigkeit> taetigkeiten = new List<Taetigkeit>();
             taetigkeiten = await mainC.mVConnector.Taetigkeiten(idMitglied);
+            Regex reg_taetigkeitsname = new Regex(@"\s+\(([0-9+,+.])*\)\s*(\[[A-Z]\])*");
             foreach (Taetigkeit t in taetigkeiten)
             {
+                t.entries_taetigkeit = reg_taetigkeitsname.Replace(t.entries_taetigkeit, "$1");
                 //überprüfen ob die Tätigkeit aktiv ist.
                 if (t.entries_aktivBis.HasValue)
                 {
-                    
-                    if (DateTime.Compare((DateTime)t.entries_aktivBis,DateTime.Now)<=0)
+
+                    if (DateTime.Compare((DateTime)t.entries_aktivBis, DateTime.Now) <= 0)
                     {
                         t.aktiv = false;
                     }
                     else
                     {
-                        t.aktiv = true; 
+                        t.aktiv = true;
                     }
                 }
                 else
@@ -140,7 +143,7 @@ namespace BdP_MV.Services
         {
             List<Ausbildung> ausbildungen = new List<Ausbildung>();
             ausbildungen = await mainC.mVConnector.Ausbildung(idMitglied);
-           
+
             return ausbildungen;
         }
         public async Task<List<SGB8>> Sgb8Abrufen(int idMitglied)
@@ -156,42 +159,42 @@ namespace BdP_MV.Services
             //AlleMitglieder = await Task<List<Mitglied>>.Run(() => mainC.MvConnector.Mitglieder(mainC.gruppencontroller.AktuelleGruppe, true));
 
 
-            AlleMitglieder =  await mainC.mVConnector.Mitglieder(mainC.einsteillungen.aktuelleGruppe, true);
+            AlleMitglieder = await mainC.mVConnector.Mitglieder(mainC.einsteillungen.aktuelleGruppe, true);
             MitgliederNachbearbeiten();
 
             Console.WriteLine("Mitglieder_Gefiltert");
 
         }
-        //private String GruppennameHerausfinden(List<Taetigkeit> taetigkeiten)
-        //{
-        //    string gruppe = "";
-        //    foreach (Taetigkeit aktuellTaetigkeit in taetigkeiten)
-        //    {
-        //        if (aktuellTaetigkeit.entries_aktivBis == "")
-        //        {
-        //            if (aktuellTaetigkeit.entries_taetigkeit.StartsWith("."))
-        //            {
-        //                gruppe = aktuellTaetigkeit.entries_taetigkeit;
-        //                string[] meineStrings = gruppe.Split(new Char[] { '(' });
-        //                gruppe = meineStrings[0];
-        //                //Regex regex = new Regex(".");
-        //                //gruppe = regex.Replace(gruppe, String.Empty);
-        //                gruppe = gruppe.TrimStart('.');
-        //                return gruppe;
-        //            }
-        //        }
-        //    }
-        //    return gruppe;
+        public String GruppennameHerausfinden(List<Taetigkeit> taetigkeiten)
+        {
+            string gruppe = "";
+            foreach (Taetigkeit aktuellTaetigkeit in taetigkeiten)
+            {
+                if (aktuellTaetigkeit.aktiv)
+                {
+                    if (aktuellTaetigkeit.entries_taetigkeit.StartsWith("."))
+                    {
+                        gruppe = aktuellTaetigkeit.entries_taetigkeit;
+                        string[] meineStrings = gruppe.Split(new Char[] { '(' });
+                        gruppe = meineStrings[0];
+                        //Regex regex = new Regex(".");
+                        //gruppe = regex.Replace(gruppe, String.Empty);
+                        gruppe = gruppe.TrimStart('.');
+                        return gruppe;
+                    }
+                }
+            }
+            return gruppe;
 
-        //}
-        //public MitgliedDetails MitgliedDetailsFinden(int id)
-        //{
-        //    Mitglied mitgliedAusUebersicht = alleMitglieder.Find(x => x.entries_id == id);
-        //    String gruppe = mitgliedAusUebersicht.Gruppe;
-        //    MitgliedDetails mitgliedDetail = mainC.mVConnector.MitgliedDetails(id);
-        //    mitgliedDetail.gruppe = gruppe;
-        //    mitgliedDetail.alter = GetAgeFromDate(mitgliedDetail.geburtsDatum);
-        //    return mitgliedDetail;
-        //}
-    }
+            }
+            //public MitgliedDetails MitgliedDetailsFinden(int id)
+            //{
+            //    Mitglied mitgliedAusUebersicht = alleMitglieder.Find(x => x.entries_id == id);
+            //    String gruppe = mitgliedAusUebersicht.Gruppe;
+            //    MitgliedDetails mitgliedDetail = mainC.mVConnector.MitgliedDetails(id);
+            //    mitgliedDetail.gruppe = gruppe;
+            //    mitgliedDetail.alter = GetAgeFromDate(mitgliedDetail.geburtsDatum);
+            //    return mitgliedDetail;
+            //}
+        }
 }

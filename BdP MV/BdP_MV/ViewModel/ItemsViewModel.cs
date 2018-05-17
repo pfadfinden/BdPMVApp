@@ -58,7 +58,9 @@ namespace BdP_MV.ViewModel
             ItemDetailViewModel viewModelMitgliedDetails = new ItemDetailViewModel(mitgliedDetails, mainC);
             viewModelMitgliedDetails.sgb8 = await mainC.mitgliederController.Sgb8Abrufen(idMitglied); ;
             viewModelMitgliedDetails.ausbildung = await mainC.mitgliederController.AusbildungenAbrufen(idMitglied); ;
-            viewModelMitgliedDetails.taetigkeiten = await mainC.mitgliederController.TaetigkeitenAbrufen(idMitglied); 
+            viewModelMitgliedDetails.taetigkeiten = await mainC.mitgliederController.TaetigkeitenAbrufen(idMitglied);
+            viewModelMitgliedDetails.Nachbearbeitung();
+
             return viewModelMitgliedDetails;
 
 

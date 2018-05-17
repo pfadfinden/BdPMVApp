@@ -1,31 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BdP_MV.View.MitgliederDetails.Taetigkeiten_Liste">
-  <ListView x:Name="MyListView"
+             x:Class="BdP_MV.View.MitgliederDetails.Taetigkeiten_Liste"
+             Title="Tätigkeiten">
+    <ListView x:Name="MyListView"
             ItemsSource="{Binding taetigkeiten}"
             ItemTapped="Handle_ItemTapped"
-            CachingStrategy="RecycleElement">
+            CachingStrategy="RecycleElement"
+              RowHeight="80">
 
 
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
                     <StackLayout>
-                        <Label Text="{Binding descriptor}" 
+                        <Label Text="{Binding entries_taetigkeit}" 
                    Style="{DynamicResource ListItemTextStyle}" />
                         <StackLayout Orientation="Horizontal">
                             <Label Text="Untergliederung"  Style="{DynamicResource ListItemDetailTextStyle}"></Label>
-                            <Label Text="{Binding entries_untergliederung}"  Style="{DynamicResource ListItemDetailTextStyle}"></Label>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="Aktiv?"  Style="{DynamicResource ListItemDetailTextStyle}"></Label>
-                            <Label Text="{Binding aktiv}"  Style="{DynamicResource ListItemDetailTextStyle}"></Label>
+                            <Label Text="{Binding entries_gruppierung}"  Style="{DynamicResource ListItemDetailTextStyle}"></Label>
                         </StackLayout>
                     </StackLayout>
 
                 </ViewCell>
-                    
+
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
