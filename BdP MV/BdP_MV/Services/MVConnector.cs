@@ -276,7 +276,7 @@ namespace BdP_MV.Services
         public async Task<MitgliedDetails> MitgliedDetails(int idMitglied, int idGruppe)
         {
             
-            String anfrage =" nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/"+idGruppe+"/"+idMitglied;
+            String anfrage ="nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/"+idGruppe+"/"+idMitglied;
             String responseString = await GetApiResultStringAsync(anfrage);
 
             MitgliedDetails mitgliedDetais = new MitgliedDetails();
