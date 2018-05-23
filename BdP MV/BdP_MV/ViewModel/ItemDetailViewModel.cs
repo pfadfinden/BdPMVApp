@@ -23,7 +23,7 @@ namespace BdP_MV.ViewModel
     
         MainController mainC;
 
-        public bool HasZusatzAdresse;
+        public bool HasZusatzAdresse => !string.IsNullOrWhiteSpace(mitglied?.nameZusatz);
         public MitgliedDetails mitglied { private set; get; }
         public List<Taetigkeit> taetigkeiten {set; get; }
         public List<SGB8> sgb8 { set; get; }
