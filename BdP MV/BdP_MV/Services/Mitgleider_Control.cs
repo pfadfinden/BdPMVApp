@@ -143,22 +143,23 @@ namespace BdP_MV.Services
                 }
             });
 
-            taetigkeiten = taetigkeiten.OrderBy(o => o.descriptor).ToList();
+            taetigkeiten = taetigkeiten.OrderBy(o => o.entries_taetigkeit).ToList();
 
-            taetigkeiten = taetigkeiten.OrderBy(o => o.aktiv).ToList();
+            taetigkeiten = taetigkeiten.OrderByDescending(o => o.aktiv).ToList();
             return taetigkeiten;
         }
         public async Task<List<Ausbildung>> AusbildungenAbrufen(int idMitglied)
         {
             List<Ausbildung> ausbildungen = new List<Ausbildung>();
             ausbildungen = await mainC.mVConnector.Ausbildung(idMitglied);
-
+            ausbildungen = ausbildungen.OrderByDescending(o => o.entries_vstgTag).ToList();
             return ausbildungen;
         }
         public async Task<List<SGB8>> Sgb8Abrufen(int idMitglied)
         {
             List<SGB8> fuehrungszeugnisse = new List<SGB8>();
             fuehrungszeugnisse = await mainC.mVConnector.SGB8(idMitglied);
+            fuehrungszeugnisse = fuehrungszeugnisse.OrderByDescending(o => o.entries_fzDatum).ToList();
 
             return fuehrungszeugnisse;
         }

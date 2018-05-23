@@ -2,13 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BdP_MV.View.MitgliederDetails.Taetigkeiten_Liste"
-             xmlns:MvvmHelpers="clr-namespace:MvvmHelpers"
+             
              Title="Tätigkeiten">
     <ListView x:Name="MyListView"
             ItemsSource="{Binding taetigkeiten}"
             ItemTapped="Handle_ItemTapped"
             CachingStrategy="RecycleElement"
-                IsGroupingEnabled="true"
               RowHeight="80">
 
 
@@ -21,18 +20,18 @@
                         <StackLayout Orientation="Horizontal">
                             <Label Text="Untergliederung"  Style="{DynamicResource ListItemDetailTextStyle}"></Label>
                             <Label Text="{Binding entries_gruppierung}"  Style="{DynamicResource ListItemDetailTextStyle}"></Label>
-                            <ContentView IsEnabled="{Binding aktiv}" IsVisible="{Binding aktiv}">
+                            <!--<ContentView IsEnabled="{Binding aktiv}" IsVisible="{Binding aktiv}">
                                 <StackLayout Orientation="Horizontal">
                                     <Label Text="Aktiv seit:" TextColor="Green"></Label>
                                     <Label Text="{Binding entries_aktivVon , StringFormat='{0:d/M/yyyy}'}}" FontSize="Default" LineBreakMode="TailTruncation" />
                                 </StackLayout> 
-                            </ContentView>
-                            <ContentView IsEnabled="{Binding aktiv, Converter={MvvmHelpers:InverseBoolConverter}}" IsVisible="{Binding aktiv, Converter={MvvmHelpers:InverseBoolConverter}}">
+                            </ContentView>-->
+                            <!--<ContentView IsEnabled="{Binding aktiv, Converter={MvvmHelpers:InverseBoolConverter}}" IsVisible="{Binding aktiv, Converter={MvvmHelpers:InverseBoolConverter}}">
                                 <StackLayout Orientation="Horizontal">
                                     <Label Text="Aktiv bis::" TextColor="Red"></Label>
                                     <Label Text="{Binding entries_aktivBis , StringFormat='{0:d/M/yyyy}'}}" FontSize="Default" LineBreakMode="TailTruncation" />
                                 </StackLayout>
-                            </ContentView>
+                            </ContentView>-->
                         </StackLayout>
                     </StackLayout>
 

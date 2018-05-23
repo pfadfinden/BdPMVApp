@@ -31,7 +31,7 @@ namespace BdP_MV.ViewModel
 
         public bool HasPhoneNumber => !string.IsNullOrWhiteSpace(mitglied?.telefon1);
         public bool HasCellphoneNumber => !string.IsNullOrWhiteSpace(mitglied?.telefon3);
-        public bool HasKleingruppe;
+        public bool HasKleingruppe =false;
 
         public bool HasAddress => true;
         public bool HasEmailAddress => !string.IsNullOrWhiteSpace(mitglied?.email);

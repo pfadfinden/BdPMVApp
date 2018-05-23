@@ -23,6 +23,12 @@
                                 <Label Text="Status:" TextColor="Gray"></Label>
                                 <Label Text="{Binding mitglied.status}"  TextColor="Gray"></Label>
                             </StackLayout>
+                            <ContentView IsEnabled="{Binding HasKleingruppe}" IsVisible="{Binding HasKleingruppe}">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Kleingruppe:" TextColor="Gray"></Label>
+                                    <Label Text="{Binding mitglied.kleingruppe}"  TextColor="Gray"></Label>
+                                </StackLayout>
+                            </ContentView>
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="Eintrittsdatum:" TextColor="Gray"></Label>
                                 <Label Text="{Binding mitglied.eintrittsdatum , StringFormat='{0:d/M/yyyy}'}" TextColor="Gray"></Label>
