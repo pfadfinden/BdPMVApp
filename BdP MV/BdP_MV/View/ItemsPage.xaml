@@ -23,6 +23,8 @@
                        VerticalOptions="CenterAndExpand"
                        HorizontalOptions="CenterAndExpand"
                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.33}" />
+
+
                 <Picker 
                     x:Name="testpicker" 
             Title="Gruppe auswählen"

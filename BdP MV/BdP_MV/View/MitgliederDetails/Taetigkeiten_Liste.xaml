@@ -20,6 +20,12 @@
                         <StackLayout Orientation="Horizontal">
                             <Label Text="Untergliederung"  Style="{DynamicResource ListItemDetailTextStyle}"></Label>
                             <Label Text="{Binding entries_gruppierung}"  Style="{DynamicResource ListItemDetailTextStyle}"></Label>
+                            <ContentView IsEnabled="{Binding aktiv}" IsVisible="{Binding aktiv}">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Geburtsdatum:" TextColor="Gray"></Label>
+                                    <Label Text="{Binding entries_aktivVon , StringFormat='{0:d/M/yyyy}'}}" FontSize="Default" LineBreakMode="TailTruncation" />
+                                </StackLayout>
+                            </ContentView>
                         </StackLayout>
                     </StackLayout>
 
