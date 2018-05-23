@@ -1,6 +1,7 @@
 ﻿using BdP_MV.Model.Mitglied;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -115,10 +116,14 @@ namespace BdP_MV.Services
         {
             List<Taetigkeit> taetigkeiten = new List<Taetigkeit>();
             taetigkeiten = await mainC.mVConnector.Taetigkeiten(idMitglied);
-            Regex reg_taetigkeitsname = new Regex(@"\s+\(([0-9+,+.])*\)\s*(\[[A-Z]\])*");
-            foreach (Taetigkeit t in taetigkeiten)
+            Regex reg_taetigkeitsname = new Regex(@"\s+\(([0-9]*|[,]*|[.]*)*\)\s*(\[[A-Z]\])*");
+            Regex reg_gruppe = new Regex(@"(\s)*([0-9]+)");
+            //foreach (Taetigkeit t in taetigkeiten)
+            Parallel.ForEach(taetigkeiten, (t) =>
             {
                 t.entries_taetigkeit = reg_taetigkeitsname.Replace(t.entries_taetigkeit, "$1");
+                t.entries_gruppierung = reg_gruppe.Replace(t.entries_gruppierung, "$1");
+
                 //überprüfen ob die Tätigkeit aktiv ist.
                 if (t.entries_aktivBis.HasValue)
                 {
@@ -136,7 +141,11 @@ namespace BdP_MV.Services
                 {
                     t.aktiv = true;
                 }
-            }
+            });
+
+            taetigkeiten = taetigkeiten.OrderBy(o => o.descriptor).ToList();
+
+            taetigkeiten = taetigkeiten.OrderBy(o => o.aktiv).ToList();
             return taetigkeiten;
         }
         public async Task<List<Ausbildung>> AusbildungenAbrufen(int idMitglied)
@@ -187,14 +196,6 @@ namespace BdP_MV.Services
             return gruppe;
 
             }
-            //public MitgliedDetails MitgliedDetailsFinden(int id)
-            //{
-            //    Mitglied mitgliedAusUebersicht = alleMitglieder.Find(x => x.entries_id == id);
-            //    String gruppe = mitgliedAusUebersicht.Gruppe;
-            //    MitgliedDetails mitgliedDetail = mainC.mVConnector.MitgliedDetails(id);
-            //    mitgliedDetail.gruppe = gruppe;
-            //    mitgliedDetail.alter = GetAgeFromDate(mitgliedDetail.geburtsDatum);
-            //    return mitgliedDetail;
-            //}
+           
         }
 }

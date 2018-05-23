@@ -46,7 +46,7 @@ namespace BdP_MV.ViewModel
                 }
                 else if (answer == 3)
                 {
-                    returnString += "Es ist ein Fehler mit deiner Internetverbindung aufgetreten. Such dir Netz!";
+                    returnString += "Es ist ein Fehler mit deiner Internetverbindung aufgetreten.";
 
                 }
                 else if (answer == 0)
