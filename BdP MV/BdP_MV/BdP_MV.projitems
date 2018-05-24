@@ -50,6 +50,10 @@
       <DependentUpon>ForgotPW.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\MitgliederDetails\Ausbildung_Liste.xaml.cs">
+      <DependentUpon>Ausbildung_Liste.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\MitgliederDetails\Basisdaten_Mitglied.xaml.cs">
       <DependentUpon>Basisdaten_Mitglied.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -142,6 +146,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\MitgliederDetails\Taetigkeiten_Liste.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\MitgliederDetails\Ausbildung_Liste.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

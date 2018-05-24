@@ -26,6 +26,7 @@ namespace BdP_MV.View.MitgliederDetails
             this.Children.Add(new MitgliederStammDaten(p_ViewModel));
             this.Children.Add(new Basisdaten_Mitglied(p_ViewModel));
             this.Children.Add(new Taetigkeiten_Liste(p_ViewModel));
+            this.Children.Add(new Ausbildung_Liste(p_ViewModel));
 
             viewModel = p_ViewModel;
             BindingContext = viewModel;

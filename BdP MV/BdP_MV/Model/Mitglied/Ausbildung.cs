@@ -6,7 +6,7 @@ namespace BdP_MV.Model.Mitglied
 {
     public class Ausbildung
     {
-        public string entries_vstgTag { get; set; }
+        public DateTime? entries_vstgTag { get; set; }
         public string entries_veranstalter { get; set; }
         public string entries_vstgName { get; set; }
         public string entries_baustein { get; set; }

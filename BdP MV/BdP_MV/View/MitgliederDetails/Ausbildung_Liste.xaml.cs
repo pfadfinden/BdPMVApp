@@ -11,15 +11,16 @@ using Xamarin.Forms.Xaml;
 namespace BdP_MV.View.MitgliederDetails
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Taetigkeiten_Liste : ContentPage
+    public partial class Ausbildung_Liste : ContentPage
     {
         private ItemDetailViewModel viewModel;
-        public Taetigkeiten_Liste()
+
+        public Ausbildung_Liste()
         {
             InitializeComponent();
 
         }
-        public Taetigkeiten_Liste(ItemDetailViewModel viewModel)
+        public Ausbildung_Liste(ItemDetailViewModel viewModel)
         {
             InitializeComponent();
             BindingContext = this.viewModel = viewModel;
