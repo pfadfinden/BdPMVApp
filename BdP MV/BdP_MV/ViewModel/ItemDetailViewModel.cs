@@ -28,10 +28,11 @@ namespace BdP_MV.ViewModel
         public List<Taetigkeit> taetigkeiten {set; get; }
         public List<SGB8> sgb8 { set; get; }
         public List<Ausbildung> ausbildung { set; get; }
+        public String latestSGB8 { set; get; }
 
         public bool HasPhoneNumber => !string.IsNullOrWhiteSpace(mitglied?.telefon1);
         public bool HasCellphoneNumber => !string.IsNullOrWhiteSpace(mitglied?.telefon3);
-        public bool HasKleingruppe =false;
+        public bool HasKleingruppe { private set; get; }
 
         public bool HasAddress => true;
         public bool HasEmailAddress => !string.IsNullOrWhiteSpace(mitglied?.email);
@@ -43,35 +44,16 @@ namespace BdP_MV.ViewModel
 
 
 
-        public void Nachbearbeitung()
+        public async Task Nachbearbeitung()
         {
-            mitglied.kleingruppe = mainC.mitgliederController.GruppennameHerausfinden(taetigkeiten);
+            Task<String> t1 = Task<String>.Run(() => mainC.mitgliederController.latestSGB8(sgb8));
+            Task<String> t2 = Task<String>.Run(() => mainC.mitgliederController.GruppennameHerausfinden(taetigkeiten));
+            latestSGB8 = await t1;
+            mitglied.kleingruppe = await t2;
             HasKleingruppe = !string.IsNullOrWhiteSpace(mitglied?.kleingruppe);
 
-    }
-        Command _EditAcquaintanceCommand;
 
-        public Command EditAcquaintanceCommand
-        {
-            get
-            {
-                return _EditAcquaintanceCommand ??
-                    (_EditAcquaintanceCommand = new Command(async () => await ExecuteEditAcquaintanceCommand()));
-            }
-        }
 
-        async Task ExecuteEditAcquaintanceCommand()
-        {
-            //await PushAsync(new AcquaintanceEditPage() { BindingContext = new AcquaintanceEditViewModel(Acquaintance) });
-        }
-
-        Command _DeleteAcquaintanceCommand;
-
-        public Command DeleteAcquaintanceCommand => _DeleteAcquaintanceCommand ?? (_DeleteAcquaintanceCommand = new Command(ExecuteDeleteAcquaintanceCommand));
-
-        void ExecuteDeleteAcquaintanceCommand()
-        {
-            
         }
 
         Command _DialNumberCommand;
@@ -129,7 +111,10 @@ namespace BdP_MV.ViewModel
         {
             if (string.IsNullOrWhiteSpace(mitglied.telefon3))
                 return;
-
+            else
+            {
+                Device.OpenUri(new Uri("sms:" + mitglied.telefon3.ToString()));
+            }
 
         }
         Command _EmailCommand;

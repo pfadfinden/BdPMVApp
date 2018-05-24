@@ -16,38 +16,42 @@
                                 <Label Text="{Binding mitglied.nachname}"  TextColor="Gray"></Label>
                             </StackLayout>
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="Mitglieds ID:" TextColor="Gray"></Label>
+                                <Label Text="Mitglieds ID:" TextColor="Gray" Font="Bold"></Label>
                                 <Label Text="{Binding mitglied.id}"  TextColor="Gray"></Label>
                             </StackLayout>
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="Status:" TextColor="Gray"></Label>
+                                <Label Text="Status:" TextColor="Gray" Font="Bold"></Label>
                                 <Label Text="{Binding mitglied.status}"  TextColor="Gray"></Label>
                             </StackLayout>
                             <ContentView IsEnabled="{Binding HasKleingruppe}" IsVisible="{Binding HasKleingruppe}">
                                 <StackLayout Orientation="Horizontal">
-                                    <Label Text="Kleingruppe:" TextColor="Gray"></Label>
+                                    <Label Text="Kleingruppe:" TextColor="Gray" Font="Bold"></Label>
                                     <Label Text="{Binding mitglied.kleingruppe}"  TextColor="Gray"></Label>
                                 </StackLayout>
                             </ContentView>
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="Eintrittsdatum:" TextColor="Gray"></Label>
+                                <Label Text="Eintrittsdatum:" TextColor="Gray" Font="Bold"></Label>
                                 <Label Text="{Binding mitglied.eintrittsdatum , StringFormat='{0:d/M/yyyy}'}" TextColor="Gray"></Label>
                             </StackLayout>
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="Geburtsdatum:" TextColor="Gray"></Label>
+                                <Label Text="Geburtsdatum:" TextColor="Gray" Font="Bold"></Label>
                                 <Label Text="{Binding mitglied.geburtsDatum , StringFormat='{0:d/M/yyyy}'}}"  TextColor="Gray"></Label>
                             </StackLayout>
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="Alter:" TextColor="Gray"></Label>
+                                <Label Text="Alter:" TextColor="Gray" Font="Bold"></Label>
                                 <Label Text="{Binding mitglied.alter}"  TextColor="Gray"></Label>
                             </StackLayout>
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="Status:" TextColor="Gray"></Label>
+                                <Label Text="Status:" TextColor="Gray" Font="Bold"></Label>
                                 <Label Text="{Binding mitglied.status}"  TextColor="Gray"></Label>
                             </StackLayout>
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="Versand Pfade:" TextColor="Gray"></Label>
-                                <Label Text="{Binding mitglied.status}"  TextColor="Gray"></Label>
+                                <Label Text="Versand Pfade:" TextColor="Gray" Font="Bold"></Label>
+                                <Label Text="{Binding mitglied.zeitschriftenversand}"  TextColor="Gray"></Label>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Führungszeugnis:" TextColor="Gray" Font="Bold"></Label>
+                                <Label Text="{Binding latestSGB8}"  TextColor="Gray"></Label>
                             </StackLayout>
                         </StackLayout>
 

@@ -1,6 +1,7 @@
 ﻿using BdP_MV.Model.Mitglied;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -162,6 +163,23 @@ namespace BdP_MV.Services
             fuehrungszeugnisse = fuehrungszeugnisse.OrderByDescending(o => o.entries_fzDatum).ToList();
 
             return fuehrungszeugnisse;
+        }
+        public String latestSGB8(List<SGB8> fuehrungszeugnisse)
+        {
+            String returnString;
+            CultureInfo ci = new CultureInfo("de-DE");
+
+            if (fuehrungszeugnisse.Count==0)
+            {
+                returnString = "Kein Führungszeungnis eingesehen";
+            }
+            else
+            {
+                DateTime letztesFZ = (DateTime)fuehrungszeugnisse.First<SGB8>().entries_fzDatum;
+               
+                returnString = "Letztes FZ ist " + GetAgeFromDate(letztesFZ) + " Jahre alt. (Datum: " + letztesFZ.ToString("d", ci) + ")";
+            }
+            return returnString;
         }
 
         public async Task MitgliederAktualisierenByGroup()

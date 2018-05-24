@@ -49,7 +49,7 @@ namespace BdP_MV.View.MitgliederDetails
                 details += "\nKursdatum: " + datum.ToString("d", ci);
                 details += "\nMitglied: " + ausbildung_selected_details.mitglied;
                 IsBusy = false;
-                await DisplayAlert(selected.entries_baustein, ausbildung_selected_details.baustein, "OK");
+                await DisplayAlert(selected.entries_baustein, details, "OK");
             }
             catch (NewLoginException ex)
             {

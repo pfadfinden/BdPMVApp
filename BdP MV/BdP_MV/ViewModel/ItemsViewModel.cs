@@ -59,9 +59,11 @@ namespace BdP_MV.ViewModel
             MitgliedDetails mitgliedDetails = await Task.Run(async () => await mainC.mitgliederController.MitgliedDetailsAbrufen(idMitglied, aktGruppe.id)); 
             ItemDetailViewModel viewModelMitgliedDetails = new ItemDetailViewModel(mitgliedDetails, mainC);
             viewModelMitgliedDetails.sgb8 = await task_sgb8 ;
-            viewModelMitgliedDetails.ausbildung = await task_ausbildung ;
             viewModelMitgliedDetails.taetigkeiten = await task_taetigkeiten;
-            viewModelMitgliedDetails.Nachbearbeitung();
+            Task nachbarbeitung = viewModelMitgliedDetails.Nachbearbeitung();
+                      
+            viewModelMitgliedDetails.ausbildung = await task_ausbildung;
+            await nachbarbeitung;
 
             return viewModelMitgliedDetails;
 

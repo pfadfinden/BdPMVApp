@@ -7,15 +7,14 @@
             ItemsSource="{Binding ausbildung}"
             ItemTapped="Handle_ItemTapped"
             CachingStrategy="RecycleElement"
-              RowHeight="80">
+              RowHeight="60">
 
 
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
                     <StackLayout>
-                        <Label Text="{Binding entries_baustein}" 
-                   Style="{DynamicResource ListItemTextStyle}" />
+                        <Label Text="{Binding entries_baustein}" Style="{DynamicResource ListItemTextStyle}"  Font="Bold" />
                         <StackLayout Orientation="Horizontal">
                             <Label Text="Datum"  Style="{DynamicResource ListItemDetailTextStyle}"></Label>
                             <Label Text="{Binding entries_vstgTag , StringFormat='{0:d/M/yyyy}'}"  Style="{DynamicResource ListItemDetailTextStyle}"></Label>

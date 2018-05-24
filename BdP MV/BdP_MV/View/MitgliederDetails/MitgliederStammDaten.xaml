@@ -57,18 +57,14 @@
                                             <TapGestureRecognizer Command="{Binding DialNumberCommand}" NumberOfTapsRequired="1" />
                                         </Label.GestureRecognizers>
                                     </Label>
-                                    <Image Source="message.png" Aspect="AspectFit" HeightRequest="20" WidthRequest="20">
-                                        <Image.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding MessageNumberCommand}" NumberOfTapsRequired="1" />
-                                        </Image.GestureRecognizers>
-                                    </Image>
+                                    
                                 </StackLayout>
                             </ContentView>
                             <ContentView IsEnabled="{Binding HasCellphoneNumber}" IsVisible="{Binding HasCellphoneNumber}">
                                 <StackLayout Orientation="Horizontal" Spacing="10">
                                     <Image Source="phone.png" Aspect="AspectFit" HeightRequest="20" WidthRequest="20">
                                         <Image.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding }" NumberOfTapsRequired="1" />
+                                            <TapGestureRecognizer Command="{Binding DialCellphoneNumberCommand}" NumberOfTapsRequired="1" />
                                         </Image.GestureRecognizers>
                                     </Image>
                                     <Label Text="{Binding mitglied.telefon3}" FontSize="Default" HeightRequest="20" VerticalTextAlignment="Center" LineBreakMode="TailTruncation">
@@ -78,7 +74,7 @@
                                     </Label>
                                     <Image Source="message.png" Aspect="AspectFit" HeightRequest="20" WidthRequest="20">
                                         <Image.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding DialCellphoneNumberCommand}" NumberOfTapsRequired="1" />
+                                            <TapGestureRecognizer Command="{Binding MessageCellphoneNumberCommand}" NumberOfTapsRequired="1" />
                                         </Image.GestureRecognizers>
                                     </Image>
                                 </StackLayout>
@@ -91,7 +87,9 @@
                                         </Image.GestureRecognizers>
                                     </Image>
                                     <Label Text="{Binding mitglied.email}" FontSize="Small" HeightRequest="20" LineBreakMode="TailTruncation" VerticalTextAlignment="Center">
-                                        
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding EmailCommand}" NumberOfTapsRequired="1" />
+                                        </Label.GestureRecognizers>
 
                                     </Label>
                                 </StackLayout>
@@ -100,12 +98,12 @@
                                 <StackLayout Orientation="Horizontal" Spacing="10">
                                     <Image Source="email.png" Aspect="AspectFit" HeightRequest="20" WidthRequest="20">
                                         <Image.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding _ParentEmailCommand}" NumberOfTapsRequired="1" />
+                                            <TapGestureRecognizer Command="{Binding ParentEmailCommand}" NumberOfTapsRequired="1" />
                                         </Image.GestureRecognizers>
                                     </Image>
                                     <Label Text="{Binding mitglied.emailVertretungsberechtigter}" FontSize="Small" HeightRequest="20" LineBreakMode="TailTruncation" VerticalTextAlignment="Center">
                                         <Label.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding EmailCommand}" NumberOfTapsRequired="1" />
+                                            <TapGestureRecognizer Command="{Binding ParentEmailCommand}" NumberOfTapsRequired="1" />
                                         </Label.GestureRecognizers>
                                        </Label>
                                 </StackLayout>
