@@ -64,6 +64,7 @@ namespace BdP_MV.View.MitgliederDetails
 
             }
             catch (WebException ex)
+
             {
                 IsBusy = false;
                 await DisplayAlert("Fehler", "Fehler beim Herstellen der Internetverbindung", "OK");
