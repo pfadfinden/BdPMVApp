@@ -296,6 +296,29 @@ namespace BdP_MV.Services
             
             return mitgliedDetais;
         }
+        public async Task<Ausbildung_Details> AusbildungDetails(int idAusbildung, int idMitglied)
+        {
+
+            String anfrage = "nami/mitglied-ausbildung/filtered-for-navigation/mitglied/mitglied/" + idMitglied + "/" + idAusbildung;
+            String responseString = await GetApiResultStringAsync(anfrage);
+
+            Ausbildung_Details ausbildungDetails = new Ausbildung_Details();
+            RootObject_Ausbildung_Details rootAusbildung_Details = JsonConvert.DeserializeObject<RootObject_Ausbildung_Details>(responseString);
+            if (rootAusbildung_Details.success == false)
+            {
+                if (rootAusbildung_Details.responseType.Equals("ERROR") && rootAusbildung_Details.message.Equals("Session expired"))
+                {
+                    throw new NewLoginException("Bitte neu einloggen.");
+                }
+                if (rootAusbildung_Details.responseType.Equals("EXCEPTION") && rootAusbildung_Details.message.Equals("Access denied - no right for requested operation"))
+                {
+                    throw new NoRightsException("Versucht Kontext aufzurufen, für das der Nutzer keine Rechte hat.");
+                }
+            }
+            ausbildungDetails = rootAusbildung_Details.data;
+
+            return ausbildungDetails;
+        }
         private async Task<String> GetApiResultStringAsync(string anfrageURL)
         {
             HttpWebRequest request;

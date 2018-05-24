@@ -1,7 +1,9 @@
-﻿using BdP_MV.ViewModel;
+﻿using BdP_MV.Model.Mitglied;
+using BdP_MV.ViewModel;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -30,8 +32,30 @@ namespace BdP_MV.View.MitgliederDetails
         {
             if (e.Item == null)
                 return;
+            Taetigkeit selectedTaetigkeit = (Taetigkeit)MyListView.SelectedItem;
+            String status;
+            CultureInfo ci = new CultureInfo("de-DE");
+            String zeitraum;
+            if (selectedTaetigkeit.aktiv)
+            {
+                status = "aktiv";
+                DateTime von;
+                von = (DateTime)selectedTaetigkeit.entries_aktivVon;
+                zeitraum = "Seit " + von.ToString("d", ci);
+            }
+            else
+            {
+                status = "inaktiv";
+                DateTime von;
+                von = (DateTime)selectedTaetigkeit.entries_aktivVon;
+                DateTime bis;
+                bis = (DateTime)selectedTaetigkeit.entries_aktivBis;
 
-            await DisplayAlert("Item Tapped", "An item was tapped.", "OK");
+                zeitraum = "Von " + von.ToString("d", ci)+ " bis "+ bis.ToString("d", ci);
+            }
+            String infos = "Untergliederung: " + selectedTaetigkeit.entries_gruppierung + "\nStatus: " + status + "\n" + zeitraum ;
+
+             await DisplayAlert(selectedTaetigkeit.entries_taetigkeit, infos, "OK");
 
             //Deselect Item
             ((ListView)sender).SelectedItem = null;

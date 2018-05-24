@@ -21,7 +21,7 @@ namespace BdP_MV.ViewModel
 
         }
     
-        MainController mainC;
+        public MainController mainC;
 
         public bool HasZusatzAdresse => !string.IsNullOrWhiteSpace(mitglied?.nameZusatz);
         public MitgliedDetails mitglied { private set; get; }

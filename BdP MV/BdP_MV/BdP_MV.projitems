@@ -21,6 +21,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\Gruppierung.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Item.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Mitglied\Ausbildung.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Mitglied\Ausbildung_Details.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Mitglied\Mitglied.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Mitglied\MitgliedDetail.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Mitglied\SGB8.cs" />

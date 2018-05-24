@@ -125,6 +125,8 @@ namespace BdP_MV.View
             IsBusy = true;
             try
             {
+                IsBusy = true;
+
 
                 Mitglied selected = (Mitglied)MitgliedView.SelectedItem;
                 int selectedId = selected.id;
@@ -134,6 +136,7 @@ namespace BdP_MV.View
 
                 // prevents the list from displaying the navigated item as selected when navigating back to the list
                 ((ListView)sender).SelectedItem = null;
+                IsBusy = false;
             }
             catch (NewLoginException ex)
             {
