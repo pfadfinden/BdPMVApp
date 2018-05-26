@@ -3,7 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BdP_MV.View.MitgliederDetails.Ausbildung_Liste"
                           Title="Ausbildung">
-    <ListView x:Name="MyListView"
+    <StackLayout Spacing="0" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+        <ActivityIndicator 
+                       IsVisible="{Binding IsBusy}"
+                       IsRunning="{Binding IsBusy}"
+                       VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="CenterAndExpand"
+                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.33}" />
+
+        <ListView x:Name="MyListView"
             ItemsSource="{Binding ausbildung}"
             ItemTapped="Handle_ItemTapped"
             CachingStrategy="RecycleElement"
@@ -27,4 +35,5 @@
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
+    </StackLayout>
 </ContentPage>

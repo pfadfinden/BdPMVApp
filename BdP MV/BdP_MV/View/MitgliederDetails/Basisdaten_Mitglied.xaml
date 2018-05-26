@@ -50,14 +50,12 @@
                                 <Label Text="{Binding mitglied.zeitschriftenversand}"  TextColor="Gray"></Label>
                             </StackLayout>
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="Führungszeugnis:" TextColor="Gray" Font="Bold"></Label>
+                                <Label Text="SGB8:" TextColor="Gray" Font="Bold"></Label>
                                 <Label Text="{Binding latestSGB8}"  TextColor="Gray"></Label>
                             </StackLayout>
                         </StackLayout>
-
                     </StackLayout>
                 </ContentView>
-                <ContentView HeightRequest="1" BackgroundColor="Silver" />
             </StackLayout>
         </AbsoluteLayout>
     </ContentPage.Content>
