@@ -4,6 +4,7 @@
              x:Class="BdP_MV.View.MitgliederDetails.Ausbildung_Liste"
                           Title="Ausbildung">
     <StackLayout Spacing="0" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+
         <ActivityIndicator 
                        IsVisible="{Binding IsBusy}"
                        IsRunning="{Binding IsBusy}"
