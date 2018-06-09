@@ -40,6 +40,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\MVConnector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\AboutViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\BaseNavigationViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\EditMitglied.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ForgotPWViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ItemDetailViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ItemsViewModel.cs" />
@@ -92,8 +93,8 @@
       <DependentUpon>Taetigkeiten_Liste.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)View\NewItemPage.xaml.cs">
-      <DependentUpon>NewItemPage.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)View\EditMitglied.xaml.cs">
+      <DependentUpon>EditMitglied.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
@@ -123,7 +124,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\NewItemPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\EditMitglied.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

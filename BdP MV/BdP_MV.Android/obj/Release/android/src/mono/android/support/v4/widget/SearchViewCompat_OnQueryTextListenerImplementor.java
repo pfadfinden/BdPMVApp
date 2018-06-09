@@ -14,7 +14,7 @@ public class SearchViewCompat_OnQueryTextListenerImplementor
 			"n_onQueryTextChange:(Ljava/lang/String;)Z:GetOnQueryTextChange_Ljava_lang_String_Handler:Android.Support.V4.Widget.SearchViewCompat/IOnQueryTextListenerInvoker, Xamarin.Android.Support.Compat\n" +
 			"n_onQueryTextSubmit:(Ljava/lang/String;)Z:GetOnQueryTextSubmit_Ljava_lang_String_Handler:Android.Support.V4.Widget.SearchViewCompat/IOnQueryTextListenerInvoker, Xamarin.Android.Support.Compat\n" +
 			"";
-		mono.android.Runtime.register ("Android.Support.V4.Widget.SearchViewCompat+IOnQueryTextListenerImplementor, Xamarin.Android.Support.Compat, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", SearchViewCompat_OnQueryTextListenerImplementor.class, __md_methods);
+		mono.android.Runtime.register ("Android.Support.V4.Widget.SearchViewCompat+IOnQueryTextListenerImplementor, Xamarin.Android.Support.Compat", SearchViewCompat_OnQueryTextListenerImplementor.class, __md_methods);
 	}
 
 
@@ -22,7 +22,7 @@ public class SearchViewCompat_OnQueryTextListenerImplementor
 	{
 		super ();
 		if (getClass () == SearchViewCompat_OnQueryTextListenerImplementor.class)
-			mono.android.TypeManager.Activate ("Android.Support.V4.Widget.SearchViewCompat+IOnQueryTextListenerImplementor, Xamarin.Android.Support.Compat, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
+			mono.android.TypeManager.Activate ("Android.Support.V4.Widget.SearchViewCompat+IOnQueryTextListenerImplementor, Xamarin.Android.Support.Compat", "", this, new java.lang.Object[] {  });
 	}
 
 

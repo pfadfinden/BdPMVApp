@@ -16,7 +16,7 @@ namespace BdP_MV.Services
         private bool isLoggedIn = false;
         private CookieContainer cookieContainer = new CookieContainer();
         private bool debug = false;
-        Boolean qa = false;
+        Boolean qa = true;
 
         public bool IsLoggedIn { get => isLoggedIn; }
 
@@ -167,7 +167,15 @@ namespace BdP_MV.Services
 
             }
         }
+        public async Task<List<Item>> GetItems(String anfrage)
+        {
+            string responseString = await GetApiResultStringAsync(anfrage);
+            List<Item> items = new List<Item>();
+             listeAllerMitglieder = JsonConvert.DeserializeObject<MitgliederListe>(responseString);
+            items = listeAllerMitglieder.data;
 
+            return items;
+        }
         public List<Gruppe> GetGroups(int id)
 
         {

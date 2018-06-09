@@ -13,7 +13,7 @@ public class MediaSessionCompat_OnActiveChangeListenerImplementor
 		__md_methods = 
 			"n_onActiveChanged:()V:GetOnActiveChangedHandler:Android.Support.V4.Media.Session.MediaSessionCompat/IOnActiveChangeListenerInvoker, Xamarin.Android.Support.Media.Compat\n" +
 			"";
-		mono.android.Runtime.register ("Android.Support.V4.Media.Session.MediaSessionCompat+IOnActiveChangeListenerImplementor, Xamarin.Android.Support.Media.Compat, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", MediaSessionCompat_OnActiveChangeListenerImplementor.class, __md_methods);
+		mono.android.Runtime.register ("Android.Support.V4.Media.Session.MediaSessionCompat+IOnActiveChangeListenerImplementor, Xamarin.Android.Support.Media.Compat", MediaSessionCompat_OnActiveChangeListenerImplementor.class, __md_methods);
 	}
 
 
@@ -21,7 +21,7 @@ public class MediaSessionCompat_OnActiveChangeListenerImplementor
 	{
 		super ();
 		if (getClass () == MediaSessionCompat_OnActiveChangeListenerImplementor.class)
-			mono.android.TypeManager.Activate ("Android.Support.V4.Media.Session.MediaSessionCompat+IOnActiveChangeListenerImplementor, Xamarin.Android.Support.Media.Compat, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
+			mono.android.TypeManager.Activate ("Android.Support.V4.Media.Session.MediaSessionCompat+IOnActiveChangeListenerImplementor, Xamarin.Android.Support.Media.Compat", "", this, new java.lang.Object[] {  });
 	}
 
 

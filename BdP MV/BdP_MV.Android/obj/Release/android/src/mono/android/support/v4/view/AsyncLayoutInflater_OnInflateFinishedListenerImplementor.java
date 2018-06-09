@@ -13,7 +13,7 @@ public class AsyncLayoutInflater_OnInflateFinishedListenerImplementor
 		__md_methods = 
 			"n_onInflateFinished:(Landroid/view/View;ILandroid/view/ViewGroup;)V:GetOnInflateFinished_Landroid_view_View_ILandroid_view_ViewGroup_Handler:Android.Support.V4.View.AsyncLayoutInflater/IOnInflateFinishedListenerInvoker, Xamarin.Android.Support.Core.UI\n" +
 			"";
-		mono.android.Runtime.register ("Android.Support.V4.View.AsyncLayoutInflater+IOnInflateFinishedListenerImplementor, Xamarin.Android.Support.Core.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", AsyncLayoutInflater_OnInflateFinishedListenerImplementor.class, __md_methods);
+		mono.android.Runtime.register ("Android.Support.V4.View.AsyncLayoutInflater+IOnInflateFinishedListenerImplementor, Xamarin.Android.Support.Core.UI", AsyncLayoutInflater_OnInflateFinishedListenerImplementor.class, __md_methods);
 	}
 
 
@@ -21,7 +21,7 @@ public class AsyncLayoutInflater_OnInflateFinishedListenerImplementor
 	{
 		super ();
 		if (getClass () == AsyncLayoutInflater_OnInflateFinishedListenerImplementor.class)
-			mono.android.TypeManager.Activate ("Android.Support.V4.View.AsyncLayoutInflater+IOnInflateFinishedListenerImplementor, Xamarin.Android.Support.Core.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
+			mono.android.TypeManager.Activate ("Android.Support.V4.View.AsyncLayoutInflater+IOnInflateFinishedListenerImplementor, Xamarin.Android.Support.Core.UI", "", this, new java.lang.Object[] {  });
 	}
 
 

@@ -16,7 +16,7 @@ public class DrawerLayout_DrawerListenerImplementor
 			"n_onDrawerSlide:(Landroid/view/View;F)V:GetOnDrawerSlide_Landroid_view_View_FHandler:Android.Support.V4.Widget.DrawerLayout/IDrawerListenerInvoker, Xamarin.Android.Support.Core.UI\n" +
 			"n_onDrawerStateChanged:(I)V:GetOnDrawerStateChanged_IHandler:Android.Support.V4.Widget.DrawerLayout/IDrawerListenerInvoker, Xamarin.Android.Support.Core.UI\n" +
 			"";
-		mono.android.Runtime.register ("Android.Support.V4.Widget.DrawerLayout+IDrawerListenerImplementor, Xamarin.Android.Support.Core.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", DrawerLayout_DrawerListenerImplementor.class, __md_methods);
+		mono.android.Runtime.register ("Android.Support.V4.Widget.DrawerLayout+IDrawerListenerImplementor, Xamarin.Android.Support.Core.UI", DrawerLayout_DrawerListenerImplementor.class, __md_methods);
 	}
 
 
@@ -24,7 +24,7 @@ public class DrawerLayout_DrawerListenerImplementor
 	{
 		super ();
 		if (getClass () == DrawerLayout_DrawerListenerImplementor.class)
-			mono.android.TypeManager.Activate ("Android.Support.V4.Widget.DrawerLayout+IDrawerListenerImplementor, Xamarin.Android.Support.Core.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
+			mono.android.TypeManager.Activate ("Android.Support.V4.Widget.DrawerLayout+IDrawerListenerImplementor, Xamarin.Android.Support.Core.UI", "", this, new java.lang.Object[] {  });
 	}
 
 

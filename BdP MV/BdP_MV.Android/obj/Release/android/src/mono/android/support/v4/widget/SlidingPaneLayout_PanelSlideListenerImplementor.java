@@ -15,7 +15,7 @@ public class SlidingPaneLayout_PanelSlideListenerImplementor
 			"n_onPanelOpened:(Landroid/view/View;)V:GetOnPanelOpened_Landroid_view_View_Handler:Android.Support.V4.Widget.SlidingPaneLayout/IPanelSlideListenerInvoker, Xamarin.Android.Support.Core.UI\n" +
 			"n_onPanelSlide:(Landroid/view/View;F)V:GetOnPanelSlide_Landroid_view_View_FHandler:Android.Support.V4.Widget.SlidingPaneLayout/IPanelSlideListenerInvoker, Xamarin.Android.Support.Core.UI\n" +
 			"";
-		mono.android.Runtime.register ("Android.Support.V4.Widget.SlidingPaneLayout+IPanelSlideListenerImplementor, Xamarin.Android.Support.Core.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", SlidingPaneLayout_PanelSlideListenerImplementor.class, __md_methods);
+		mono.android.Runtime.register ("Android.Support.V4.Widget.SlidingPaneLayout+IPanelSlideListenerImplementor, Xamarin.Android.Support.Core.UI", SlidingPaneLayout_PanelSlideListenerImplementor.class, __md_methods);
 	}
 
 
@@ -23,7 +23,7 @@ public class SlidingPaneLayout_PanelSlideListenerImplementor
 	{
 		super ();
 		if (getClass () == SlidingPaneLayout_PanelSlideListenerImplementor.class)
-			mono.android.TypeManager.Activate ("Android.Support.V4.Widget.SlidingPaneLayout+IPanelSlideListenerImplementor, Xamarin.Android.Support.Core.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
+			mono.android.TypeManager.Activate ("Android.Support.V4.Widget.SlidingPaneLayout+IPanelSlideListenerImplementor, Xamarin.Android.Support.Core.UI", "", this, new java.lang.Object[] {  });
 	}
 
 

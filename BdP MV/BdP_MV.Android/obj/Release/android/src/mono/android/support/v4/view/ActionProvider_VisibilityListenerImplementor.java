@@ -13,7 +13,7 @@ public class ActionProvider_VisibilityListenerImplementor
 		__md_methods = 
 			"n_onActionProviderVisibilityChanged:(Z)V:GetOnActionProviderVisibilityChanged_ZHandler:Android.Support.V4.View.ActionProvider/IVisibilityListenerInvoker, Xamarin.Android.Support.Compat\n" +
 			"";
-		mono.android.Runtime.register ("Android.Support.V4.View.ActionProvider+IVisibilityListenerImplementor, Xamarin.Android.Support.Compat, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", ActionProvider_VisibilityListenerImplementor.class, __md_methods);
+		mono.android.Runtime.register ("Android.Support.V4.View.ActionProvider+IVisibilityListenerImplementor, Xamarin.Android.Support.Compat", ActionProvider_VisibilityListenerImplementor.class, __md_methods);
 	}
 
 
@@ -21,7 +21,7 @@ public class ActionProvider_VisibilityListenerImplementor
 	{
 		super ();
 		if (getClass () == ActionProvider_VisibilityListenerImplementor.class)
-			mono.android.TypeManager.Activate ("Android.Support.V4.View.ActionProvider+IVisibilityListenerImplementor, Xamarin.Android.Support.Compat, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "", this, new java.lang.Object[] {  });
+			mono.android.TypeManager.Activate ("Android.Support.V4.View.ActionProvider+IVisibilityListenerImplementor, Xamarin.Android.Support.Compat", "", this, new java.lang.Object[] {  });
 	}
 
 

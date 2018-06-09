@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="de.meinbdp.mv" android:installLocation="auto">
   <!--suppress UsesMinSdkAttributes-->
-  <uses-sdk android:minSdkVersion="15" />
+  <uses-sdk android:minSdkVersion="21" />
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
   <application android:label="BdP_MV.Android" android:icon="@drawable/lilie" android:name="android.app.Application" android:allowBackup="true">
-    <activity android:configChanges="orientation|screenSize" android:icon="@drawable/lilie" android:label="BdP_MV" android:theme="@style/MainTheme" android:name="md5b2be4f74520c8e1147b27f17875aa877.MainActivity">
+    <activity android:configChanges="orientation|screenSize" android:icon="@drawable/lilie" android:label="BdP_MV" android:theme="@style/MainTheme" android:name="md53904dae72fb98c3b11e2a84bc84262aa.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />

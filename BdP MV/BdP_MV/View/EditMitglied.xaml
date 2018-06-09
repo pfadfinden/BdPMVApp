@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BdP_MV.View.EditMitglied" xmlns:local="clr-namespace:BdP_MV.View"
+		Title="New Item">
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Text="Save" Clicked="Save_Clicked" />
+	</ContentPage.ToolbarItems>
+	<ContentPage.Content>
+		<StackLayout Spacing="20" Padding="15">
+			<Label Text="Titel" FontSize="Medium" />
+            <Entry x:Name="titelEntry" Placeholder="Titel" />
+            <Label Text="Vorname*" FontSize="Medium" />
+            <Entry x:Name="vornameEntry" Placeholder="Vorname"/>
+            <Label Text="Nachname*" FontSize="Medium" />
+            <Entry x:Name="nachnameEntry" Placeholder="Nachname"/>
+            <Label Text="Spitzname" FontSize="Medium" />
+            <Entry x:Name="spitznameEntry" Placeholder="Spitzname"/>
+            <Label Text="Geburtsdatum*" FontSize="Medium" />
+            <DatePicker x:Name="birthdate" VerticalOptions="CenterAndExpand">
+                <DatePicker.Format>dd.MM.yyyy</DatePicker.Format>
+            </DatePicker>
+		</StackLayout>
+        
+	</ContentPage.Content>
+</ContentPage>
