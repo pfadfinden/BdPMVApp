@@ -171,8 +171,8 @@ namespace BdP_MV.Services
         {
             string responseString = await GetApiResultStringAsync(anfrage);
             List<Item> items = new List<Item>();
-             listeAllerMitglieder = JsonConvert.DeserializeObject<MitgliederListe>(responseString);
-            items = listeAllerMitglieder.data;
+            RootObjectItem rootItem = JsonConvert.DeserializeObject<RootObjectItem>(responseString);
+            items = rootItem.data;
 
             return items;
         }

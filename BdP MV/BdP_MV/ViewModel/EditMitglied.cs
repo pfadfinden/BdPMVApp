@@ -1,4 +1,5 @@
-﻿using BdP_MV.Services;
+﻿using BdP_MV.Model.Mitglied;
+using BdP_MV.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,10 +17,19 @@ namespace BdP_MV.ViewModel
         public List<Item> Zahlungsart { get; private set; }
         public int id_Gruppe { get; private set; }
         private MainController mainc;
+        public MitgliedDetails mitglied { get; set; }
 
-        public EditMitglied()
+        public EditMitglied(MainController mainCo, int idGruppe, int idMitglied)
+        {
+            mainc = mainCo;
+            id_Gruppe = idGruppe;
+
+
+        }
+        public EditMitglied(MainController mainCo, int idGruppe)
 
         {
+
             
         }
         public async Task LoadItems()
@@ -34,5 +44,6 @@ namespace BdP_MV.ViewModel
             Beitragsart = await loadBeitragsart;
             Zahlungsart = await loadZahlart;
         }
+
     }
 }
