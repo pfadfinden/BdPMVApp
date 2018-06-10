@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using Xamarin.Forms;
+using static Android.Content.ClipData;
 
 namespace BdP_MV.View
 {
@@ -22,8 +23,6 @@ namespace BdP_MV.View
 
         async void Save_Clicked(object sender, EventArgs e)
         {
-            MessagingCenter.Send(this, "AddItem", Item);
-            await Navigation.PopToRootAsync();
         }
     }
 }

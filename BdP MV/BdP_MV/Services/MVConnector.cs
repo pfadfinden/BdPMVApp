@@ -167,10 +167,10 @@ namespace BdP_MV.Services
 
             }
         }
-        public async Task<List<Item>> GetItems(String anfrage)
+        public async Task<List<SelectableItem>> GetItems(String anfrage)
         {
             string responseString = await GetApiResultStringAsync(anfrage);
-            List<Item> items = new List<Item>();
+            List<SelectableItem> items = new List<SelectableItem>();
             RootObjectItem rootItem = JsonConvert.DeserializeObject<RootObjectItem>(responseString);
             items = rootItem.data;
 

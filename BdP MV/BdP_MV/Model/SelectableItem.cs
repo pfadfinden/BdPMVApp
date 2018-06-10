@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BdP_MV
 {
-    public class Item
+    public class SelectableItem
     {
         public string Id { get; set; }
         public string Text { get; set; }
@@ -13,7 +13,7 @@ namespace BdP_MV
     public class RootObjectItem
     {
         public bool success { get; set; }
-        public List<Item> data { get; set; }
+        public List<SelectableItem> data { get; set; }
         public string responseType { get; set; }
         public int totalEntries { get; set; }
     }
