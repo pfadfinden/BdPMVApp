@@ -18,6 +18,9 @@ namespace BdP_MV.ViewModel
         public int id_Gruppe { get; private set; }
         private MainController mainc;
         public MitgliedDetails mitglied { get; set; }
+        public SelectableItem SelectedGeschlecht { get; set; }
+        public SelectableItem SelectedBeitragsart { get; set; }
+        private Boolean neuesMitglied;
 
         public EditMitglied(MainController mainCo, int idGruppe, int idMitglied)
         {

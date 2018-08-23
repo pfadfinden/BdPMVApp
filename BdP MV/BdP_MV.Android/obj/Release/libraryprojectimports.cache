@@ -28,9 +28,9 @@
     <ResolvedResourceDirectory>D:\MV_APP\BdP MV\BdP_MV.Android\obj\Release\lp\19\jl\res</ResolvedResourceDirectory>
   </ResolvedResourceDirectories>
   <ResolvedAssetDirectories>
-    <ResolvedAssetDirectory>obj\Release\lp\11\jl\assets</ResolvedAssetDirectory>
-    <ResolvedAssetDirectory>obj\Release\lp\18\jl\assets</ResolvedAssetDirectory>
-    <ResolvedAssetDirectory>obj\Release\lp\19\jl\assets</ResolvedAssetDirectory>
+    <ResolvedAssetDirectory>obj\\Release\lp\11\jl\assets</ResolvedAssetDirectory>
+    <ResolvedAssetDirectory>obj\\Release\lp\18\jl\assets</ResolvedAssetDirectory>
+    <ResolvedAssetDirectory>obj\\Release\lp\19\jl\assets</ResolvedAssetDirectory>
   </ResolvedAssetDirectories>
   <ResolvedEnvironmentFiles />
   <ResolvedResourceDirectoryStamps>

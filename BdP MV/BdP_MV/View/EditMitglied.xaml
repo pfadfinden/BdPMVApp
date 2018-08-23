@@ -14,11 +14,35 @@
             <Entry x:Name="nachnameEntry" Placeholder="Nachname"/>
             <Label Text="Spitzname" FontSize="Medium" />
             <Entry x:Name="spitznameEntry" Placeholder="Spitzname"/>
+            <Picker 
+                    x:Name="geschlechtspicker" 
+                    Title="Geschlecht*"
+                    SelectedIndexChanged="thePickerSelectedIndexChanged"
+                    ItemDisplayBinding="{Binding descriptor}"
+                    SelectedItem="{Binding SelectedGeschlecht}"
+           
+                />
             <Label Text="Geburtsdatum*" FontSize="Medium" />
-            <DatePicker x:Name="birthdate" VerticalOptions="CenterAndExpand">
+            <DatePicker x:Name="geburtsdatumEntry" VerticalOptions="CenterAndExpand">
                 <DatePicker.Format>dd.MM.yyyy</DatePicker.Format>
             </DatePicker>
-		</StackLayout>
+            <Label Text="Eintrittsdatum*" FontSize="Medium" />
+            <DatePicker x:Name="eintrittsdatumEntry" VerticalOptions="CenterAndExpand">
+                <DatePicker.Format>dd.MM.yyyy</DatePicker.Format>
+            </DatePicker>
+            <Picker 
+                    x:Name="beitragsartpicker" 
+                    Title="Beitragsart*"
+                    SelectedIndexChanged="thePickerSelectedIndexChanged"
+                    ItemDisplayBinding="{Binding descriptor}"
+                    SelectedItem="{Binding SelectedBeitragsart}"
+           
+                />
+
+            <Label Text="Verand Pfade" FontSize="Medium" />
+            <Label Text="Art der Mitgliedsschaft" FontSize="Medium" />
+            
+        </StackLayout>
         
 	</ContentPage.Content>
 </ContentPage>
