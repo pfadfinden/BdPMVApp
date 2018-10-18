@@ -19,6 +19,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Model\Connector_LoginDaten.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Gruppierung.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\SearchObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\SelectableItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Mitglied\Ausbildung.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Mitglied\Ausbildung_Details.cs" />
@@ -45,14 +46,35 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ItemDetailViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ItemsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\LoginViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\SucheViewModell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)View\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)View\ForgotPW.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)View\LoginForms\ForgotPW.xaml.cs">
       <DependentUpon>ForgotPW.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)View\MainMaster_DetailMenuItem.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)View\MasterDetail\Einstellungen.xaml.cs">
+      <DependentUpon>Einstellungen.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\MasterDetail\MasterDetail_Main.xaml.cs">
+      <DependentUpon>MasterDetail_Main.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\MasterDetail\MasterDetail_MainDetail.xaml.cs">
+      <DependentUpon>MasterDetail_MainDetail.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\MasterDetail\MasterDetail_MainMaster.xaml.cs">
+      <DependentUpon>MasterDetail_MainMaster.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\MasterDetail\MasterDetail_MainMenuItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\MasterDetail\Suche.xaml.cs">
+      <DependentUpon>Suche.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\MitgliederDetails\Ausbildung_Liste.xaml.cs">
@@ -66,10 +88,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)View\MitgliederDetails\MitgliederStammDaten.xaml.cs">
       <DependentUpon>MitgliederStammDaten.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)View\ItemsPage.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)View\MasterDetail\ItemsPage.xaml.cs">
       <DependentUpon>ItemsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)View\Login.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)View\LoginForms\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -83,10 +105,6 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\EditMitglied.xaml.cs">
       <DependentUpon>EditMitglied.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)View\Settings.xaml.cs">
-      <DependentUpon>Settings.xaml</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -108,7 +126,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\ItemsPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\MasterDetail\ItemsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -121,20 +139,15 @@
     <None Include="$(MSBuildThisFileDirectory)Ext_Packages\MvvmHelpers.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\Login.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\LoginForms\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\ForgotPW.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\LoginForms\ForgotPW.xaml">
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\Settings.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -157,6 +170,39 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\MitgliederDetails\Ausbildung_Liste.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)View\LoginForms\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\MasterDetail\MasterDetail_Main.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\MasterDetail\MasterDetail_MainMaster.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\MasterDetail\MasterDetail_MainDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\MasterDetail\Einstellungen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\MasterDetail\Suche.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

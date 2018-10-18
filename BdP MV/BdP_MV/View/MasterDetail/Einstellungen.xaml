@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BdP_MV.View.MasterDetail.Einstellungen">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="StartAndExpand">
+            <ActivityIndicator 
+                       IsVisible="{Binding IsBusy}"
+                       IsRunning="{Binding IsBusy}"
+                       VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="CenterAndExpand"
+                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.33}" />
+
+            <Entry x:Name="usernameEntry" Placeholder="Benutzername" TextColor="White" PlaceholderColor="White"/>
+            <Entry x:Name="passwordEntry" Placeholder="Passwort"  IsPassword="true" TextColor="White" PlaceholderColor="White" />
+            <Button Text="Login"  />
+            <Button Text="Passwort Vergessen" />
+
+            <Label x:Name="messageLabel" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

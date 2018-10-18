@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 
 using Xamarin.Forms;
-using static Android.Content.ClipData;
 
 namespace BdP_MV.View
 {

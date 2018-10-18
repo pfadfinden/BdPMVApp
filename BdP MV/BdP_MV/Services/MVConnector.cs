@@ -16,7 +16,7 @@ namespace BdP_MV.Services
         private bool isLoggedIn = false;
         private CookieContainer cookieContainer = new CookieContainer();
         private bool debug = false;
-        Boolean qa = true;
+        Boolean qa = false;
 
         public bool IsLoggedIn { get => isLoggedIn; }
 
@@ -30,19 +30,19 @@ namespace BdP_MV.Services
                 {
                     return 1; //Ist Bereits eingeloggt
                 }
-                HttpWebRequest request_first;
-                if (qa)
-                {
-                     request_first= (HttpWebRequest)HttpWebRequest.Create("https://qa.mv.meinbdp.de/");
-                }
-                else
-                {
-                    request_first = (HttpWebRequest)HttpWebRequest.Create("https://mv.meinbdp.de/");
-                }
-                request_first.CookieContainer = cookieContainer;
+                //HttpWebRequest request_first;
+                //if (qa)
+                //{
+                //     request_first= (HttpWebRequest)HttpWebRequest.Create("https://qa.mv.meinbdp.de/");
+                //}
+                //else
+                //{
+                //    request_first = (HttpWebRequest)HttpWebRequest.Create("https://mv.meinbdp.de/");
+                //}
+                //request_first.CookieContainer = cookieContainer;
 
-                HttpWebResponse response_first = (HttpWebResponse)await request_first.GetResponseAsync();
-                int cookieCount = cookieContainer.Count;
+                //HttpWebResponse response_first = (HttpWebResponse)await request_first.GetResponseAsync();
+                //int cookieCount = cookieContainer.Count;
                 HttpWebRequest request;
                 if (qa)
                 {
@@ -88,6 +88,11 @@ namespace BdP_MV.Services
                     Console.WriteLine(response_nachricht_String);
                 }
                 Nachricht nachricht = JsonConvert.DeserializeObject<Nachricht>(response_nachricht_String);
+                int cookieCount = cookieContainer.Count;
+             
+             
+                
+               
                 if (nachricht.success)
                 {
                     isLoggedIn = true;
@@ -232,26 +237,17 @@ namespace BdP_MV.Services
 
             return mitglieder;
         }
-        //public List<Taetigkeit> Taetigkeiten(int idMitglied)
-        //{
-        //    HttpWebRequest request;
-        //    request = (HttpWebRequest)WebRequest.Create("https://mv.meinbdp.de/ica/rest/nami/zugeordnete-taetigkeiten/filtered-for-navigation/gruppierung-mitglied/mitglied/" + idMitglied + "/flist");
-        //    request.Method = "GET";
-        //    request.CookieContainer = cookieContainer;
-        //    request.ContentType = "application/x-www-form-urlencoded";
-        //    WebResponse response = request.GetResponse();
-        //    string responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
-        //    if (debug)
-        //    {
-        //        Console.WriteLine(responseString);
-        //    }
-        //    List<Taetigkeit> taetigkeiten = new List<Taetigkeit>();
-        //    AlleTaetigkeiten listeAllerMitglieder = new JsonConvert.DeserializeObject<AlleTaetigkeiten>(responseString);
-        //    taetigkeiten = listeAllerMitglieder.data;
 
-        //    return taetigkeiten;
-        //}
+        public async Task<List<Mitglied>> Mitglieder(string suchanfrage)
+        {
+            String anfrage = "nami/search-multi/result-list?searchedValues=" + suchanfrage;
+            string responseString = await GetApiResultStringAsync(anfrage);
+            List<Mitglied> mitglieder = new List<Mitglied>();
+            MitgliederListe listeAllerMitglieder = JsonConvert.DeserializeObject<MitgliederListe>(responseString);
+            mitglieder = listeAllerMitglieder.data;
 
+            return mitglieder;
+        }
         public async Task<List<SGB8>> SGB8(int idMitglied)
         {
             string anfrage = "/nami/mitglied-sgb-acht/filtered-for-navigation/empfaenger/empfaenger/" + idMitglied + "/flist";

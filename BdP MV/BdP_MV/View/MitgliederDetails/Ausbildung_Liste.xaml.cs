@@ -55,7 +55,7 @@ namespace BdP_MV.View.MitgliederDetails
             {
                 IsBusy = false;
                 await DisplayAlert("Fehler", "Deine Sitzung ist abgelaufen. Bitte logge dich neu in die App ein.", "OK");
-                Navigation.InsertPageBefore(new Login(), this);
+                Navigation.InsertPageBefore(new LoginForms.Login(), this);
                 Console.WriteLine(ex.Message);
                 Console.WriteLine(ex.StackTrace);
                 await Navigation.PopAsync();

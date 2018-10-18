@@ -13,7 +13,6 @@ namespace BdP_MV.ViewModel
     public class ItemsViewModel : BaseNavigationViewModel
     {
         public MainController mainC;
-        public List<Gruppe> alleGruppen {get; set; }
         public Gruppe aktGruppe { get; set; }
         public List<Mitglied> ausgewaehlteMitglieder { get; set; }
         public ItemsViewModel(MainController mainCo)
@@ -22,7 +21,6 @@ namespace BdP_MV.ViewModel
 
 
           
-            alleGruppen = mainC.groupControl.alleGruppen;
             ausgewaehlteMitglieder = new List<Mitglied>();
             Mitglied test = new Mitglied();
             test.ansprechname = "test";
@@ -35,8 +33,8 @@ namespace BdP_MV.ViewModel
         {
             
                 IsBusy = true;
+              // await Task.Run(async () => await mainC.groupControl.AlleGruppenAbrufen(0));
                 await mainC.groupControl.AlleGruppenAbrufen(0);
-                alleGruppen = mainC.groupControl.alleGruppen;
                 IsBusy = false;
            
           

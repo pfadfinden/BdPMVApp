@@ -1,4 +1,5 @@
-﻿using BdP_MV.View;
+﻿using BdP_MV.Services;
+using BdP_MV.View.LoginForms;
 using System;
 
 using Xamarin.Forms;
@@ -9,6 +10,7 @@ namespace BdP_MV
     {
         public App()
         {
+            MainController mainC = new MainController();
             InitializeComponent();
 
             if (Device.RuntimePlatform == Device.iOS)

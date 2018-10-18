@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BdP_MV.View.MasterDetail.Suche">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="StartAndExpand">
+            <ActivityIndicator 
+                       IsVisible="{Binding IsBusy}"
+                       IsRunning="{Binding IsBusy}"
+                       VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="CenterAndExpand"
+                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.33}" />
+
+            <Entry x:Name="firstnameEntry" Placeholder="Vorname"/>
+            <Entry x:Name="lastnameEntry" Placeholder="Nachname"/>
+            <Entry x:Name="nicknameEntry" Placeholder="Spitzname"/>
+            <Entry x:Name="mitglIdEntry" Placeholder="Mitgliedsnummer" Keyboard="Numeric"/>
+            <Entry x:Name="wohnortEntry" Placeholder="Wohnort"/>
+            <Entry x:Name="ageFromEntry" Placeholder="Alter von"  Keyboard="Numeric"/>
+            <Entry x:Name="ageToEntry" Placeholder="Alter bis"  Keyboard="Numeric"/>
+            <Button Text="Suchen" Clicked="OnSearchButtonClicked" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

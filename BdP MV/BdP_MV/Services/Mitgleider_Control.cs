@@ -1,4 +1,6 @@
-﻿using BdP_MV.Model.Mitglied;
+﻿using BdP_MV.Model;
+using BdP_MV.Model.Mitglied;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -44,10 +46,44 @@ namespace BdP_MV.Services
                     }
                     aktuellesMitglied.ansprechname = ChooseAnsprechname(aktuellesMitglied);
                 }
-                AktiveMitglieder.Sort((p1, p2) => p1.entries_nachname.CompareTo(p2.entries_nachname));
+
+
+                AktiveMitglieder = MitgliederSort(AktiveMitglieder);
+
 
             }
 
+        }
+        private List<Mitglied> MitgliederNachbearbeiten(List<Mitglied> mitglieder)
+        {
+            if (mitglieder != null)
+            {
+                Parallel.ForEach(mitglieder, (currentmitglied) =>
+                {
+                    currentmitglied.ansprechname = ChooseAnsprechname(currentmitglied);
+                });
+
+                mitglieder = MitgliederSort(mitglieder);
+            }
+            return mitglieder;
+
+        }
+        private List<Mitglied> MitgliederSort (List<Mitglied> mitglieder)
+        {
+            if (mainC.einsteillungen.sortierreihenfolge == 1)
+            {
+                mitglieder.OrderByDescending(mitglied => mitglied.entries_nachname).ThenBy(mitglied => mitglied.entries_vorname);
+            }
+            else if (mainC.einsteillungen.sortierreihenfolge == 2)
+            {
+                mitglieder.OrderBy(mitglied => mitglied.entries_vorname).ThenBy(mitglied => mitglied.entries_nachname);
+            }
+            else if (mainC.einsteillungen.sortierreihenfolge == 3)
+            {
+                mitglieder.OrderBy(mitglied => mitglied.ansprechname).ThenBy(mitglied => mitglied.entries_nachname);
+
+            }
+            return mitglieder;
         }
         private String ChooseAnsprechname(Mitglied mitglied)
         {
@@ -191,6 +227,31 @@ namespace BdP_MV.Services
             MitgliederNachbearbeiten();
 
             Console.WriteLine("Mitglieder_Gefiltert");
+
+        }
+        public async Task<List<Mitglied>> MitgliederAbrufenBySearch(SearchObject suchObjekt)
+        {
+
+            suchObjekt.searchType = "MITGLIEDER";
+            JsonSerializerSettings settingsJSON = new JsonSerializerSettings();
+            //settingsJSON.NullValueHandling = NullValueHandling.Ignore;
+            
+            string suchobjektJSON = JsonConvert.SerializeObject(suchObjekt, Formatting.Indented, settingsJSON);
+            suchobjektJSON = suchobjektJSON.Replace("null", "\"\"");
+            suchobjektJSON = Regex.Replace(suchobjektJSON, @"\t|\n|\r", "");
+
+           // suchobjektJSON = Regex.Replace(suchobjektJSON, @"^""|""$|\\n?", "");
+            suchobjektJSON = suchobjektJSON.Replace(" ", "");
+            suchobjektJSON = suchobjektJSON.Replace(@"\", @"");
+            //suchobjektJSON = suchobjektJSON.Substring(1, suchobjektJSON.Length - 1);
+            Console.WriteLine(suchobjektJSON);
+            //suchobjektJSON = Regex.Unescape(suchobjektJSON);
+
+            List<Mitglied> mitglieder=await mainC.mVConnector.Mitglieder(suchobjektJSON);
+            mitglieder = MitgliederNachbearbeiten(mitglieder);
+
+            Console.WriteLine("Mitglieder_Gefiltert");
+            return mitglieder;
 
         }
         public String GruppennameHerausfinden(List<Taetigkeit> taetigkeiten)
