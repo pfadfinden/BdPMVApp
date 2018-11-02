@@ -17,7 +17,7 @@ namespace BdP_MV.View
     public partial class ItemsPage : ContentPage
 	{
         protected ItemsViewModel viewModel;
-        private Boolean gruppenauswahl;
+        private Boolean searchOrigin;
 
 
         public ItemsPage(MainController mainCo)
@@ -25,7 +25,7 @@ namespace BdP_MV.View
 
 
             InitializeComponent();
-            gruppenauswahl = true;
+            searchOrigin = false;
 
             viewModel = new ItemsViewModel(mainCo);
 
@@ -37,7 +37,7 @@ namespace BdP_MV.View
         }
         public ItemsPage(MainController mainCo, List<Mitglied> mitgliederliste)
         {
-            gruppenauswahl = false;
+            searchOrigin = true;
 
             InitializeComponent();
            
@@ -46,7 +46,7 @@ namespace BdP_MV.View
             testpicker.IsVisible = false;
             BindingContext = viewModel;
             viewModel.ausgewaehlteMitglieder = mitgliederliste;
-            MitgliedView.ItemsSource = viewModel.ausgewaehlteMitglieder;
+                            MitgliedView.ItemsSource = viewModel.ausgewaehlteMitglieder;
 
 
         }
@@ -156,10 +156,15 @@ namespace BdP_MV.View
 
                 Mitglied selected = (Mitglied)MitgliedView.SelectedItem;
                 int selectedId = selected.id;
-                
 
-                await Navigation.PushAsync(new MitgliederDetails.TabbedMitgliederDetails(await viewModel.mitgliedDetailsVorladen(selectedId)));
-
+                if (searchOrigin)
+                {
+                    await Navigation.PushAsync(new MitgliederDetails.TabbedMitgliederDetails(await viewModel.mitgliedDetailsVorladen(selectedId,selected.entries_gruppierungId)));
+                }
+                else
+                {
+                    await Navigation.PushAsync(new MitgliederDetails.TabbedMitgliederDetails(await viewModel.mitgliedDetailsVorladen(selectedId)));
+                }
                 // prevents the list from displaying the navigated item as selected when navigating back to the list
                 ((ListView)sender).SelectedItem = null;
                 IsBusy = false;

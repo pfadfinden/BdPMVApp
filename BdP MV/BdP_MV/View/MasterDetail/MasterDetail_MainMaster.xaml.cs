@@ -35,9 +35,7 @@ namespace BdP_MV.View.MasterDetail
                 {
                     new MasterDetail_MainMenuItem { Id = 0, Title = "Mitgliederliste",TargetType=typeof(ItemsPage) },
                     new MasterDetail_MainMenuItem { Id = 1, Title = "Suche" ,TargetType=typeof(Suche) },
-                    new MasterDetail_MainMenuItem { Id = 2, Title = "Page 3" },
-                    new MasterDetail_MainMenuItem { Id = 3, Title = "Page 4" },
-                    new MasterDetail_MainMenuItem { Id = 4, Title = "Page 5" },
+                    new MasterDetail_MainMenuItem { Id = 2, Title = "Einstellungen" }
                 });
             }
             

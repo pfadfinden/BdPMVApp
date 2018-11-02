@@ -38,9 +38,11 @@ namespace BdP_MV.View.MasterDetail
                 viewModel.suche.spitzname = nicknameEntry.Text;
                 viewModel.suche.alterVon = ageFromEntry.Text;
                 viewModel.suche.alterBis = ageToEntry.Text;
-                List<Mitglied> mitglieder = await Task.Run(async () => await viewModel.SuchDuApp());
-                await Navigation.PushAsync(new ItemsPage(viewModel.mainc, mitglieder));
-
+                //List<Mitglied> mitglieder = await Task.Run(async () => await viewModel.SuchDuApp());
+                List<Mitglied> mitglieder = await viewModel.SuchDuApp();
+               
+                    await Navigation.PushAsync(new ItemsPage(viewModel.mainc, mitglieder));
+                
             }
             catch (NewLoginException b)
             {

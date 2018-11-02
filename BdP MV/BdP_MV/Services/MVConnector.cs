@@ -240,7 +240,7 @@ namespace BdP_MV.Services
 
         public async Task<List<Mitglied>> Mitglieder(string suchanfrage)
         {
-            String anfrage = "nami/search-multi/result-list?searchedValues=" + suchanfrage;
+            String anfrage = "nami/search-multi/result-list?searchedValues=" + suchanfrage +"&page=1&start=0&limit=9999999";
             string responseString = await GetApiResultStringAsync(anfrage);
             List<Mitglied> mitglieder = new List<Mitglied>();
             MitgliederListe listeAllerMitglieder = JsonConvert.DeserializeObject<MitgliederListe>(responseString);

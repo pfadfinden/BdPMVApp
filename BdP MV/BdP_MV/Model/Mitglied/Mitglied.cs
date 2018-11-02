@@ -25,6 +25,8 @@ namespace BdP_MV.Model.Mitglied
         public string entries_vorname { get; set; }
         public int id { get; set; }
         public string entries_woelfling { get; set; }
+        public int entries_gruppierungId { get; set; }
+
         public string entries_beitragsarten { get; set; }
         public string entries_stufe { get; set; }
         public string entries_email { get; set; }

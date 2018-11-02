@@ -18,6 +18,15 @@
             <Entry x:Name="wohnortEntry" Placeholder="Wohnort"/>
             <Entry x:Name="ageFromEntry" Placeholder="Alter von"  Keyboard="Numeric"/>
             <Entry x:Name="ageToEntry" Placeholder="Alter bis"  Keyboard="Numeric"/>
+
+            <StackLayout Orientation="Horizontal">
+                <Switch x:Name="doneSwitch" IsToggled="{Binding nurAktiv}" 
+
+                    />
+                <Label Text="Nur Aktive" TextColor="Gray" Font="Bold"></Label>
+                
+            </StackLayout>
+
             <Button Text="Suchen" Clicked="OnSearchButtonClicked" />
 
         </StackLayout>

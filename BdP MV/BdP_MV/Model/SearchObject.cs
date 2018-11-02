@@ -16,7 +16,6 @@ namespace BdP_MV.Model
         public string mglStatusId { get; set; }
         public string funktion { get; set; }
         public string organisation { get; set; }
-
         public bool zeitschriftenversand { get; set; }
         public string searchName { get; set; }
         public bool mitAllenTaetigkeiten { get; set; }

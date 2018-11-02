@@ -33,7 +33,7 @@ namespace BdP_MV.ViewModel
         {
             
                 IsBusy = true;
-              // await Task.Run(async () => await mainC.groupControl.AlleGruppenAbrufen(0));
+            // await Task.Run(async () => await mainC.groupControl.AlleGruppenAbrufen(0));
                 await mainC.groupControl.AlleGruppenAbrufen(0);
                 IsBusy = false;
            
@@ -50,11 +50,15 @@ namespace BdP_MV.ViewModel
         }
         public async Task<ItemDetailViewModel> mitgliedDetailsVorladen(int idMitglied)
         {
-            int idGruppe = aktGruppe.id;
+            return await mitgliedDetailsVorladen(idMitglied, aktGruppe.id);
+        }
+            public async Task<ItemDetailViewModel> mitgliedDetailsVorladen(int idMitglied, int idGruppe)
+        
+            {
             Task<List<SGB8>> task_sgb8 = mainC.mitgliederController.Sgb8Abrufen(idMitglied);
             Task<List<Ausbildung>> task_ausbildung = mainC.mitgliederController.AusbildungenAbrufen(idMitglied);
             Task<List<Taetigkeit>> task_taetigkeiten = mainC.mitgliederController.TaetigkeitenAbrufen(idMitglied);
-            MitgliedDetails mitgliedDetails = await Task.Run(async () => await mainC.mitgliederController.MitgliedDetailsAbrufen(idMitglied, aktGruppe.id)); 
+            MitgliedDetails mitgliedDetails = await Task.Run(async () => await mainC.mitgliederController.MitgliedDetailsAbrufen(idMitglied, idGruppe)); 
             ItemDetailViewModel viewModelMitgliedDetails = new ItemDetailViewModel(mitgliedDetails, mainC);
             viewModelMitgliedDetails.sgb8 = await task_sgb8 ;
             viewModelMitgliedDetails.taetigkeiten = await task_taetigkeiten;
