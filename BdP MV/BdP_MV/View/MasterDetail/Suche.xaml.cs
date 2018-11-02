@@ -40,8 +40,23 @@ namespace BdP_MV.View.MasterDetail
                 viewModel.suche.alterBis = ageToEntry.Text;
                 //List<Mitglied> mitglieder = await Task.Run(async () => await viewModel.SuchDuApp());
                 List<Mitglied> mitglieder = await viewModel.SuchDuApp();
-               
+                //Da wird die Reaktion gecheckt. Wenn kein Result, dann ist wird eine Meludung geschickt. Bei nur einem Mitglied als Result, wird das Mitglied direkt in der Detailsansicht geladen und bei mehreren Mitgliedern im Result wird die Mitgliedsliste geladen.
+                if (mitglieder.Count() == 0)
+                {
+                    await DisplayAlert("Keine Mitglieder gefunden","Bitte versuch es mit anderen Suchkriterien erneut.", "OK");
+
+                }
+                else if (mitglieder.Count() == 1)
+                {
+                    Mitglied m = mitglieder.First();
+                    await Navigation.PushAsync(new MitgliederDetails.TabbedMitgliederDetails(await viewModel.mitgliedDetailsVorladen(m.id, m.entries_gruppierungId)));
+
+                }
+                else
+                {
                     await Navigation.PushAsync(new ItemsPage(viewModel.mainc, mitglieder));
+                }
+                       
                 
             }
             catch (NewLoginException b)

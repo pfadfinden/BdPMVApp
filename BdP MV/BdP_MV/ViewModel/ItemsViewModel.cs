@@ -52,7 +52,7 @@ namespace BdP_MV.ViewModel
         {
             return await mitgliedDetailsVorladen(idMitglied, aktGruppe.id);
         }
-            public async Task<ItemDetailViewModel> mitgliedDetailsVorladen(int idMitglied, int idGruppe)
+        public async Task<ItemDetailViewModel> mitgliedDetailsVorladen(int idMitglied, int idGruppe)
         
             {
             Task<List<SGB8>> task_sgb8 = mainC.mitgliederController.Sgb8Abrufen(idMitglied);
