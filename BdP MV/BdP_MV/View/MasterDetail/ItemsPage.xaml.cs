@@ -47,6 +47,7 @@ namespace BdP_MV.View
             BindingContext = viewModel;
             viewModel.ausgewaehlteMitglieder = mitgliederliste;
                             MitgliedView.ItemsSource = viewModel.ausgewaehlteMitglieder;
+            this.Title = "Suchergebnis";
 
 
         }
