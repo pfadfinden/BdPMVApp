@@ -22,7 +22,6 @@ public class FormsAppCompatActivity
 			"n_onResume:()V:GetOnResumeHandler\n" +
 			"n_onStart:()V:GetOnStartHandler\n" +
 			"n_onStop:()V:GetOnStopHandler\n" +
-			"n_onWindowAttributesChanged:(Landroid/view/WindowManager$LayoutParams;)V:GetOnWindowAttributesChanged_Landroid_view_WindowManager_LayoutParams_Handler\n" +
 			"";
 		mono.android.Runtime.register ("Xamarin.Forms.Platform.Android.FormsAppCompatActivity, Xamarin.Forms.Platform.Android", FormsAppCompatActivity.class, __md_methods);
 	}
@@ -130,14 +129,6 @@ public class FormsAppCompatActivity
 	}
 
 	private native void n_onStop ();
-
-
-	public void onWindowAttributesChanged (android.view.WindowManager.LayoutParams p0)
-	{
-		n_onWindowAttributesChanged (p0);
-	}
-
-	private native void n_onWindowAttributesChanged (android.view.WindowManager.LayoutParams p0);
 
 	private java.util.ArrayList refList;
 	public void monodroidAddReference (java.lang.Object obj)

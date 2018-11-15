@@ -40,8 +40,10 @@
                 />
 
             <Label Text="Verand Pfade" FontSize="Medium" />
-            <Label Text="Art der Mitgliedsschaft" FontSize="Medium" />
+            <Switch x:Name="doneSwitch" IsToggled="{Binding nurAktiv}" />
             
+
+
         </StackLayout>
         
 	</ContentPage.Content>

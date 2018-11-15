@@ -14,9 +14,9 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" package="android.support.coreutils">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" package="android.support.coreui">
 
-    <uses-sdk android:minSdkVersion="9" tools:overrideLibrary="android.support.coreutils" />
+    <uses-sdk android:minSdkVersion="9" tools:overrideLibrary="android.support.coreui" />
 
     <application>
         <meta-data android:name="android.support.VERSION" android:value="25.4.0" />

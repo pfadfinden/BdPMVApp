@@ -26,9 +26,11 @@ namespace BdP_MV.ViewModel
         public bool HasZusatzAdresse => !string.IsNullOrWhiteSpace(mitglied?.nameZusatz);
         public MitgliedDetails mitglied { private set; get; }
         public List<Taetigkeit> taetigkeiten {set; get; }
+        public List<Taetigkeit> taetigkeitenAktiv { set; get; }
         public List<SGB8> sgb8 { set; get; }
         public List<Ausbildung> ausbildung { set; get; }
         public String latestSGB8 { set; get; }
+        
 
         public bool HasPhoneNumber => !string.IsNullOrWhiteSpace(mitglied?.telefon1);
         public bool HasCellphoneNumber => !string.IsNullOrWhiteSpace(mitglied?.telefon3);
@@ -38,6 +40,7 @@ namespace BdP_MV.ViewModel
         public bool HasEmailAddress => !string.IsNullOrWhiteSpace(mitglied?.email);
         public bool HasParentEmailAddress => !string.IsNullOrWhiteSpace(mitglied?.emailVertretungsberechtigter);
         public bool IsEditable = true;
+
 
 
         // this is just a utility service that we're using in this demo app to mitigate some limitations of the iOS simulator

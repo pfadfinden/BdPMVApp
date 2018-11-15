@@ -10,11 +10,12 @@ namespace BdP_MV.ViewModel
     public class EditMitglied
 
     {
-        public List<SelectableItem> Geschlechter { get; private set; }
-        public List<SelectableItem> Laender { get; private set; }
-        public List<SelectableItem> Beitragsart { get; private set; }
-        public List<SelectableItem> Mitgliedstyp { get; private set; }
-        public List<SelectableItem> Zahlungsart { get; private set; }
+        public List<SelectableItem> Geschlechter { get; private set; }   //https://qa.mv.meinbdp.de/ica/rest/baseadmin/geschlecht
+        public List<SelectableItem> Staatsangehoerigkeit { get; private set; }  //https://qa.mv.meinbdp.de/ica/rest/baseadmin/staatsangehoerigkeit
+        public List<SelectableItem> Laender { get; private set; }  //https://qa.mv.meinbdp.de/ica/rest/baseadmin/land/
+        public List<SelectableItem> Beitragsart { get; private set; } //https://qa.mv.meinbdp.de/ica/rest/namiBeitrag/beitragsartmgl/gruppierung/448/
+        public List<SelectableItem> Mitgliedstyp { get; private set; } //https://qa.mv.meinbdp.de/ica/rest/nami/enum/mgltype
+        public List<SelectableItem> Zahlungsart { get; private set; } //https://qa.mv.meinbdp.de/ica/rest/baseadmin/zahlungskondition/
         public int id_Gruppe { get; private set; }
         private MainController mainc;
         public MitgliedDetails mitglied { get; set; }

@@ -4,7 +4,22 @@
              x:Class="BdP_MV.View.MitgliederDetails.Taetigkeiten_Liste"
              
              Title="Tätigkeiten">
-    <ListView x:Name="MyListView"
+    <StackLayout>
+        <ActivityIndicator 
+                       IsVisible="{Binding IsBusy}"
+                       IsRunning="{Binding IsBusy}"
+                       VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="CenterAndExpand"
+                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.33}" />
+        <StackLayout Orientation="Horizontal">
+            <Switch x:Name="nurAktiv" IsToggled="{Binding nurAktiv}" 
+
+                    />
+            <Label Text="Nur Aktive Tätgkeiten"  TextColor="Gray" Font="Bold"></Label>
+
+        </StackLayout>
+
+        <ListView x:Name="MyListView"
             ItemsSource="{Binding taetigkeiten}"
             ItemTapped="Handle_ItemTapped"
             CachingStrategy="RecycleElement"
@@ -29,4 +44,5 @@
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
+    </StackLayout>
 </ContentPage>

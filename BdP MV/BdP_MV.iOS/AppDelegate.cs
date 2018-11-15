@@ -5,6 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
+
 namespace BdP_MV.iOS
 {
 	// The UIApplicationDelegate for the application. This class is responsible for launching the 
@@ -22,7 +23,8 @@ namespace BdP_MV.iOS
 		//
 		public override bool FinishedLaunching(UIApplication app, NSDictionary options)
 		{
-			global::Xamarin.Forms.Forms.Init ();
+            
+            global::Xamarin.Forms.Forms.Init ();
 			LoadApplication (new BdP_MV.App ());
 
 			return base.FinishedLaunching (app, options);
