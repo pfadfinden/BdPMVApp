@@ -42,6 +42,7 @@
             <Label Text="Verand Pfade" FontSize="Medium" />
             <Switch x:Name="doneSwitch" IsToggled="{Binding nurAktiv}" />
             
+            
 
 
         </StackLayout>
