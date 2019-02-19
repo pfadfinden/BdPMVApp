@@ -69,6 +69,7 @@ namespace BdP_MV.Services
                 {
                     Console.WriteLine(responseString);
                 }
+                App.Current.Properties["cookieContainer"] = cookieContainer;
                 HttpWebRequest request_nachricht;
                 if (qa)
                 {
@@ -78,8 +79,8 @@ namespace BdP_MV.Services
                 {
                     request_nachricht = (HttpWebRequest)HttpWebRequest.Create("https://mv.meinbdp.de/ica/rest/dashboard/botschaft/current-message");
                 }
-                
-                request_nachricht.CookieContainer = cookieContainer;
+
+                request_nachricht.CookieContainer = (CookieContainer)App.Current.Properties["cookieContainer"];
 
                 HttpWebResponse response_nachricht = (HttpWebResponse)await request_nachricht.GetResponseAsync();
                 string response_nachricht_String = new StreamReader(response_nachricht.GetResponseStream()).ReadToEnd();
@@ -325,6 +326,8 @@ namespace BdP_MV.Services
         }
         private async Task<String> GetApiResultStringAsync(string anfrageURL)
         {
+            cookieContainer = (CookieContainer)App.Current.Properties["cookieContainer"];
+
             HttpWebRequest request;
             if (qa)
             {
@@ -349,6 +352,8 @@ namespace BdP_MV.Services
         }
         private String GetApiResultString(string anfrageURL)
         {
+            cookieContainer = (CookieContainer)App.Current.Properties["cookieContainer"];
+
             HttpWebRequest request;
             if (qa)
             {

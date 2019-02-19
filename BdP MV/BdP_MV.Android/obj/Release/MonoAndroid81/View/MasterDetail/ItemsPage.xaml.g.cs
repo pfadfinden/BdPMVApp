@@ -8,13 +8,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("BdP_MV.Droid.View.MasterDetail.ItemsPage.xaml", "View/MasterDetail/ItemsPage.xaml", typeof(global::BdP_MV.View.ItemsPage))]
+[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("BdP_MV.Droid.View.MasterDetail.ItemsPage.xaml", "View/MasterDetail/ItemsPage.xaml", typeof(global::BdP_MV.View.ItemsPage.MitgliederDetails))]
 
-namespace BdP_MV.View {
+namespace BdP_MV.View.ItemsPage {
     
     
     [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("D:\\MV_APP\\BdP MV\\BdP_MV\\View\\MasterDetail\\ItemsPage.xaml")]
-    public partial class ItemsPage : global::Xamarin.Forms.ContentPage {
+    public partial class MitgliederDetails : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private global::Xamarin.Forms.Picker testpicker;
@@ -24,7 +24,7 @@ namespace BdP_MV.View {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
-            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(ItemsPage));
+            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(MitgliederDetails));
             testpicker = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Picker>(this, "testpicker");
             MitgliedView = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.ListView>(this, "MitgliedView");
         }

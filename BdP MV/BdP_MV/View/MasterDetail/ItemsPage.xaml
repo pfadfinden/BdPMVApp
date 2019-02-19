@@ -1,19 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BdP_MV.View.ItemsPage"
-             Title="Mitgliederliste">
-    <ContentPage.Resources>
-        
-    </ContentPage.Resources>
-    <ContentPage.ToolbarItems>
-        <!-- The Refresh ToolBarItem is only for UWP. See code-behind. -->
-        <!-- <ToolbarItem x:Name="refreshToolbarItem" Icon="refresh.png" Text="Refresh" Command="{Binding RefreshAcquaintancesCommand}" />-->
-        <!-- The Settings ToolBarItem is present on all platforms. -->
-        <!---  <ToolbarItem x:Name="settingsToolbarItem" Icon="settings.png" Text="Settings" Command="{Binding ShowSettingsCommand}" />-->
-        <!-- The Add Acquaintance ToolBarItem is removed for Android. See code-behind.  -->
-        <!-- <ToolbarItem x:Name="addAcquaintanceToolbarItem" Icon="add.png" Text="New" Command="{Binding NewAcquaintanceCommand}" /> -->
-    </ContentPage.ToolbarItems>
+             x:Class="BdP_MV.View.MasterDetail.ItemsPage"
+              Title="Mitgliederliste">
     <ContentPage.Content>
         <AbsoluteLayout>
             <StackLayout Spacing="0" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
@@ -41,12 +30,12 @@
                         <DataTemplate>
                             <ViewCell>
                                 <StackLayout Orientation="Vertical" Padding="10,0,0,0">
-                                <Label Text="{Binding ansprechname}"></Label>
-                                        <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding ansprechname}"></Label>
+                                    <StackLayout Orientation="Horizontal">
                                         <Label Text="{Binding entries_vorname}" TextColor="Gray"></Label>
                                         <Label Text="{Binding entries_nachname}"  TextColor="Gray"></Label>
                                     </StackLayout>
-                                   
+
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>

@@ -58,6 +58,10 @@
       <DependentUpon>Einstellungen.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\MasterDetail\ItemsPage.xaml.cs">
+      <DependentUpon>ItemsPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\MasterDetail\MasterDetail_Main.xaml.cs">
       <DependentUpon>MasterDetail_Main.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -88,9 +92,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)View\MitgliederDetails\MitgliederStammDaten.xaml.cs">
       <DependentUpon>MitgliederStammDaten.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)View\MasterDetail\ItemsPage.xaml.cs">
-      <DependentUpon>ItemsPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\LoginForms\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -103,7 +104,7 @@
       <DependentUpon>Taetigkeiten_Liste.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)View\EditMitglied.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)View\MitgliederDetails\EditMitglied.xaml.cs">
       <DependentUpon>EditMitglied.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -126,11 +127,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\MasterDetail\ItemsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\EditMitglied.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\MitgliederDetails\EditMitglied.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
@@ -203,6 +200,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\MasterDetail\Suche.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\MasterDetail\ItemsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
