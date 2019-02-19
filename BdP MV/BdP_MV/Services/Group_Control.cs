@@ -17,7 +17,7 @@ namespace BdP_MV.Services
             alleGruppen = new List<Gruppe>();
         }
        //
-        public async Task AlleGruppenAbrufen(int id)
+        public async Task AlleGruppenAbrufen(int id, string prefix)
         {
             List<Gruppe> tempGruppen = new List<Gruppe>();
             tempGruppen = mainC.mVConnector.GetGroups(id);
@@ -27,8 +27,9 @@ namespace BdP_MV.Services
                 {
                     
                     aktGruppe.descriptor = reg.Replace(aktGruppe.descriptor, "$1");
+                    aktGruppe.descriptor = prefix + aktGruppe.descriptor;
                     alleGruppen.Add(aktGruppe);
-                    await AlleGruppenAbrufen(aktGruppe.id);
+                    await AlleGruppenAbrufen(aktGruppe.id, prefix+"-");
                 }
 
         }

@@ -34,7 +34,7 @@ namespace BdP_MV.ViewModel
             
                 IsBusy = true;
             // await Task.Run(async () => await mainC.groupControl.AlleGruppenAbrufen(0));
-                await mainC.groupControl.AlleGruppenAbrufen(0);
+                await mainC.groupControl.AlleGruppenAbrufen(0,"");
                 IsBusy = false;
            
           
