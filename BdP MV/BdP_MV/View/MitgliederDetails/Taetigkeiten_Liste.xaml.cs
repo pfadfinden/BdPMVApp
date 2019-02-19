@@ -24,6 +24,7 @@ namespace BdP_MV.View.MitgliederDetails
         public Taetigkeiten_Liste(ItemDetailViewModel viewModel)
         {
             InitializeComponent();
+            nurAktiv.IsToggled = false;
             BindingContext = this.viewModel = viewModel;
 
         }
@@ -61,6 +62,13 @@ namespace BdP_MV.View.MitgliederDetails
 
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
+        }
+        void nurAktiv_Toggled(object sender, ToggledEventArgs e)
+        {
+            if (nurAktiv.IsToggled)
+            { MyListView.ItemsSource = viewModel.taetigkeitenAktiv; }
+            else
+            { MyListView.ItemsSource = viewModel.taetigkeiten; }
         }
     }
 }

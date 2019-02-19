@@ -54,6 +54,7 @@ namespace BdP_MV.ViewModel
             latestSGB8 = await t1;
             mitglied.kleingruppe = await t2;
             HasKleingruppe = !string.IsNullOrWhiteSpace(mitglied?.kleingruppe);
+            TaetigkeitenFilter();
 
 
 
@@ -61,6 +62,10 @@ namespace BdP_MV.ViewModel
 
         Command _DialNumberCommand;
 
+        private  void TaetigkeitenFilter()
+        {
+           taetigkeitenAktiv= taetigkeiten.Where(x => x.aktiv).ToList();
+        }
         public Command DialNumberCommand => _DialNumberCommand ??
                                             (_DialNumberCommand = new Command(ExecuteDialNumberCommand));
 

@@ -13,6 +13,7 @@
                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.33}" />
         <StackLayout Orientation="Horizontal">
             <Switch x:Name="nurAktiv" IsToggled="{Binding nurAktiv}" 
+                                   Toggled="nurAktiv_Toggled"
 
                     />
             <Label Text="Nur Aktive Tätgkeiten"  TextColor="Gray" Font="Bold"></Label>
