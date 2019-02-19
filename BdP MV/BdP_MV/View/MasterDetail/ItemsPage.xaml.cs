@@ -1,4 +1,5 @@
 ﻿using BdP_MV.Exceptions;
+using BdP_MV.Model;
 using BdP_MV.Model.Mitglied;
 using BdP_MV.Services;
 using BdP_MV.ViewModel;
@@ -27,6 +28,9 @@ namespace BdP_MV.View.MasterDetail
 
             InitializeComponent();
             searchOrigin = false;
+            testpicker.ItemsSource = (List<Gruppe>)App.Current.Properties["Gruppen"];
+            
+
 
             viewModel = new ItemsViewModel(mainCo);
 
@@ -58,43 +62,10 @@ namespace BdP_MV.View.MasterDetail
         public async void thePickerFocused(object sender, EventArgs e)
         {
 
-            IsBusy = true;
-            // base.OnAppearing();
-            if (viewModel.mainC.groupControl.alleGruppen.Count == 0)
-            {
-                //Other code etc.
-                try
-                {
-                    if (this.viewModel.mainC.groupControl.alleGruppen.Count == 0)
-                    {
-                        //await Task.Run(async () => await viewModel.GruppenLaden());
-                        await viewModel.GruppenLaden();
-                        Console.WriteLine(viewModel.mainC.groupControl.alleGruppen.ToString());
-                    }
-
-                }
-
-                catch (NewLoginException b)
-                {
-                    await DisplayAlert("Fehler", "Deine Sitzung ist abgelaufen. Bitte logge dich neu in die App ein.", "OK");
-                    Navigation.InsertPageBefore(new LoginForms.Login(), this);
-                    Console.WriteLine(b.Message);
-                    Console.WriteLine(b.StackTrace);
-                    await Navigation.PopAsync();
-
-                }
-                catch (WebException b)
-                {
-                    await DisplayAlert("Fehler", "Fehler beim Herstellen der Internetverbindung", "OK");
-                    Console.WriteLine(b.Message);
-                    Console.WriteLine(b.StackTrace);
-
-                }
-            }
+         
             testpicker.ItemsSource = viewModel.mainC.groupControl.alleGruppen;
 
-            IsBusy = false;
-
+          
 
         }
 

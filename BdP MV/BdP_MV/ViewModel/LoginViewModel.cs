@@ -51,7 +51,8 @@ namespace BdP_MV.ViewModel
                 }
                 else if (answer == 0)
                 {
-
+                    await mainc.groupControl.AlleGruppenAbrufen(0, "");
+                    App.Current.Properties["Gruppen"] = mainc.groupControl.alleGruppen;
                 }
                 else
                 {
@@ -59,7 +60,18 @@ namespace BdP_MV.ViewModel
                 }
             }
             IsBusy = false;
+
             return returnString;
+            
+
+
+        }
+        public async Task GruppenLaden()
+        {
+
+            IsBusy = true;
+            IsBusy = false;
+
 
         }
 
