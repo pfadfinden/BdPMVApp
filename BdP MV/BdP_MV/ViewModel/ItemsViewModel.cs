@@ -7,6 +7,7 @@ using BdP_MV.Model;
 using BdP_MV.Services;
 using MvvmHelpers;
 using Xamarin.Forms;
+using System;
 
 namespace BdP_MV.ViewModel
 {
@@ -20,25 +21,30 @@ namespace BdP_MV.ViewModel
             mainC = mainCo;
 
 
-          
+
             ausgewaehlteMitglieder = new List<Mitglied>();
             Mitglied test = new Mitglied();
             test.ansprechname = "test";
             ausgewaehlteMitglieder.Add(test);
-            
+
 
 
         }
-        
+
         public async Task MitgliederAusGruppeLaden()
         {
-            
+
             mainC.einsteillungen.aktuelleGruppe = aktGruppe.id;
             await Task.Run(async () => await mainC.mitgliederController.MitgliederAktualisierenByGroup());
 
             ausgewaehlteMitglieder = mainC.mitgliederController.AktiveMitglieder;
-            
+
         }
+        public async Task<Boolean> CheckPermissionForNewInGroup(int idGroup)
+        {
+            return await mainC.groupControl.CheckPermissionForNew(idGroup);
+        }
+
         public async Task<ItemDetailViewModel> mitgliedDetailsVorladen(int idMitglied)
         {
             return await mitgliedDetailsVorladen(idMitglied, aktGruppe.id);

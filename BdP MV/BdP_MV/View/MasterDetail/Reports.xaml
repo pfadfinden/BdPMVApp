@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BdP_MV.View.MasterDetail.Reports">
+    <ContentPage.Content>
+        <StackLayout>
+            <Picker 
+                    x:Name="testpicker" 
+            Title="Gruppe auswählen"
+                    SelectedIndexChanged="thePickerSelectedIndexChanged"
+
+                    ItemDisplayBinding="{Binding descriptor}"
+                    SelectedItem="{Binding aktGruppe}"
+           
+                />
+            <!--ItemsSource="{Binding alleGruppen}"-->
+            <ListView x:Name="ReportView" ItemTapped="ItemTapped" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding entries_vorname}" TextColor="Gray"></Label>
+                                    <Label Text="{Binding entries_nachname}"  TextColor="Gray"></Label>
+                                </StackLayout>
+
+                            
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

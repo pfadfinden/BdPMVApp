@@ -43,14 +43,6 @@ public class ViewCellRenderer_ViewCellContainer
 	}
 
 
-	public ViewCellRenderer_ViewCellContainer (android.content.Context p0, android.util.AttributeSet p1, int p2, int p3)
-	{
-		super (p0, p1, p2, p3);
-		if (getClass () == ViewCellRenderer_ViewCellContainer.class)
-			mono.android.TypeManager.Activate ("Xamarin.Forms.Platform.Android.ViewCellRenderer+ViewCellContainer, Xamarin.Forms.Platform.Android", "Android.Content.Context, Mono.Android:Android.Util.IAttributeSet, Mono.Android:System.Int32, mscorlib:System.Int32, mscorlib", this, new java.lang.Object[] { p0, p1, p2, p3 });
-	}
-
-
 	public boolean onInterceptTouchEvent (android.view.MotionEvent p0)
 	{
 		return n_onInterceptTouchEvent (p0);

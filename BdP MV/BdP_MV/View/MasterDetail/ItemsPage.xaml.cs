@@ -25,7 +25,6 @@ namespace BdP_MV.View.MasterDetail
         public ItemsPage(MainController mainCo)
         {
 
-
             InitializeComponent();
             searchOrigin = false;
             testpicker.ItemsSource = (List<Gruppe>)App.Current.Properties["Gruppen"];
@@ -59,20 +58,7 @@ namespace BdP_MV.View.MasterDetail
 
 
 
-        public async void thePickerFocused(object sender, EventArgs e)
-        {
-
-         
-            testpicker.ItemsSource = viewModel.mainC.groupControl.alleGruppen;
-
-          
-
-        }
-
-
-
-
-
+       
         public async void thePickerSelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -80,8 +66,11 @@ namespace BdP_MV.View.MasterDetail
             {
                 //await DisplayAlert("Ausgewählte Gruppe", viewModel.aktGruppe.id.ToString(), "OK");//Method call every time when picker selection changed
                 IsBusy = true;
+                viewModel.aktGruppe = (Gruppe)testpicker.SelectedItem;
                 await Task.Run(async () => await this.viewModel.MitgliederAusGruppeLaden());
                 MitgliedView.ItemsSource = viewModel.ausgewaehlteMitglieder;
+                
+
                 IsBusy = false;
             }
 
@@ -175,9 +164,20 @@ namespace BdP_MV.View.MasterDetail
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The EventArgs</param>
-        void AndroidAddButtonClicked(object sender, EventArgs e)
+        async void NewMitglied_Activated(object sender, EventArgs e)
         {
+            if (viewModel.aktGruppe != null)
+            {
+                if (await viewModel.CheckPermissionForNewInGroup(viewModel.aktGruppe.id))
+                {
+                    await Navigation.PushAsync(new MitgliederDetails.NewMitglied(viewModel.aktGruppe.id));
 
+                }
+                else
+                {
+                    await DisplayAlert("Nope", "Hier nix mit neuen Mitglied", "OK, sorry");//Method call every time when picker selection changed
+                }
+            }
         }
 
     }

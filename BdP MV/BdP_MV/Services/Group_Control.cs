@@ -1,6 +1,7 @@
 ﻿using BdP_MV.Model;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -33,6 +34,15 @@ namespace BdP_MV.Services
                 }
 
         }
+        public async Task<Boolean> CheckPermissionForNew(int idGruppe)
+        {
+            Meta_Data meta = await mainC.mVConnector.MetaData(idGruppe);
+            var match = meta.actions.FirstOrDefault(stringToCheck => stringToCheck.Contains("CREATE"));
+            if (match != null)
+            { return true; }
+            else
+            { return false; }
+            }
 
     }
 }

@@ -3,6 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BdP_MV.View.MasterDetail.ItemsPage"
               Title="Mitgliederliste">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="NewMitglied" Order="Primary" Text="Neues Mitglied" Priority="0" Activated="NewMitglied_Activated" />
+
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <AbsoluteLayout>
             <StackLayout Spacing="0" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
@@ -18,7 +22,6 @@
                     x:Name="testpicker" 
             Title="Gruppe auswählen"
                     SelectedIndexChanged="thePickerSelectedIndexChanged"
-                    Focused="thePickerFocused"
 
                     ItemDisplayBinding="{Binding descriptor}"
                     SelectedItem="{Binding aktGruppe}"

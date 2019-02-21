@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BdP_MV.View.MitgliederDetails.NewMitglied" xmlns:local="clr-namespace:BdP_MV.View"
+		Title="New Item">
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Text="Save" Clicked="Save_Clicked" />
+	</ContentPage.ToolbarItems>
+	<ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+               
+                    <Entry x:Name="titelEntry" Placeholder="Titel" />
+               
+                   
+                    <Entry x:Name="vornameEntry" Placeholder="Vorname"/>
+               
+                    <Entry x:Name="nachnameEntry" Placeholder="Nachname"/>
+             
+                    <Entry x:Name="spitznameEntry" Placeholder="Spitzname"/>
+              
+                    <Picker 
+                    x:Name="geschlechtspicker" 
+                    Title="Geschlecht*"/>
+             
+
+                <!--ItemDisplayBinding="{Binding descriptor}"            
+                    SelectedItem="{Binding SelectedGeschlecht}" -->
+                
+              
+
+                    <DatePicker x:Name="geburtsdatumEntry" VerticalOptions="CenterAndExpand">
+                        <DatePicker.Format>dd.MM.yyyy</DatePicker.Format>
+                    </DatePicker>
+            
+                    <DatePicker x:Name="eintrittsdatumEntry" VerticalOptions="CenterAndExpand">
+                        <DatePicker.Format>dd.MM.yyyy</DatePicker.Format>
+                    </DatePicker>
+               
+                <Picker 
+                    x:Name="beitragsartpicker" 
+                    Title="Beitragsart*"/>
+                     <!-- ItemDisplayBinding="{Binding descriptor}"
+                    SelectedItem="{Binding SelectedBeitragsart}"-->
+
+
+                <StackLayout Orientation="Horizontal">
+
+                    <Label Text="Verand Pfade" FontSize="Medium" />
+                    <Switch x:Name="doneSwitch" IsToggled="{Binding nurAktiv}" />
+                </StackLayout>
+                <Picker 
+                    x:Name="landpicker" 
+                    Title="Land"/>
+
+                    <!---ItemDisplayBinding="{Binding descriptor}"
+                    SelectedItem="{Binding SelectedBeitragsart}" -->
+
+                
+            <Entry x:Name="nameZusatz" Placeholder="Namens-/ Adrresszusatz"/>
+            <Entry x:Name="strasse" Placeholder="Straße / Hausnummer *"/>
+            <Entry x:Name="plz" Placeholder="PLZ"/>
+            <Entry x:Name="ort" Placeholder="Ort"/>
+            <Entry x:Name="email" Placeholder="E-Mail"/>
+            <Entry x:Name="emailVertretungsberechtigter" Placeholder="E-Mail Erziehungsberechtigt"/>
+            <Entry x:Name="telefon1" Placeholder="Telefon"/>
+            <Entry x:Name="telefon3" Placeholder="Mobiltelefon"/>
+            <Button Text="Abschicken" />
+        </StackLayout>
+        </ScrollView>
+	</ContentPage.Content>
+</ContentPage>

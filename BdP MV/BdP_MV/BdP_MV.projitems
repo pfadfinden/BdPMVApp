@@ -19,6 +19,8 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Model\Connector_LoginDaten.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Gruppierung.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Meta.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Metamodel\Reports.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\SearchObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\SelectableItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Mitglied\Ausbildung.cs" />
@@ -42,10 +44,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\AboutViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\BaseNavigationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\EditMitglied.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\NewMitgliedViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ForgotPWViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ItemDetailViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ItemsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\LoginViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ReportViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\SucheViewModell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)View\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
@@ -77,6 +81,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)View\MasterDetail\MasterDetail_MainMenuItem.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\MasterDetail\Reports.xaml.cs">
+      <DependentUpon>Reports.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\MasterDetail\Suche.xaml.cs">
       <DependentUpon>Suche.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -104,8 +112,8 @@
       <DependentUpon>Taetigkeiten_Liste.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)View\MitgliederDetails\EditMitglied.xaml.cs">
-      <DependentUpon>EditMitglied.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)View\MitgliederDetails\NewMitglied.xaml.cs">
+      <DependentUpon>NewMitglied.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -127,7 +135,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\MitgliederDetails\EditMitglied.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\MitgliederDetails\NewMitglied.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
@@ -172,6 +180,8 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Model\NewFolder\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Model\Reporting\" />
     <Folder Include="$(MSBuildThisFileDirectory)View\LoginForms\" />
   </ItemGroup>
   <ItemGroup>
@@ -206,6 +216,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\MasterDetail\ItemsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\MasterDetail\Reports.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

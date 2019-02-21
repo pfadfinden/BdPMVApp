@@ -6,8 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using BdP_MV.Exceptions;
 using BdP_MV.Model;
+using BdP_MV.Model.Metamodel;
 using BdP_MV.Model.Mitglied;
 using Newtonsoft.Json;
+
 
 namespace BdP_MV.Services
 {
@@ -268,6 +270,15 @@ namespace BdP_MV.Services
             taetigkeiten = rootObjectTaetigkeiten.data;
             return taetigkeiten;
         }
+        public async Task<Meta_Data> MetaData(int idGruppe)
+        {
+            string anfrage = "nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/" + idGruppe + "/META";
+            string responseString = await GetApiResultStringAsync(anfrage);
+            RootObject_Meta_Data rootObjectMetadata = JsonConvert.DeserializeObject<RootObject_Meta_Data>(responseString);
+
+            Meta_Data metaData = rootObjectMetadata.data;
+            return metaData;
+        }
         public async Task<List<Ausbildung>> Ausbildung(int idMitglied)
         {
             string anfrage = "nami/mitglied-ausbildung/filtered-for-navigation/mitglied/mitglied/" + idMitglied + "/flist";
@@ -323,6 +334,29 @@ namespace BdP_MV.Services
             ausbildungDetails = rootAusbildung_Details.data;
 
             return ausbildungDetails;
+        }
+        public async Task<List<Report_Data>> ReportData(int idGruppe)
+        {
+
+            String anfrage = "nami/grp-reports/filtered-for-grpadmin/gruppierung/crtGruppierung/"+idGruppe+"/flist";
+            String responseString = await GetApiResultStringAsync(anfrage);
+
+            List <Report_Data> reportList = new List<Report_Data>();
+            Report_RootObject root_Reports = JsonConvert.DeserializeObject<Report_RootObject>(responseString);
+            if (root_Reports.success == false)
+            {
+                if (root_Reports.responseType.Equals("ERROR") && root_Reports.message.Equals("Session expired"))
+                {
+                    throw new NewLoginException("Bitte neu einloggen.");
+                }
+                if (root_Reports.responseType.Equals("EXCEPTION") && root_Reports.message.Equals("Benutzer darf sich keine GrpReports ansehen"))
+                {
+                    throw new NoRightsException("Versucht Kontext aufzurufen, für das der Nutzer keine Rechte hat.");
+                }
+            }
+            reportList = root_Reports.data;
+
+            return reportList;
         }
         private async Task<String> GetApiResultStringAsync(string anfrageURL)
         {

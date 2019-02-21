@@ -3,6 +3,7 @@ using BdP_MV.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BdP_MV.ViewModel
@@ -53,6 +54,7 @@ namespace BdP_MV.ViewModel
                 {
                     await mainc.groupControl.AlleGruppenAbrufen(0, "");
                     App.Current.Properties["Gruppen"] = mainc.groupControl.alleGruppen;
+
                 }
                 else
                 {
@@ -66,14 +68,7 @@ namespace BdP_MV.ViewModel
 
 
         }
-        public async Task GruppenLaden()
-        {
-
-            IsBusy = true;
-            IsBusy = false;
-
-
-        }
+       
 
     }
 }
