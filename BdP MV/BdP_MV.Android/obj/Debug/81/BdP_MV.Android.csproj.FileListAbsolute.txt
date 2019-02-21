@@ -196,7 +196,3 @@ D:\MV_APP\BdP MV\BdP_MV.Android\obj\Debug\81\android\assets\System.Xml.Linq.pdb
 D:\MV_APP\BdP MV\BdP_MV.Android\obj\Debug\81\android\assets\System.Xml.pdb
 D:\MV_APP\BdP MV\BdP_MV.Android\obj\Debug\81\android\assets\Xamarin.Forms.Core.pdb
 D:\MV_APP\BdP MV\BdP_MV.Android\obj\Debug\81\android\assets\Xamarin.Forms.Xaml.pdb
-D:\MV_APP\BdP MV\BdP_MV.Android\bin\Debug\BdP_MV.Android.dll
-D:\MV_APP\BdP MV\BdP_MV.Android\obj\Debug\81\linksrc\BdP_MV.Android.dll.mdb
-D:\MV_APP\BdP MV\BdP_MV.Android\obj\Debug\81\linksrc\FormsViewGroup.dll.mdb
-D:\MV_APP\BdP MV\BdP_MV.Android\obj\Debug\81\linksrc\Xamarin.Forms.Platform.Android.dll.mdb

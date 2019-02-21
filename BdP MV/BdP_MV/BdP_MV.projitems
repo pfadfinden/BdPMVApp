@@ -12,6 +12,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Exceptions\NotAllRequestedFieldsFielledException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Exceptions\NewLoginExeption.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Exceptions\NoRightsException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">

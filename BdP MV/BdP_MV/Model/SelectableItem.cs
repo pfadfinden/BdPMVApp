@@ -6,8 +6,8 @@ namespace BdP_MV
     public class SelectableItem
     {
         public string Id { get; set; }
-        public string Text { get; set; }
-        public string Description { get; set; }
+        public string name { get; set; }
+        public string descriptor { get; set; }
         public string representedClass { get; set; }
     }
     public class RootObjectItem

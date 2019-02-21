@@ -1,7 +1,7 @@
 ﻿using BdP_MV.ViewModel;
 using System;
 using System.Collections.Generic;
-
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace BdP_MV.View.MitgliederDetails
@@ -9,7 +9,7 @@ namespace BdP_MV.View.MitgliederDetails
     public partial class NewMitglied : ContentPage
     {
 
-        NewMitgliedViewModel viewModel;
+        public NewMitgliedViewModel viewModel;
         int idGruppe;
 
 
@@ -18,7 +18,7 @@ namespace BdP_MV.View.MitgliederDetails
         {
             //   InitializeComponent();
             // this.viewModel = new NewMitgliedViewModel(new Services.MainController());
-            viewModel = new NewMitgliedViewModel();
+            viewModel = new NewMitgliedViewModel(idgrp);
 
             idGruppe = idgrp;
             InitializeComponent();
@@ -26,6 +26,44 @@ namespace BdP_MV.View.MitgliederDetails
 
         async void Save_Clicked(object sender, EventArgs e)
         {
+            try
+            {
+                viewModel.mitglied.vorname = vornameEntry.Text;
+                viewModel.mitglied.nachname = nachnameEntry.Text;
+                viewModel.mitglied.spitzname = spitznameEntry.Text;
+                viewModel.mitglied.geburtsDatum = geburtsdatumEntry.Date;
+                viewModel.mitglied.eintrittsdatum = eintrittsdatumEntry.Date;
+                viewModel.mitglied.email = email.Text;
+                viewModel.mitglied.zeitschriftenversand = zeitschriftenversand.IsToggled;
+                viewModel.mitglied.emailVertretungsberechtigter = emailVertretungsberechtigter.Text;
+                viewModel.mitglied.land = ((SelectableItem)landpicker.SelectedItem).descriptor;
+                viewModel.mitglied.landId = Convert.ToInt32(((SelectableItem)landpicker.SelectedItem).Id);
+                viewModel.mitglied.geschlecht = ((SelectableItem)geschlechtspicker.SelectedItem).descriptor;
+                viewModel.mitglied.geschlechtId = Convert.ToInt32(((SelectableItem)geschlechtspicker.SelectedItem).Id);
+                viewModel.mitglied.mglType = ((SelectableItem)mitgliedsartpicker.SelectedItem).descriptor;
+                viewModel.mitglied.mglTypeId = ((SelectableItem)mitgliedsartpicker.SelectedItem).Id;
+                viewModel.mitglied.beitragsart = ((SelectableItem)beitragsartpicker.SelectedItem).descriptor;
+                viewModel.mitglied.beitragsartId = Convert.ToInt32(((SelectableItem)beitragsartpicker.SelectedItem).Id);
+                viewModel.mitglied.strasse = strasse.Text;
+                viewModel.mitglied.plz = plz.Text;
+                viewModel.mitglied.ort = ort.Text;
+                viewModel.mitglied.nameZusatz = nameZusatz.Text;
+                viewModel.mitglied.telefon1 = telefon1.Text;
+                viewModel.mitglied.telefon3 = telefon3.Text;
+                await viewModel.GenerateJSON();
+            }
+            catch
+            { }
+        }
+        public async Task LoadPreferences()
+        {
+            await viewModel.loadSelectableItems();
+            geschlechtspicker.ItemsSource = viewModel.geschlechter;
+            landpicker.ItemsSource = viewModel.land;
+            beitragsartpicker.ItemsSource = viewModel.beitragsart;
+            mitgliedsartpicker.ItemsSource = viewModel.mitgltype;
+
+
         }
     }
 }

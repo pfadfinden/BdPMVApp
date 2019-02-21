@@ -2,6 +2,7 @@
 using BdP_MV.Model;
 using BdP_MV.Model.Mitglied;
 using BdP_MV.Services;
+using BdP_MV.View.MitgliederDetails;
 using BdP_MV.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -166,18 +167,22 @@ namespace BdP_MV.View.MasterDetail
         /// <param name="e">The EventArgs</param>
         async void NewMitglied_Activated(object sender, EventArgs e)
         {
+            IsBusy = true;
             if (viewModel.aktGruppe != null)
             {
-                if (await viewModel.CheckPermissionForNewInGroup(viewModel.aktGruppe.id))
+                if (await viewModel.CheckPermissionForNewInGroup(viewModel.aktGruppe.id))                
                 {
-                    await Navigation.PushAsync(new MitgliederDetails.NewMitglied(viewModel.aktGruppe.id));
+                    NewMitglied neueMitgliesseite = new MitgliederDetails.NewMitglied(viewModel.aktGruppe.id);
+                    await neueMitgliesseite.LoadPreferences();
+                    await Navigation.PushAsync(neueMitgliesseite);
 
                 }
                 else
                 {
-                    await DisplayAlert("Nope", "Hier nix mit neuen Mitglied", "OK, sorry");//Method call every time when picker selection changed
+                    await DisplayAlert("Achtung!", "In dieser Gruppierung darfst du keine neuen Mitglieder erstellen", "OK, sorry");//Method call every time when picker selection changed
                 }
             }
+            IsBusy = false;
         }
 
     }

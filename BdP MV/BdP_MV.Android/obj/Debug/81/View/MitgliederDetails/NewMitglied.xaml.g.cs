@@ -41,7 +41,10 @@ namespace BdP_MV.View.MitgliederDetails {
         private global::Xamarin.Forms.Picker beitragsartpicker;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Xamarin.Forms.Switch doneSwitch;
+        private global::Xamarin.Forms.Picker mitgliedsartpicker;
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
+        private global::Xamarin.Forms.Switch zeitschriftenversand;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private global::Xamarin.Forms.Picker landpicker;
@@ -81,7 +84,8 @@ namespace BdP_MV.View.MitgliederDetails {
             geburtsdatumEntry = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.DatePicker>(this, "geburtsdatumEntry");
             eintrittsdatumEntry = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.DatePicker>(this, "eintrittsdatumEntry");
             beitragsartpicker = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Picker>(this, "beitragsartpicker");
-            doneSwitch = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Switch>(this, "doneSwitch");
+            mitgliedsartpicker = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Picker>(this, "mitgliedsartpicker");
+            zeitschriftenversand = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Switch>(this, "zeitschriftenversand");
             landpicker = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Picker>(this, "landpicker");
             nameZusatz = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Entry>(this, "nameZusatz");
             strasse = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Xamarin.Forms.Entry>(this, "strasse");
