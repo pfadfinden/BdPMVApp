@@ -40,10 +40,12 @@ namespace BdP_MV.View.MitgliederDetails
                 viewModel.mitglied.emailVertretungsberechtigter = emailVertretungsberechtigter.Text;
                 viewModel.mitglied.land = ((SelectableItem)landpicker.SelectedItem).descriptor;
                 viewModel.mitglied.landId = Convert.ToInt32(((SelectableItem)landpicker.SelectedItem).Id);
+                viewModel.mitglied.staatsangehoerigkeit = ((SelectableItem)landpicker.SelectedItem).descriptor;
+                viewModel.mitglied.staatsangehoerigkeitId = Convert.ToInt32(((SelectableItem)landpicker.SelectedItem).Id);
                 viewModel.mitglied.geschlecht = ((SelectableItem)geschlechtspicker.SelectedItem).descriptor;
                 viewModel.mitglied.geschlechtId = Convert.ToInt32(((SelectableItem)geschlechtspicker.SelectedItem).Id);
                 viewModel.mitglied.mglType = ((SelectableItem)mitgliedsartpicker.SelectedItem).descriptor;
-                viewModel.mitglied.mglTypeId = ((SelectableItem)mitgliedsartpicker.SelectedItem).Id;
+                viewModel.mitglied.ersteTaetigkeitId = ((SelectableItem)mitgliedsartpicker.SelectedItem).Id;
                 viewModel.mitglied.beitragsart = ((SelectableItem)beitragsartpicker.SelectedItem).descriptor;
                 viewModel.mitglied.beitragsartId = Convert.ToInt32(((SelectableItem)beitragsartpicker.SelectedItem).Id);
                 viewModel.mitglied.strasse = strasse.Text;
@@ -52,7 +54,7 @@ namespace BdP_MV.View.MitgliederDetails
                 viewModel.mitglied.nameZusatz = nameZusatz.Text;
                 viewModel.mitglied.telefon1 = telefon1.Text;
                 viewModel.mitglied.telefon3 = telefon3.Text;
-                await viewModel.GenerateJSON();
+                await viewModel.GenerateJSON(idGruppe);
             }
             catch (NewLoginException ex)
             {

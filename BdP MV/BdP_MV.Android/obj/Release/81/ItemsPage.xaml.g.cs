@@ -8,9 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("BdP_MV.Droid.ItemsPage.xaml", "ItemsPage.xaml", typeof(global::BdP_MV.View.ItemsPage))]
+[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("BdP_MV.Droid.ItemsPage.xaml", "ItemsPage.xaml", typeof(global::BdP_MV.View.MasterDetail.ItemsPage))]
 
-namespace BdP_MV.View {
+namespace BdP_MV.View.MasterDetail {
     
     
     [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("D:\\MV_APP\\BdP MV\\BdP_MV\\View\\MasterDetail\\ItemsPage.xaml")]

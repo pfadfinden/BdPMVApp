@@ -28,7 +28,7 @@ namespace BdP_MV.ViewModel
 
 
         }
-        public async Task GenerateJSON()
+        public async Task GenerateJSON(int idGruppe)
         {
            
            
@@ -41,6 +41,7 @@ namespace BdP_MV.ViewModel
                 throw new NotAllRequestedFieldsFilledException("Ein Zeitschriftenversand ist ohne komplette Adressangabe nicht möglich.");
 
             }
+            mitglied.gruppierungId = idGruppe;
 
 
 
@@ -51,6 +52,7 @@ namespace BdP_MV.ViewModel
                                NullValueHandling = NullValueHandling.Ignore
                            });
             Console.WriteLine(JSONOutput);
+            
 
         }
         public NewMitgliedViewModel(MitgliedDetails uebergebenesMitglied)

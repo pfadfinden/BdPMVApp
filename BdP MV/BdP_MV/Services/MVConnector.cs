@@ -18,7 +18,7 @@ namespace BdP_MV.Services
         private bool isLoggedIn = false;
         private CookieContainer cookieContainer = new CookieContainer();
         private bool debug = false;
-        Boolean qa = false;
+        Boolean qa = true;
 
         public bool IsLoggedIn { get => isLoggedIn; }
 
@@ -255,9 +255,8 @@ namespace BdP_MV.Services
         {
             string anfrage = "/nami/mitglied-sgb-acht/filtered-for-navigation/empfaenger/empfaenger/" + idMitglied + "/flist";
             string responseString = await GetApiResultStringAsync(anfrage);
-            List<SGB8> fuehrungszeugnisse = new List<SGB8>();
             RootObject_SGB8 rootFZ = JsonConvert.DeserializeObject<RootObject_SGB8>(responseString);
-            fuehrungszeugnisse = rootFZ.data;
+            List<SGB8> fuehrungszeugnisse = rootFZ.data;
             return fuehrungszeugnisse;
         }
         
@@ -265,9 +264,8 @@ namespace BdP_MV.Services
         {
             string anfrage = "/nami/zugeordnete-taetigkeiten/filtered-for-navigation/gruppierung-mitglied/mitglied/" + idMitglied + "/flist";
             string responseString = await GetApiResultStringAsync(anfrage);
-            List<Taetigkeit> taetigkeiten = new List<Taetigkeit>();
             RootObject_Taetigkeit rootObjectTaetigkeiten = JsonConvert.DeserializeObject<RootObject_Taetigkeit>(responseString);
-            taetigkeiten = rootObjectTaetigkeiten.data;
+            List<Taetigkeit> taetigkeiten = rootObjectTaetigkeiten.data;
             return taetigkeiten;
         }
         public async Task<Meta_Data> MetaData(int idGruppe)
@@ -283,9 +281,8 @@ namespace BdP_MV.Services
         {
             string anfrage = "nami/mitglied-ausbildung/filtered-for-navigation/mitglied/mitglied/" + idMitglied + "/flist";
             string responseString = await GetApiResultStringAsync(anfrage);
-            List<Ausbildung> ausbildungen = new List<Ausbildung>();
             RootObject_Ausbildung rootObject= JsonConvert.DeserializeObject<RootObject_Ausbildung>(responseString);
-            ausbildungen = rootObject.data;
+            List<Ausbildung> ausbildungen = rootObject.data;
             return ausbildungen;
         }
 
@@ -398,7 +395,7 @@ namespace BdP_MV.Services
                 request = (HttpWebRequest)WebRequest.Create("https://mv.meinbdp.de/ica/rest/" + anfrageURL);
             }
             request.Method = "GET";
-            request.CookieContainer = cookieContainer;
+            request.CookieContainer = cookieContainer; 
             request.ContentType = "application/x-www-form-urlencoded";
             WebResponse response = (HttpWebResponse)request.GetResponse();
             string responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
@@ -410,6 +407,61 @@ namespace BdP_MV.Services
 
 
         }
+        private async Task<String> PostApiData(string anfrageURL, string postData)
+        {
+            cookieContainer = (CookieContainer)App.Current.Properties["cookieContainer"];
+
+            HttpWebRequest request;
+            if (qa)
+            {
+                request = (HttpWebRequest)WebRequest.Create("https://qa.mv.meinbdp.de/ica/rest/" + anfrageURL);
+            }
+            else
+            {
+                request = (HttpWebRequest)WebRequest.Create("https://mv.meinbdp.de/ica/rest/" + anfrageURL);
+            }
+            request.Method = "POST";
+            request.CookieContainer = cookieContainer;
+            request.ContentType = "application/x-www-form-urlencoded; charset=utf-8";
+            Encoding iso = Encoding.GetEncoding("ISO-8859-1");
+            byte[] bytes = iso.GetBytes(postData);
+            request.ContentLength = bytes.Length;
+            using (Stream stream = request.GetRequestStream())
+            {
+                stream.Write(bytes, 0, bytes.Length);
+            }
+            WebResponse response = (HttpWebResponse)await request.GetResponseAsync();
+            string responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+            if (debug)
+            {
+                Console.WriteLine(responseString);
+            }
+            return responseString;
+
+        }
+        public async Task<String> PostNewMitglied(int idGruppe, string JSOPM)
+        {
+
+            String anfrage = "nami/grp-reports/filtered-for-grpadmin/gruppierung/crtGruppierung/" + idGruppe + "/flist";
+            String responseString = await GetApiResultStringAsync(anfrage);
+
+            var response = JsonConvert.DeserializeObject<Report_RootObject>(responseString);
+            if (response.success == false)
+            {
+                if (response.responseType.Equals("ERROR") && response.message.Equals("Session expired"))
+                {
+                    throw new NewLoginException("Bitte neu einloggen.");
+                }
+                if (response.responseType.Equals("EXCEPTION") && response.message.Equals("Benutzer darf sich keine GrpReports ansehen"))
+                {
+                    throw new NoRightsException("Versucht Kontext aufzurufen, für das der Nutzer keine Rechte hat.");
+                }
+            }
+     
+
+            return "123";
+        }
+
 
     }
 }

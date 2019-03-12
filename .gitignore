@@ -3,12 +3,12 @@
 ################################################################################
 
 /.vs/BdP MV/v15
-/BdP_MV/BdP_MV.Android/obj/**
-/BdP_MV/BdP_MV.Android/bin/**
-/BdP_MV.Android/bin/**
-/BdP_MV.Android/obj/**
+/BdP_MV/BdP_MV.Android/obj/
+/BdP_MV/BdP_MV.Android/bin/
+/BdP_MV.Android/bin/
+/BdP_MV.Android/obj/
 /BdP_MV.Android/BdP_MV.Android.csproj.user
-/BdP_MV/BdP_MV.iOS/obj/**
-/BdP_MV/BdP_MV.iOS/bin/**
+/BdP_MV/BdP_MV.iOS/obj/
+/BdP_MV/BdP_MV.iOS/bin/
 /BdP_MV.Android/bin
 /packages
