@@ -23,19 +23,26 @@
                         ItemDisplayBinding="{Binding descriptor}"/>
 
 
-                
 
 
 
 
-                <DatePicker x:Name="geburtsdatumEntry" VerticalOptions="CenterAndExpand">
+                <StackLayout Orientation="Horizontal">
+
+                    <Label Text="Geburtsdatum*" FontSize="Medium" />
+
+                    <DatePicker x:Name="geburtsdatumEntry" VerticalOptions="CenterAndExpand">
                         <DatePicker.Format>dd.MM.yyyy</DatePicker.Format>
                     </DatePicker>
-            
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+
+                    <Label Text="Eintrittsdatum*" FontSize="Medium" />
                     <DatePicker x:Name="eintrittsdatumEntry" VerticalOptions="CenterAndExpand">
                         <DatePicker.Format>dd.MM.yyyy</DatePicker.Format>
                     </DatePicker>
-               
+                </StackLayout>
                 <Picker 
                     x:Name="beitragsartpicker" 
                     Title="Beitragsart*"
