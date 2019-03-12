@@ -1,6 +1,8 @@
-﻿using BdP_MV.ViewModel;
+﻿using BdP_MV.Exceptions;
+using BdP_MV.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -52,8 +54,38 @@ namespace BdP_MV.View.MitgliederDetails
                 viewModel.mitglied.telefon3 = telefon3.Text;
                 await viewModel.GenerateJSON();
             }
-            catch
-            { }
+            catch (NewLoginException ex)
+            {
+                await DisplayAlert("Fehler", "Deine Sitzung ist abgelaufen. Bitte logge dich neu in die App ein.", "OK");
+                Navigation.InsertPageBefore(new LoginForms.Login(), this);
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+                await Navigation.PopAsync();
+
+            }
+            catch (WebException ex)
+            {
+                await DisplayAlert("Fehler", "Fehler beim Herstellen der Internetverbindung", "OK");
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+
+
+            }
+            catch (NoRightsException ex)
+            {
+                await DisplayAlert("Fehler", "Für diesen Vorgang hast du keine Rechte.", "OK");
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+
+            }
+            catch (NotAllRequestedFieldsFilledException ex)
+            {
+                await DisplayAlert("Fehler", ex.Message, "OK");
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+                
+
+            }
         }
         public async Task LoadPreferences()
         {

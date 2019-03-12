@@ -50,6 +50,8 @@ namespace BdP_MV.ViewModel
                            {
                                NullValueHandling = NullValueHandling.Ignore
                            });
+            Console.WriteLine(JSONOutput);
+
         }
         public NewMitgliedViewModel(MitgliedDetails uebergebenesMitglied)
         {

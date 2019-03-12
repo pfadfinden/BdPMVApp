@@ -27,13 +27,16 @@ namespace BdP_MV.ViewModel
         {
             mainc = mainCo;
             id_Gruppe = idGruppe;
+            neuesMitglied = true;
+
 
 
         }
         public EditMitglied(MainController mainCo, int idGruppe)
 
         {
-
+            neuesMitglied = false;
+            
             
         }
         public async Task LoadItems()
@@ -48,6 +51,7 @@ namespace BdP_MV.ViewModel
             Beitragsart = await loadBeitragsart;
             Zahlungsart = await loadZahlart;
         }
+
 
     }
 }
