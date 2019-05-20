@@ -55,6 +55,7 @@ namespace BdP_MV.View.MitgliederDetails
                 viewModel.mitglied.telefon1 = telefon1.Text;
                 viewModel.mitglied.telefon3 = telefon3.Text;
                 await viewModel.GenerateJSON(idGruppe);
+
             }
             catch (NewLoginException ex)
             {
@@ -88,6 +89,15 @@ namespace BdP_MV.View.MitgliederDetails
                 
 
             }
+            catch (NullReferenceException ex)
+            {
+                await DisplayAlert("Fehler", ex.Message, "OK");
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+
+
+            }
+
         }
         public async Task LoadPreferences()
         {

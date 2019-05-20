@@ -407,7 +407,7 @@ namespace BdP_MV.Services
 
 
         }
-        private async Task<String> PostApiData(string anfrageURL, string postData)
+        private async Task<String> PostApiDataAsync(string anfrageURL, string postData)
         {
             cookieContainer = (CookieContainer)App.Current.Properties["cookieContainer"];
 
@@ -439,11 +439,11 @@ namespace BdP_MV.Services
             return responseString;
 
         }
-        public async Task<String> PostNewMitglied(int idGruppe, string JSOPM)
+        public async Task<String> PostNewMitglied(int idGruppe, string JSON)
         {
 
-            String anfrage = "nami/grp-reports/filtered-for-grpadmin/gruppierung/crtGruppierung/" + idGruppe + "/flist";
-            String responseString = await GetApiResultStringAsync(anfrage);
+            String anfrage = "nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/" + idGruppe;
+            String responseString = await PostApiDataAsync(anfrage, JSON);
 
             var response = JsonConvert.DeserializeObject<Report_RootObject>(responseString);
             if (response.success == false)

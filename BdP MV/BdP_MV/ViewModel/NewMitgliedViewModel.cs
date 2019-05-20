@@ -49,11 +49,11 @@ namespace BdP_MV.ViewModel
                            Newtonsoft.Json.Formatting.None,
                            new JsonSerializerSettings
                            {
-                               NullValueHandling = NullValueHandling.Ignore
+                               NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore, Formatting = Formatting.Indented
                            });
             Console.WriteLine(JSONOutput);
-            
 
+            await mainC.mVConnector.PostNewMitglied(idGruppe, JSONOutput);
         }
         public NewMitgliedViewModel(MitgliedDetails uebergebenesMitglied)
         {
