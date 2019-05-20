@@ -53,7 +53,7 @@ namespace BdP_MV.View.LoginForms
             else
             {
                 await DisplayAlert("Fehler bei der Anmeldung", response, "OK");
-                if (!string.Equals(response, "Es ist ein Fehler mit deiner Internetverbindung aufgetreten.")
+                if (!string.Equals(response, "Es ist ein Fehler mit deiner Internetverbindung aufgetreten."))
 {
                     passwordEntry.Text = string.Empty;
                 }

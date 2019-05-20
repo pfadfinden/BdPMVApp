@@ -42,11 +42,10 @@ namespace BdP_MV.View.MitgliederDetails
                 viewModel.mitglied.landId = Convert.ToInt32(((SelectableItem)landpicker.SelectedItem).Id);
                 viewModel.mitglied.staatsangehoerigkeit = ((SelectableItem)landpicker.SelectedItem).descriptor;
                 viewModel.mitglied.staatsangehoerigkeitId = Convert.ToInt32(((SelectableItem)landpicker.SelectedItem).Id);
-                viewModel.mitglied.geschlecht = ((SelectableItem)geschlechtspicker.SelectedItem).descriptor;
+                //viewModel.mitglied.geschlecht = ((SelectableItem)geschlechtspicker.SelectedItem).descriptor;
                 viewModel.mitglied.geschlechtId = Convert.ToInt32(((SelectableItem)geschlechtspicker.SelectedItem).Id);
                 viewModel.mitglied.mglType = ((SelectableItem)mitgliedsartpicker.SelectedItem).descriptor;
                 viewModel.mitglied.ersteTaetigkeitId = ((SelectableItem)mitgliedsartpicker.SelectedItem).Id;
-                viewModel.mitglied.beitragsart = ((SelectableItem)beitragsartpicker.SelectedItem).descriptor;
                 viewModel.mitglied.beitragsartId = Convert.ToInt32(((SelectableItem)beitragsartpicker.SelectedItem).Id);
                 viewModel.mitglied.strasse = strasse.Text;
                 viewModel.mitglied.plz = plz.Text;
@@ -54,7 +53,13 @@ namespace BdP_MV.View.MitgliederDetails
                 viewModel.mitglied.nameZusatz = nameZusatz.Text;
                 viewModel.mitglied.telefon1 = telefon1.Text;
                 viewModel.mitglied.telefon3 = telefon3.Text;
-                await viewModel.GenerateJSON(idGruppe);
+                btn_save.IsEnabled = false;
+                IsBusy = true;
+                String response = await viewModel.GenerateJSON(idGruppe);
+                IsBusy = false;
+
+                await DisplayAlert("Erfolg",response, "OK");
+                await Navigation.PopAsync();
 
             }
             catch (NewLoginException ex)
@@ -71,6 +76,8 @@ namespace BdP_MV.View.MitgliederDetails
                 await DisplayAlert("Fehler", "Fehler beim Herstellen der Internetverbindung", "OK");
                 Console.WriteLine(ex.Message);
                 Console.WriteLine(ex.StackTrace);
+                btn_save.IsEnabled = true;
+
 
 
             }
@@ -86,7 +93,8 @@ namespace BdP_MV.View.MitgliederDetails
                 await DisplayAlert("Fehler", ex.Message, "OK");
                 Console.WriteLine(ex.Message);
                 Console.WriteLine(ex.StackTrace);
-                
+                btn_save.IsEnabled = true;
+
 
             }
             catch (NullReferenceException ex)
@@ -94,6 +102,7 @@ namespace BdP_MV.View.MitgliederDetails
                 await DisplayAlert("Fehler", ex.Message, "OK");
                 Console.WriteLine(ex.Message);
                 Console.WriteLine(ex.StackTrace);
+                btn_save.IsEnabled = true;
 
 
             }

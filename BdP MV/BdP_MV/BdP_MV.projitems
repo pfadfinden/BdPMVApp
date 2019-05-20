@@ -15,6 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Exceptions\NotAllRequestedFieldsFielledException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Exceptions\NewLoginExeption.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Exceptions\NoRightsException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ext_Packages\NullToEmptyStringResolver.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -22,6 +23,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\Gruppierung.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Meta.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Metamodel\Reports.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Metamodel\RootObj_new_Mitglied.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\SearchObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\SelectableItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Mitglied\Ausbildung.cs" />

@@ -18,7 +18,7 @@ namespace BdP_MV.Services
         private bool isLoggedIn = false;
         private CookieContainer cookieContainer = new CookieContainer();
         private bool debug = false;
-        Boolean qa = true;
+        Boolean qa = false;
 
         public bool IsLoggedIn { get => isLoggedIn; }
 
@@ -422,14 +422,13 @@ namespace BdP_MV.Services
             }
             request.Method = "POST";
             request.CookieContainer = cookieContainer;
-            request.ContentType = "application/x-www-form-urlencoded; charset=utf-8";
+            request.ContentType = "application/json; charset=utf-8";
             Encoding iso = Encoding.GetEncoding("ISO-8859-1");
-            byte[] bytes = iso.GetBytes(postData);
+            var bytes = iso.GetBytes(postData);
             request.ContentLength = bytes.Length;
-            using (Stream stream = request.GetRequestStream())
-            {
-                stream.Write(bytes, 0, bytes.Length);
-            }
+            Stream requestStream = request.GetRequestStream();
+            requestStream.Write(bytes, 0, bytes.Length);
+            requestStream.Close();
             WebResponse response = (HttpWebResponse)await request.GetResponseAsync();
             string responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
             if (debug)
@@ -445,21 +444,25 @@ namespace BdP_MV.Services
             String anfrage = "nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/" + idGruppe;
             String responseString = await PostApiDataAsync(anfrage, JSON);
 
-            var response = JsonConvert.DeserializeObject<Report_RootObject>(responseString);
+            var response = JsonConvert.DeserializeObject<RootObj_new_Mitglied>(responseString);
             if (response.success == false)
             {
                 if (response.responseType.Equals("ERROR") && response.message.Equals("Session expired"))
                 {
                     throw new NewLoginException("Bitte neu einloggen.");
                 }
-                if (response.responseType.Equals("EXCEPTION") && response.message.Equals("Benutzer darf sich keine GrpReports ansehen"))
+                else if (response.responseType.Equals("EXCEPTION") && response.message.Equals("Benutzer darf sich keine GrpReports ansehen"))
                 {
                     throw new NoRightsException("Versucht Kontext aufzurufen, für das der Nutzer keine Rechte hat.");
+                }
+                else
+                {
+                    throw new NotAllRequestedFieldsFilledException("Es ist ein Fehler aufgetreten. Wurden alle Pflichtfelder ausgefüllt?");
                 }
             }
      
 
-            return "123";
+            return "Erfolgreich angelegt" + response.message;
         }
 
 

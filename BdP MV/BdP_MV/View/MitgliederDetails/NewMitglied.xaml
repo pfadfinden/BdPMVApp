@@ -2,13 +2,19 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="BdP_MV.View.MitgliederDetails.NewMitglied" xmlns:local="clr-namespace:BdP_MV.View"
 		Title="New Item">
 	<ContentPage.ToolbarItems>
-		<ToolbarItem Text="Save" Clicked="Save_Clicked" />
 	</ContentPage.ToolbarItems>
 	<ContentPage.Content>
         <ScrollView>
             <StackLayout>
-               
-                    <Entry x:Name="titelEntry" Placeholder="Titel" />
+                <ActivityIndicator 
+                       IsVisible="{Binding IsBusy}"
+                       IsRunning="{Binding IsBusy}"
+                       VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="CenterAndExpand"
+                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.33}" />
+
+
+                <Entry x:Name="titelEntry" Placeholder="Titel" />
                
                    
                     <Entry x:Name="vornameEntry" Placeholder="Vorname"/>
@@ -74,7 +80,7 @@
             <Entry x:Name="emailVertretungsberechtigter" Placeholder="E-Mail Erziehungsberechtigt"/>
             <Entry x:Name="telefon1" Placeholder="Telefon"/>
             <Entry x:Name="telefon3" Placeholder="Mobiltelefon"/>
-                <Button Text="Abschicken" Clicked="Save_Clicked" />
+                <Button x:Name="btn_save"  Text="Abschicken" Clicked="Save_Clicked" />
         </StackLayout>
         </ScrollView>
 	</ContentPage.Content>

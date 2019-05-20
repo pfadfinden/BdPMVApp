@@ -1,4 +1,5 @@
 ﻿using BdP_MV.Exceptions;
+using BdP_MV.Ext_Packages;
 using BdP_MV.Model;
 using BdP_MV.Model.Mitglied;
 using BdP_MV.Services;
@@ -6,6 +7,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace BdP_MV.ViewModel
@@ -28,11 +30,11 @@ namespace BdP_MV.ViewModel
 
 
         }
-        public async Task GenerateJSON(int idGruppe)
+        public async Task<String> GenerateJSON(int idGruppe)
         {
            
            
-            if (String.IsNullOrEmpty(mitglied.vorname) || String.IsNullOrEmpty(mitglied.nachname) || string.IsNullOrEmpty(mitglied.beitragsart) || string.IsNullOrEmpty(mitglied.geschlecht) || string.IsNullOrEmpty(mitglied.strasse))
+            if (String.IsNullOrEmpty(mitglied.vorname) || String.IsNullOrEmpty(mitglied.nachname) || mitglied.beitragsartId==0 || mitglied.geschlechtId == 0 || string.IsNullOrEmpty(mitglied.strasse))
             {
                 throw new NotAllRequestedFieldsFilledException("Die erforderlichen Felder wurden nicht ausgewählt.");
             }
@@ -41,7 +43,10 @@ namespace BdP_MV.ViewModel
                 throw new NotAllRequestedFieldsFilledException("Ein Zeitschriftenversand ist ohne komplette Adressangabe nicht möglich.");
 
             }
+            mitglied.wiederverwendenFlag = true;
+            
             mitglied.gruppierungId = idGruppe;
+            mitglied.kontoverbindung = new KontoverbindungMitglied();
 
 
 
@@ -49,11 +54,23 @@ namespace BdP_MV.ViewModel
                            Newtonsoft.Json.Formatting.None,
                            new JsonSerializerSettings
                            {
-                               NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore, Formatting = Formatting.Indented
+                               DateTimeZoneHandling = DateTimeZoneHandling.Unspecified,
+                               ContractResolver = new NullToEmptyStringResolver()
+
                            });
             Console.WriteLine(JSONOutput);
+         
+            JSONOutput = Regex.Replace(JSONOutput, @"\t|\n|\r", "");
+            JSONOutput = Regex.Unescape(JSONOutput);
+            JSONOutput = Regex.Replace(JSONOutput, @"^""|""$|\\n?", "");
+            JSONOutput = JSONOutput.Replace(" ", "");
+            JSONOutput = JSONOutput.Replace(@"\", @"");
+           
+            //JSONOutput = JSONOutput.Substring(1, JSONOutput.Length - 1);
+            Console.WriteLine(JSONOutput);
+            
 
-            await mainC.mVConnector.PostNewMitglied(idGruppe, JSONOutput);
+            return await mainC.mVConnector.PostNewMitglied(idGruppe, JSONOutput);
         }
         public NewMitgliedViewModel(MitgliedDetails uebergebenesMitglied)
         {

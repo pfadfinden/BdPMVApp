@@ -128,7 +128,6 @@ D:\MV_APP\BdP MV\BdP_MV.Android\obj\Release\81\R.txt
 D:\MV_APP\BdP MV\BdP_MV.Android\obj\Release\81\uploadflags.txt
 D:\MV_APP\BdP MV\BdP_MV.Android\obj\Release\81\View\MitgliederDetails\NewMitglied.xaml.g.cs
 D:\MV_APP\BdP MV\BdP_MV.Android\obj\Release\81\View\MasterDetail\Reports.xaml.g.cs
-D:\MV_APP\BdP MV\BdP_MV.Android\obj\Release\81\BdP_MV.Android.csprojAssemblyReference.cache
 D:\MV_APP\BdP MV\BdP_MV.Android\bin\Release\Microsoft.CSharp.pdb
 D:\MV_APP\BdP MV\BdP_MV.Android\bin\Release\Mono.Android.pdb
 D:\MV_APP\BdP MV\BdP_MV.Android\bin\Release\mscorlib.pdb
@@ -188,5 +187,7 @@ D:\MV_APP\BdP MV\BdP_MV.Android\obj\Release\81\android\assets\System.Xml.Linq.pd
 D:\MV_APP\BdP MV\BdP_MV.Android\obj\Release\81\android\assets\System.Xml.pdb
 D:\MV_APP\BdP MV\BdP_MV.Android\obj\Release\81\android\assets\Xamarin.Forms.Core.pdb
 D:\MV_APP\BdP MV\BdP_MV.Android\obj\Release\81\android\assets\Xamarin.Forms.Xaml.pdb
-D:\MV_APP\BdP MV\BdP_MV.Android\bin\Release\BdP_MV.Android.dll.CodeAnalysisLog.xml
-D:\MV_APP\BdP MV\BdP_MV.Android\obj\Release\81\_javastubs.stamp
+D:\MV_APP\BdP MV\BdP_MV.Android\bin\Release\BdP_MV.Android.dll
+D:\MV_APP\BdP MV\BdP_MV.Android\obj\Release\81\linksrc\BdP_MV.Android.dll.mdb
+D:\MV_APP\BdP MV\BdP_MV.Android\obj\Release\81\linksrc\FormsViewGroup.dll.mdb
+D:\MV_APP\BdP MV\BdP_MV.Android\obj\Release\81\linksrc\Xamarin.Forms.Platform.Android.dll.mdb

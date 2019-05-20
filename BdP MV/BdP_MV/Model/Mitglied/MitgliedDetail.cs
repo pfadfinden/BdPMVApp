@@ -68,6 +68,7 @@ namespace BdP_MV.Model.Mitglied
         public DateTime? austrittsDatum { get; set; }
         public string ort { get; set; }
         public object ersteUntergliederungId { get; set; }
+
         public bool wiederverwendenFlag { get; set; }
         public string dyn_Bemerkung { get; set; }
         public object regionId { get; set; }
@@ -78,6 +79,7 @@ namespace BdP_MV.Model.Mitglied
         public string telefax { get; set; }
         public int beitragsartId { get; set; }
         public string plz { get; set; }
+        [JsonIgnore]
         public string gruppe { get; set; }
         [JsonIgnore]
         public int alter { get; set; }
