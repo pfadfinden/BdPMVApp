@@ -21,6 +21,7 @@ namespace BdP_MV.View.MasterDetail
     {
         protected ItemsViewModel viewModel;
         private Boolean searchOrigin;
+        
 
 
         public ItemsPage(MainController mainCo)
@@ -66,13 +67,17 @@ namespace BdP_MV.View.MasterDetail
             try
             {
                 //await DisplayAlert("Ausgewählte Gruppe", viewModel.aktGruppe.id.ToString(), "OK");//Method call every time when picker selection changed
-                IsBusy = true;
+
+
+                this.IsBusy = true;
                 viewModel.aktGruppe = (Gruppe)testpicker.SelectedItem;
                 await Task.Run(async () => await this.viewModel.MitgliederAusGruppeLaden());
                 MitgliedView.ItemsSource = viewModel.ausgewaehlteMitglieder;
+                this.IsBusy = false;
+                
+                
                 
 
-                IsBusy = false;
             }
 
             catch (NewLoginException ex)
