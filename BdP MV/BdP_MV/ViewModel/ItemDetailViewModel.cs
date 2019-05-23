@@ -20,17 +20,17 @@ namespace BdP_MV.ViewModel
             mitglied = mitgliedDetails;
 
         }
-    
+
         public MainController mainC;
 
         public bool HasZusatzAdresse => !string.IsNullOrWhiteSpace(mitglied?.nameZusatz);
         public MitgliedDetails mitglied { private set; get; }
-        public List<Taetigkeit> taetigkeiten {set; get; }
+        public List<Taetigkeit> taetigkeiten { set; get; }
         public List<Taetigkeit> taetigkeitenAktiv { set; get; }
         public List<SGB8> sgb8 { set; get; }
         public List<Ausbildung> ausbildung { set; get; }
         public String latestSGB8 { set; get; }
-        
+
 
         public bool HasPhoneNumber => !string.IsNullOrWhiteSpace(mitglied?.telefon1);
         public bool HasCellphoneNumber => !string.IsNullOrWhiteSpace(mitglied?.telefon3);
@@ -62,9 +62,9 @@ namespace BdP_MV.ViewModel
 
         Command _DialNumberCommand;
 
-        private  void TaetigkeitenFilter()
+        private void TaetigkeitenFilter()
         {
-           taetigkeitenAktiv= taetigkeiten.Where(x => x.aktiv).ToList();
+            taetigkeitenAktiv = taetigkeiten.Where(x => x.aktiv).ToList();
         }
         public Command DialNumberCommand => _DialNumberCommand ??
                                             (_DialNumberCommand = new Command(ExecuteDialNumberCommand));
@@ -75,10 +75,10 @@ namespace BdP_MV.ViewModel
                 return;
             else
             {
-                Device.OpenUri(new Uri("tel:"+mitglied.telefon1.ToString()));
+                Device.OpenUri(new Uri("tel:" + mitglied.telefon1.ToString()));
             }
 
-           
+
         }
 
         Command _MessageNumberCommand;
@@ -91,7 +91,7 @@ namespace BdP_MV.ViewModel
             if (string.IsNullOrWhiteSpace(mitglied.telefon1))
                 return;
 
-        
+
         }
         Command _DialCellphoneNumberCommand;
 
@@ -104,7 +104,7 @@ namespace BdP_MV.ViewModel
                 return;
             else
             {
-                
+
                 Device.OpenUri(new Uri("tel:" + mitglied.telefon3.ToString()));
             }
 
@@ -139,7 +139,7 @@ namespace BdP_MV.ViewModel
                 Device.OpenUri(new Uri("mailto:" + mitglied.email));
             }
 
-         
+
         }
         Command _ParentEmailCommand;
 
@@ -157,9 +157,9 @@ namespace BdP_MV.ViewModel
 
         }
 
-       
-       
-       
+
+
+
 
         public void DisplayGeocodingError()
         {
@@ -173,7 +173,7 @@ namespace BdP_MV.ViewModel
             IsBusy = false;
         }
 
-        
+
 
 
         static bool AddressBeginsWithNumber(string address)
@@ -181,7 +181,7 @@ namespace BdP_MV.ViewModel
             return !string.IsNullOrWhiteSpace(address) && char.IsDigit(address.ToCharArray().First());
         }
 
-       
+
 
         static int GetEndingIndexOfNumericPortionOfAddress(string address)
         {
@@ -197,7 +197,14 @@ namespace BdP_MV.ViewModel
 
             return endingIndex;
         }
+        public async Task<Ausbildung_Details> getAusbildungDetails(int selectedAusbildung)
+        {
+            IsBusy = true;
+            Ausbildung_Details loadedDetails = await mainC.mVConnector.AusbildungDetails(selectedAusbildung, mitglied.id);
+            IsBusy = false;
+            return loadedDetails;
 
+        }
     }
 }
 

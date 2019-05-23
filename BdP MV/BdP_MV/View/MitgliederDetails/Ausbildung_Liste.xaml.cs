@@ -41,7 +41,7 @@ namespace BdP_MV.View.MitgliederDetails
                 CultureInfo ci = new CultureInfo("de-DE");
 
                 Ausbildung selected = (Ausbildung)MyListView.SelectedItem;
-                Ausbildung_Details ausbildung_selected_details = await viewModel.mainC.mVConnector.AusbildungDetails(selected.id, viewModel.mitglied.id);
+                Ausbildung_Details ausbildung_selected_details = await viewModel.getAusbildungDetails(selected.id);
 
                 String details = "Kurs: " + ausbildung_selected_details.baustein;
                 DateTime datum;
