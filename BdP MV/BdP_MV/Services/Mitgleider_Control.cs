@@ -85,7 +85,7 @@ namespace BdP_MV.Services
             }
             return mitglieder;
         }
-        private String ChooseAnsprechname(Mitglied mitglied)
+        private static String ChooseAnsprechname(Mitglied mitglied)
         {
             string ansprechname;
             if (String.IsNullOrEmpty(mitglied.entries_spitzname))
@@ -99,7 +99,7 @@ namespace BdP_MV.Services
             return ansprechname;
 
         }
-        private String ChooseAnsprechname(MitgliedDetails mitglied)
+        private static String ChooseAnsprechname(MitgliedDetails mitglied)
         {
             string ansprechname;
             if (String.IsNullOrEmpty(mitglied.spitzname))
@@ -113,7 +113,7 @@ namespace BdP_MV.Services
             return ansprechname;
 
         }
-        private int GetAgeFromDate(DateTime birthday)
+        private static int GetAgeFromDate(DateTime birthday)
         {
             int years = DateTime.Now.Year - birthday.Year;
             birthday = birthday.AddYears(years);
@@ -152,7 +152,7 @@ namespace BdP_MV.Services
         public async Task<List<Taetigkeit>> TaetigkeitenAbrufen(int idMitglied)
         {
             List<Taetigkeit> taetigkeiten = new List<Taetigkeit>();
-            taetigkeiten = await mainC.mVConnector.Taetigkeiten(idMitglied);
+            taetigkeiten = await mainC.mVConnector.Taetigkeiten(idMitglied).ConfigureAwait(false);
             Regex reg_taetigkeitsname = new Regex(@"\s+\(([0-9]*|[,]*|[.]*)*\)\s*(\[[A-Z]\])*");
             Regex reg_gruppe = new Regex(@"(\s)*([0-9]+)");
             //foreach (Taetigkeit t in taetigkeiten)

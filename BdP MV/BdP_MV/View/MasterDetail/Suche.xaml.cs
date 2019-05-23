@@ -1,4 +1,5 @@
 ﻿using BdP_MV.Exceptions;
+using BdP_MV.Ext_Packages;
 using BdP_MV.Model.Mitglied;
 using BdP_MV.Services;
 using BdP_MV.ViewModel;
@@ -16,6 +17,7 @@ namespace BdP_MV.View.MasterDetail
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Suche : ContentPage
     {
+
         SucheViewModell viewModel;
         public Suche()
         {
@@ -30,6 +32,10 @@ namespace BdP_MV.View.MasterDetail
         async void OnSearchButtonClicked(object sender, EventArgs e)
         {
             IsBusy = true;
+
+            //inProgress.IsRunning = true;
+            //inProgress.IsEnabled = true;
+            //inProgress.IsVisible = true;
             try
             {
                 viewModel.suche.vorname = firstnameEntry.Text;
@@ -54,7 +60,7 @@ namespace BdP_MV.View.MasterDetail
                 }
                 else
                 {
-                    await Navigation.PushAsync(new ItemsPage(viewModel.mainc, mitglieder));
+                    await Navigation.PushAsync(new ItemsPage(viewModel.mainc, mitglieder)).ConfigureAwait(false);
                 }
                        
                 
@@ -75,8 +81,10 @@ namespace BdP_MV.View.MasterDetail
                 Console.WriteLine(b.StackTrace);
 
             }
-
             IsBusy = false;
+            //inProgress.IsRunning = IsBusy;
+            //inProgress.IsEnabled = IsBusy;
+            //inProgress.IsEnabled = IsVisible;
         }
     }
 }

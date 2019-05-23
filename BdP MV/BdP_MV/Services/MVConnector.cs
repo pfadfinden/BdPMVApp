@@ -48,11 +48,11 @@ namespace BdP_MV.Services
                 HttpWebRequest request;
                 if (qa)
                 {
-                    request = (HttpWebRequest)WebRequest.Create("https://qa.mv.meinbdp.de/ica/rest/nami/auth/manual/sessionStartup");
+                    request = (HttpWebRequest)WebRequest.Create(new Uri("https://qa.mv.meinbdp.de/ica/rest/nami/auth/manual/sessionStartup"));
                 }
                 else
                 {
-                    request = (HttpWebRequest)WebRequest.Create("https://mv.meinbdp.de/ica/rest/nami/auth/manual/sessionStartup");
+                    request = (HttpWebRequest)WebRequest.Create(new Uri("https://mv.meinbdp.de/ica/rest/nami/auth/manual/sessionStartup"));
                 }
                 request.Method = "POST";
                 request.CookieContainer = cookieContainer;
@@ -65,7 +65,7 @@ namespace BdP_MV.Services
                 {
                     stream.Write(bytes, 0, bytes.Length);
                 }
-                WebResponse response = (HttpWebResponse)await request.GetResponseAsync();
+                WebResponse response = (HttpWebResponse)await request.GetResponseAsync().ConfigureAwait(false);
                 string responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
                 if (debug)
                 {
@@ -75,16 +75,16 @@ namespace BdP_MV.Services
                 HttpWebRequest request_nachricht;
                 if (qa)
                 {
-                    request_nachricht = (HttpWebRequest)HttpWebRequest.Create("https://qa.mv.meinbdp.de/ica/rest/dashboard/botschaft/current-message");
+                    request_nachricht = (HttpWebRequest)HttpWebRequest.Create(new Uri("https://qa.mv.meinbdp.de/ica/rest/dashboard/botschaft/current-message"));
                 }
                 else
                 {
-                    request_nachricht = (HttpWebRequest)HttpWebRequest.Create("https://mv.meinbdp.de/ica/rest/dashboard/botschaft/current-message");
+                    request_nachricht = (HttpWebRequest)HttpWebRequest.Create(new Uri("https://mv.meinbdp.de/ica/rest/dashboard/botschaft/current-message"));
                 }
 
                 request_nachricht.CookieContainer = (CookieContainer)App.Current.Properties["cookieContainer"];
 
-                HttpWebResponse response_nachricht = (HttpWebResponse)await request_nachricht.GetResponseAsync();
+                HttpWebResponse response_nachricht = (HttpWebResponse)await request_nachricht.GetResponseAsync().ConfigureAwait(false);
                 string response_nachricht_String = new StreamReader(response_nachricht.GetResponseStream()).ReadToEnd();
                 if (debug)
                 {
@@ -128,24 +128,24 @@ namespace BdP_MV.Services
                 HttpWebRequest request_first;
                 if (qa)
                 {
-                    request_first = (HttpWebRequest)HttpWebRequest.Create("https://qa.mv.meinbdp.de/");
+                    request_first = (HttpWebRequest)HttpWebRequest.Create(new Uri("https://qa.mv.meinbdp.de/"));
                 }
                 else
                 {
-                    request_first = (HttpWebRequest)HttpWebRequest.Create("https://mv.meinbdp.de/");
+                    request_first = (HttpWebRequest)HttpWebRequest.Create(new Uri("https://mv.meinbdp.de/"));
                 }
                 request_first.CookieContainer = cookieContainer;
 
-                HttpWebResponse response_first = (HttpWebResponse)await request_first.GetResponseAsync();
+                HttpWebResponse response_first = (HttpWebResponse)await request_first.GetResponseAsync().ConfigureAwait(false);
                 int cookieCount = cookieContainer.Count;
                 HttpWebRequest request;
                 if (qa)
                 {
-                    request = (HttpWebRequest)WebRequest.Create("https://qa.mv.meinbdp.de/ica/rest/nami/auth/resetPassword");
+                    request = (HttpWebRequest)WebRequest.Create(new Uri("https://qa.mv.meinbdp.de/ica/rest/nami/auth/resetPassword"));
                 }
                 else
                 {
-                    request = (HttpWebRequest)WebRequest.Create("https://mv.meinbdp.de/ica/rest/nami/auth/resetPassword");
+                    request = (HttpWebRequest)WebRequest.Create(new Uri("https://mv.meinbdp.de/ica/rest/nami/auth/resetPassword"));
                 }
                 request.Method = "POST";
                 request.CookieContainer = cookieContainer;
@@ -177,7 +177,7 @@ namespace BdP_MV.Services
         }
         public async Task<List<SelectableItem>> GetItems(String anfrage)
         {
-            string responseString = await GetApiResultStringAsync(anfrage);
+            string responseString = await GetApiResultStringAsync(anfrage).ConfigureAwait(false);
             List<SelectableItem> items = new List<SelectableItem>();
             RootObjectItem rootItem = JsonConvert.DeserializeObject<RootObjectItem>(responseString);
             items = rootItem.data;
@@ -233,7 +233,7 @@ namespace BdP_MV.Services
         public async Task<List<Mitglied>> Mitglieder(int idGruppe, bool nurAktiv)
         {
             String anfrage = "nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/" + idGruppe + "/flist";
-            string responseString = await GetApiResultStringAsync(anfrage);
+            string responseString = await GetApiResultStringAsync(anfrage).ConfigureAwait(false);
             List<Mitglied> mitglieder = new List<Mitglied>();
             MitgliederListe listeAllerMitglieder = JsonConvert.DeserializeObject<MitgliederListe>(responseString);
             mitglieder = listeAllerMitglieder.data;
@@ -244,7 +244,7 @@ namespace BdP_MV.Services
         public async Task<List<Mitglied>> Mitglieder(string suchanfrage)
         {
             String anfrage = "nami/search-multi/result-list?searchedValues=" + suchanfrage +"&page=1&start=0&limit=9999999";
-            string responseString = await GetApiResultStringAsync(anfrage);
+            string responseString = await GetApiResultStringAsync(anfrage).ConfigureAwait(false);
             List<Mitglied> mitglieder = new List<Mitglied>();
             MitgliederListe listeAllerMitglieder = JsonConvert.DeserializeObject<MitgliederListe>(responseString);
             mitglieder = listeAllerMitglieder.data;
@@ -254,7 +254,7 @@ namespace BdP_MV.Services
         public async Task<List<SGB8>> SGB8(int idMitglied)
         {
             string anfrage = "/nami/mitglied-sgb-acht/filtered-for-navigation/empfaenger/empfaenger/" + idMitglied + "/flist";
-            string responseString = await GetApiResultStringAsync(anfrage);
+            string responseString = await GetApiResultStringAsync(anfrage).ConfigureAwait(false);
             RootObject_SGB8 rootFZ = JsonConvert.DeserializeObject<RootObject_SGB8>(responseString);
             List<SGB8> fuehrungszeugnisse = rootFZ.data;
             return fuehrungszeugnisse;
@@ -263,7 +263,7 @@ namespace BdP_MV.Services
         public async Task<List<Taetigkeit>> Taetigkeiten (int idMitglied)
         {
             string anfrage = "/nami/zugeordnete-taetigkeiten/filtered-for-navigation/gruppierung-mitglied/mitglied/" + idMitglied + "/flist";
-            string responseString = await GetApiResultStringAsync(anfrage);
+            string responseString = await GetApiResultStringAsync(anfrage).ConfigureAwait(false);
             RootObject_Taetigkeit rootObjectTaetigkeiten = JsonConvert.DeserializeObject<RootObject_Taetigkeit>(responseString);
             List<Taetigkeit> taetigkeiten = rootObjectTaetigkeiten.data;
             return taetigkeiten;
@@ -271,7 +271,7 @@ namespace BdP_MV.Services
         public async Task<Meta_Data> MetaData(int idGruppe)
         {
             string anfrage = "nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/" + idGruppe + "/META";
-            string responseString = await GetApiResultStringAsync(anfrage);
+            string responseString = await GetApiResultStringAsync(anfrage).ConfigureAwait(false);
             RootObject_Meta_Data rootObjectMetadata = JsonConvert.DeserializeObject<RootObject_Meta_Data>(responseString);
 
             Meta_Data metaData = rootObjectMetadata.data;
@@ -280,7 +280,7 @@ namespace BdP_MV.Services
         public async Task<List<Ausbildung>> Ausbildung(int idMitglied)
         {
             string anfrage = "nami/mitglied-ausbildung/filtered-for-navigation/mitglied/mitglied/" + idMitglied + "/flist";
-            string responseString = await GetApiResultStringAsync(anfrage);
+            string responseString = await GetApiResultStringAsync(anfrage).ConfigureAwait(false);
             RootObject_Ausbildung rootObject= JsonConvert.DeserializeObject<RootObject_Ausbildung>(responseString);
             List<Ausbildung> ausbildungen = rootObject.data;
             return ausbildungen;
@@ -290,7 +290,7 @@ namespace BdP_MV.Services
         {
             
             String anfrage ="nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/"+idGruppe+"/"+idMitglied;
-            String responseString = await GetApiResultStringAsync(anfrage);
+            String responseString = await GetApiResultStringAsync(anfrage).ConfigureAwait(false);
 
             MitgliedDetails mitgliedDetais = new MitgliedDetails();
             RootObjectMitgliedDetails listeAllerMitglieder = JsonConvert.DeserializeObject<RootObjectMitgliedDetails>(responseString);
@@ -313,7 +313,7 @@ namespace BdP_MV.Services
         {
 
             String anfrage = "nami/mitglied-ausbildung/filtered-for-navigation/mitglied/mitglied/" + idMitglied + "/" + idAusbildung;
-            String responseString = await GetApiResultStringAsync(anfrage);
+            String responseString = await GetApiResultStringAsync(anfrage).ConfigureAwait(false);
 
             Ausbildung_Details ausbildungDetails = new Ausbildung_Details();
             RootObject_Ausbildung_Details rootAusbildung_Details = JsonConvert.DeserializeObject<RootObject_Ausbildung_Details>(responseString);
@@ -336,7 +336,7 @@ namespace BdP_MV.Services
         {
 
             String anfrage = "nami/grp-reports/filtered-for-grpadmin/gruppierung/crtGruppierung/"+idGruppe+"/flist";
-            String responseString = await GetApiResultStringAsync(anfrage);
+            String responseString = await GetApiResultStringAsync(anfrage).ConfigureAwait(false);
 
             List <Report_Data> reportList = new List<Report_Data>();
             Report_RootObject root_Reports = JsonConvert.DeserializeObject<Report_RootObject>(responseString);

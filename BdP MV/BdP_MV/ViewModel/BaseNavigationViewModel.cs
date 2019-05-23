@@ -30,7 +30,7 @@ namespace BdP_MV.ViewModel
         {
             var task = _Navigation?.PushAsync(page);
             if (task != null)
-                await task;
+                await task.ConfigureAwait(false);
         }
 
         public async Task<Page> PopAsync()

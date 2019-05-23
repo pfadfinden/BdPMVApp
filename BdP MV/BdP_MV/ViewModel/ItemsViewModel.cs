@@ -33,21 +33,28 @@ namespace BdP_MV.ViewModel
 
         public async Task MitgliederAusGruppeLaden()
         {
-
+            IsBusy = true;
             mainC.einsteillungen.aktuelleGruppe = aktGruppe.id;
             await Task.Run(async () => await mainC.mitgliederController.MitgliederAktualisierenByGroup());
 
             ausgewaehlteMitglieder = mainC.mitgliederController.AktiveMitglieder;
-
+            IsBusy = false;
         }
         public async Task<Boolean> CheckPermissionForNewInGroup(int idGroup)
         {
-            return await mainC.groupControl.CheckPermissionForNew(idGroup);
+            IsBusy = true;
+            Boolean newPermitted= await mainC.groupControl.CheckPermissionForNew(idGroup);
+            IsBusy = false;
+            return newPermitted;
+            
         }
 
         public async Task<ItemDetailViewModel> mitgliedDetailsVorladen(int idMitglied)
         {
-            return await mitgliedDetailsVorladen(idMitglied, aktGruppe.id);
+            IsBusy = true;
+            ItemDetailViewModel detailViewModel = await mitgliedDetailsVorladen(idMitglied, aktGruppe.id);
+            IsBusy = false;
+            return detailViewModel;
         }
         public async Task<ItemDetailViewModel> mitgliedDetailsVorladen(int idMitglied, int idGruppe)
         

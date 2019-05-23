@@ -30,13 +30,13 @@ namespace BdP_MV.Services
                     aktGruppe.descriptor = reg.Replace(aktGruppe.descriptor, "$1");
                     aktGruppe.descriptor = prefix + aktGruppe.descriptor;
                     alleGruppen.Add(aktGruppe);
-                    await AlleGruppenAbrufen(aktGruppe.id, prefix+"-");
+                    await AlleGruppenAbrufen(aktGruppe.id, prefix+"-").ConfigureAwait(false);
                 }
 
         }
         public async Task<Boolean> CheckPermissionForNew(int idGruppe)
         {
-            Meta_Data meta = await mainC.mVConnector.MetaData(idGruppe);
+            Meta_Data meta = await mainC.mVConnector.MetaData(idGruppe).ConfigureAwait(false);
             var match = meta.actions.FirstOrDefault(stringToCheck => stringToCheck.Contains("CREATE"));
             if (match != null)
             { return true; }

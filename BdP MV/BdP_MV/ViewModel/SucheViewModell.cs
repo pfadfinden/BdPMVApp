@@ -10,6 +10,7 @@ namespace BdP_MV.ViewModel
 {
     public class SucheViewModell : BaseNavigationViewModel
     {
+        
         public MainController mainc;
         public Boolean nurAktiv { get; set; }
         public SearchObject suche { get; set; }
@@ -26,6 +27,7 @@ namespace BdP_MV.ViewModel
         }
         public async Task<List<Mitglied>> SuchDuApp()
         {
+            IsBusy = true;
            if (nurAktiv)
             {
                 suche.mglStatusId = "AKTIV";
@@ -36,6 +38,7 @@ namespace BdP_MV.ViewModel
             }
 
             List<Mitglied> mitglieder = await mainc.mitgliederController.MitgliederAbrufenBySearch(suche);
+            IsBusy = false;
             return mitglieder;
             
         }

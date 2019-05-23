@@ -71,7 +71,7 @@ namespace BdP_MV.View.MasterDetail
 
                 this.IsBusy = true;
                 viewModel.aktGruppe = (Gruppe)testpicker.SelectedItem;
-                await Task.Run(async () => await this.viewModel.MitgliederAusGruppeLaden());
+                await this.viewModel.MitgliederAusGruppeLaden();
                 MitgliedView.ItemsSource = viewModel.ausgewaehlteMitglieder;
                 this.IsBusy = false;
                 
