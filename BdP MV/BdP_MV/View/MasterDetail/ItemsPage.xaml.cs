@@ -176,21 +176,20 @@ namespace BdP_MV.View.MasterDetail
         /// <param name="e">The EventArgs</param>
         async void NewMitglied_Activated(object sender, EventArgs e)
         {
-          if (viewModel.aktGruppe != null || viewModel.isNewMitgliedEnabled==true)
+            if (viewModel.aktGruppe != null && viewModel.isNewMitgliedEnabled == true)
             {
-               
-               NewMitglied neueMitgliesseite = new MitgliederDetails.NewMitglied(viewModel.aktGruppe.id);
-               await neueMitgliesseite.LoadPreferences();
-               await Navigation.PushAsync(neueMitgliesseite);
 
-           }
-           else
-           {
-               await DisplayAlert("Achtung!", "In dieser Gruppierung darfst du keine neuen Mitglieder erstellen", "OK, sorry");//Method call every time when picker selection changed
-           }
-            
-           
+                NewMitglied neueMitgliesseite = new MitgliederDetails.NewMitglied(viewModel.aktGruppe.id);
+                await neueMitgliesseite.LoadPreferences();
+                await Navigation.PushAsync(neueMitgliesseite);
+
+            }
+            else
+            {
+                await DisplayAlert("Achtung!", "In dieser Gruppierung darfst du keine neuen Mitglieder erstellen", "OK, sorry").ConfigureAwait(false);//Method call every time when picker selection changed
+            }
         }
+
 
     }
 }

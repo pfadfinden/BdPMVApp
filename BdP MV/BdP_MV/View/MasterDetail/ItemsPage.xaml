@@ -4,7 +4,7 @@
              x:Class="BdP_MV.View.MasterDetail.ItemsPage"
               Title="Mitgliederliste">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Name="NewMitglied" Order="Primary" Text="Neues Mitglied" Priority="0" Command="{Binding NewMitglied_Activated}"/>
+        <ToolbarItem Name="NewMitglied" Order="Primary" Text="Neues Mitglied" Priority="0" Activated="NewMitglied_Activated" />
 
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
