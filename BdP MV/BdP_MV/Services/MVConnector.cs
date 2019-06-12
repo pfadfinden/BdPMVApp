@@ -92,13 +92,15 @@ namespace BdP_MV.Services
                 }
                 Nachricht nachricht = JsonConvert.DeserializeObject<Nachricht>(response_nachricht_String);
                 int cookieCount = cookieContainer.Count;
-             
-             
                 
-               
+
+
+
+
                 if (nachricht.success)
                 {
                     isLoggedIn = true;
+                    App.Current.Properties["news"] = nachricht.data;
                     return 0;
 
                 }
