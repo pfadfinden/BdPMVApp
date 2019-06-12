@@ -5,14 +5,14 @@ namespace BdP_MV.Model.Mitglied
 {
     public class KontoverbindungMitglied
     {
-        public int id { get; set; }
+        public int? id { get; set; }
         public string institut { get; set; }
         public string bankleitzahl { get; set; }
         public string kontonummer { get; set; }
         public string iban { get; set; }
         public string bic { get; set; }
         public string kontoinhaber { get; set; }
-        public int mitgliedsNummer { get; set; }
+        public int? mitgliedsNummer { get; set; }
         public object zahlungsKonditionId { get; set; }
         public object zahlungsKondition { get; set; }
     }

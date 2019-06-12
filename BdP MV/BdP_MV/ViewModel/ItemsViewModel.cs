@@ -13,6 +13,7 @@ namespace BdP_MV.ViewModel
 {
     public class ItemsViewModel : BaseNavigationViewModel
     {
+        public bool isNewMitgliedEnabled { get; set; }
         public MainController mainC;
         public Gruppe aktGruppe { get; set; }
         public List<Mitglied> ausgewaehlteMitglieder { get; set; }
@@ -26,6 +27,7 @@ namespace BdP_MV.ViewModel
             Mitglied test = new Mitglied();
             test.ansprechname = "test";
             ausgewaehlteMitglieder.Add(test);
+            isNewMitgliedEnabled = false;
 
 
 
@@ -38,6 +40,7 @@ namespace BdP_MV.ViewModel
             await Task.Run(async () => await mainC.mitgliederController.MitgliederAktualisierenByGroup());
 
             ausgewaehlteMitglieder = mainC.mitgliederController.AktiveMitglieder;
+            isNewMitgliedEnabled = await CheckPermissionForNewInGroup(aktGruppe.id);
             IsBusy = false;
         }
         public async Task<Boolean> CheckPermissionForNewInGroup(int idGroup)

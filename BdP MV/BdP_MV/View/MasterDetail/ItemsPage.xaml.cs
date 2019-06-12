@@ -21,6 +21,7 @@ namespace BdP_MV.View.MasterDetail
     {
         protected ItemsViewModel viewModel;
         private Boolean searchOrigin;
+
         
 
 
@@ -30,6 +31,7 @@ namespace BdP_MV.View.MasterDetail
             InitializeComponent();
             searchOrigin = false;
             testpicker.ItemsSource = (List<Gruppe>)App.Current.Properties["Gruppen"];
+            
             
 
 
@@ -48,8 +50,9 @@ namespace BdP_MV.View.MasterDetail
             InitializeComponent();
 
             viewModel = new ItemsViewModel(mainCo);
-            testpicker.IsEnabled = false;
-            testpicker.IsVisible = false;
+            
+
+            
             BindingContext = viewModel;
             viewModel.ausgewaehlteMitglieder = mitgliederliste;
             MitgliedView.ItemsSource = viewModel.ausgewaehlteMitglieder;
@@ -71,6 +74,7 @@ namespace BdP_MV.View.MasterDetail
 
                 this.IsBusy = true;
                 viewModel.aktGruppe = (Gruppe)testpicker.SelectedItem;
+
                 await this.viewModel.MitgliederAusGruppeLaden();
                 MitgliedView.ItemsSource = viewModel.ausgewaehlteMitglieder;
                 this.IsBusy = false;
@@ -172,22 +176,20 @@ namespace BdP_MV.View.MasterDetail
         /// <param name="e">The EventArgs</param>
         async void NewMitglied_Activated(object sender, EventArgs e)
         {
-            IsBusy = true;
-            if (viewModel.aktGruppe != null)
+          if (viewModel.aktGruppe != null || viewModel.isNewMitgliedEnabled==true)
             {
-                if (await viewModel.CheckPermissionForNewInGroup(viewModel.aktGruppe.id))                
-                {
-                    NewMitglied neueMitgliesseite = new MitgliederDetails.NewMitglied(viewModel.aktGruppe.id);
-                    await neueMitgliesseite.LoadPreferences();
-                    await Navigation.PushAsync(neueMitgliesseite);
+               
+               NewMitglied neueMitgliesseite = new MitgliederDetails.NewMitglied(viewModel.aktGruppe.id);
+               await neueMitgliesseite.LoadPreferences();
+               await Navigation.PushAsync(neueMitgliesseite);
 
-                }
-                else
-                {
-                    await DisplayAlert("Achtung!", "In dieser Gruppierung darfst du keine neuen Mitglieder erstellen", "OK, sorry");//Method call every time when picker selection changed
-                }
-            }
-            IsBusy = false;
+           }
+           else
+           {
+               await DisplayAlert("Achtung!", "In dieser Gruppierung darfst du keine neuen Mitglieder erstellen", "OK, sorry");//Method call every time when picker selection changed
+           }
+            
+           
         }
 
     }
