@@ -6,12 +6,12 @@
 	<ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <ActivityIndicator 
+                <ActivityIndicator x:Name="activity"  
+                       IsRunning="{Binding IsBusy}"  
+                       IsEnabled="{Binding IsBusy}"
                        IsVisible="{Binding IsBusy}"
-                       IsRunning="{Binding IsBusy}"
-                       VerticalOptions="CenterAndExpand"
-                       HorizontalOptions="CenterAndExpand"
-                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.33}" />
+                       Color="Blue"  
+                       BackgroundColor="Transparent"/>
 
 
                 <Entry x:Name="titelEntry" Placeholder="Titel" />
@@ -37,7 +37,7 @@
 
                     <Label Text="Geburtsdatum*" FontSize="Medium" />
 
-                    <DatePicker x:Name="geburtsdatumEntry" VerticalOptions="CenterAndExpand">
+                    <DatePicker x:Name="geburtsdatumEntry" VerticalOptions="CenterAndExpand" DateSelected="GeburtsdatumChanged">
                         <DatePicker.Format>dd.MM.yyyy</DatePicker.Format>
                     </DatePicker>
                 </StackLayout>
@@ -80,6 +80,8 @@
             <Entry x:Name="emailVertretungsberechtigter" Placeholder="E-Mail Erziehungsberechtigt"/>
             <Entry x:Name="telefon1" Placeholder="Telefon"/>
             <Entry x:Name="telefon3" Placeholder="Mobiltelefon"/>
+            <Entry x:Name="begruendungMitglied" Placeholder="Aufnahmeantrag Ü18: Begründung Mitglied" IsEnabled="False" IsVisible="False"/>
+            <Entry x:Name="begruendungStamm" Placeholder="Aufnahmeantrag Ü18: Begründung Stamm" IsEnabled="False" IsVisible="False"/>
                 <Button x:Name="btn_save"  Text="Abschicken" Clicked="Save_Clicked" />
         </StackLayout>
         </ScrollView>

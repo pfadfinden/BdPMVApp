@@ -113,7 +113,7 @@ namespace BdP_MV.Services
             return ansprechname;
 
         }
-        private static int GetAgeFromDate(DateTime birthday)
+        public  int GetAgeFromDate(DateTime birthday)
         {
             int years = DateTime.Now.Year - birthday.Year;
             birthday = birthday.AddYears(years);

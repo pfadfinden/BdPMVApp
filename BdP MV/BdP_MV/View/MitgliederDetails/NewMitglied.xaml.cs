@@ -1,4 +1,5 @@
 ﻿using BdP_MV.Exceptions;
+using BdP_MV.Services;
 using BdP_MV.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,31 @@ namespace BdP_MV.View.MitgliederDetails
             InitializeComponent();
         }
 
+        async void GeburtsdatumChanged(object sender, EventArgs e)
+        {
+            DateTime gebDatum = geburtsdatumEntry.Date;
+            int age = viewModel.mainC.mitgliederController.GetAgeFromDate(gebDatum);
+            if (age>17)
+            {
+                begruendungMitglied.IsVisible = true;
+                begruendungMitglied.IsEnabled = true;
+
+                begruendungStamm.IsVisible = true;
+                begruendungStamm.IsEnabled = true;
+
+            }
+            else
+            {
+                begruendungMitglied.IsVisible = false;
+                begruendungMitglied.IsEnabled = false;
+
+                begruendungStamm.IsVisible = false;
+                begruendungStamm.IsEnabled = false;
+
+            }
+
+
+        }
         async void Save_Clicked(object sender, EventArgs e)
         {
             try
@@ -53,12 +79,14 @@ namespace BdP_MV.View.MitgliederDetails
                 viewModel.mitglied.nameZusatz = nameZusatz.Text;
                 viewModel.mitglied.telefon1 = telefon1.Text;
                 viewModel.mitglied.telefon3 = telefon3.Text;
+                viewModel.mitglied.dyn_BegruendungMitglied = begruendungMitglied.Text;
+                viewModel.mitglied.dyn_BegruendungStamm = begruendungStamm.Text;
                 btn_save.IsEnabled = false;
                 IsBusy = true;
                 String response = await viewModel.GenerateJSON(idGruppe);
                 IsBusy = false;
 
-                await DisplayAlert("Erfolg",response, "OK");
+                await DisplayAlert("Mitglied erfolgreich angelegt!",response, "OK");
                 await Navigation.PopAsync();
 
             }

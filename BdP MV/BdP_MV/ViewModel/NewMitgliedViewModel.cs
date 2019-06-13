@@ -32,15 +32,22 @@ namespace BdP_MV.ViewModel
         }
         public async Task<String> GenerateJSON(int idGruppe)
         {
-           
-           
-            if (String.IsNullOrEmpty(mitglied.vorname) || String.IsNullOrEmpty(mitglied.nachname) || mitglied.beitragsartId==0 || mitglied.geschlechtId == 0 || string.IsNullOrEmpty(mitglied.strasse))
+            IsBusy = true;
+            
+
+            if (String.IsNullOrEmpty(mitglied.vorname) || String.IsNullOrEmpty(mitglied.nachname) || mitglied.beitragsartId==0 || mitglied.geschlechtId == 0 || string.IsNullOrEmpty(mitglied.strasse)|| !mitglied.eintrittsdatum.HasValue||!mitglied.geburtsDatum.HasValue)
             {
                 throw new NotAllRequestedFieldsFilledException("Die erforderlichen Felder wurden nicht ausgewählt.");
             }
             if ((String.IsNullOrEmpty(mitglied.strasse) || String.IsNullOrEmpty(mitglied.plz) || String.IsNullOrEmpty(mitglied.ort)) && mitglied.zeitschriftenversand)
                 {
                 throw new NotAllRequestedFieldsFilledException("Ein Zeitschriftenversand ist ohne komplette Adressangabe nicht möglich.");
+
+            }
+            int age = mainC.mitgliederController.GetAgeFromDate((DateTime)mitglied.geburtsDatum);
+            if (age>17&&(String.IsNullOrEmpty(mitglied.dyn_BegruendungMitglied)|| String.IsNullOrEmpty(mitglied.dyn_BegruendungStamm)))
+            {
+                throw new NotAllRequestedFieldsFilledException("Du darfst keine Ü18-Mitglieder ohne Begründung anlegen.");
 
             }
             mitglied.wiederverwendenFlag = true;
@@ -68,7 +75,7 @@ namespace BdP_MV.ViewModel
            
             //JSONOutput = JSONOutput.Substring(1, JSONOutput.Length - 1);
             Console.WriteLine(JSONOutput);
-            
+            IsBusy = false;
 
             return await mainC.mVConnector.PostNewMitglied(idGruppe, JSONOutput);
         }
