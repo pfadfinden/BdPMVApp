@@ -425,7 +425,7 @@ namespace BdP_MV.Services
             request.Method = "POST";
             request.CookieContainer = cookieContainer;
             request.ContentType = "application/json; charset=utf-8";
-            Encoding iso = Encoding.GetEncoding("ISO-8859-1");
+            Encoding iso = Encoding.UTF8;
             var bytes = iso.GetBytes(postData);
             request.ContentLength = bytes.Length;
             Stream requestStream = request.GetRequestStream();
