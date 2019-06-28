@@ -3,20 +3,33 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BdP_MV.View.MasterDetail.Einstellungen">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="StartAndExpand">
-            <ActivityIndicator 
+            <StackLayout VerticalOptions="StartAndExpand">
+                <ActivityIndicator 
                        IsVisible="{Binding IsBusy}"
                        IsRunning="{Binding IsBusy}"
+                        IsEnabled="{Binding IsBusy}"
                        VerticalOptions="CenterAndExpand"
                        HorizontalOptions="CenterAndExpand"
                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.33}" />
 
-            <Entry x:Name="usernameEntry" Placeholder="Benutzername" TextColor="White" PlaceholderColor="White"/>
-            <Entry x:Name="passwordEntry" Placeholder="Passwort"  IsPassword="true" TextColor="White" PlaceholderColor="White" />
-            <Button Text="Login"  />
-            <Button Text="Passwort Vergessen" />
+                <Entry x:Name="firstnameEntry" Placeholder="Vorname"/>
+                <Entry x:Name="lastnameEntry" Placeholder="Nachname"/>
+                <Entry x:Name="nicknameEntry" Placeholder="Spitzname"/>
+                <Entry x:Name="mitglIdEntry" Placeholder="Mitgliedsnummer" Keyboard="Numeric"/>
+                <Entry x:Name="wohnortEntry" Placeholder="Wohnort"/>
+                <Entry x:Name="ageFromEntry" Placeholder="Alter von"  Keyboard="Numeric"/>
+                <Entry x:Name="ageToEntry" Placeholder="Alter bis"  Keyboard="Numeric"/>
 
-            <Label x:Name="messageLabel" />
-        </StackLayout>
-    </ContentPage.Content>
+                <StackLayout Orientation="Horizontal">
+                    <Switch x:Name="doneSwitch" IsToggled="{Binding nurAktiv}" 
+
+                    />
+                    <Label Text="Nur Aktive" TextColor="Gray" Font="Bold"></Label>
+
+                </StackLayout>
+
+               
+
+            </StackLayout>
+        </ContentPage.Content>
 </ContentPage>

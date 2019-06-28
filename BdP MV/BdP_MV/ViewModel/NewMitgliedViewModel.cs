@@ -70,7 +70,6 @@ namespace BdP_MV.ViewModel
             JSONOutput = Regex.Replace(JSONOutput, @"\t|\n|\r", "");
             JSONOutput = Regex.Unescape(JSONOutput);
             JSONOutput = Regex.Replace(JSONOutput, @"^""|""$|\\n?", "");
-            JSONOutput = JSONOutput.Replace(" ", "");
             JSONOutput = JSONOutput.Replace(@"\", @"");
            
             //JSONOutput = JSONOutput.Substring(1, JSONOutput.Length - 1);
