@@ -6,6 +6,5 @@
              Title="News">
     <StackLayout Padding="10">
         <htmlLabel:HtmlLabel x:Name="HTMLabel" Text="{Binding htmlString}"/>
-        <Label Text="This is a detail page. To get the 'triple' line icon on each platform add a icon to each platform and update the 'Master' page with an Icon that references it."/>
-  </StackLayout>
+    </StackLayout>
 </ContentPage>
