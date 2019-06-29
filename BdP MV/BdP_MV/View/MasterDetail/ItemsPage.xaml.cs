@@ -50,9 +50,9 @@ namespace BdP_MV.View.MasterDetail
             InitializeComponent();
 
             viewModel = new ItemsViewModel(mainCo);
-            
 
-            
+            testpicker.IsVisible = false;
+
             BindingContext = viewModel;
             viewModel.ausgewaehlteMitglieder = mitgliederliste;
             MitgliedView.ItemsSource = viewModel.ausgewaehlteMitglieder;
@@ -76,6 +76,7 @@ namespace BdP_MV.View.MasterDetail
                 viewModel.aktGruppe = (Gruppe)testpicker.SelectedItem;
 
                 await this.viewModel.MitgliederAusGruppeLaden();
+                ImageNewButton.IsVisible = viewModel.isNewMitgliedEnabled;
                 MitgliedView.ItemsSource = viewModel.ausgewaehlteMitglieder;
                 this.IsBusy = false;
                 
@@ -176,18 +177,12 @@ namespace BdP_MV.View.MasterDetail
         /// <param name="e">The EventArgs</param>
         async void NewMitglied_Activated(object sender, EventArgs e)
         {
-            if (viewModel.aktGruppe != null && viewModel.isNewMitgliedEnabled == true)
-            {
+                viewModel.IsBusy = true;
 
                 NewMitglied neueMitgliesseite = new MitgliederDetails.NewMitglied(viewModel.aktGruppe.id);
                 await neueMitgliesseite.LoadPreferences();
+                viewModel.IsBusy = false;
                 await Navigation.PushAsync(neueMitgliesseite);
-
-            }
-            else
-            {
-                await DisplayAlert("Achtung!", "In dieser Gruppierung darfst du keine neuen Mitglieder erstellen", "OK, sorry").ConfigureAwait(false);//Method call every time when picker selection changed
-            }
         }
 
 

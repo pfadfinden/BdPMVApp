@@ -41,6 +41,7 @@ namespace BdP_MV.ViewModel
 
             ausgewaehlteMitglieder = mainC.mitgliederController.AktiveMitglieder;
             isNewMitgliedEnabled = await CheckPermissionForNewInGroup(aktGruppe.id);
+            
             IsBusy = false;
         }
         public async Task<Boolean> CheckPermissionForNewInGroup(int idGroup)
@@ -54,14 +55,15 @@ namespace BdP_MV.ViewModel
 
         public async Task<ItemDetailViewModel> mitgliedDetailsVorladen(int idMitglied)
         {
-            IsBusy = true;
+           
             ItemDetailViewModel detailViewModel = await mitgliedDetailsVorladen(idMitglied, aktGruppe.id);
-            IsBusy = false;
+            
             return detailViewModel;
         }
         public async Task<ItemDetailViewModel> mitgliedDetailsVorladen(int idMitglied, int idGruppe)
-        
-            {
+
+        {
+            IsBusy = true;
             Task<List<SGB8>> task_sgb8 = mainC.mitgliederController.Sgb8Abrufen(idMitglied);
             Task<List<Ausbildung>> task_ausbildung = mainC.mitgliederController.AusbildungenAbrufen(idMitglied);
             Task<List<Taetigkeit>> task_taetigkeiten = mainC.mitgliederController.TaetigkeitenAbrufen(idMitglied);
@@ -74,7 +76,7 @@ namespace BdP_MV.ViewModel
                       
             viewModelMitgliedDetails.ausbildung = await task_ausbildung;
             await nachbarbeitung;
-
+            IsBusy = false;
             return viewModelMitgliedDetails;
 
 
