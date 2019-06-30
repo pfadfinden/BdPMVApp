@@ -21,7 +21,7 @@ namespace BdP_MV.Services
         public async Task AlleGruppenAbrufen(int id, string prefix)
         {
             List<Gruppe> tempGruppen = new List<Gruppe>();
-            tempGruppen = mainC.mVConnector.GetGroups(id);
+            tempGruppen = await mainC.mVConnector.GetGroups(id);
             Regex reg = new Regex(@"(\s)*([0-9]+)");
             if (tempGruppen.Count > 0)
                 foreach (Gruppe aktGruppe in tempGruppen)

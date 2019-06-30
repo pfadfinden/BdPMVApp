@@ -9,7 +9,7 @@ using BdP_MV.Model;
 using BdP_MV.Model.Metamodel;
 using BdP_MV.Model.Mitglied;
 using Newtonsoft.Json;
-
+using Xamarin.Essentials;
 
 namespace BdP_MV.Services
 {
@@ -71,7 +71,6 @@ namespace BdP_MV.Services
                 {
                     Console.WriteLine(responseString);
                 }
-                App.Current.Properties["cookieContainer"] = cookieContainer;
                 HttpWebRequest request_nachricht;
                 if (qa)
                 {
@@ -82,9 +81,27 @@ namespace BdP_MV.Services
                     request_nachricht = (HttpWebRequest)HttpWebRequest.Create(new Uri("https://mv.meinbdp.de/ica/rest/dashboard/botschaft/current-message"));
                 }
 
-                request_nachricht.CookieContainer = (CookieContainer)App.Current.Properties["cookieContainer"];
+                request_nachricht.CookieContainer = cookieContainer;
 
                 HttpWebResponse response_nachricht = (HttpWebResponse)await request_nachricht.GetResponseAsync().ConfigureAwait(false);
+                CookieCollection cookieContainerCollection;
+                
+                cookieContainerCollection = cookieContainer.GetCookies(response_nachricht.ResponseUri);
+
+                String cookiecontent = cookieContainerCollection["JSESSIONID"]?.Value;
+                String cookiepath= cookieContainerCollection["JSESSIONID"]?.Path;
+                String cookiedomain = cookieContainerCollection["JSESSIONID"]?.Domain;
+                Console.WriteLine(cookiecontent);
+                try
+                {
+                    await SecureStorage.SetAsync("cookiecontent", cookiecontent);
+                    await SecureStorage.SetAsync("cookiepath", cookiepath);
+                    await SecureStorage.SetAsync("cookiedomain", cookiedomain);
+                }
+                catch (Exception ex)
+                {
+                    // Possible that device doesn't support secure storage on device.
+                }
                 string response_nachricht_String = new StreamReader(response_nachricht.GetResponseStream()).ReadToEnd();
                 if (debug)
                 {
@@ -186,7 +203,7 @@ namespace BdP_MV.Services
 
             return items;
         }
-        public List<Gruppe> GetGroups(int id)
+        public async Task<List<Gruppe>>  GetGroups(int id)
 
         {
             string idname;
@@ -208,7 +225,7 @@ namespace BdP_MV.Services
                 idname = id.ToString();
             }
             String anfrage = "nami/gruppierungen/filtered-for-navigation/gruppierung/node/" + idname;
-            string responseString = GetApiResultString(anfrage);
+            string responseString = await GetApiResultStringAsync(anfrage);
 
             if (debug)
             {
@@ -359,7 +376,22 @@ namespace BdP_MV.Services
         }
         private async Task<String> GetApiResultStringAsync(string anfrageURL)
         {
-            cookieContainer = (CookieContainer)App.Current.Properties["cookieContainer"];
+            cookieContainer = new CookieContainer();
+            //cookieContainer = (CookieContainer)App.Current.Properties["cookieContainer"];
+            try
+            {
+                string cookiecontent = await SecureStorage.GetAsync("cookiecontent");
+                string cookiedomain = await SecureStorage.GetAsync("cookiedomain");
+                string cookiepath = await SecureStorage.GetAsync("cookiepath");
+
+                Cookie sessionCookie = new Cookie("JSESSIONID", cookiecontent, cookiepath, cookiedomain);
+                cookieContainer.Add(sessionCookie);
+            }
+            catch (Exception ex)
+            {
+                // Possible that device doesn't support secure storage on device.
+            }
+            
 
             HttpWebRequest request;
             if (qa)
@@ -383,36 +415,24 @@ namespace BdP_MV.Services
 
 
         }
-        private String GetApiResultString(string anfrageURL)
-        {
-            cookieContainer = (CookieContainer)App.Current.Properties["cookieContainer"];
-
-            HttpWebRequest request;
-            if (qa)
-            {
-                request = (HttpWebRequest)WebRequest.Create("https://qa.mv.meinbdp.de/ica/rest/" + anfrageURL);
-            }
-            else
-            {
-                request = (HttpWebRequest)WebRequest.Create("https://mv.meinbdp.de/ica/rest/" + anfrageURL);
-            }
-            request.Method = "GET";
-            request.CookieContainer = cookieContainer; 
-            request.ContentType = "application/x-www-form-urlencoded";
-            WebResponse response = (HttpWebResponse)request.GetResponse();
-            string responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
-            if (debug)
-            {
-                Console.WriteLine(responseString);
-            }
-            return responseString;
-
-
-        }
+        
         private async Task<String> PostApiDataAsync(string anfrageURL, string postData)
         {
-            cookieContainer = (CookieContainer)App.Current.Properties["cookieContainer"];
+            cookieContainer = new CookieContainer();
+            //cookieContainer = (CookieContainer)App.Current.Properties["cookieContainer"];
+            try
+            {
+                string cookiecontent = await SecureStorage.GetAsync("cookiecontent");
+                string cookiedomain = await SecureStorage.GetAsync("cookiedomain");
+                string cookiepath = await SecureStorage.GetAsync("cookiepath");
 
+                Cookie sessionCookie = new Cookie("JSESSIONID", cookiecontent, cookiepath, cookiedomain);
+                cookieContainer.Add(sessionCookie);
+            }
+            catch (Exception ex)
+            {
+                // Possible that device doesn't support secure storage on device.
+            }
             HttpWebRequest request;
             if (qa)
             {
