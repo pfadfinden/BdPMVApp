@@ -106,8 +106,6 @@ namespace BdP_MV.View.MitgliederDetails
                 viewModel.mitglied.staatsangehoerigkeitId = Convert.ToInt32(((SelectableItem)landpicker.SelectedItem).Id);
                 //viewModel.mitglied.geschlecht = ((SelectableItem)geschlechtspicker.SelectedItem).descriptor;
                 viewModel.mitglied.geschlechtId = Convert.ToInt32(((SelectableItem)geschlechtspicker.SelectedItem).Id);
-                viewModel.mitglied.mglType = ((SelectableItem)mitgliedsartpicker.SelectedItem).descriptor;
-                viewModel.mitglied.ersteTaetigkeitId = ((SelectableItem)mitgliedsartpicker.SelectedItem).Id;
                 viewModel.mitglied.beitragsartId = Convert.ToInt32(((SelectableItem)beitragsartpicker.SelectedItem).Id);
                 viewModel.mitglied.strasse = strasse.Text;
                 viewModel.mitglied.plz = plz.Text;
@@ -115,11 +113,24 @@ namespace BdP_MV.View.MitgliederDetails
                 viewModel.mitglied.nameZusatz = nameZusatz.Text;
                 viewModel.mitglied.telefon1 = telefon1.Text;
                 viewModel.mitglied.telefon3 = telefon3.Text;
-                viewModel.mitglied.dyn_BegruendungMitglied = begruendungMitglied.Text;
-                viewModel.mitglied.dyn_BegruendungStamm = begruendungStamm.Text;
+                if (newMitglied)
+                {
+                    viewModel.mitglied.dyn_BegruendungMitglied = begruendungMitglied.Text;
+                    viewModel.mitglied.dyn_BegruendungStamm = begruendungStamm.Text;
+                    viewModel.mitglied.mglType = ((SelectableItem)mitgliedsartpicker.SelectedItem).descriptor;
+                    viewModel.mitglied.ersteTaetigkeitId = ((SelectableItem)mitgliedsartpicker.SelectedItem).Id;
+                }
                 btn_save.IsEnabled = false;
                 IsBusy = true;
-                String response = await viewModel.GenerateJSON(idGruppe);
+                String response;
+                if (newMitglied)
+                {
+                    response = await viewModel.CreateNewMitglied(idGruppe);
+                }
+                else
+                {
+                    response = await viewModel.UpdateExistingMitglied();
+                }
                 IsBusy = false;
 
                 await DisplayAlert("Mitglied erfolgreich angelegt!",response, "OK");

@@ -37,28 +37,28 @@ namespace BdP_MV.ViewModel
             mitglied = mitgliedDetail;
 
         }
-        public async Task<String> GenerateJSON(int idGruppe)
+        public async Task<String> CreateNewMitglied(int idGruppe)
         {
             IsBusy = true;
-            
 
-            if (String.IsNullOrEmpty(mitglied.vorname) || String.IsNullOrEmpty(mitglied.nachname) || mitglied.beitragsartId==0 || mitglied.geschlechtId == 0 || string.IsNullOrEmpty(mitglied.strasse)|| !mitglied.eintrittsdatum.HasValue||!mitglied.geburtsDatum.HasValue)
+
+            if (String.IsNullOrEmpty(mitglied.vorname) || String.IsNullOrEmpty(mitglied.nachname) || mitglied.beitragsartId == 0 || mitglied.geschlechtId == 0 || string.IsNullOrEmpty(mitglied.strasse) || !mitglied.eintrittsdatum.HasValue || !mitglied.geburtsDatum.HasValue)
             {
                 throw new NotAllRequestedFieldsFilledException("Die erforderlichen Felder wurden nicht ausgewählt.");
             }
             if ((String.IsNullOrEmpty(mitglied.strasse) || String.IsNullOrEmpty(mitglied.plz) || String.IsNullOrEmpty(mitglied.ort)) && mitglied.zeitschriftenversand)
-                {
+            {
                 throw new NotAllRequestedFieldsFilledException("Ein Zeitschriftenversand ist ohne komplette Adressangabe nicht möglich.");
 
             }
             int age = mainC.mitgliederController.GetAgeFromDate((DateTime)mitglied.geburtsDatum);
-            if (age>17&&(String.IsNullOrEmpty(mitglied.dyn_BegruendungMitglied)|| String.IsNullOrEmpty(mitglied.dyn_BegruendungStamm)))
+            if (age > 17 && (String.IsNullOrEmpty(mitglied.dyn_BegruendungMitglied) || String.IsNullOrEmpty(mitglied.dyn_BegruendungStamm)))
             {
                 throw new NotAllRequestedFieldsFilledException("Du darfst keine Ü18-Mitglieder ohne Begründung anlegen.");
 
             }
             mitglied.wiederverwendenFlag = true;
-            
+
             mitglied.gruppierungId = idGruppe;
             mitglied.kontoverbindung = new KontoverbindungMitglied();
 
@@ -73,19 +73,61 @@ namespace BdP_MV.ViewModel
 
                            });
             Console.WriteLine(JSONOutput);
-         
+
             JSONOutput = Regex.Replace(JSONOutput, @"\t|\n|\r", "");
             JSONOutput = Regex.Unescape(JSONOutput);
             JSONOutput = Regex.Replace(JSONOutput, @"^""|""$|\\n?", "");
             JSONOutput = JSONOutput.Replace(@"\", @"");
+
+            //JSONOutput = JSONOutput.Substring(1, JSONOutput.Length - 1);
+            Console.WriteLine(JSONOutput);
+            string result = await mainC.mVConnector.PostNewMitglied(idGruppe, JSONOutput);
+            IsBusy = false;
+
+            return result;
+
+                  
+
+        }
+
+        public async Task<String> UpdateExistingMitglied()
+        {
+            IsBusy = true;
+
+
+            if (String.IsNullOrEmpty(mitglied.vorname) || String.IsNullOrEmpty(mitglied.nachname) || mitglied.beitragsartId == 0 || mitglied.geschlechtId == 0 || string.IsNullOrEmpty(mitglied.strasse) || !mitglied.eintrittsdatum.HasValue || !mitglied.geburtsDatum.HasValue)
+            {
+                throw new NotAllRequestedFieldsFilledException("Die erforderlichen Felder wurden nicht ausgewählt.");
+            }
+            if ((String.IsNullOrEmpty(mitglied.strasse) || String.IsNullOrEmpty(mitglied.plz) || String.IsNullOrEmpty(mitglied.ort)) && mitglied.zeitschriftenversand)
+            {
+                throw new NotAllRequestedFieldsFilledException("Ein Zeitschriftenversand ist ohne komplette Adressangabe nicht möglich.");
+
+            }
+            int age = mainC.mitgliederController.GetAgeFromDate((DateTime)mitglied.geburtsDatum);
            
+
+            string JSONOutput = JsonConvert.SerializeObject(mitglied,
+                           Newtonsoft.Json.Formatting.None,
+                           new JsonSerializerSettings
+                           {
+                               DateTimeZoneHandling = DateTimeZoneHandling.Unspecified,
+                               ContractResolver = new NullToEmptyStringResolver()
+
+                           });
+            Console.WriteLine(JSONOutput);
+
+            JSONOutput = Regex.Replace(JSONOutput, @"\t|\n|\r", "");
+            JSONOutput = Regex.Unescape(JSONOutput);
+            JSONOutput = Regex.Replace(JSONOutput, @"^""|""$|\\n?", "");
+            JSONOutput = JSONOutput.Replace(@"\", @"");
+
             //JSONOutput = JSONOutput.Substring(1, JSONOutput.Length - 1);
             Console.WriteLine(JSONOutput);
             IsBusy = false;
 
-            return await mainC.mVConnector.PostNewMitglied(idGruppe, JSONOutput);
+            return await mainC.mVConnector.PutChangeMitglied(mitglied.gruppierungId,mitglied.id, JSONOutput);
         }
-      
         public async Task loadSelectableItems()
         {
             Task <List<SelectableItem>> taskGeschlechter = mainC.mVConnector.GetItems("baseadmin/geschlecht/");

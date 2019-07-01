@@ -460,6 +460,50 @@ namespace BdP_MV.Services
             return responseString;
 
         }
+        private async Task<String> PutApiDataAsync(string anfrageURL, string postData)
+        {
+            cookieContainer = new CookieContainer();
+            //cookieContainer = (CookieContainer)App.Current.Properties["cookieContainer"];
+            try
+            {
+                string cookiecontent = await SecureStorage.GetAsync("cookiecontent");
+                string cookiedomain = await SecureStorage.GetAsync("cookiedomain");
+                string cookiepath = await SecureStorage.GetAsync("cookiepath");
+
+                Cookie sessionCookie = new Cookie("JSESSIONID", cookiecontent, cookiepath, cookiedomain);
+                cookieContainer.Add(sessionCookie);
+            }
+            catch (Exception ex)
+            {
+                // Possible that device doesn't support secure storage on device.
+            }
+            HttpWebRequest request;
+            if (qa)
+            {
+                request = (HttpWebRequest)WebRequest.Create("https://qa.mv.meinbdp.de/ica/rest/" + anfrageURL);
+            }
+            else
+            {
+                request = (HttpWebRequest)WebRequest.Create("https://mv.meinbdp.de/ica/rest/" + anfrageURL);
+            }
+            request.Method = "PUT";
+            request.CookieContainer = cookieContainer;
+            request.ContentType = "application/json; charset=utf-8";
+            Encoding iso = Encoding.UTF8;
+            var bytes = iso.GetBytes(postData);
+            request.ContentLength = bytes.Length;
+            Stream requestStream = request.GetRequestStream();
+            requestStream.Write(bytes, 0, bytes.Length);
+            requestStream.Close();
+            WebResponse response = (HttpWebResponse)await request.GetResponseAsync();
+            string responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+            if (debug)
+            {
+                Console.WriteLine(responseString);
+            }
+            return responseString;
+
+        }
         public async Task<String> PostNewMitglied(int idGruppe, string JSON)
         {
 
@@ -485,6 +529,32 @@ namespace BdP_MV.Services
      
 
             return "Erfolgreich angelegt" + response.message;
+        }
+        public async Task<String> PutChangeMitglied(int idGruppe, int idMitglied, string JSON)
+        {
+
+            String anfrage = "nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/" + idGruppe+"/"+idMitglied;
+            String responseString = await PutApiDataAsync(anfrage, JSON);
+
+            var response = JsonConvert.DeserializeObject<RootObj_new_Mitglied>(responseString);
+            if (response.success == false)
+            {
+                if (response.responseType.Equals("ERROR") && response.message.Equals("Session expired"))
+                {
+                    throw new NewLoginException("Bitte neu einloggen.");
+                }
+                else if (response.responseType.Equals("EXCEPTION") && response.message.Equals("Benutzer darf sich keine GrpReports ansehen"))
+                {
+                    throw new NoRightsException("Versucht Kontext aufzurufen, für das der Nutzer keine Rechte hat.");
+                }
+                else
+                {
+                    throw new NotAllRequestedFieldsFilledException("Es ist ein Fehler aufgetreten. Wurden alle Pflichtfelder ausgefüllt?");
+                }
+            }
+
+
+            return "Erfolgreich geändert" + response.message;
         }
 
 
