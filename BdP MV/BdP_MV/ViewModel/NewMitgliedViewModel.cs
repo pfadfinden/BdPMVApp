@@ -30,6 +30,13 @@ namespace BdP_MV.ViewModel
 
 
         }
+        public NewMitgliedViewModel(MitgliedDetails mitgliedDetail)
+        {
+            mainC = new MainController();
+            gruppierungsID = mitglied.gruppierungId;
+            mitglied = mitgliedDetail;
+
+        }
         public async Task<String> GenerateJSON(int idGruppe)
         {
             IsBusy = true;
@@ -78,15 +85,7 @@ namespace BdP_MV.ViewModel
 
             return await mainC.mVConnector.PostNewMitglied(idGruppe, JSONOutput);
         }
-        public NewMitgliedViewModel(MitgliedDetails uebergebenesMitglied)
-        {
-            mainC = new MainController();
-            mitglied = uebergebenesMitglied;
-            gruppierungsID = uebergebenesMitglied.gruppierungId;
-            
-
-
-        }
+      
         public async Task loadSelectableItems()
         {
             Task <List<SelectableItem>> taskGeschlechter = mainC.mVConnector.GetItems("baseadmin/geschlecht/");

@@ -1,4 +1,5 @@
 ﻿using BdP_MV.Exceptions;
+using BdP_MV.Model.Mitglied;
 using BdP_MV.Services;
 using BdP_MV.ViewModel;
 using System;
@@ -14,6 +15,7 @@ namespace BdP_MV.View.MitgliederDetails
 
         public NewMitgliedViewModel viewModel;
         int idGruppe;
+        Boolean newMitglied;
 
 
 
@@ -24,14 +26,48 @@ namespace BdP_MV.View.MitgliederDetails
             viewModel = new NewMitgliedViewModel(idgrp);
 
             idGruppe = idgrp;
+            newMitglied = true;
             InitializeComponent();
         }
+        public NewMitglied(MitgliedDetails mitglied)
+        {
+            //   InitializeComponent();
+            // this.viewModel = new NewMitgliedViewModel(new Services.MainController());
+            viewModel = new NewMitgliedViewModel(mitglied);
+            newMitglied = false;
+            fillFelder();
+            InitializeComponent();
 
+        }
+       private void fillFelder()
+        {
+            vornameEntry.Text = viewModel.mitglied.vorname;
+             nachnameEntry.Text = viewModel.mitglied.nachname;
+            spitznameEntry.Text = viewModel.mitglied.spitzname;
+            geburtsdatumEntry.Date = (DateTime)viewModel.mitglied.geburtsDatum;
+            eintrittsdatumEntry.Date = (DateTime)viewModel.mitglied.eintrittsdatum;
+            email.Text = viewModel.mitglied.email;
+            zeitschriftenversand.IsToggled = viewModel.mitglied.zeitschriftenversand;
+            emailVertretungsberechtigter.Text = viewModel.mitglied.emailVertretungsberechtigter;
+            //viewModel.mitglied.landId = Convert.ToInt32(((SelectableItem)landpicker.SelectedItem).Id);
+            //viewModel.mitglied.staatsangehoerigkeit = ((SelectableItem)landpicker.SelectedItem).descriptor;
+            //viewModel.mitglied.staatsangehoerigkeitId = Convert.ToInt32(((SelectableItem)landpicker.SelectedItem).Id);
+            //viewModel.mitglied.geschlecht = ((SelectableItem)geschlechtspicker.SelectedItem).descriptor;
+            //viewModel.mitglied.geschlechtId = Convert.ToInt32(((SelectableItem)geschlechtspicker.SelectedItem).Id);
+            viewModel.mitglied.beitragsartId = Convert.ToInt32(((SelectableItem)beitragsartpicker.SelectedItem).Id);
+            strasse.Text = viewModel.mitglied.strasse;
+            plz.Text = viewModel.mitglied.plz;
+            ort.Text = viewModel.mitglied.ort;
+            nameZusatz.Text = viewModel.mitglied.nameZusatz;
+            telefon1.Text = viewModel.mitglied.telefon1;
+            telefon3.Text = viewModel.mitglied.telefon3;
+
+        }
         async void GeburtsdatumChanged(object sender, EventArgs e)
         {
             DateTime gebDatum = geburtsdatumEntry.Date;
             int age = viewModel.mainC.mitgliederController.GetAgeFromDate(gebDatum);
-            if (age>17)
+            if (age>17 && newMitglied)
             {
                 begruendungMitglied.IsVisible = true;
                 begruendungMitglied.IsEnabled = true;
