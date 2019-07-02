@@ -42,7 +42,16 @@ namespace BdP_MV.Services
             { return true; }
             else
             { return false; }
-            }
+        }
+        public async Task<Boolean> CheckPermissionForEdit(int idGruppe)
+        {
+            Meta_Data meta = await mainC.mVConnector.MetaData(idGruppe).ConfigureAwait(false);
+            var match = meta.actions.FirstOrDefault(stringToCheck => stringToCheck.Contains("UPDATE"));
+            if (match != null)
+            { return true; }
+            else
+            { return false; }
+        }
 
     }
 }

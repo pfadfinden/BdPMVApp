@@ -48,12 +48,15 @@ namespace BdP_MV.ViewModel
             Task<List<SGB8>> task_sgb8 = mainc.mitgliederController.Sgb8Abrufen(idMitglied);
             Task<List<Ausbildung>> task_ausbildung = mainc.mitgliederController.AusbildungenAbrufen(idMitglied);
             Task<List<Taetigkeit>> task_taetigkeiten = mainc.mitgliederController.TaetigkeitenAbrufen(idMitglied);
+            Task<Boolean> task_editable = mainc.groupControl.CheckPermissionForEdit(idGruppe);
             MitgliedDetails mitgliedDetails = await Task.Run(async () => await mainc.mitgliederController.MitgliedDetailsAbrufen(idMitglied, idGruppe));
             ItemDetailViewModel viewModelMitgliedDetails = new ItemDetailViewModel(mitgliedDetails, mainc);
+            await Task.WhenAll(task_sgb8, task_taetigkeiten);
+            
             viewModelMitgliedDetails.sgb8 = await task_sgb8;
             viewModelMitgliedDetails.taetigkeiten = await task_taetigkeiten;
             Task nachbarbeitung = viewModelMitgliedDetails.Nachbearbeitung();
-
+            viewModelMitgliedDetails.isEditable = await task_editable;
             viewModelMitgliedDetails.ausbildung = await task_ausbildung;
             await nachbarbeitung;
 

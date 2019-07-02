@@ -60,7 +60,7 @@
             </StackLayout>
             <ImageButton x:Name="ImageNewButton" Source="edit_bdp.png"
                             Clicked="NewMitglied_Activated"
-                            IsVisible="{Binding isNewMitgliedEnabled}"
+                            IsVisible="{Binding isEditable}"
                             AbsoluteLayout.LayoutFlags="PositionProportional"
                             AbsoluteLayout.LayoutBounds="1.0,1.0,-1,-1"
                             Margin="10"
