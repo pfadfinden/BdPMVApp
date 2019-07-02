@@ -4,6 +4,7 @@ using BdP_MV.Services;
 using BdP_MV.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -35,6 +36,7 @@ namespace BdP_MV.View.MitgliederDetails
             // this.viewModel = new NewMitgliedViewModel(new Services.MainController());
             viewModel = new NewMitgliedViewModel(mitglied);
             newMitglied = false;
+            this.Title="Mitglied " + mitglied.ansprechname + " bearbeiten"
             fillFelder();
             InitializeComponent();
 
@@ -49,18 +51,23 @@ namespace BdP_MV.View.MitgliederDetails
             email.Text = viewModel.mitglied.email;
             zeitschriftenversand.IsToggled = viewModel.mitglied.zeitschriftenversand;
             emailVertretungsberechtigter.Text = viewModel.mitglied.emailVertretungsberechtigter;
-            //viewModel.mitglied.landId = Convert.ToInt32(((SelectableItem)landpicker.SelectedItem).Id);
-            //viewModel.mitglied.staatsangehoerigkeit = ((SelectableItem)landpicker.SelectedItem).descriptor;
-            //viewModel.mitglied.staatsangehoerigkeitId = Convert.ToInt32(((SelectableItem)landpicker.SelectedItem).Id);
-            //viewModel.mitglied.geschlecht = ((SelectableItem)geschlechtspicker.SelectedItem).descriptor;
-            //viewModel.mitglied.geschlechtId = Convert.ToInt32(((SelectableItem)geschlechtspicker.SelectedItem).Id);
-            viewModel.mitglied.beitragsartId = Convert.ToInt32(((SelectableItem)beitragsartpicker.SelectedItem).Id);
+            try
+            {
+                landpicker.SelectedItem = ((List<SelectableItem>)viewModel.land).FirstOrDefault(c => c.Id == viewModel.mitglied.landId.ToString());
+                geschlechtspicker.SelectedItem = ((List<SelectableItem>)viewModel.geschlechter).FirstOrDefault(c => c.Id == viewModel.mitglied.geschlechtId.ToString());
+                beitragsartpicker.SelectedItem = ((List<SelectableItem>)viewModel.beitragsart).FirstOrDefault(c => c.Id == viewModel.mitglied.beitragsartId.ToString());
+            }
+            catch (Exception e)
+            {
+                
+            }
             strasse.Text = viewModel.mitglied.strasse;
             plz.Text = viewModel.mitglied.plz;
             ort.Text = viewModel.mitglied.ort;
             nameZusatz.Text = viewModel.mitglied.nameZusatz;
             telefon1.Text = viewModel.mitglied.telefon1;
             telefon3.Text = viewModel.mitglied.telefon3;
+            mitgliedsartpicker.IsVisible = false;
 
         }
         async void GeburtsdatumChanged(object sender, EventArgs e)
@@ -126,14 +133,17 @@ namespace BdP_MV.View.MitgliederDetails
                 if (newMitglied)
                 {
                     response = await viewModel.CreateNewMitglied(idGruppe);
+                    await DisplayAlert("Mitglied erfolgreich angelegt!", response, "OK");
+
                 }
                 else
                 {
                     response = await viewModel.UpdateExistingMitglied();
+                    await DisplayAlert("Mitglied erfolgreich geändert!", response, "OK");
+
                 }
                 IsBusy = false;
 
-                await DisplayAlert("Mitglied erfolgreich angelegt!",response, "OK");
                 await Navigation.PopAsync();
 
             }

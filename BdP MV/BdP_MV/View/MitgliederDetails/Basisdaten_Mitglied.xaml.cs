@@ -27,5 +27,14 @@ namespace BdP_MV.View.MitgliederDetails
             
           
         }
+        async void NewMitglied_Activated(object sender, EventArgs e)
+        {
+            viewModel.IsBusy = true;
+
+            NewMitglied neueMitgliesseite = new MitgliederDetails.NewMitglied(viewModel.mitglied);
+            await neueMitgliesseite.LoadPreferences();
+            viewModel.IsBusy = false;
+            await Navigation.PushAsync(neueMitgliesseite);
+        }
     }
 }
