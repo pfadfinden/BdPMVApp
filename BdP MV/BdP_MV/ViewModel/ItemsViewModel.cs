@@ -20,13 +20,8 @@ namespace BdP_MV.ViewModel
         public ItemsViewModel(MainController mainCo)
         {
             mainC = mainCo;
-
-
-
             ausgewaehlteMitglieder = new List<Mitglied>();
             isNewMitgliedEnabled = false;
-
-
 
         }
 
