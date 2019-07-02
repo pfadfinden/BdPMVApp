@@ -24,9 +24,6 @@ namespace BdP_MV.ViewModel
 
 
             ausgewaehlteMitglieder = new List<Mitglied>();
-            Mitglied test = new Mitglied();
-            test.ansprechname = "test";
-            ausgewaehlteMitglieder.Add(test);
             isNewMitgliedEnabled = false;
 
 
