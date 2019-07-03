@@ -33,8 +33,9 @@ namespace BdP_MV.ViewModel
         public NewMitgliedViewModel(MitgliedDetails mitgliedDetail)
         {
             mainC = new MainController();
-            gruppierungsID = mitglied.gruppierungId;
             mitglied = mitgliedDetail;
+            gruppierungsID = mitglied.gruppierungId;
+            
 
         }
         public async Task<String> CreateNewMitglied(int idGruppe)

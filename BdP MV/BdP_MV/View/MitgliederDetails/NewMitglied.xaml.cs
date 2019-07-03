@@ -37,7 +37,6 @@ namespace BdP_MV.View.MitgliederDetails
             viewModel = new NewMitgliedViewModel(mitglied);
             newMitglied = false;
             this.Title = "Mitglied " + mitglied.ansprechname + " bearbeiten";
-            fillFelder();
             InitializeComponent();
 
         }
@@ -200,6 +199,11 @@ namespace BdP_MV.View.MitgliederDetails
             landpicker.ItemsSource = viewModel.land;
             beitragsartpicker.ItemsSource = viewModel.beitragsart;
             mitgliedsartpicker.ItemsSource = viewModel.mitgltype;
+            if (!newMitglied)
+            {
+                fillFelder();
+            }
+
 
 
         }

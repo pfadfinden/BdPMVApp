@@ -536,7 +536,7 @@ namespace BdP_MV.Services
             String anfrage = "nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/" + idGruppe+"/"+idMitglied;
             String responseString = await PutApiDataAsync(anfrage, JSON);
 
-            var response = JsonConvert.DeserializeObject<RootObj_new_Mitglied>(responseString);
+            var response = JsonConvert.DeserializeObject<RootObj_edit_Mitglied>(responseString);
             if (response.success == false)
             {
                 if (response.responseType.Equals("ERROR") && response.message.Equals("Session expired"))
