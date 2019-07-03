@@ -30,7 +30,7 @@ namespace BdP_MV.ViewModel
         public List<SGB8> sgb8 { set; get; }
         public List<Ausbildung> ausbildung { set; get; }
         public String latestSGB8 { set; get; }
-        public bool isEditable;
+        public bool isEditable { set; get; }
 
 
         public bool HasPhoneNumber => !string.IsNullOrWhiteSpace(mitglied?.telefon1);

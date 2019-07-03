@@ -24,6 +24,10 @@ namespace BdP_MV.View.MitgliederDetails
             
             InitializeComponent();
             BindingContext = this.viewModel = viewModel;
+            if (viewModel.isEditable)
+            {
+                ImageNewButton.IsVisible = true;
+            }
             
           
         }

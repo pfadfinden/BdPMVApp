@@ -36,7 +36,7 @@ namespace BdP_MV.View.MitgliederDetails
             // this.viewModel = new NewMitgliedViewModel(new Services.MainController());
             viewModel = new NewMitgliedViewModel(mitglied);
             newMitglied = false;
-            this.Title="Mitglied " + mitglied.ansprechname + " bearbeiten"
+            this.Title = "Mitglied " + mitglied.ansprechname + " bearbeiten";
             fillFelder();
             InitializeComponent();
 

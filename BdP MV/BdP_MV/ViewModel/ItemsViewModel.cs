@@ -23,6 +23,7 @@ namespace BdP_MV.ViewModel
             ausgewaehlteMitglieder = new List<Mitglied>();
             isNewMitgliedEnabled = false;
 
+
         }
 
         public async Task MitgliederAusGruppeLaden()
