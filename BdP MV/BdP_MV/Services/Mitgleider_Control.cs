@@ -72,15 +72,15 @@ namespace BdP_MV.Services
         {
             if (mainC.einsteillungen.sortierreihenfolge == 1)
             {
-                mitglieder.OrderByDescending(mitglied => mitglied.entries_nachname).ThenBy(mitglied => mitglied.entries_vorname);
+                mitglieder = new List<Mitglied>(mitglieder.OrderBy(mitglied => mitglied.entries_nachname).ThenBy(mitglied => mitglied.entries_vorname));
             }
             else if (mainC.einsteillungen.sortierreihenfolge == 2)
             {
-                mitglieder.OrderBy(mitglied => mitglied.entries_vorname).ThenBy(mitglied => mitglied.entries_nachname);
+                mitglieder = new List<Mitglied>(mitglieder.OrderBy(mitglied => mitglied.entries_vorname).ThenBy(mitglied => mitglied.entries_nachname);
             }
             else if (mainC.einsteillungen.sortierreihenfolge == 3)
             {
-                mitglieder.OrderBy(mitglied => mitglied.ansprechname).ThenBy(mitglied => mitglied.entries_nachname);
+                mitglieder = new List<Mitglied>(mitglieder.OrderBy(mitglied => mitglied.ansprechname).ThenBy(mitglied => mitglied.entries_nachname));
 
             }
             return mitglieder;
