@@ -1,4 +1,5 @@
-﻿using BdP_MV.ViewModel;
+﻿using BdP_MV.View.MitgliederDetails.Edit;
+using BdP_MV.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,18 +25,14 @@ namespace BdP_MV.View.MitgliederDetails
             
             InitializeComponent();
             BindingContext = this.viewModel = viewModel;
-            if (viewModel.isEditable)
-            {
-                ImageNewButton.IsVisible = true;
-            }
-            
+         
           
         }
         async void NewMitglied_Activated(object sender, EventArgs e)
         {
             viewModel.IsBusy = true;
 
-            NewMitglied neueMitgliesseite = new MitgliederDetails.NewMitglied(viewModel.mitglied);
+            NewMitglied neueMitgliesseite = new NewMitglied(viewModel.mitglied);
             await neueMitgliesseite.LoadPreferences();
             viewModel.IsBusy = false;
             await Navigation.PushAsync(neueMitgliesseite);

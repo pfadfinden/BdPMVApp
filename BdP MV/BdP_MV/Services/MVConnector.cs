@@ -91,7 +91,7 @@ namespace BdP_MV.Services
                 String cookiecontent = cookieContainerCollection["JSESSIONID"]?.Value;
                 String cookiepath= cookieContainerCollection["JSESSIONID"]?.Path;
                 String cookiedomain = cookieContainerCollection["JSESSIONID"]?.Domain;
-                Console.WriteLine(cookiecontent);
+               
                 try
                 {
                     await SecureStorage.SetAsync("cookiecontent", cookiecontent);
@@ -376,34 +376,8 @@ namespace BdP_MV.Services
         }
         private async Task<String> GetApiResultStringAsync(string anfrageURL)
         {
-            cookieContainer = new CookieContainer();
-            //cookieContainer = (CookieContainer)App.Current.Properties["cookieContainer"];
-            try
-            {
-                string cookiecontent = await SecureStorage.GetAsync("cookiecontent");
-                string cookiedomain = await SecureStorage.GetAsync("cookiedomain");
-                string cookiepath = await SecureStorage.GetAsync("cookiepath");
-
-                Cookie sessionCookie = new Cookie("JSESSIONID", cookiecontent, cookiepath, cookiedomain);
-                cookieContainer.Add(sessionCookie);
-            }
-            catch (Exception ex)
-            {
-                // Possible that device doesn't support secure storage on device.
-            }
-            
-
-            HttpWebRequest request;
-            if (qa)
-            {
-                request = (HttpWebRequest)WebRequest.Create("https://qa.mv.meinbdp.de/ica/rest/"+anfrageURL);
-            }
-            else
-            {
-                request = (HttpWebRequest)WebRequest.Create("https://mv.meinbdp.de/ica/rest/" + anfrageURL);
-            }
+            HttpWebRequest request = await CreateWebRequest(anfrageURL);
             request.Method = "GET";
-            request.CookieContainer = cookieContainer;
             request.ContentType = "application/x-www-form-urlencoded";
             WebResponse response = (HttpWebResponse)await request.GetResponseAsync();
             string responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
@@ -418,32 +392,9 @@ namespace BdP_MV.Services
         
         private async Task<String> PostApiDataAsync(string anfrageURL, string postData)
         {
-            cookieContainer = new CookieContainer();
-            //cookieContainer = (CookieContainer)App.Current.Properties["cookieContainer"];
-            try
-            {
-                string cookiecontent = await SecureStorage.GetAsync("cookiecontent");
-                string cookiedomain = await SecureStorage.GetAsync("cookiedomain");
-                string cookiepath = await SecureStorage.GetAsync("cookiepath");
-
-                Cookie sessionCookie = new Cookie("JSESSIONID", cookiecontent, cookiepath, cookiedomain);
-                cookieContainer.Add(sessionCookie);
-            }
-            catch (Exception ex)
-            {
-                // Possible that device doesn't support secure storage on device.
-            }
-            HttpWebRequest request;
-            if (qa)
-            {
-                request = (HttpWebRequest)WebRequest.Create("https://qa.mv.meinbdp.de/ica/rest/" + anfrageURL);
-            }
-            else
-            {
-                request = (HttpWebRequest)WebRequest.Create("https://mv.meinbdp.de/ica/rest/" + anfrageURL);
-            }
+            HttpWebRequest request = await CreateWebRequest(anfrageURL);
             request.Method = "POST";
-            request.CookieContainer = cookieContainer;
+            
             request.ContentType = "application/json; charset=utf-8";
             Encoding iso = Encoding.UTF8;
             var bytes = iso.GetBytes(postData);
@@ -462,32 +413,9 @@ namespace BdP_MV.Services
         }
         private async Task<String> PutApiDataAsync(string anfrageURL, string postData)
         {
-            cookieContainer = new CookieContainer();
-            //cookieContainer = (CookieContainer)App.Current.Properties["cookieContainer"];
-            try
-            {
-                string cookiecontent = await SecureStorage.GetAsync("cookiecontent");
-                string cookiedomain = await SecureStorage.GetAsync("cookiedomain");
-                string cookiepath = await SecureStorage.GetAsync("cookiepath");
-
-                Cookie sessionCookie = new Cookie("JSESSIONID", cookiecontent, cookiepath, cookiedomain);
-                cookieContainer.Add(sessionCookie);
-            }
-            catch (Exception ex)
-            {
-                // Possible that device doesn't support secure storage on device.
-            }
-            HttpWebRequest request;
-            if (qa)
-            {
-                request = (HttpWebRequest)WebRequest.Create("https://qa.mv.meinbdp.de/ica/rest/" + anfrageURL);
-            }
-            else
-            {
-                request = (HttpWebRequest)WebRequest.Create("https://mv.meinbdp.de/ica/rest/" + anfrageURL);
-            }
+            HttpWebRequest request = await CreateWebRequest(anfrageURL);
+            
             request.Method = "PUT";
-            request.CookieContainer = cookieContainer;
             request.ContentType = "application/json; charset=utf-8";
             Encoding iso = Encoding.UTF8;
             var bytes = iso.GetBytes(postData);
@@ -556,6 +484,36 @@ namespace BdP_MV.Services
 
             return "Erfolgreich geändert" + response.message;
         }
+        private async Task<HttpWebRequest> CreateWebRequest(string anfrageURL)
+        {
+            cookieContainer = new CookieContainer();
+            //cookieContainer = (CookieContainer)App.Current.Properties["cookieContainer"];
+            try
+            {
+                string cookiecontent = await SecureStorage.GetAsync("cookiecontent");
+                string cookiedomain = await SecureStorage.GetAsync("cookiedomain");
+                string cookiepath = await SecureStorage.GetAsync("cookiepath");
+
+                Cookie sessionCookie = new Cookie("JSESSIONID", cookiecontent, cookiepath, cookiedomain);
+                cookieContainer.Add(sessionCookie);
+            }
+            catch (Exception ex)
+            {
+                // Possible that device doesn't support secure storage on device.
+            }
+            HttpWebRequest request;
+            if (qa)
+            {
+                request = (HttpWebRequest)WebRequest.Create("https://qa.mv.meinbdp.de/ica/rest/" + anfrageURL);
+            }
+            else
+            {
+                request = (HttpWebRequest)WebRequest.Create("https://mv.meinbdp.de/ica/rest/" + anfrageURL);
+            }
+            request.CookieContainer = cookieContainer;
+            return request;
+        }
+
 
 
     }

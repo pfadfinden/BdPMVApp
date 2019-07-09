@@ -103,6 +103,14 @@
       <DependentUpon>Basisdaten_Mitglied.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\MitgliederDetails\Edit\New_Ausbildung.xaml.cs">
+      <DependentUpon>New_Ausbildung.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\MitgliederDetails\Edit\New_Taetigkeit.xaml.cs">
+      <DependentUpon>New_Taetigkeit.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\MitgliederDetails\MitgliederStammDaten.xaml.cs">
       <DependentUpon>MitgliederStammDaten.xaml</DependentUpon>
     </Compile>
@@ -118,7 +126,7 @@
       <DependentUpon>Taetigkeiten_Liste.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)View\MitgliederDetails\NewMitglied.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)View\MitgliederDetails\Edit\NewMitglied.xaml.cs">
       <DependentUpon>NewMitglied.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -141,7 +149,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\MitgliederDetails\NewMitglied.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\MitgliederDetails\Edit\NewMitglied.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
@@ -227,6 +235,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\MasterDetail\Reports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\MitgliederDetails\Edit\New_Taetigkeit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\MitgliederDetails\Edit\New_Ausbildung.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

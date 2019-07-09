@@ -9,7 +9,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace BdP_MV.View.MitgliederDetails
+namespace BdP_MV.View.MitgliederDetails.Edit
 {
     public partial class NewMitglied : ContentPage
     {
@@ -108,8 +108,6 @@ namespace BdP_MV.View.MitgliederDetails
                 viewModel.mitglied.emailVertretungsberechtigter = emailVertretungsberechtigter.Text;
                 viewModel.mitglied.land = ((SelectableItem)landpicker.SelectedItem).descriptor;
                 viewModel.mitglied.landId = Convert.ToInt32(((SelectableItem)landpicker.SelectedItem).Id);
-                viewModel.mitglied.staatsangehoerigkeit = ((SelectableItem)landpicker.SelectedItem).descriptor;
-                viewModel.mitglied.staatsangehoerigkeitId = Convert.ToInt32(((SelectableItem)landpicker.SelectedItem).Id);
                 //viewModel.mitglied.geschlecht = ((SelectableItem)geschlechtspicker.SelectedItem).descriptor;
                 viewModel.mitglied.geschlechtId = Convert.ToInt32(((SelectableItem)geschlechtspicker.SelectedItem).Id);
                 viewModel.mitglied.beitragsartId = Convert.ToInt32(((SelectableItem)beitragsartpicker.SelectedItem).Id);
@@ -125,6 +123,9 @@ namespace BdP_MV.View.MitgliederDetails
                     viewModel.mitglied.dyn_BegruendungStamm = begruendungStamm.Text;
                     viewModel.mitglied.mglType = ((SelectableItem)mitgliedsartpicker.SelectedItem).descriptor;
                     viewModel.mitglied.ersteTaetigkeitId = ((SelectableItem)mitgliedsartpicker.SelectedItem).Id;
+                    viewModel.mitglied.staatsangehoerigkeit = ((SelectableItem)landpicker.SelectedItem).descriptor;
+                    viewModel.mitglied.staatsangehoerigkeitId = Convert.ToInt32(((SelectableItem)landpicker.SelectedItem).Id);
+
                 }
                 btn_save.IsEnabled = false;
                 IsBusy = true;

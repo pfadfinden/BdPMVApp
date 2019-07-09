@@ -24,6 +24,7 @@ namespace BdP_MV.Model.Mitglied
         public string mglType { get; set; }
         public string geschlecht { get; set; }
         public object staatsangehoerigkeit { get; set; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public object ersteTaetigkeitId { get; set; }
         public object ersteUntergliederung { get; set; }
         public string lastUpdated { get; set; }
@@ -65,8 +66,10 @@ namespace BdP_MV.Model.Mitglied
         public string dyn_BegruendungMitglied { get; set; }
         public int mitgliedsNummer { get; set; }
         public string gruppierung { get; set; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public DateTime? austrittsDatum { get; set; }
         public string ort { get; set; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public object ersteUntergliederungId { get; set; }
 
         public bool wiederverwendenFlag { get; set; }

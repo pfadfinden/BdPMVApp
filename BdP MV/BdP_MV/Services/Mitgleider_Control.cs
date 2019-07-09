@@ -76,7 +76,7 @@ namespace BdP_MV.Services
             }
             else if (mainC.einsteillungen.sortierreihenfolge == 2)
             {
-                mitglieder = new List<Mitglied>(mitglieder.OrderBy(mitglied => mitglied.entries_vorname).ThenBy(mitglied => mitglied.entries_nachname);
+                mitglieder = new List<Mitglied>(mitglieder.OrderBy(mitglied => mitglied.entries_vorname).ThenBy(mitglied => mitglied.entries_nachname));
             }
             else if (mainC.einsteillungen.sortierreihenfolge == 3)
             {

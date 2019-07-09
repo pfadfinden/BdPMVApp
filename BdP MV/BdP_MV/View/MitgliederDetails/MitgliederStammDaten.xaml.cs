@@ -1,4 +1,5 @@
-﻿using BdP_MV.ViewModel;
+﻿using BdP_MV.View.MitgliederDetails.Edit;
+using BdP_MV.ViewModel;
 using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -33,7 +34,15 @@ namespace BdP_MV.View.MitgliederDetails
             // await SetupMap();
 
         }
+        async void NewMitglied_Activated(object sender, EventArgs e)
+        {
+            viewModel.IsBusy = true;
 
+            NewMitglied neueMitgliesseite = new NewMitglied(viewModel.mitglied);
+            await neueMitgliesseite.LoadPreferences();
+            viewModel.IsBusy = false;
+            await Navigation.PushAsync(neueMitgliesseite);
+        }
 
     }
 }

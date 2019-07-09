@@ -118,10 +118,11 @@ namespace BdP_MV.ViewModel
                            });
             Console.WriteLine(JSONOutput);
 
-            JSONOutput = Regex.Replace(JSONOutput, @"\t|\n|\r", "");
-            JSONOutput = Regex.Unescape(JSONOutput);
-            JSONOutput = Regex.Replace(JSONOutput, @"^""|""$|\\n?", "");
-            JSONOutput = JSONOutput.Replace(@"\", @"");
+       //     JSONOutput = Regex.Replace(JSONOutput, @"\t|\n|\r", "");
+         //   JSONOutput = Regex.Unescape(JSONOutput);
+           // JSONOutput = Regex.Replace(JSONOutput, @"^""|""$|\\n?", "");
+            //JSONOutput = JSONOutput.Replace(System.Environment.NewLine, "");
+            //JSONOutput = JSONOutput.Replace(@"\", @"");
 
             //JSONOutput = JSONOutput.Substring(1, JSONOutput.Length - 1);
             Console.WriteLine(JSONOutput);

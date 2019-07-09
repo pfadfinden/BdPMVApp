@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BdP_MV.View.MitgliederDetails.Edit.New_Ausbildung"
+             Title="Neue Ausbildung">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <ActivityIndicator x:Name="activity"  
+                       IsRunning="{Binding IsBusy}"  
+                       IsEnabled="{Binding IsBusy}"
+                       IsVisible="{Binding IsBusy}"
+                       Color="Blue"  
+                       BackgroundColor="Transparent"/>
+
+
+                <StackLayout Orientation="Horizontal">
+
+                    <Label Text="Kursdatum*" FontSize="Medium" />
+
+                    <DatePicker x:Name="kursdatumEntry" VerticalOptions="CenterAndExpand">
+                        <DatePicker.Format>dd.MM.yyyy</DatePicker.Format>
+                    </DatePicker>
+                </StackLayout>
+                <Picker 
+                    x:Name="kursPicker" 
+                    Title="Kurs*"
+                        ItemDisplayBinding="{Binding descriptor}"/>
+
+
+
+                <Entry x:Name="abwKursName" Placeholder="Abweichender Kursname (z.B. KfS2 oder Kalu)" IsEnabled="False" IsVisible="False"/>
+
+
+
+
+                <Entry x:Name="veranstalter" Placeholder="Veranstalter (z.B. Region Mitte oder anderer LV)" IsEnabled="False" IsVisible="False"/>
+                <Button x:Name="btn_save"  Text="Abschicken" Clicked="Save_Clicked" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

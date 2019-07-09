@@ -3,6 +3,7 @@ using BdP_MV.Model;
 using BdP_MV.Model.Mitglied;
 using BdP_MV.Services;
 using BdP_MV.View.MitgliederDetails;
+using BdP_MV.View.MitgliederDetails.Edit;
 using BdP_MV.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -179,7 +180,7 @@ namespace BdP_MV.View.MasterDetail
         {
                 viewModel.IsBusy = true;
 
-                NewMitglied neueMitgliesseite = new MitgliederDetails.NewMitglied(viewModel.aktGruppe.id);
+                NewMitglied neueMitgliesseite = new MitgliederDetails.Edit.NewMitglied(viewModel.aktGruppe.id);
                 await neueMitgliesseite.LoadPreferences();
                 viewModel.IsBusy = false;
                 await Navigation.PushAsync(neueMitgliesseite);
