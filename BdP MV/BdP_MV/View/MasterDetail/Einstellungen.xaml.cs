@@ -17,23 +17,57 @@ namespace BdP_MV.View.MasterDetail
         private SettingsViewModel viewModel;
 		public Einstellungen ()
 		{
-			InitializeComponent ();
+		
             viewModel = new SettingsViewModel();
             BindingContext = viewModel;
-            kleingruppenload.IsToggled = viewModel.settings.loadKleingruppen;
-            reihenfolgePicker.SelectedItem = ((List<SettingKeyValue>)viewModel.Sortierreihenfolgen).FirstOrDefault(c => c.Value == viewModel.settings.sortierreihenfolge);
+            InitializeComponent();
+            try
+            {
+                viewModel.Sortierreihenfolge = ((List<SettingKeyValue>)viewModel.Sortierreihenfolgen).FirstOrDefault(c => c.Value == viewModel.sortierreihenfolge);
+                reihenfolgePicker.SelectedItem = viewModel.Sortierreihenfolge;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            showInaktiv.IsToggled = viewModel.inaktiveAnzeigen;
+            kleingruppenload.IsToggled = viewModel.loadKleingruppen;
+            
+
+
+
 
 
         }
 
-        public async void settingsChanged(object sender, EventArgs e)
+        public async void reihenfolgeChanged(object sender, EventArgs e)
         {
-            
-           SettingKeyValue reihenfolge=(SettingKeyValue)reihenfolgePicker.SelectedItem;
-            viewModel.settings.sortierreihenfolge = reihenfolge.Value;
-            viewModel.settings.loadKleingruppen = kleingruppenload.IsToggled;
+            try
+            {
+                SettingKeyValue reihenfolge = (SettingKeyValue)reihenfolgePicker.SelectedItem;
+
+                viewModel.sortierreihenfolge = reihenfolge.Value;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            viewModel.EinstellungenAnwenden();
+        }
+
+        public async void kleingruppenChanged(object sender, EventArgs e)
+        {
+            viewModel.loadKleingruppen = kleingruppenload.IsToggled;
+            viewModel.EinstellungenAnwenden();
+        }
+        public async void inaktivAnzeigenChanged(object sender, EventArgs e)
+        {
+            viewModel.inaktiveAnzeigen = showInaktiv.IsToggled;
             viewModel.EinstellungenAnwenden();
 
+
         }
+
+      
     }
 }

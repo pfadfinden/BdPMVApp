@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace BdP_MV.Services
 {
@@ -30,29 +31,37 @@ namespace BdP_MV.Services
             AktiveMitglieder = new List<Mitglied>();
             if (AlleMitglieder != null)
             {
-                foreach (Mitglied aktuellesMitglied in AlleMitglieder)
-                {
-
-                    if (aktuellesMitglied.entries_status.Equals("Aktiv"))
+                Boolean inaktiveAnzeigen =  Preferences.Get("inaktiveAnzeigen", true);
+                if (inaktiveAnzeigen == false)
+                { 
+                    foreach (Mitglied aktuellesMitglied in AlleMitglieder)
                     {
-                        //aktuellesMitglied.alleTaetigkeiten = mainC.MvConnector.Taetigkeiten(aktuellesMitglied.id);
-                        //aktuellesMitglied.Gruppe = GruppennameHerausfinden(aktuellesMitglied.alleTaetigkeiten);
-                        AktiveMitglieder.Add(aktuellesMitglied);
+                                     
+                        if (aktuellesMitglied.entries_status.Equals("Aktiv"))
+                        {
+                            //aktuellesMitglied.alleTaetigkeiten = mainC.MvConnector.Taetigkeiten(aktuellesMitglied.id);
+                            //aktuellesMitglied.Gruppe = GruppennameHerausfinden(aktuellesMitglied.alleTaetigkeiten);
+                            AktiveMitglieder.Add(aktuellesMitglied);
 
+                        }
+                        else if (aktuellesMitglied.entries_status.Equals("Wartend"))
+                        {
+                            AktiveMitglieder.Add(aktuellesMitglied);
+                        }
+                        aktuellesMitglied.ansprechname = ChooseAnsprechname(aktuellesMitglied);
                     }
-                    else if (aktuellesMitglied.entries_status.Equals("Wartend"))
-                    {
-                        AktiveMitglieder.Add(aktuellesMitglied);
-                    }
-                    aktuellesMitglied.ansprechname = ChooseAnsprechname(aktuellesMitglied);
+
                 }
-
-
+                else
+                {
+                    AktiveMitglieder = AlleMitglieder;
+                    foreach (Mitglied aktuellesMitglied in AktiveMitglieder)
+                    {
+                        aktuellesMitglied.ansprechname = ChooseAnsprechname(aktuellesMitglied);
+                    }
+                }
                 AktiveMitglieder = MitgliederSort(AktiveMitglieder);
-
-
             }
-
         }
         private List<Mitglied> MitgliederNachbearbeiten(List<Mitglied> mitglieder)
         {
@@ -70,15 +79,16 @@ namespace BdP_MV.Services
         }
         private List<Mitglied> MitgliederSort (List<Mitglied> mitglieder)
         {
-            if (mainC.einsteillungen.sortierreihenfolge == 1)
+            int sortierreihenfolge = Preferences.Get("sortierreihenfolge",1);
+            if (sortierreihenfolge == 1)
             {
                 mitglieder = new List<Mitglied>(mitglieder.OrderBy(mitglied => mitglied.entries_nachname).ThenBy(mitglied => mitglied.entries_vorname));
             }
-            else if (mainC.einsteillungen.sortierreihenfolge == 2)
+            else if (sortierreihenfolge == 2)
             {
                 mitglieder = new List<Mitglied>(mitglieder.OrderBy(mitglied => mitglied.entries_vorname).ThenBy(mitglied => mitglied.entries_nachname));
             }
-            else if (mainC.einsteillungen.sortierreihenfolge == 3)
+            else if (sortierreihenfolge == 3)
             {
                 mitglieder = new List<Mitglied>(mitglieder.OrderBy(mitglied => mitglied.ansprechname).ThenBy(mitglied => mitglied.entries_nachname));
 
@@ -222,8 +232,8 @@ namespace BdP_MV.Services
         {
             //AlleMitglieder = await Task<List<Mitglied>>.Run(() => mainC.MvConnector.Mitglieder(mainC.gruppencontroller.AktuelleGruppe, true));
 
-
-            AlleMitglieder = await mainC.mVConnector.Mitglieder(mainC.einsteillungen.aktuelleGruppe, true);
+            int aktuelleGruppe =  Preferences.Get("aktuelleGruppe", 0);
+            AlleMitglieder = await mainC.mVConnector.Mitglieder(aktuelleGruppe, true);
             MitgliederNachbearbeiten();
 
             Console.WriteLine("Mitglieder_Gefiltert");

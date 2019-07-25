@@ -8,6 +8,7 @@ using BdP_MV.Services;
 using MvvmHelpers;
 using Xamarin.Forms;
 using System;
+using Xamarin.Essentials;
 
 namespace BdP_MV.ViewModel
 {
@@ -29,7 +30,7 @@ namespace BdP_MV.ViewModel
         public async Task MitgliederAusGruppeLaden()
         {
             IsBusy = true;
-            mainC.einsteillungen.aktuelleGruppe = aktGruppe.id;
+            Preferences.Set("aktuelleGruppe", aktGruppe.id); 
             await Task.Run(async () => await mainC.mitgliederController.MitgliederAktualisierenByGroup());
 
             ausgewaehlteMitglieder = mainC.mitgliederController.AktiveMitglieder;

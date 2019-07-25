@@ -3,29 +3,33 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BdP_MV.View.MasterDetail.Einstellungen">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="StartAndExpand">
-            <ActivityIndicator 
-                       IsVisible="{Binding IsBusy}"
-                       IsRunning="{Binding IsBusy}"
-                        IsEnabled="{Binding IsBusy}"
-                       VerticalOptions="CenterAndExpand"
-                       HorizontalOptions="CenterAndExpand"
-                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.33}" />
+        <StackLayout VerticalOptions="StartAndExpand" Padding="2,5,2,5">
+           
+            <StackLayout Orientation="Horizontal">
 
-            <Picker x:Name="reihenfolgePicker"
-            SelectedIndexChanged="settingsChanged"
+                <Label Text="Sortierreihenfolge" FontSize="Medium" />
+                <Picker x:Name="reihenfolgePicker"
+            SelectedIndexChanged="reihenfolgeChanged"
 
             Title="Sortierreihenfolge"
             ItemsSource="{Binding Sortierreihenfolgen}"
-            SelectedItem="{Binding Sortierreihenfolge}"
             ItemDisplayBinding="{Binding Name}"/>
-
+            </StackLayout>
+            <Label Text="Die beeinflusst die Sortierung der Suchergebnisse und der Mitgliederliste." FontSize="Small" />
+            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="5" Color="#1D4899"/>
             <StackLayout Orientation="Horizontal">
 
                 <Label Text="Kleingruppen laden" FontSize="Medium" />
-                <Switch x:Name="kleingruppenload" IsToggled="true" Toggled="settingsChanged" />
+                <Switch x:Name="kleingruppenload"  Toggled="kleingruppenChanged" />
             </StackLayout>
+            <Label Text="Die Namen der Kelingruppen im Stamm werden geladen. Dies erhöht die Ladezeit minimal." FontSize="Small" />
+            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="5" Color="#1D4899"/>
+            <StackLayout Orientation="Horizontal">
 
+                <Label Text="Inaktive anzeigen" FontSize="Medium" />
+                <Switch x:Name="showInaktiv" Toggled="inaktivAnzeigenChanged" />
+            </StackLayout>
+            <Label Text="Inaktive Mitglieder werden in der Mitgliederliste der Gruppen angezeigt." FontSize="Small" />
 
 
 

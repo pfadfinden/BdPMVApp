@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 
@@ -51,9 +51,19 @@ namespace BdP_MV.ViewModel
         public async Task Nachbearbeitung()
         {
             Task<String> t1 = Task<String>.Run(() => mainC.mitgliederController.latestSGB8(sgb8));
-            Task<String> t2 = Task<String>.Run(() => mainC.mitgliederController.GruppennameHerausfinden(taetigkeiten));
+            Boolean loadKleingruppen=Preferences.Get("loadKleingruppen", true);
+            if (loadKleingruppen)
+            {
+
+                Task<String> t2 = Task<String>.Run(() => mainC.mitgliederController.GruppennameHerausfinden(taetigkeiten));
+                mitglied.kleingruppe = await t2;
+            }
+            else
+            {
+                mitglied.kleingruppe = "Es werden keine Kleingruppen geladen. Bitte in den Einstellungen auswählen.";
+            }
             latestSGB8 = await t1;
-            mitglied.kleingruppe = await t2;
+            
             HasKleingruppe = !string.IsNullOrWhiteSpace(mitglied?.kleingruppe);
             TaetigkeitenFilter();
 

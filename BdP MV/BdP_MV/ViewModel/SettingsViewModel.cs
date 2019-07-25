@@ -6,19 +6,23 @@ using System.Windows.Input;
 
 using Xamarin.Forms;
 using System.Collections.Generic;
+using Xamarin.Essentials;
 
 namespace BdP_MV.ViewModel
 {
-    public class SettingsViewModel : BaseViewModel
+    public class SettingsViewModel : BaseNavigationViewModel
     {
         public List<SettingKeyValue> Sortierreihenfolgen { get; set; } = new List<SettingKeyValue>()
     {
         new SettingKeyValue(){Name = "Nachname, Vorname",Value = 1},
         new SettingKeyValue(){Name = "Vorname, Nachname",Value = 2},
-        new SettingKeyValue(){Name = "Ansprechname, Nachname",Value = 3}
+        new SettingKeyValue(){Name = "Spitz-/Vorname, Nachname",Value = 3}
     };
         public MainController mainC = new MainController();
-        public Einstellungen settings;
+        
+        public Boolean loadKleingruppen { get; set; }
+        public Boolean inaktiveAnzeigen { get; set; }
+        public int sortierreihenfolge { get; set; }
 
         private SettingKeyValue _sortierreihenfolge;
         public SettingKeyValue Sortierreihenfolge
@@ -36,14 +40,19 @@ namespace BdP_MV.ViewModel
 
         public SettingsViewModel()
         {
-            Title = "Einstellungen";
-            settings = mainC.einsteillungen;
+            loadKleingruppen = true;
+
+            sortierreihenfolge = Preferences.Get("sortierreihenfolge", 1);
+            loadKleingruppen = Preferences.Get("loadKleingruppen", true);
+            inaktiveAnzeigen = Preferences.Get("inaktiveAnzeigen", true);
 
         }
-        public async void EinstellungenAnwenden()
+        public void EinstellungenAnwenden()
         {
-            mainC.einsteillungen = settings;
-            Application.Current.Properties["settings"] = mainC.einsteillungen;
+            Preferences.Set("sortierreihenfolge", sortierreihenfolge);
+            Preferences.Set("loadKleingruppen", loadKleingruppen);
+            Preferences.Set("inaktiveAnzeigen", inaktiveAnzeigen);
+            
             
 
         }
