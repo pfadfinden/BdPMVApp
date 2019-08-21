@@ -30,7 +30,7 @@ namespace BdP_MV.Services
                     aktGruppe.descriptor = reg.Replace(aktGruppe.descriptor, "$1");
                     aktGruppe.descriptor = prefix + aktGruppe.descriptor;
                     alleGruppen.Add(aktGruppe);
-                    await AlleGruppenAbrufen(aktGruppe.id, prefix+"-").ConfigureAwait(false);
+                    await AlleGruppenAbrufen(aktGruppe.id, prefix+"- ").ConfigureAwait(false);
                 }
 
         }
