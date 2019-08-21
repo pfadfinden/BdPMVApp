@@ -22,7 +22,7 @@
                 <Label Text="Kleingruppen laden" FontSize="Medium" />
                 <Switch x:Name="kleingruppenload"  Toggled="kleingruppenChanged" />
             </StackLayout>
-            <Label Text="Die Namen der Kelingruppen im Stamm werden geladen. Dies erhöht die Ladezeit minimal." FontSize="Small" />
+            <Label Text="Die Namen der Kleingruppen im Stamm werden geladen. Dies erhöht die Ladezeit minimal." FontSize="Small" />
             <BoxView HorizontalOptions="FillAndExpand" HeightRequest="5" Color="#1D4899"/>
             <StackLayout Orientation="Horizontal">
 
