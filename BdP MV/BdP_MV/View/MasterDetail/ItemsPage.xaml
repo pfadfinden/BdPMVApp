@@ -14,7 +14,7 @@
                 
                 <Picker 
                     x:Name="testpicker" 
-            Title="Gruppe auswählen"
+            Title="&#8595; Gruppe auswählen"
                     SelectedIndexChanged="thePickerSelectedIndexChanged"
 
                     ItemDisplayBinding="{Binding descriptor}"
@@ -22,6 +22,8 @@
            
                 />
                 <!--ItemsSource="{Binding alleGruppen}"-->
+                <BoxView HorizontalOptions="FillAndExpand" HeightRequest="5" Color="#1D4899"/>
+
                 <ListView x:Name="MitgliedView" ItemTapped="ItemTapped" >
                     <ListView.ItemTemplate>
                         <DataTemplate>
