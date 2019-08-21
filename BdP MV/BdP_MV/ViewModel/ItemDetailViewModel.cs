@@ -43,6 +43,7 @@ namespace BdP_MV.ViewModel
 
         public bool HasParentEmailAddress => !string.IsNullOrWhiteSpace(mitglied?.emailVertretungsberechtigter);
         public bool IsEditable = true;
+        public string pfadeJaNein;
 
 
 
@@ -65,7 +66,15 @@ namespace BdP_MV.ViewModel
                 mitglied.kleingruppe = "Es werden keine Kleingruppen geladen. Bitte in den Einstellungen auswählen.";
             }
             latestSGB8 = await t1;
-            
+            if (mitglied.zeitschriftenversand)
+            {
+                pfadeJaNein = "ja";
+            }
+            else
+            {
+                pfadeJaNein = "nein";
+            }
+
             HasKleingruppe = !string.IsNullOrWhiteSpace(mitglied?.kleingruppe);
             TaetigkeitenFilter();
 

@@ -56,7 +56,9 @@ namespace BdP_MV.View.MitgliederDetails
             }
             String infos = "Untergliederung: " + selectedTaetigkeit.entries_gruppierung + "\nStatus: " + status + "\n" + zeitraum ;
             if (!string.IsNullOrWhiteSpace(selectedTaetigkeit.entries_untergliederung))
+            {
                 infos += "\nBereich: " + selectedTaetigkeit.entries_untergliederung;
+            }    
 
              await DisplayAlert(selectedTaetigkeit.entries_taetigkeit, infos, "OK");
 

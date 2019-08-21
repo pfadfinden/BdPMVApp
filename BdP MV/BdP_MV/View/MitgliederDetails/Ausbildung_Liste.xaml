@@ -26,7 +26,7 @@
                         <Label Text="{Binding entries_baustein}" Style="{DynamicResource ListItemTextStyle}"  Font="Bold" />
                         <StackLayout Orientation="Horizontal">
                             <Label Text="Datum"  Style="{DynamicResource ListItemDetailTextStyle}"></Label>
-                            <Label Text="{Binding entries_vstgTag , StringFormat='{0:d/M/yyyy}'}"  Style="{DynamicResource ListItemDetailTextStyle}"></Label>
+                            <Label Text="{Binding entries_vstgTag , StringFormat='{0:d/MM/yyyy}'}"  Style="{DynamicResource ListItemDetailTextStyle}"></Label>
 
                         </StackLayout>
                     </StackLayout>
