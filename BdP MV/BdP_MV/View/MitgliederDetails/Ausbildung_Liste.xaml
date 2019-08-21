@@ -22,7 +22,7 @@
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <StackLayout>
+                        <StackLayout Padding="10,0,0,0">
                         <Label Text="{Binding entries_baustein}" Style="{DynamicResource ListItemTextStyle}"  Font="Bold" />
                         <StackLayout Orientation="Horizontal">
                             <Label Text="Datum"  Style="{DynamicResource ListItemDetailTextStyle}"></Label>

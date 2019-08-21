@@ -66,6 +66,10 @@ namespace BdP_MV.ViewModel
                 mitglied.kleingruppe = "Es werden keine Kleingruppen geladen. Bitte in den Einstellungen auswählen.";
             }
             latestSGB8 = await t1;
+
+            
+            HasKleingruppe = !string.IsNullOrWhiteSpace(mitglied?.kleingruppe);
+            TaetigkeitenFilter();
             if (mitglied.zeitschriftenversand)
             {
                 pfadeJaNein = "ja";
@@ -75,8 +79,6 @@ namespace BdP_MV.ViewModel
                 pfadeJaNein = "nein";
             }
 
-            HasKleingruppe = !string.IsNullOrWhiteSpace(mitglied?.kleingruppe);
-            TaetigkeitenFilter();
 
 
 

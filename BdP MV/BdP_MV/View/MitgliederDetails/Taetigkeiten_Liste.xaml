@@ -17,7 +17,7 @@
 
                     />
             <Label Text="Nur Aktive Tätgkeiten"  TextColor="Gray" Font="Bold"></Label>
-
+            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="5" Color="#1D4899"/>
         </StackLayout>
 
         <ListView x:Name="MyListView"
@@ -33,7 +33,7 @@
                     <StackLayout>
                         <Label Text="{Binding entries_taetigkeit}" 
                    Style="{DynamicResource ListItemTextStyle}" />
-                        <StackLayout Orientation="Horizontal">
+                            <StackLayout Orientation="Horizontal" Padding="10,0,0,0">
                             <Label Text="Untergliederung"  Style="{DynamicResource ListItemDetailTextStyle}"></Label>
                             <Label Text="{Binding entries_gruppierung}"  Style="{DynamicResource ListItemDetailTextStyle}"></Label>
                             
