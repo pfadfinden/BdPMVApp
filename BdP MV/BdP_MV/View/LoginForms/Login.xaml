@@ -17,7 +17,7 @@
             </Grid.RowDefinitions>
 
             <Grid x:Name="grdContainer" Grid.Row="0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" RowSpacing="0">
-                <StackLayout VerticalOptions="StartAndExpand">
+                <StackLayout VerticalOptions="StartAndExpand" BackgroundColor="White" Opacity="0.5" >
                     <ActivityIndicator 
                        IsVisible="{Binding IsBusy}"
                        IsRunning="{Binding IsBusy}"
@@ -25,8 +25,8 @@
                        HorizontalOptions="CenterAndExpand"
                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.33}" />
 
-                    <Entry x:Name="usernameEntry" Placeholder="Benutzername" TextColor="White" PlaceholderColor="White"/>
-                    <Entry x:Name="passwordEntry" Placeholder="Passwort"  IsPassword="true" TextColor="White" PlaceholderColor="White" />
+                    <Entry x:Name="usernameEntry" Placeholder="Benutzername" TextColor="#1D4899" PlaceholderColor="#1D4899"/>
+                    <Entry x:Name="passwordEntry" Placeholder="Passwort"  IsPassword="true" TextColor="#1D4899" PlaceholderColor="#1D4899"/>
                     <Button Text="Login" Clicked="OnLoginButtonClicked" />
                     <Button Text="Passwort Vergessen" Clicked="OnPWLostButtonClicked" />
 
