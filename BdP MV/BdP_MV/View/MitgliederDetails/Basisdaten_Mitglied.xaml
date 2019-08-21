@@ -43,6 +43,10 @@
                                 <Label Text="{Binding mitglied.alter}"  TextColor="Gray"></Label>
                             </StackLayout>
                             <StackLayout Orientation="Horizontal">
+                                <Label Text="Geschlecht:" TextColor="Gray" Font="Bold"></Label>
+                                <Label Text="{Binding mitglied.geschlecht}"  TextColor="Gray"></Label>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
                                 <Label Text="Status:" TextColor="Gray" Font="Bold"></Label>
                                 <Label Text="{Binding mitglied.status}"  TextColor="Gray"></Label>
                             </StackLayout>
