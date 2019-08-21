@@ -27,16 +27,16 @@
                 <ListView x:Name="MitgliedView" ItemTapped="ItemTapped" >
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
-                                <StackLayout Orientation="Vertical" Padding="10,0,0,0">
-                                    <Label Text="{Binding ansprechname}"></Label>
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding entries_vorname}" TextColor="Gray"></Label>
-                                        <Label Text="{Binding entries_nachname}"  TextColor="Gray"></Label>
-                                    </StackLayout>
+                                <ViewCell>
+                                    <StackLayout Orientation="Vertical" Padding="10,0,0,0">
+                                        <Label Text="{Binding ansprechname}"></Label>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding entries_vorname}" ></Label>
+                                            <Label Text="{Binding entries_nachname}" ></Label>
+                                        </StackLayout>
 
-                                </StackLayout>
-                            </ViewCell>
+                                    </StackLayout>
+                                </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>

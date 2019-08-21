@@ -39,6 +39,8 @@ namespace BdP_MV.ViewModel
 
         public bool HasAddress => true;
         public bool HasEmailAddress => !string.IsNullOrWhiteSpace(mitglied?.email);
+        public bool HasEmailAddress2 => !string.IsNullOrWhiteSpace(mitglied?.dyn_eMail2);
+
         public bool HasParentEmailAddress => !string.IsNullOrWhiteSpace(mitglied?.emailVertretungsberechtigter);
         public bool IsEditable = true;
 
@@ -148,6 +150,22 @@ namespace BdP_MV.ViewModel
             else
             {
                 Device.OpenUri(new Uri("mailto:" + mitglied.email));
+            }
+
+
+        }
+        Command _Email2Command;
+
+        public Command Email2Command => _Email2Command ??
+                                     (_Email2Command = new Command(ExecuteEmail2CommandCommand));
+
+        void ExecuteEmail2CommandCommand()
+        {
+            if (string.IsNullOrWhiteSpace(mitglied.email))
+                return;
+            else
+            {
+                Device.OpenUri(new Uri("mailto:" + mitglied.dyn_eMail2));
             }
 
 

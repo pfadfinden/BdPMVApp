@@ -78,6 +78,7 @@
             <Entry x:Name="ort" Placeholder="Ort"/>
             <Entry x:Name="email" Placeholder="E-Mail"/>
             <Entry x:Name="emailVertretungsberechtigter" Placeholder="E-Mail Erziehungsberechtigt"/>
+            <Entry x:Name="email2" Placeholder="E-Mail 2"/>
             <Entry x:Name="telefon1" Placeholder="Telefon"/>
             <Entry x:Name="telefon3" Placeholder="Mobiltelefon"/>
             <Entry x:Name="begruendungMitglied" Placeholder="Aufnahmeantrag Ü18: Begründung Mitglied" IsEnabled="False" IsVisible="False"/>

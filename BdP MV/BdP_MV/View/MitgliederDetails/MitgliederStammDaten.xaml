@@ -108,6 +108,21 @@
                                        </Label>
                                 </StackLayout>
                             </ContentView>
+                            <ContentView IsEnabled="{Binding HasEmailAddress2}" IsVisible="{Binding HasEmailAddress2}">
+                                <StackLayout Orientation="Horizontal" Spacing="10">
+                                    <Image Source="email.png" Aspect="AspectFit" HeightRequest="20" WidthRequest="20">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding EmailCommand}" NumberOfTapsRequired="1" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                    <Label Text="{Binding mitglied.dyn_eMail2}" FontSize="Small" HeightRequest="20" LineBreakMode="TailTruncation" VerticalTextAlignment="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Email2Command}" NumberOfTapsRequired="1" />
+                                        </Label.GestureRecognizers>
+
+                                    </Label>
+                                </StackLayout>
+                            </ContentView>
                         </StackLayout>
                     </StackLayout>
                 </ContentView>

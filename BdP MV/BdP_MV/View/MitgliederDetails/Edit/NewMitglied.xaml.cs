@@ -48,6 +48,7 @@ namespace BdP_MV.View.MitgliederDetails.Edit
             geburtsdatumEntry.Date = (DateTime)viewModel.mitglied.geburtsDatum;
             eintrittsdatumEntry.Date = (DateTime)viewModel.mitglied.eintrittsdatum;
             email.Text = viewModel.mitglied.email;
+            email2.Text = viewModel.mitglied.dyn_eMail2;
             zeitschriftenversand.IsToggled = viewModel.mitglied.zeitschriftenversand;
             emailVertretungsberechtigter.Text = viewModel.mitglied.emailVertretungsberechtigter;
             try
@@ -104,6 +105,7 @@ namespace BdP_MV.View.MitgliederDetails.Edit
                 viewModel.mitglied.geburtsDatum = geburtsdatumEntry.Date;
                 viewModel.mitglied.eintrittsdatum = eintrittsdatumEntry.Date;
                 viewModel.mitglied.email = email.Text;
+                viewModel.mitglied.dyn_eMail2 = email2.Text;
                 viewModel.mitglied.zeitschriftenversand = zeitschriftenversand.IsToggled;
                 viewModel.mitglied.emailVertretungsberechtigter = emailVertretungsberechtigter.Text;
                 viewModel.mitglied.land = ((SelectableItem)landpicker.SelectedItem).descriptor;
