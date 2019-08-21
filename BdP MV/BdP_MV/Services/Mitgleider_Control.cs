@@ -217,7 +217,7 @@ namespace BdP_MV.Services
 
             if (fuehrungszeugnisse.Count==0)
             {
-                returnString = "Kein Führungszeungnis eingesehen";
+                returnString = "Kein Führungszeugnis eingesehen";
             }
             else
             {
