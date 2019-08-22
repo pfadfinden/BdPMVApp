@@ -59,9 +59,9 @@ namespace BdP_MV.View.MitgliederDetails
             {
                 infos += "\nBereich: " + selectedTaetigkeit.entries_untergliederung;
             }
-            if (!string.IsNullOrWhiteSpace(selectedTaetigkeit.caeaGroup))
+            if (!string.IsNullOrWhiteSpace(selectedTaetigkeit.entries_caeaGroup))
             {
-                infos += "\nRechtegruppe: " + selectedTaetigkeit.caeaGroup;
+                infos += "\nRechtegruppe: " + selectedTaetigkeit.entries_caeaGroup;
             }
             
             await DisplayAlert(selectedTaetigkeit.entries_taetigkeit, infos, "OK");

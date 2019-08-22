@@ -36,7 +36,7 @@
                             </StackLayout>
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="Geburtsdatum:" TextColor="Gray" Font="Bold"></Label>
-                                <Label Text="{Binding mitglied.geburtsDatum , StringFormat='{0:d/MM/yyyy}'}" TextColor="Gray"></Label>
+                                <Label Text="{Binding mitglied.geburtsDatum , StringFormat='{0:dd/MM/yyyy}'}" TextColor="Gray"></Label>
                             </StackLayout>
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="Alter:" TextColor="Gray" Font="Bold"></Label>

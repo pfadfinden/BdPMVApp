@@ -12,7 +12,7 @@ namespace BdP_MV.Model.Mitglied
         public string mitglied { get; set; }
         public DateTime? vstgTag { get; set; }
         public string vstgName { get; set; }
-        public object veranstalter { get; set; }
+        public string veranstalter { get; set; }
         public object lastModifiedFrom { get; set; }
     }
 

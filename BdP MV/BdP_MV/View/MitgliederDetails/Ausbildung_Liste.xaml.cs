@@ -54,7 +54,7 @@ namespace BdP_MV.View.MitgliederDetails
                 }
                 if (!string.IsNullOrWhiteSpace(ausbildung_selected_details.veranstalter))
                 {
-                    details += "\nVeranstalter: " + ausbildung_selected_details.vstgNveranstalterame;
+                    details += "\nVeranstalter: " + ausbildung_selected_details.vstgName;
                 }
                 IsBusy = false;
                 await DisplayAlert(selected.entries_baustein, details, "OK");
