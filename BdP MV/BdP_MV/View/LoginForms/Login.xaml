@@ -17,7 +17,7 @@
             </Grid.RowDefinitions>
 
             <Grid x:Name="grdContainer" Grid.Row="0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" RowSpacing="0">
-                <ContentView BackgroundColor="White" Opacity=0.5" VerticalOptions="FillAndExpand" />
+                <ContentView BackgroundColor="White" Opacity="0.5" VerticalOptions="FillAndExpand" />
                 <StackLayout VerticalOptions="StartAndExpand">
                     <ActivityIndicator 
                        IsVisible="{Binding IsBusy}"

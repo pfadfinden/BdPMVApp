@@ -48,6 +48,14 @@ namespace BdP_MV.View.MitgliederDetails
                 datum = (DateTime)ausbildung_selected_details.vstgTag;
                 details += "\nKursdatum: " + datum.ToString("d", ci);
                 details += "\nMitglied: " + ausbildung_selected_details.mitglied;
+                if (!string.IsNullOrWhiteSpace(ausbildung_selected_details.vstgName))
+                {
+                    details += "\nAbweichender Kursname: " + ausbildung_selected_details.vstgName;
+                }
+                if (!string.IsNullOrWhiteSpace(ausbildung_selected_details.veranstalter))
+                {
+                    details += "\nVeranstalter: " + ausbildung_selected_details.vstgNveranstalterame;
+                }
                 IsBusy = false;
                 await DisplayAlert(selected.entries_baustein, details, "OK");
             }

@@ -43,15 +43,15 @@ namespace BdP_MV.ViewModel
 
         public bool HasParentEmailAddress => !string.IsNullOrWhiteSpace(mitglied?.emailVertretungsberechtigter);
         public bool IsEditable = true;
-        public string pfadeJaNein;
+        public string pfadeJaNein{ private set; get; }
 
 
 
-        // this is just a utility service that we're using in this demo app to mitigate some limitations of the iOS simulator
+    // this is just a utility service that we're using in this demo app to mitigate some limitations of the iOS simulator
 
 
 
-        public async Task Nachbearbeitung()
+    public async Task Nachbearbeitung()
         {
             Task<String> t1 = Task<String>.Run(() => mainC.mitgliederController.latestSGB8(sgb8));
             Boolean loadKleingruppen=Preferences.Get("loadKleingruppen", true);
