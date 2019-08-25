@@ -12,19 +12,32 @@
 
 
 
-                <StackLayout Orientation="Horizontal">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
                     <Picker 
                     x:Name="testpicker" 
             Title="Gruppe auswählen"
                     SelectedIndexChanged="thePickerSelectedIndexChanged"
-
+                    Margin="10,0,0,0"
                     ItemDisplayBinding="{Binding descriptor}"
                     SelectedItem="{Binding aktGruppe}"
-                    
+                    Grid.Row="0" Grid.Column="0" 
            
                 />
-                    <Label Text="&#8870;"></Label>
-                </StackLayout>
+                    <Label Text="&#x22C1;"
+                            Margin="0,0,10,0"
+                            HorizontalOptions="Center" 
+                            VerticalOptions="Center" 
+                    Grid.Row="0" Grid.Column="1" 
+                           />
+                </Grid>
                 <!--ItemsSource="{Binding alleGruppen}"-->
                 <BoxView HorizontalOptions="FillAndExpand" HeightRequest="5" Color="#1D4899"/>
 
@@ -47,13 +60,14 @@
 
 
             </StackLayout>
+        
             <ImageButton x:Name="ImageNewButton" Source="plus_bdp.png"
                             Clicked="NewMitglied_Activated"
-                            Scale="0.8"
                             IsVisible="{Binding isNewMitgliedEnabled}"
                             AbsoluteLayout.LayoutFlags="PositionProportional"
                             AbsoluteLayout.LayoutBounds="1.0,1.0,-1,-1"
                             Margin="10"
+                            Scale="0.8"
                             BackgroundColor="Transparent">
             </ImageButton>
             <ActivityIndicator x:Name="activity"  
