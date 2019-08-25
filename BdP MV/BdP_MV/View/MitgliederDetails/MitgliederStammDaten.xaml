@@ -16,17 +16,25 @@
                 <ContentView Padding="10">
                     <StackLayout Orientation="Horizontal" Spacing="10">
                          <StackLayout Spacing="10">
+                          
                             <ContentView>
-                                <StackLayout Orientation="Vertical">
-                                    <Label Text="{Binding mitglied.ansprechname}"></Label>
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding mitglied.vorname}" TextColor="Gray"></Label>
-                                        <Label Text="{Binding mitglied.nachname}"  TextColor="Gray"></Label>
+                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                <Image Source="user.png" Aspect="AspectFit" HeightRequest="20" WidthRequest="20">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding GetDirectionsCommand}" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                <StackLayout Spacing="0">
+                                <Label Text="{Binding mitglied.ansprechname}"></Label>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding mitglied.vorname}" TextColor="Gray"></Label>
+                                            <Label Text="{Binding mitglied.nachname}"  TextColor="Gray"></Label>
+                                        </StackLayout>
                                     </StackLayout>
 
                                 </StackLayout>
-                            </ContentView>
-                            <ContentView IsEnabled="{Binding HasAddress}" IsVisible="{Binding HasAddress}">
+                </ContentView>
+                <ContentView IsEnabled="{Binding HasAddress}" IsVisible="{Binding HasAddress}">
                                 <StackLayout Orientation="Horizontal" Spacing="10">
                                     <Image Source="directions.png" Aspect="AspectFit" HeightRequest="20" WidthRequest="20">
                                         <Image.GestureRecognizers>
@@ -133,6 +141,7 @@
                             IsVisible="{Binding isEditable}"
                             AbsoluteLayout.LayoutFlags="PositionProportional"
                             AbsoluteLayout.LayoutBounds="1.0,1.0,-1,-1"
+                            Scale="0.8"
                             Margin="10"
                             BackgroundColor="Transparent">
             </ImageButton>

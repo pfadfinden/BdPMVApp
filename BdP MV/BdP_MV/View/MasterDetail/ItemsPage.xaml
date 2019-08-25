@@ -9,18 +9,22 @@
     <ContentPage.Content>
         <AbsoluteLayout x:Name="AbsoluteLayoutWidgets" Grid.Row="4" Padding="0">
             <StackLayout Spacing="0" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" VerticalOptions="FillAndExpand">
-                
-                   
-                
-                <Picker 
+
+
+
+                <StackLayout Orientation="Horizontal">
+                    <Picker 
                     x:Name="testpicker" 
-            Title="&#8595; Gruppe auswählen"
+            Title="Gruppe auswählen"
                     SelectedIndexChanged="thePickerSelectedIndexChanged"
 
                     ItemDisplayBinding="{Binding descriptor}"
                     SelectedItem="{Binding aktGruppe}"
+                    
            
                 />
+                    <Label Text="&#8870;"></Label>
+                </StackLayout>
                 <!--ItemsSource="{Binding alleGruppen}"-->
                 <BoxView HorizontalOptions="FillAndExpand" HeightRequest="5" Color="#1D4899"/>
 
@@ -45,6 +49,7 @@
             </StackLayout>
             <ImageButton x:Name="ImageNewButton" Source="plus_bdp.png"
                             Clicked="NewMitglied_Activated"
+                            Scale="0.8"
                             IsVisible="{Binding isNewMitgliedEnabled}"
                             AbsoluteLayout.LayoutFlags="PositionProportional"
                             AbsoluteLayout.LayoutBounds="1.0,1.0,-1,-1"

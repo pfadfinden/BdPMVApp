@@ -11,16 +11,17 @@
                        VerticalOptions="CenterAndExpand"
                        HorizontalOptions="CenterAndExpand"
                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.33}" />
-        <StackLayout Orientation="Horizontal">
+        <StackLayout Orientation="Horizontal" Padding="10,0,0,0">
             <Switch x:Name="nurAktiv" IsToggled="{Binding nurAktiv}" 
                                    Toggled="nurAktiv_Toggled"
 
                     />
-            <Label Text="Nur Aktive Tätgkeiten"  TextColor="Gray" Font="Bold"></Label>
+            <Label Text="Nur aktive Tätgkeiten"  TextColor="Gray" Font="Bold"></Label>
            
         </StackLayout>
+        <BoxView HorizontalOptions="FillAndExpand" HeightRequest="5" Color="#1D4899"/>
 
-    <ListView x:Name="MyListView"
+        <ListView x:Name="MyListView"
          ItemsSource="{Binding taetigkeiten}"
          ItemTapped="Handle_ItemTapped"
          CachingStrategy="RecycleElement"

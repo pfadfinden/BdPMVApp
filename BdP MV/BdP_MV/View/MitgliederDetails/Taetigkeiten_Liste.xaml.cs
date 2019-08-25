@@ -54,10 +54,15 @@ namespace BdP_MV.View.MitgliederDetails
 
                 zeitraum = "Von " + von.ToString("d", ci)+ " bis "+ bis.ToString("d", ci);
             }
-            String infos = "Untergliederung: " + selectedTaetigkeit.entries_gruppierung + "\nStatus: " + status + "\n" + zeitraum ;
+            String infos;
             if (!string.IsNullOrWhiteSpace(selectedTaetigkeit.entries_untergliederung))
             {
-                infos += "\nBereich: " + selectedTaetigkeit.entries_untergliederung;
+                infos = "Bereich: " + selectedTaetigkeit.entries_untergliederung;
+                infos += "\nUntergliederung: " + selectedTaetigkeit.entries_gruppierung + "\nStatus: " + status + "\n" + zeitraum;
+            }
+            else
+            {
+                infos = "Untergliederung: " + selectedTaetigkeit.entries_gruppierung + "\nStatus: " + status + "\n" + zeitraum;
             }
             if (!string.IsNullOrWhiteSpace(selectedTaetigkeit.entries_caeaGroup))
             {

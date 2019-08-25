@@ -17,14 +17,22 @@ using Xamarin.Forms.Xaml;
 
 namespace BdP_MV.View.MasterDetail
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ItemsPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ItemsPage : ContentPage
     {
         protected ItemsViewModel viewModel;
         private Boolean searchOrigin;
 
-        
 
+
+        public ItemsPage()
+        {
+            searchOrigin = false;
+            testpicker.ItemsSource = (List<Gruppe>)App.Current.Properties["Gruppen"];
+            viewModel = new ItemsViewModel(new MainController());
+            BindingContext = viewModel;
+
+        }
 
         public ItemsPage(MainController mainCo)
         {

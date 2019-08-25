@@ -8,58 +8,61 @@
 
             <StackLayout Spacing="0" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"  VerticalOptions="FillAndExpand">
                 <ContentView Padding="10">
-                    <StackLayout Orientation="Horizontal" Spacing="10">
+                                        
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
 
-                        <StackLayout Orientation="Vertical">
-                            <Label Text="{Binding mitglied.ansprechname}"></Label>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding mitglied.vorname}" TextColor="Gray"></Label>
-                                <Label Text="{Binding mitglied.nachname}"  TextColor="Gray"></Label>
-                            </StackLayout>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="Mitglieds ID:" TextColor="Gray" Font="Bold"></Label>
-                                <Label Text="{Binding mitglied.id}"  TextColor="Gray"></Label>
-                            </StackLayout>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="Status:" TextColor="Gray" Font="Bold"></Label>
-                                <Label Text="{Binding mitglied.status}"  TextColor="Gray"></Label>
-                            </StackLayout>
-                            <ContentView IsEnabled="{Binding HasKleingruppe}" IsVisible="{Binding HasKleingruppe}">
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="Kleingruppe:" TextColor="Gray" Font="Bold"></Label>
-                                    <Label Text="{Binding mitglied.kleingruppe}"  TextColor="Gray"></Label>
-                                </StackLayout>
-                            </ContentView>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="Eintrittsdatum:" TextColor="Gray" Font="Bold"></Label>
-                                <Label Text="{Binding mitglied.eintrittsdatum,StringFormat='{0:dd/MM/yyyy}'}" TextColor="Gray"></Label>
-                            </StackLayout>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="Geburtsdatum:" TextColor="Gray" Font="Bold"></Label>
-                                <Label Text="{Binding mitglied.geburtsDatum , StringFormat='{0:dd/MM/yyyy}'}" TextColor="Gray"></Label>
-                            </StackLayout>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="Alter:" TextColor="Gray" Font="Bold"></Label>
-                                <Label Text="{Binding mitglied.alter}"  TextColor="Gray"></Label>
-                            </StackLayout>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="Geschlecht:" TextColor="Gray" Font="Bold"></Label>
-                                <Label Text="{Binding mitglied.geschlecht}"  TextColor="Gray"></Label>
-                            </StackLayout>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="Status:" TextColor="Gray" Font="Bold"></Label>
-                                <Label Text="{Binding mitglied.status}"  TextColor="Gray"></Label>
-                            </StackLayout>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="Versand Pfade:" TextColor="Gray" Font="Bold"></Label>
-                                <Label Text="{Binding pfadeJaNein}"  TextColor="Gray"></Label>
-                            </StackLayout>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="SGB8:" TextColor="Gray" Font="Bold"></Label>
-                                <Label Text="{Binding latestSGB8}"  TextColor="Gray"></Label>
-                            </StackLayout>
-                        </StackLayout>
-                    </StackLayout>
+                        </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Vorname:" Grid.Row="0" Grid.Column="0" Font="Bold"/>
+                                <Label Text="{Binding mitglied.vorname}" Grid.Row="0" Grid.Column="1" />
+
+                                <Label Text="Nachname:" Grid.Row="1" Grid.Column="0" Font="Bold"/>
+                                <Label Text="{Binding mitglied.nachname}" Grid.Row="1" Grid.Column="1" />
+                                <Label Text="Spitzname:" Grid.Row="2" Grid.Column="0" Font="Bold"/>
+                                <Label Text="{Binding mitglied.spitzname}" Grid.Row="2" Grid.Column="1" />
+                                
+                                <Label Text="Mitglieds ID:" Grid.Row="3" Grid.Column="0" Font="Bold"/>
+                                <Label Text="{Binding mitglied.id}" Grid.Row="3" Grid.Column="1" />
+                                <Label Text="Status:" Grid.Row="4" Grid.Column="0"  Font="Bold"/>
+                                <Label Text="{Binding mitglied.status}"  Grid.Row="4" Grid.Column="1" />
+                                <Label Text="Kleingruppe:" Font="Bold" Grid.Row="5" Grid.Column="0" ></Label>
+                                <Label Text="{Binding mitglied.kleingruppe}"  Grid.Row="5" Grid.Column="1" ></Label>
+                                <Label Text="Eintrittsdatum:" Font="Bold"  Grid.Row="6" Grid.Column="0"></Label>
+                                <Label Text="{Binding mitglied.eintrittsdatum,StringFormat='{0:dd/MM/yyyy}'}" Grid.Row="6" Grid.Column="1" ></Label>
+                                <Label Text="Geburtsdatum:" Font="Bold" Grid.Row="7" Grid.Column="0"></Label>
+                                <Label Text="{Binding mitglied.geburtsDatum , StringFormat='{0:dd/MM/yyyy}'}" Grid.Row="7" Grid.Column="1" ></Label>
+                                <Label Text="Alter:" Font="Bold"  Grid.Row="8" Grid.Column="0"></Label>
+                                <Label Text="{Binding mitglied.alter}"  Grid.Row="8" Grid.Column="1" ></Label>
+                                <Label Text="Geschlecht:" Font="Bold"  Grid.Row="9" Grid.Column="0"></Label>
+                                <Label Text="{Binding mitglied.geschlecht}"  Grid.Row="9" Grid.Column="1" ></Label>
+                                <Label Text="Status:" Font="Bold"  Grid.Row="10" Grid.Column="0"></Label>
+                                <Label Text="{Binding mitglied.status}"  Grid.Row="10" Grid.Column="1" ></Label>
+                                <Label Text="Versand Pfade:" Font="Bold"  Grid.Row="11" Grid.Column="0"></Label>
+                                <Label Text="{Binding pfadeJaNein}"  Grid.Row="11" Grid.Column="1" ></Label>
+                                <Label Text="SGB8:" Font="Bold"  Grid.Row="12" Grid.Column="0"></Label>
+                                <Label Text="{Binding latestSGB8}"  Grid.Row="12" Grid.Column="1" ></Label>
+                            </Grid>
+                           
+                          
+                          
+                     
                 </ContentView>
             </StackLayout>
             <ImageButton x:Name="ImageNewButton" Source="edit_bdp.png"
@@ -68,6 +71,7 @@
                             AbsoluteLayout.LayoutFlags="PositionProportional"
                             AbsoluteLayout.LayoutBounds="1.0,1.0,-1,-1"
                             Margin="10"
+                            Scale="0.8"
                             BackgroundColor="Transparent">
             </ImageButton>
             <ActivityIndicator x:Name="activity"  
