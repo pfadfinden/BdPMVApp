@@ -201,10 +201,10 @@
               <Label Text="Mobiltelefon:" Grid.Row="19" Grid.Column="0" Font="Bold" VerticalOptions="Center" />
                 <Entry x:Name="telefon3" Grid.Row="19" Grid.Column="1" Keyboard="Telephone"/>
 
-              <Label x:Name="lbl_begruendungMitglied" Text="Begründung Mitglied:" Grid.Row="20" Grid.Column="0" Font="Bold" IsEnabled="False" IsVisible="False" VerticalOptions="Center" />
+              <Label x:Name="lbl_begruendungMitglied" Text="Begründung Mitglied:" Grid.Row="20" Grid.Column="0" Font="Bold" IsVisible="False" VerticalOptions="Center" />
                 <Entry x:Name="begruendungMitglied" Placeholder="Aufnahmeantrag Ü18: Begründung Mitglied \nSiehe Aufnahmeantrag" IsEnabled="False" IsVisible="False" Grid.Row="20" Grid.Column="1" />
 
-              <Label x:Name="lbl_begruendungStamm" Text="Begründung Stamm:" Grid.Row="21" Grid.Column="0" Font="Bold" IsEnabled="False" IsVisible="False" VerticalOptions="Center" />
+              <Label x:Name="lbl_begruendungStamm" Text="Begründung Stamm:" Grid.Row="21" Grid.Column="0" Font="Bold" IsVisible="False" VerticalOptions="Center" />
                 <Entry x:Name="begruendungStamm" Placeholder="Aufnahmeantrag Ü18: Begründung Stamm \nSiehe Aufnahmeantrag" IsEnabled="False" IsVisible="False" Grid.Row="21" Grid.Column="1" />
               
                 <Button x:Name="btn_save"  Text="Abschicken" Clicked="Save_Clicked" Grid.Row="22" Grid.Column="0" Grid.ColumnSpan="2"/>

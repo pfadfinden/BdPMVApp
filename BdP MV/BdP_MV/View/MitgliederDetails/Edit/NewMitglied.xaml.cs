@@ -25,8 +25,8 @@ namespace BdP_MV.View.MitgliederDetails.Edit
             //   InitializeComponent();
             // this.viewModel = new NewMitgliedViewModel(new Services.MainController());
             viewModel = new NewMitgliedViewModel(idgrp);
-            lbl_begruendungMitglied.IsVisible = false;
-            lbl_begruendungStamm.IsVisible = false;
+            //lbl_begruendungMitglied.IsVisible = false;
+           // lbl_begruendungStamm.IsVisible = false;
             idGruppe = idgrp;
             newMitglied = true;
             InitializeComponent();
@@ -37,8 +37,8 @@ namespace BdP_MV.View.MitgliederDetails.Edit
             // this.viewModel = new NewMitgliedViewModel(new Services.MainController());
             viewModel = new NewMitgliedViewModel(mitglied);
             newMitglied = false;
-            lbl_begruendungMitglied.IsVisible = false;
-            lbl_begruendungStamm.IsVisible = false;
+            //lbl_begruendungMitglied.IsVisible = false;
+            //lbl_begruendungStamm.IsVisible = false;
             this.Title = "Mitglied " + mitglied.ansprechname + " bearbeiten";
             InitializeComponent();
 
@@ -82,9 +82,9 @@ namespace BdP_MV.View.MitgliederDetails.Edit
             {
                 begruendungMitglied.IsVisible = true;
                 lbl_begruendungMitglied.IsVisible = true;
-                lbl_begruendungMitglied.IsEnabled = true;
+                //lbl_begruendungMitglied.IsEnabled = true;
                 begruendungMitglied.IsEnabled = true;
-                lbl_begruendungStamm.IsEnabled = true;
+                //lbl_begruendungStamm.IsEnabled = true;
                 lbl_begruendungStamm.IsVisible = true;
                 begruendungStamm.IsVisible = true;
                 begruendungStamm.IsEnabled = true;
@@ -93,10 +93,11 @@ namespace BdP_MV.View.MitgliederDetails.Edit
             else
             {
                 lbl_begruendungMitglied.IsVisible = true;
-                lbl_begruendungMitglied.IsEnabled = true;
+
+                // lbl_begruendungMitglied.IsEnabled = true;
                 begruendungMitglied.IsVisible = false;
                 begruendungMitglied.IsEnabled = false;
-                lbl_begruendungStamm.IsEnabled = true;
+                //lbl_begruendungStamm.IsEnabled = true;
                 lbl_begruendungStamm.IsVisible = true;
                 begruendungStamm.IsVisible = false;
                 begruendungStamm.IsEnabled = false;
