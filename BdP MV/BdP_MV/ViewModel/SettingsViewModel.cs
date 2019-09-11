@@ -44,7 +44,7 @@ namespace BdP_MV.ViewModel
 
             sortierreihenfolge = Preferences.Get("sortierreihenfolge", 1);
             loadKleingruppen = Preferences.Get("loadKleingruppen", true);
-            inaktiveAnzeigen = Preferences.Get("inaktiveAnzeigen", true);
+            inaktiveAnzeigen = Preferences.Get("inaktiveAnzeigen", false);
 
         }
         public void EinstellungenAnwenden()

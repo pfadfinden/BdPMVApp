@@ -25,11 +25,12 @@ namespace BdP_MV.View.MitgliederDetails.Edit
             //   InitializeComponent();
             // this.viewModel = new NewMitgliedViewModel(new Services.MainController());
             viewModel = new NewMitgliedViewModel(idgrp);
-            //lbl_begruendungMitglied.IsVisible = false;
-           // lbl_begruendungStamm.IsVisible = false;
+            
             idGruppe = idgrp;
             newMitglied = true;
             InitializeComponent();
+            lbl_begruendungMitglied.IsVisible = false;
+            lbl_begruendungStamm.IsVisible = false;
         }
         public NewMitglied(MitgliedDetails mitglied)
         {
@@ -37,11 +38,13 @@ namespace BdP_MV.View.MitgliederDetails.Edit
             // this.viewModel = new NewMitgliedViewModel(new Services.MainController());
             viewModel = new NewMitgliedViewModel(mitglied);
             newMitglied = false;
-            //lbl_begruendungMitglied.IsVisible = false;
-            //lbl_begruendungStamm.IsVisible = false;
-            this.Title = "Mitglied " + mitglied.ansprechname + " bearbeiten";
-            InitializeComponent();
+            
 
+            
+            InitializeComponent();
+            this.Title = "Mitglied " + mitglied.ansprechname + " bearbeiten";
+            lbl_begruendungMitglied.IsVisible = false;
+            lbl_begruendungStamm.IsVisible = false;
         }
        private void fillFelder()
         {
@@ -69,6 +72,7 @@ namespace BdP_MV.View.MitgliederDetails.Edit
             ort.Text = viewModel.mitglied.ort;
             nameZusatz.Text = viewModel.mitglied.nameZusatz;
             telefon1.Text = viewModel.mitglied.telefon1;
+            telefon2.Text = viewModel.mitglied.telefon2;
             telefon3.Text = viewModel.mitglied.telefon3;
             lbl_mitgliedsartpicker.IsVisible = false;
             mitgliedsartpicker.IsVisible = false;
@@ -129,6 +133,7 @@ namespace BdP_MV.View.MitgliederDetails.Edit
                 viewModel.mitglied.ort = ort.Text;
                 viewModel.mitglied.nameZusatz = nameZusatz.Text;
                 viewModel.mitglied.telefon1 = telefon1.Text;
+                viewModel.mitglied.telefon1 = telefon2.Text;
                 viewModel.mitglied.telefon3 = telefon3.Text;
                 if (newMitglied)
                 {

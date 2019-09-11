@@ -17,7 +17,7 @@ namespace BdP_MV.Services
             mainC = mainCo;
             alleGruppen = new List<Gruppe>();
         }
-       //
+       
         public async Task AlleGruppenAbrufen(int id, string prefix)
         {
             List<Gruppe> tempGruppen = new List<Gruppe>();

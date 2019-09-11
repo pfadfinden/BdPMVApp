@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace BdP_MV.ViewModel
 {
@@ -18,6 +19,30 @@ namespace BdP_MV.ViewModel
             loginData = new Connector_LoginDaten();
 
 
+        }
+        public async Task LoadGroups()
+        {
+            IsBusy = true;
+            if (Application.Current.Properties.ContainsKey("lastGroupCall"))
+            {
+                DateTime lastGroupCall = (DateTime)App.Current.Properties["lastGroupCall"];
+                if (lastGroupCall<DateTime.Now.AddDays(-30))
+                {
+                    await mainc.groupControl.AlleGruppenAbrufen(0, "");
+                    App.Current.Properties["Gruppen"] = mainc.groupControl.alleGruppen;
+                    App.Current.Properties["lastGroupCall"] = DateTime.Now;
+                }
+
+            }
+            else
+            {
+                await mainc.groupControl.AlleGruppenAbrufen(0, "");
+                App.Current.Properties["Gruppen"] = mainc.groupControl.alleGruppen;
+                App.Current.Properties["lastGroupCall"] = DateTime.Now;
+            }
+            await App.Current.SavePropertiesAsync();
+            IsBusy = false;
+            return;
         }
         public async Task<string> CheckLogin(string username, string passwort)
         {
@@ -52,8 +77,8 @@ namespace BdP_MV.ViewModel
                 }
                 else if (answer == 0)
                 {
-                    await mainc.groupControl.AlleGruppenAbrufen(0, "");
-                    App.Current.Properties["Gruppen"] = mainc.groupControl.alleGruppen;
+                    
+                    
 
                 }
                 else

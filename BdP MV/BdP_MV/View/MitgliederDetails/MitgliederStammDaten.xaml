@@ -20,9 +20,7 @@
                             <ContentView>
                             <StackLayout Orientation="Horizontal" Spacing="10">
                                 <Image Source="user.png" Aspect="AspectFit" HeightRequest="20" WidthRequest="20">
-                                    <Image.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding GetDirectionsCommand}" />
-                                    </Image.GestureRecognizers>
+                                    
                                 </Image>
                                 <StackLayout Spacing="0">
                                 <Label Text="{Binding mitglied.ansprechname}"></Label>
@@ -38,17 +36,39 @@
                                 <StackLayout Orientation="Horizontal" Spacing="10">
                                     <Image Source="directions.png" Aspect="AspectFit" HeightRequest="20" WidthRequest="20">
                                         <Image.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding GetDirectionsCommand}" />
+                                            <TapGestureRecognizer Tapped="GetDirectionsCommand" />
                                         </Image.GestureRecognizers>
                                     </Image>
                                     <StackLayout Spacing="0">
                                         <ContentView IsEnabled="{Binding HasZusatzAdresse}" IsVisible="{Binding HasZusatzAdresse}">
-                                            <Label Text="{Binding mitglied.nameZusatz}" FontSize="Default" LineBreakMode="TailTruncation" />
+                                            <Label Text="{Binding mitglied.nameZusatz}" FontSize="Default" LineBreakMode="TailTruncation">
+
+                                                <Label.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="AdressTipped" />
+                                                </Label.GestureRecognizers>
+                                            </Label>
+
                                         </ContentView>
-                                        <Label Text="{Binding mitglied.strasse}" FontSize="Default" LineBreakMode="TailTruncation" />
+                                        <Label Text="{Binding mitglied.strasse}" FontSize="Default" LineBreakMode="TailTruncation">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="AdressTipped" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                        
                                         <StackLayout Orientation="Horizontal">
-                                            <Label Text="{Binding mitglied.plz}" FontSize="Default" LineBreakMode="TailTruncation" />
-                                            <Label Text="{Binding mitglied.ort}" FontSize="Default" LineBreakMode="TailTruncation" />
+                                            <Label Text="{Binding mitglied.plz}" FontSize="Default" LineBreakMode="TailTruncation">
+
+                                                <Label.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="AdressTipped" />
+                                                </Label.GestureRecognizers>
+                                            </Label>
+
+                                            <Label Text="{Binding mitglied.ort}" FontSize="Default" LineBreakMode="TailTruncation">
+                                                <Label.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="AdressTipped" />
+                                                </Label.GestureRecognizers>
+                                            </Label>
+
                                         </StackLayout>
                                     </StackLayout>
                                 </StackLayout>

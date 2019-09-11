@@ -122,6 +122,11 @@ namespace BdP_MV.View.MasterDetail
 
 
         }
+        async void ArrowTabbed(object sender, EventArgs e)
+        {
+            testpicker.Focus();
+
+        }
 
         /// <summary>
         /// The action to take when a list item is tapped.

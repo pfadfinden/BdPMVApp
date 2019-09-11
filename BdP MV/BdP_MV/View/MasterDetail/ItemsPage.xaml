@@ -36,10 +36,15 @@
                             HorizontalOptions="Center" 
                             VerticalOptions="Center" 
                     Grid.Row="0" Grid.Column="1" 
-                           />
+                           >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ArrowTabbed" />
+                        </Label.GestureRecognizers>
+                    </Label>
+
                 </Grid>
                 <!--ItemsSource="{Binding alleGruppen}"-->
-                <BoxView HorizontalOptions="FillAndExpand" HeightRequest="5" Color="#1D4899"/>
+                <!--<BoxView HorizontalOptions="FillAndExpand" HeightRequest="5" Color="#1D4899"/>-->
 
                 <ListView x:Name="MitgliedView" ItemTapped="ItemTapped" >
                     <ListView.ItemTemplate>

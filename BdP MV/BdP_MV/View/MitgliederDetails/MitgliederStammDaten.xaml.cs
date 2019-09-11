@@ -2,6 +2,7 @@
 using BdP_MV.ViewModel;
 using System;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace BdP_MV.View.MitgliederDetails
@@ -34,6 +35,25 @@ namespace BdP_MV.View.MitgliederDetails
             // await SetupMap();
 
         }
+        async void GetDirectionsCommand(object sender, EventArgs e)
+        {
+
+            var placemark = new Placemark
+            {
+                CountryName = viewModel.mitglied.land,
+                Thoroughfare = viewModel.mitglied.strasse,
+                Locality = viewModel.mitglied.ort,
+            };
+            var options = new MapLaunchOptions();
+            await Map.OpenAsync(placemark, options);
+        }
+        async void AdressTipped(object sender, EventArgs e)
+        {
+            await Clipboard.SetTextAsync(viewModel.mitglied.strasse+", "+viewModel.mitglied.plz+" "+viewModel.mitglied.ort);
+            await DisplayAlert("Adresse kopiert", "Die Adresse wurde in die Zwischenablage kopiert", "OK");
+
+        }
+
         async void NewMitglied_Activated(object sender, EventArgs e)
         {
             viewModel.IsBusy = true;

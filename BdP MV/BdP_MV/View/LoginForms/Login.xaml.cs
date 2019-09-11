@@ -48,6 +48,7 @@ namespace BdP_MV.View.LoginForms
             }
             if (isValid)
             {
+                await ViewModel.LoadGroups();
                 App.Current.MainPage = new MasterDetail.MasterDetail_Main (ViewModel.mainc);
             }
             else

@@ -105,6 +105,11 @@ namespace BdP_MV.ViewModel
                 throw new NotAllRequestedFieldsFilledException("Ein Zeitschriftenversand ist ohne komplette Adressangabe nicht möglich.");
 
             }
+            if (mitglied.geburtsDatum==DateTime.Today)
+            {
+                throw new NotAllRequestedFieldsFilledException("Ein Mitglied mit dem heutigen Geburtsdatum ist nicht möglich.");
+
+            }
             int age = mainC.mitgliederController.GetAgeFromDate((DateTime)mitglied.geburtsDatum);
            
 

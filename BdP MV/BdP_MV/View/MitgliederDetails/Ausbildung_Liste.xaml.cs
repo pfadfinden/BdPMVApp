@@ -56,7 +56,6 @@ namespace BdP_MV.View.MitgliederDetails
                 {
                     details += "\nVeranstalter: " + ausbildung_selected_details.veranstalter;
                 }
-                details += "\nMitglied: " + ausbildung_selected_details.mitglied;
                 IsBusy = false;
                 await DisplayAlert(selected.entries_baustein, details, "OK");
             }

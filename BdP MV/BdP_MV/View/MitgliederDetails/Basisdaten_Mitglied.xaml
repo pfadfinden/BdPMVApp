@@ -24,6 +24,7 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
 
                         </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
@@ -42,22 +43,24 @@
                                 <Label Text="{Binding mitglied.id}" Grid.Row="3" Grid.Column="1" />
                                 <Label Text="Status:" Grid.Row="4" Grid.Column="0"  Font="Bold"/>
                                 <Label Text="{Binding mitglied.status}"  Grid.Row="4" Grid.Column="1" />
-                                <Label Text="Kleingruppe:" Font="Bold" Grid.Row="5" Grid.Column="0" ></Label>
-                                <Label Text="{Binding mitglied.kleingruppe}"  Grid.Row="5" Grid.Column="1" ></Label>
-                                <Label Text="Eintrittsdatum:" Font="Bold"  Grid.Row="6" Grid.Column="0"></Label>
-                                <Label Text="{Binding mitglied.eintrittsdatum,StringFormat='{0:dd/MM/yyyy}'}" Grid.Row="6" Grid.Column="1" ></Label>
-                                <Label Text="Geburtsdatum:" Font="Bold" Grid.Row="7" Grid.Column="0"></Label>
-                                <Label Text="{Binding mitglied.geburtsDatum , StringFormat='{0:dd/MM/yyyy}'}" Grid.Row="7" Grid.Column="1" ></Label>
-                                <Label Text="Alter:" Font="Bold"  Grid.Row="8" Grid.Column="0"></Label>
-                                <Label Text="{Binding mitglied.alter}"  Grid.Row="8" Grid.Column="1" ></Label>
-                                <Label Text="Geschlecht:" Font="Bold"  Grid.Row="9" Grid.Column="0"></Label>
-                                <Label Text="{Binding mitglied.geschlecht}"  Grid.Row="9" Grid.Column="1" ></Label>
-                                <Label Text="Status:" Font="Bold"  Grid.Row="10" Grid.Column="0"></Label>
-                                <Label Text="{Binding mitglied.status}"  Grid.Row="10" Grid.Column="1" ></Label>
-                                <Label Text="Versand Pfade:" Font="Bold"  Grid.Row="11" Grid.Column="0"></Label>
-                                <Label Text="{Binding pfadeJaNein}"  Grid.Row="11" Grid.Column="1" ></Label>
-                                <Label Text="SGB8:" Font="Bold"  Grid.Row="12" Grid.Column="0"></Label>
-                                <Label Text="{Binding latestSGB8}"  Grid.Row="12" Grid.Column="1" ></Label>
+                                <Label Text="Stamm / AG:" Font="Bold" Grid.Row="5" Grid.Column="0" ></Label>
+                                <Label Text="{Binding mitglied.gruppierung}"  Grid.Row="5" Grid.Column="1" ></Label>
+                                <Label Text="Kleingruppe:" Font="Bold" Grid.Row="6" Grid.Column="0" ></Label>
+                                <Label Text="{Binding mitglied.kleingruppe}"  Grid.Row="6" Grid.Column="1" ></Label>
+                                <Label Text="Eintrittsdatum:" Font="Bold"  Grid.Row="7" Grid.Column="0"></Label>
+                                <Label Text="{Binding mitglied.eintrittsdatum,StringFormat='{0:dd/MM/yyyy}'}" Grid.Row="7" Grid.Column="1" ></Label>
+                                <Label Text="Geburtsdatum:" Font="Bold" Grid.Row="8" Grid.Column="0"></Label>
+                                <Label Text="{Binding mitglied.geburtsDatum , StringFormat='{0:dd/MM/yyyy}'}" Grid.Row="8" Grid.Column="1" ></Label>
+                                <Label Text="Alter:" Font="Bold"  Grid.Row="9" Grid.Column="0"></Label>
+                                <Label Text="{Binding mitglied.alter}"  Grid.Row="9" Grid.Column="1" ></Label>
+                                <Label Text="Geschlecht:" Font="Bold"  Grid.Row="10" Grid.Column="0"></Label>
+                                <Label Text="{Binding mitglied.geschlecht}"  Grid.Row="10" Grid.Column="1" ></Label>
+                                <Label Text="Status:" Font="Bold"  Grid.Row="11" Grid.Column="0"></Label>
+                                <Label Text="{Binding mitglied.status}"  Grid.Row="11" Grid.Column="1" ></Label>
+                                <Label Text="Versand Pfade:" Font="Bold"  Grid.Row="12" Grid.Column="0"></Label>
+                                <Label Text="{Binding pfadeJaNein}"  Grid.Row="12" Grid.Column="1" ></Label>
+                                <Label Text="SGB8:" Font="Bold"  Grid.Row="13" Grid.Column="0"></Label>
+                                <Label Text="{Binding latestSGB8}"  Grid.Row="13" Grid.Column="1" ></Label>
                             </Grid>
                            
                           

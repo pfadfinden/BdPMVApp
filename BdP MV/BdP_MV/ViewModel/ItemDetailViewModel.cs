@@ -4,6 +4,7 @@ using BdP_MV.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -70,6 +71,10 @@ namespace BdP_MV.ViewModel
             
             HasKleingruppe = !string.IsNullOrWhiteSpace(mitglied?.kleingruppe);
             TaetigkeitenFilter();
+            Regex reg_Gruppe = new Regex(@"(\s)*([0-9]+)");
+
+            mitglied.gruppierung = reg_Gruppe.Replace(mitglied.gruppierung, "$1");
+
             if (mitglied.zeitschriftenversand)
             {
                 pfadeJaNein = "ja";
@@ -83,6 +88,11 @@ namespace BdP_MV.ViewModel
 
 
         }
+        
+
+
+      
+
 
         Command _DialNumberCommand;
 
