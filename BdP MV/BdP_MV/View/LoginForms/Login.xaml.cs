@@ -40,7 +40,9 @@ namespace BdP_MV.View.LoginForms
         {
 
             IsBusy = true;
+            
             Boolean isValid = false;
+            lbl_Akt_Aktion.Text = "Einloggen";
             String response = await Task.Run(async () => await ViewModel.CheckLogin(usernameEntry.Text,passwordEntry.Text)); 
             if (String.IsNullOrEmpty(response))
             {
@@ -48,6 +50,7 @@ namespace BdP_MV.View.LoginForms
             }
             if (isValid)
             {
+                lbl_Akt_Aktion.Text = "Gruppen laden";
                 await ViewModel.LoadGroups();
                 App.Current.MainPage = new MasterDetail.MasterDetail_Main (ViewModel.mainc);
             }

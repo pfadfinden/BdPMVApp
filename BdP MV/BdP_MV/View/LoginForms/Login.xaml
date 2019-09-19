@@ -25,6 +25,11 @@
                        VerticalOptions="CenterAndExpand"
                        HorizontalOptions="CenterAndExpand"
                        RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.33}" />
+                    <Label x:Name="lbl_Akt_Aktion" Text="Einloggen" 
+                       IsVisible="{Binding IsBusy}"
+                       TextColor="#1D4899" 
+                       VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="CenterAndExpand"/>
 
                     <Entry x:Name="usernameEntry" Placeholder="Benutzername" TextColor="#1D4899" PlaceholderColor="#1D4899"/>
                     <Entry x:Name="passwordEntry" Placeholder="Passwort"  IsPassword="true" TextColor="#1D4899" PlaceholderColor="#1D4899"/>

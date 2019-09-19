@@ -73,7 +73,7 @@ namespace BdP_MV.ViewModel
                                ContractResolver = new NullToEmptyStringResolver()
 
                            });
-            Console.WriteLine(JSONOutput);
+
 
             JSONOutput = Regex.Replace(JSONOutput, @"\t|\n|\r", "");
             JSONOutput = Regex.Unescape(JSONOutput);
@@ -81,7 +81,6 @@ namespace BdP_MV.ViewModel
             JSONOutput = JSONOutput.Replace(@"\", @"");
 
             //JSONOutput = JSONOutput.Substring(1, JSONOutput.Length - 1);
-            Console.WriteLine(JSONOutput);
             string result = await mainC.mVConnector.PostNewMitglied(idGruppe, JSONOutput);
             IsBusy = false;
 
@@ -121,16 +120,7 @@ namespace BdP_MV.ViewModel
                                ContractResolver = new NullToEmptyStringResolver()
 
                            });
-            Console.WriteLine(JSONOutput);
-
-       //     JSONOutput = Regex.Replace(JSONOutput, @"\t|\n|\r", "");
-         //   JSONOutput = Regex.Unescape(JSONOutput);
-           // JSONOutput = Regex.Replace(JSONOutput, @"^""|""$|\\n?", "");
-            //JSONOutput = JSONOutput.Replace(System.Environment.NewLine, "");
-            //JSONOutput = JSONOutput.Replace(@"\", @"");
-
-            //JSONOutput = JSONOutput.Substring(1, JSONOutput.Length - 1);
-            Console.WriteLine(JSONOutput);
+            
             IsBusy = false;
 
             return await mainC.mVConnector.PutChangeMitglied(mitglied.gruppierungId,mitglied.id, JSONOutput);

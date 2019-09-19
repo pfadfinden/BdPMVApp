@@ -32,14 +32,8 @@ namespace BdP_MV.View.MasterDetail
             }
             showInaktiv.IsToggled = viewModel.inaktiveAnzeigen;
             kleingruppenload.IsToggled = viewModel.loadKleingruppen;
-            
-
-
-
-
 
         }
-
         public async void reihenfolgeChanged(object sender, EventArgs e)
         {
             try
@@ -67,7 +61,5 @@ namespace BdP_MV.View.MasterDetail
 
 
         }
-
-      
     }
 }

@@ -48,9 +48,7 @@ namespace BdP_MV.View.MasterDetail
 
             BindingContext = viewModel;
 
-            //  Task.Run(async () => await loadGroupStaff()).Wait();
-            //  Console.WriteLine(viewModel.mainC.groupControl.alleGruppen.ToString());
-
+            
         }
         public ItemsPage(MainController mainCo, List<Mitglied> mitgliederliste)
         {

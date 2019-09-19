@@ -236,31 +236,19 @@ namespace BdP_MV.Services
             AlleMitglieder = await mainC.mVConnector.Mitglieder(aktuelleGruppe, true);
             MitgliederNachbearbeiten();
 
-            Console.WriteLine("Mitglieder_Gefiltert");
-
         }
         public async Task<List<Mitglied>> MitgliederAbrufenBySearch(SearchObject suchObjekt)
         {
 
             suchObjekt.searchType = "MITGLIEDER";
             JsonSerializerSettings settingsJSON = new JsonSerializerSettings();
-            //settingsJSON.NullValueHandling = NullValueHandling.Ignore;
-            
             string suchobjektJSON = JsonConvert.SerializeObject(suchObjekt, Formatting.Indented, settingsJSON);
             suchobjektJSON = suchobjektJSON.Replace("null", "\"\"");
             suchobjektJSON = Regex.Replace(suchobjektJSON, @"\t|\n|\r", "");
-
-           // suchobjektJSON = Regex.Replace(suchobjektJSON, @"^""|""$|\\n?", "");
             suchobjektJSON = suchobjektJSON.Replace(" ", "");
             suchobjektJSON = suchobjektJSON.Replace(@"\", @"");
-            //suchobjektJSON = suchobjektJSON.Substring(1, suchobjektJSON.Length - 1);
-            Console.WriteLine(suchobjektJSON);
-            //suchobjektJSON = Regex.Unescape(suchobjektJSON);
-
             List<Mitglied> mitglieder=await mainC.mVConnector.Mitglieder(suchobjektJSON);
             mitglieder = MitgliederNachbearbeiten(mitglieder);
-
-            Console.WriteLine("Mitglieder_Gefiltert");
             return mitglieder;
 
         }
