@@ -224,7 +224,7 @@ namespace BdP_MV.Services
                 }
                 idname = id.ToString();
             }
-            String anfrage = "nami/gruppierungen/filtered-for-navigation/gruppierung/node/" + idname;
+            String anfrage = "api/1/2/service/nami/gruppierungen/filtered-for-navigation/gruppierung/node/" + idname;
             string responseString = await GetApiResultStringAsync(anfrage);
 
             if (debug)
@@ -251,7 +251,7 @@ namespace BdP_MV.Services
         //public async Task<List<Mitglied>> Mitglieder(int idGruppe, bool nurAktiv)
         public async Task<List<Mitglied>> Mitglieder(int idGruppe, bool nurAktiv)
         {
-            String anfrage = "nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/" + idGruppe + "/flist";
+            String anfrage = "api/1/2/service/nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/" + idGruppe + "/flist";
             string responseString = await GetApiResultStringAsync(anfrage).ConfigureAwait(false);
             List<Mitglied> mitglieder = new List<Mitglied>();
             MitgliederListe listeAllerMitglieder = JsonConvert.DeserializeObject<MitgliederListe>(responseString);
@@ -272,7 +272,7 @@ namespace BdP_MV.Services
         }
         public async Task<List<SGB8>> SGB8(int idMitglied)
         {
-            string anfrage = "/nami/mitglied-sgb-acht/filtered-for-navigation/empfaenger/empfaenger/" + idMitglied + "/flist";
+            string anfrage = "api/1/2/service/nami/mitglied-sgb-acht/filtered-for-navigation/empfaenger/empfaenger/" + idMitglied + "/flist";
             string responseString = await GetApiResultStringAsync(anfrage).ConfigureAwait(false);
             RootObject_SGB8 rootFZ = JsonConvert.DeserializeObject<RootObject_SGB8>(responseString);
             List<SGB8> fuehrungszeugnisse = rootFZ.data;
@@ -281,7 +281,7 @@ namespace BdP_MV.Services
         
         public async Task<List<Taetigkeit>> Taetigkeiten (int idMitglied)
         {
-            string anfrage = "/nami/zugeordnete-taetigkeiten/filtered-for-navigation/gruppierung-mitglied/mitglied/" + idMitglied + "/flist";
+            string anfrage = "api/1/2/service/nami/zugeordnete-taetigkeiten/filtered-for-navigation/gruppierung-mitglied/mitglied/" + idMitglied + "/flist";
             string responseString = await GetApiResultStringAsync(anfrage).ConfigureAwait(false);
             RootObject_Taetigkeit rootObjectTaetigkeiten = JsonConvert.DeserializeObject<RootObject_Taetigkeit>(responseString);
             List<Taetigkeit> taetigkeiten = rootObjectTaetigkeiten.data;
@@ -289,7 +289,7 @@ namespace BdP_MV.Services
         }
         public async Task<Meta_Data> MetaData(int idGruppe)
         {
-            string anfrage = "nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/" + idGruppe + "/META";
+            string anfrage = "api/1/2/service/nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/" + idGruppe + "/META";
             string responseString = await GetApiResultStringAsync(anfrage).ConfigureAwait(false);
             RootObject_Meta_Data rootObjectMetadata = JsonConvert.DeserializeObject<RootObject_Meta_Data>(responseString);
 
@@ -298,7 +298,7 @@ namespace BdP_MV.Services
         }
         public async Task<List<Ausbildung>> Ausbildung(int idMitglied)
         {
-            string anfrage = "nami/mitglied-ausbildung/filtered-for-navigation/mitglied/mitglied/" + idMitglied + "/flist";
+            string anfrage = "api/1/2/service/nami/mitglied-ausbildung/filtered-for-navigation/mitglied/mitglied/" + idMitglied + "/flist";
             string responseString = await GetApiResultStringAsync(anfrage).ConfigureAwait(false);
             RootObject_Ausbildung rootObject= JsonConvert.DeserializeObject<RootObject_Ausbildung>(responseString);
             List<Ausbildung> ausbildungen = rootObject.data;
@@ -308,7 +308,7 @@ namespace BdP_MV.Services
         public async Task<MitgliedDetails> MitgliedDetails(int idMitglied, int idGruppe)
         {
             
-            String anfrage ="nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/"+idGruppe+"/"+idMitglied;
+            String anfrage = "api/1/2/service/nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/" + idGruppe+"/"+idMitglied;
             String responseString = await GetApiResultStringAsync(anfrage).ConfigureAwait(false);
 
             MitgliedDetails mitgliedDetais = new MitgliedDetails();
@@ -331,7 +331,7 @@ namespace BdP_MV.Services
         public async Task<Ausbildung_Details> AusbildungDetails(int idAusbildung, int idMitglied)
         {
 
-            String anfrage = "nami/mitglied-ausbildung/filtered-for-navigation/mitglied/mitglied/" + idMitglied + "/" + idAusbildung;
+            String anfrage = "api/1/2/service/nami/mitglied-ausbildung/filtered-for-navigation/mitglied/mitglied/" + idMitglied + "/" + idAusbildung;
             String responseString = await GetApiResultStringAsync(anfrage).ConfigureAwait(false);
 
             Ausbildung_Details ausbildungDetails = new Ausbildung_Details();
@@ -354,7 +354,7 @@ namespace BdP_MV.Services
         public async Task<List<Report_Data>> ReportData(int idGruppe)
         {
 
-            String anfrage = "nami/grp-reports/filtered-for-grpadmin/gruppierung/crtGruppierung/"+idGruppe+"/flist";
+            String anfrage = "api/1/2/service/nami/grp-reports/filtered-for-grpadmin/gruppierung/crtGruppierung/" + idGruppe+"/flist";
             String responseString = await GetApiResultStringAsync(anfrage).ConfigureAwait(false);
 
             List <Report_Data> reportList = new List<Report_Data>();
@@ -435,7 +435,7 @@ namespace BdP_MV.Services
         public async Task<String> PostNewMitglied(int idGruppe, string JSON)
         {
 
-            String anfrage = "nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/" + idGruppe;
+            String anfrage = "api/1/2/service/nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/" + idGruppe;
             String responseString = await PostApiDataAsync(anfrage, JSON);
 
             var response = JsonConvert.DeserializeObject<RootObj_new_Mitglied>(responseString);
@@ -461,7 +461,7 @@ namespace BdP_MV.Services
         public async Task<String> PutChangeMitglied(int idGruppe, int idMitglied, string JSON)
         {
 
-            String anfrage = "nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/" + idGruppe+"/"+idMitglied;
+            String anfrage = "api/1/2/service/nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/" + idGruppe+"/"+idMitglied;
             String responseString = await PutApiDataAsync(anfrage, JSON);
 
             var response = JsonConvert.DeserializeObject<RootObj_edit_Mitglied>(responseString);
