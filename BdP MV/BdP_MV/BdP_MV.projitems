@@ -22,6 +22,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\Connector_LoginDaten.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Gruppierung.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Meta.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Metamodel\APIResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Metamodel\Reports.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Metamodel\RootObj_edit_Mitglied.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Metamodel\RootObj_new_Mitglied.cs" />

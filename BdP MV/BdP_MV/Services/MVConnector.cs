@@ -9,6 +9,7 @@ using BdP_MV.Model;
 using BdP_MV.Model.Metamodel;
 using BdP_MV.Model.Mitglied;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Xamarin.Essentials;
 
 namespace BdP_MV.Services
@@ -18,7 +19,7 @@ namespace BdP_MV.Services
         private bool isLoggedIn = false;
         private CookieContainer cookieContainer = new CookieContainer();
         private bool debug = false;
-        Boolean qa = false;
+        Boolean qa = true;
 
         public bool IsLoggedIn { get => isLoggedIn; }
 
@@ -232,8 +233,9 @@ namespace BdP_MV.Services
                 Console.WriteLine(responseString);
             }
             List<Gruppe> gruppen = new List<Gruppe>();
-
-            GroupList listeAllerUntergruppen =  JsonConvert.DeserializeObject<GroupList>(responseString);
+            APIResponse aPIResponse = JsonConvert.DeserializeObject<APIResponse>(responseString);
+            JsonSerializer jSerializer = new JsonSerializer();
+            GroupList listeAllerUntergruppen = (GroupList)jSerializer.Deserialize(new JTokenReader(aPIResponse.response),typeof(GroupList));
             if (listeAllerUntergruppen.success==false)
             {
                 if (listeAllerUntergruppen.responseType.Equals("ERROR")&& listeAllerUntergruppen.message.Equals("Session expired"))
@@ -253,8 +255,10 @@ namespace BdP_MV.Services
         {
             String anfrage = "api/1/2/service/nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/" + idGruppe + "/flist";
             string responseString = await GetApiResultStringAsync(anfrage).ConfigureAwait(false);
+            APIResponse aPIResponse = JsonConvert.DeserializeObject<APIResponse>(responseString);
+            JsonSerializer jSerializer = new JsonSerializer();
+            MitgliederListe listeAllerMitglieder = (MitgliederListe)jSerializer.Deserialize(new JTokenReader(aPIResponse.response), typeof(MitgliederListe));
             List<Mitglied> mitglieder = new List<Mitglied>();
-            MitgliederListe listeAllerMitglieder = JsonConvert.DeserializeObject<MitgliederListe>(responseString);
             mitglieder = listeAllerMitglieder.data;
 
             return mitglieder;
@@ -266,6 +270,7 @@ namespace BdP_MV.Services
             string responseString = await GetApiResultStringAsync(anfrage).ConfigureAwait(false);
             List<Mitglied> mitglieder = new List<Mitglied>();
             MitgliederListe listeAllerMitglieder = JsonConvert.DeserializeObject<MitgliederListe>(responseString);
+            
             mitglieder = listeAllerMitglieder.data;
 
             return mitglieder;
@@ -274,7 +279,9 @@ namespace BdP_MV.Services
         {
             string anfrage = "api/1/2/service/nami/mitglied-sgb-acht/filtered-for-navigation/empfaenger/empfaenger/" + idMitglied + "/flist";
             string responseString = await GetApiResultStringAsync(anfrage).ConfigureAwait(false);
-            RootObject_SGB8 rootFZ = JsonConvert.DeserializeObject<RootObject_SGB8>(responseString);
+            APIResponse aPIResponse = JsonConvert.DeserializeObject<APIResponse>(responseString);
+            JsonSerializer jSerializer = new JsonSerializer();
+            RootObject_SGB8 rootFZ = (RootObject_SGB8)jSerializer.Deserialize(new JTokenReader(aPIResponse.response), typeof(RootObject_SGB8));
             List<SGB8> fuehrungszeugnisse = rootFZ.data;
             return fuehrungszeugnisse;
         }
@@ -283,7 +290,10 @@ namespace BdP_MV.Services
         {
             string anfrage = "api/1/2/service/nami/zugeordnete-taetigkeiten/filtered-for-navigation/gruppierung-mitglied/mitglied/" + idMitglied + "/flist";
             string responseString = await GetApiResultStringAsync(anfrage).ConfigureAwait(false);
-            RootObject_Taetigkeit rootObjectTaetigkeiten = JsonConvert.DeserializeObject<RootObject_Taetigkeit>(responseString);
+            APIResponse aPIResponse = JsonConvert.DeserializeObject<APIResponse>(responseString);
+            JsonSerializer jSerializer = new JsonSerializer();
+            RootObject_Taetigkeit rootObjectTaetigkeiten = (RootObject_Taetigkeit)jSerializer.Deserialize(new JTokenReader(aPIResponse.response), typeof(RootObject_Taetigkeit));
+            
             List<Taetigkeit> taetigkeiten = rootObjectTaetigkeiten.data;
             return taetigkeiten;
         }
@@ -291,7 +301,11 @@ namespace BdP_MV.Services
         {
             string anfrage = "api/1/2/service/nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/" + idGruppe + "/META";
             string responseString = await GetApiResultStringAsync(anfrage).ConfigureAwait(false);
-            RootObject_Meta_Data rootObjectMetadata = JsonConvert.DeserializeObject<RootObject_Meta_Data>(responseString);
+            APIResponse aPIResponse = JsonConvert.DeserializeObject<APIResponse>(responseString);
+            JsonSerializer jSerializer = new JsonSerializer();
+            RootObject_Meta_Data rootObjectMetadata = (RootObject_Meta_Data)jSerializer.Deserialize(new JTokenReader(aPIResponse.response), typeof(RootObject_Meta_Data));
+
+            
 
             Meta_Data metaData = rootObjectMetadata.data;
             return metaData;
@@ -300,7 +314,9 @@ namespace BdP_MV.Services
         {
             string anfrage = "api/1/2/service/nami/mitglied-ausbildung/filtered-for-navigation/mitglied/mitglied/" + idMitglied + "/flist";
             string responseString = await GetApiResultStringAsync(anfrage).ConfigureAwait(false);
-            RootObject_Ausbildung rootObject= JsonConvert.DeserializeObject<RootObject_Ausbildung>(responseString);
+            APIResponse aPIResponse = JsonConvert.DeserializeObject<APIResponse>(responseString);
+            JsonSerializer jSerializer = new JsonSerializer();
+            RootObject_Ausbildung rootObject = (RootObject_Ausbildung)jSerializer.Deserialize(new JTokenReader(aPIResponse.response), typeof(RootObject_Ausbildung));
             List<Ausbildung> ausbildungen = rootObject.data;
             return ausbildungen;
         }
@@ -312,7 +328,9 @@ namespace BdP_MV.Services
             String responseString = await GetApiResultStringAsync(anfrage).ConfigureAwait(false);
 
             MitgliedDetails mitgliedDetais = new MitgliedDetails();
-            RootObjectMitgliedDetails listeAllerMitglieder = JsonConvert.DeserializeObject<RootObjectMitgliedDetails>(responseString);
+            APIResponse aPIResponse = JsonConvert.DeserializeObject<APIResponse>(responseString);
+            JsonSerializer jSerializer = new JsonSerializer();
+            RootObjectMitgliedDetails listeAllerMitglieder = (RootObjectMitgliedDetails)jSerializer.Deserialize(new JTokenReader(aPIResponse.response), typeof(RootObjectMitgliedDetails));
             if (listeAllerMitglieder.success == false)
             {
                 if (listeAllerMitglieder.responseType.Equals("ERROR") && listeAllerMitglieder.message.Equals("Session expired"))
@@ -335,7 +353,9 @@ namespace BdP_MV.Services
             String responseString = await GetApiResultStringAsync(anfrage).ConfigureAwait(false);
 
             Ausbildung_Details ausbildungDetails = new Ausbildung_Details();
-            RootObject_Ausbildung_Details rootAusbildung_Details = JsonConvert.DeserializeObject<RootObject_Ausbildung_Details>(responseString);
+            APIResponse aPIResponse = JsonConvert.DeserializeObject<APIResponse>(responseString);
+            JsonSerializer jSerializer = new JsonSerializer();
+            RootObject_Ausbildung_Details rootAusbildung_Details = (RootObject_Ausbildung_Details)jSerializer.Deserialize(new JTokenReader(aPIResponse.response), typeof(RootObject_Ausbildung_Details));
             if (rootAusbildung_Details.success == false)
             {
                 if (rootAusbildung_Details.responseType.Equals("ERROR") && rootAusbildung_Details.message.Equals("Session expired"))
@@ -358,7 +378,9 @@ namespace BdP_MV.Services
             String responseString = await GetApiResultStringAsync(anfrage).ConfigureAwait(false);
 
             List <Report_Data> reportList = new List<Report_Data>();
-            Report_RootObject root_Reports = JsonConvert.DeserializeObject<Report_RootObject>(responseString);
+            APIResponse aPIResponse = JsonConvert.DeserializeObject<APIResponse>(responseString);
+            JsonSerializer jSerializer = new JsonSerializer();
+            Report_RootObject root_Reports = (Report_RootObject)jSerializer.Deserialize(new JTokenReader(aPIResponse.response), typeof(Report_RootObject));
             if (root_Reports.success == false)
             {
                 if (root_Reports.responseType.Equals("ERROR") && root_Reports.message.Equals("Session expired"))
@@ -378,8 +400,9 @@ namespace BdP_MV.Services
         {
             HttpWebRequest request = await CreateWebRequest(anfrageURL);
             request.Method = "GET";
-            request.ContentType = "application/x-www-form-urlencoded";
-            WebResponse response = (HttpWebResponse)await request.GetResponseAsync();
+            request.ContentType = "application/xml";
+            WebResponse response = await request.GetResponseAsync();
+            //WebResponse response =  (WebResponse)request.GetResponse();
             string responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
             if (debug)
             {
@@ -437,8 +460,9 @@ namespace BdP_MV.Services
 
             String anfrage = "api/1/2/service/nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/" + idGruppe;
             String responseString = await PostApiDataAsync(anfrage, JSON);
-
-            var response = JsonConvert.DeserializeObject<RootObj_new_Mitglied>(responseString);
+            APIResponse aPIResponse = JsonConvert.DeserializeObject<APIResponse>(responseString);
+            JsonSerializer jSerializer = new JsonSerializer();
+            var response = (RootObj_new_Mitglied)jSerializer.Deserialize(new JTokenReader(aPIResponse.response), typeof(RootObj_new_Mitglied));
             if (response.success == false)
             {
                 if (response.responseType.Equals("ERROR") && response.message.Equals("Session expired"))
@@ -463,8 +487,10 @@ namespace BdP_MV.Services
 
             String anfrage = "api/1/2/service/nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/" + idGruppe+"/"+idMitglied;
             String responseString = await PutApiDataAsync(anfrage, JSON);
-
-            var response = JsonConvert.DeserializeObject<RootObj_edit_Mitglied>(responseString);
+            APIResponse aPIResponse = JsonConvert.DeserializeObject<APIResponse>(responseString);
+            JsonSerializer jSerializer = new JsonSerializer();
+            var response = (RootObj_edit_Mitglied)jSerializer.Deserialize(new JTokenReader(aPIResponse.response), typeof(RootObj_edit_Mitglied));
+           
             if (response.success == false)
             {
                 if (response.responseType.Equals("ERROR") && response.message.Equals("Session expired"))

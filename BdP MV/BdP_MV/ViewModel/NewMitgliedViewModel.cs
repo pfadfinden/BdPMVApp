@@ -58,6 +58,11 @@ namespace BdP_MV.ViewModel
                 throw new NotAllRequestedFieldsFilledException("Du darfst keine Ü18-Mitglieder ohne Begründung anlegen.");
 
             }
+            if (mitglied.geburtsDatum == DateTime.Today)
+            {
+                throw new NotAllRequestedFieldsFilledException("Ein Mitglied mit dem heutigen Geburtsdatum ist nicht möglich.");
+
+            }
             mitglied.wiederverwendenFlag = true;
 
             mitglied.gruppierungId = idGruppe;
