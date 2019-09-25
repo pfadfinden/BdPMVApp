@@ -1,5 +1,7 @@
 ﻿using BdP_MV.Model.Settings;
+using BdP_MV.Services;
 using BdP_MV.ViewModel;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,6 +60,16 @@ namespace BdP_MV.View.MasterDetail
         {
             viewModel.inaktiveAnzeigen = showInaktiv.IsToggled;
             viewModel.EinstellungenAnwenden();
+
+
+        }
+        public async void gruppenNeuLaden(object sender, EventArgs e)
+        {
+            MainController mainc = new MainController();
+            await mainc.groupControl.AlleGruppenAbrufen(0, "");
+            Application.Current.Properties["Gruppen"] = JsonConvert.SerializeObject(mainc.groupControl.alleGruppen);
+            Application.Current.Properties["lastGroupCall"] = DateTime.Now;
+            await Application.Current.SavePropertiesAsync();
 
 
         }

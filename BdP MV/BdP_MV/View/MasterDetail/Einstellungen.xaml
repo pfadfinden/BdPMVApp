@@ -30,6 +30,13 @@
                 <Switch x:Name="showInaktiv" Toggled="inaktivAnzeigenChanged" />
             </StackLayout>
             <Label Text="Inaktive Mitglieder werden in der Mitgliederliste der Gruppen angezeigt." FontSize="Small" />
+            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="5" Color="#1D4899"/>
+
+
+            <Button Text="Gruppen neu laden" FontSize="Medium" Clicked="gruppenNeuLaden"></Button>
+
+            <Label Text="Deine zugreifbaren Gruppen werden 30 Tage zwischengespeichert. Um die Gruppen direkt neu zu laden, drück diesen Button. Die Änderungen werden nach einem Neustart der App wirksam." FontSize="Small" />
+
 
 
 
