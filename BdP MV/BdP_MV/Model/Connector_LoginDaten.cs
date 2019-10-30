@@ -1,5 +1,3 @@
-using System;
-
 namespace BdP_MV.Model
 {
     public class Connector_LoginDaten

@@ -3,14 +3,13 @@ using BdP_MV.Model.Mitglied;
 using BdP_MV.Services;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BdP_MV.ViewModel
 {
     public class SucheViewModell : BaseNavigationViewModel
     {
-        
+
         public MainController mainc;
         public Boolean nurAktiv { get; set; }
         public SearchObject suche { get; set; }
@@ -19,7 +18,7 @@ namespace BdP_MV.ViewModel
         {
 
         }
-        public SucheViewModell (MainController mainco)
+        public SucheViewModell(MainController mainco)
         {
             mainc = mainco;
             suche = new SearchObject();
@@ -28,11 +27,11 @@ namespace BdP_MV.ViewModel
         public async Task<List<Mitglied>> SuchDuApp()
         {
             IsBusy = true;
-           if (nurAktiv)
+            if (nurAktiv)
             {
                 suche.mglStatusId = "AKTIV";
             }
-        else
+            else
             {
                 suche.mglStatusId = "";
             }
@@ -40,7 +39,7 @@ namespace BdP_MV.ViewModel
             List<Mitglied> mitglieder = await mainc.mitgliederController.MitgliederAbrufenBySearch(suche);
             IsBusy = false;
             return mitglieder;
-            
+
         }
         public async Task<ItemDetailViewModel> mitgliedDetailsVorladen(int idMitglied, int idGruppe)
 
@@ -52,7 +51,7 @@ namespace BdP_MV.ViewModel
             MitgliedDetails mitgliedDetails = await Task.Run(async () => await mainc.mitgliederController.MitgliedDetailsAbrufen(idMitglied, idGruppe));
             ItemDetailViewModel viewModelMitgliedDetails = new ItemDetailViewModel(mitgliedDetails, mainc);
             await Task.WhenAll(task_sgb8, task_taetigkeiten);
-            
+
             viewModelMitgliedDetails.sgb8 = await task_sgb8;
             viewModelMitgliedDetails.taetigkeiten = await task_taetigkeiten;
             Task nachbarbeitung = viewModelMitgliedDetails.Nachbearbeitung();

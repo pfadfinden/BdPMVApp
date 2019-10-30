@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -17,7 +16,19 @@ namespace BdP_MV.Services
             mainC = mainCo;
             alleGruppen = new List<Gruppe>();
         }
-       
+        private Boolean isGroupEndOfTree(Gruppe gruppe)
+        {
+            try
+            {
+                String descriptor = gruppe.descriptor;
+                return descriptor.EndsWith("00");
+            }
+            catch (ArgumentNullException e)
+            {
+                return false;
+            }
+        }
+
         public async Task AlleGruppenAbrufen(int id, string prefix)
         {
             List<Gruppe> tempGruppen = new List<Gruppe>();
@@ -26,11 +37,14 @@ namespace BdP_MV.Services
             if (tempGruppen.Count > 0)
                 foreach (Gruppe aktGruppe in tempGruppen)
                 {
-                    
+                    bool isEndofTree = isGroupEndOfTree(aktGruppe);
                     aktGruppe.descriptor = reg.Replace(aktGruppe.descriptor, "$1");
                     aktGruppe.descriptor = prefix + aktGruppe.descriptor;
                     alleGruppen.Add(aktGruppe);
-                    await AlleGruppenAbrufen(aktGruppe.id, prefix+"- ").ConfigureAwait(false);
+                    if (!isEndofTree)
+                    {
+                        await AlleGruppenAbrufen(aktGruppe.id, prefix + "- ").ConfigureAwait(false);
+                    }
                 }
 
         }

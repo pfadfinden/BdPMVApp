@@ -1,6 +1,5 @@
 ﻿using BdP_MV.Services;
 using BdP_MV.View.LoginForms;
-using System;
 
 using Xamarin.Forms;
 
