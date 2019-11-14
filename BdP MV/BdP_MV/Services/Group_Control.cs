@@ -21,7 +21,8 @@ namespace BdP_MV.Services
             try
             {
                 String descriptor = gruppe.descriptor;
-                return descriptor.EndsWith("00");
+                bool b = descriptor.EndsWith("00");
+                return (!b);
             }
             catch (ArgumentNullException e)
             {

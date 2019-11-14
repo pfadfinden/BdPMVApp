@@ -22,6 +22,7 @@ namespace BdP_MV.View.MasterDetail
 		
             viewModel = new SettingsViewModel();
             BindingContext = viewModel;
+
             InitializeComponent();
             try
             {
@@ -60,16 +61,6 @@ namespace BdP_MV.View.MasterDetail
         {
             viewModel.inaktiveAnzeigen = showInaktiv.IsToggled;
             viewModel.EinstellungenAnwenden();
-
-
-        }
-        public async void gruppenNeuLaden(object sender, EventArgs e)
-        {
-            MainController mainc = new MainController();
-            await mainc.groupControl.AlleGruppenAbrufen(0, "");
-            Application.Current.Properties["Gruppen"] = JsonConvert.SerializeObject(mainc.groupControl.alleGruppen);
-            Application.Current.Properties["lastGroupCall"] = DateTime.Now;
-            await Application.Current.SavePropertiesAsync();
 
 
         }

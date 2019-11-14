@@ -23,36 +23,12 @@ namespace BdP_MV.ViewModel
         }
         public async Task LoadGroups()
         {
-            JsonSerializer serializer = new JsonSerializer();
             IsBusy = true;
-            if (Application.Current.Properties.ContainsKey("lastGroupCall"))
-            {
-                DateTime lastGroupCall = (DateTime)Application.Current.Properties["lastGroupCall"];
-                if (lastGroupCall>DateTime.Now.AddDays(-30))
-                {
-                    string json = (String)Application.Current.Properties["Gruppen"];
-                    mainc.groupControl.alleGruppen = JsonConvert.DeserializeObject<List<Gruppe>>(json);
-                    Console.WriteLine("Gruppencache geladen");
-                    
-                }
-                else
-                {
-                    await mainc.groupControl.AlleGruppenAbrufen(0, "");
-                    Application.Current.Properties["Gruppen"] = JsonConvert.SerializeObject(mainc.groupControl.alleGruppen);
-                    Application.Current.Properties["lastGroupCall"] = DateTime.Now;
-                    Console.WriteLine("Gruppencache aufgrund von abgelaufenen Daten neu geschrieben");
-                    await Application.Current.SavePropertiesAsync();
-                }
-
-            }
-            else
-            {
-                await mainc.groupControl.AlleGruppenAbrufen(0, "");
-                Application.Current.Properties["Gruppen"] = JsonConvert.SerializeObject(mainc.groupControl.alleGruppen);
-                Application.Current.Properties["lastGroupCall"] = DateTime.Now;
-                Console.WriteLine("Gruppencache aufgrund von neuen Daten neu geschrieben");
-                await Application.Current.SavePropertiesAsync();
-            }
+            
+            await mainc.groupControl.AlleGruppenAbrufen(0, "");
+               
+    
+            
             
             IsBusy = false;
             return;

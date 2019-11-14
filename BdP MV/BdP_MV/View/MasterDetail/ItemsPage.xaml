@@ -12,7 +12,7 @@
 
 
 
-                <Grid>
+                <Grid x:Name="groupSelectGrid" >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50" />
                     </Grid.RowDefinitions>

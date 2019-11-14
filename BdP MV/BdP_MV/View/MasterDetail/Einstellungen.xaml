@@ -3,43 +3,52 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BdP_MV.View.MasterDetail.Einstellungen">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="StartAndExpand" Padding="2,5,2,5">
-           
-            <StackLayout Orientation="Horizontal">
+        <AbsoluteLayout x:Name="AbsoluteLayoutWidgets" Grid.Row="4" Padding="0">
+            <StackLayout VerticalOptions="StartAndExpand" Padding="2,5,2,5">
 
-                <Label Text="Sortierreihenfolge" FontSize="Medium" />
-                <Picker x:Name="reihenfolgePicker"
-            SelectedIndexChanged="reihenfolgeChanged"
+                <StackLayout Orientation="Horizontal">
 
-            Title="Sortierreihenfolge"
-            ItemsSource="{Binding Sortierreihenfolgen}"
-            ItemDisplayBinding="{Binding Name}"/>
-            </StackLayout>
-            <Label Text="Die beeinflusst die Sortierung der Suchergebnisse und der Mitgliederliste." FontSize="Small" />
-            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="5" Color="#1D4899"/>
-            <StackLayout Orientation="Horizontal">
+                    <Label Text="Sortierreihenfolge" FontSize="Medium" />
+                    <Picker x:Name="reihenfolgePicker"
+                SelectedIndexChanged="reihenfolgeChanged"
 
-                <Label Text="Kleingruppen laden" FontSize="Medium" />
-                <Switch x:Name="kleingruppenload"  Toggled="kleingruppenChanged" />
-            </StackLayout>
-            <Label Text="Die Namen der Kleingruppen im Stamm werden geladen. Dies erhöht die Ladezeit minimal." FontSize="Small" />
-            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="5" Color="#1D4899"/>
-            <StackLayout Orientation="Horizontal">
+                Title="Sortierreihenfolge"
+                ItemsSource="{Binding Sortierreihenfolgen}"
+                ItemDisplayBinding="{Binding Name}"/>
+                </StackLayout>
+                <Label Text="Die beeinflusst die Sortierung der Suchergebnisse und der Mitgliederliste." FontSize="Small" />
+                <BoxView HorizontalOptions="FillAndExpand" HeightRequest="5" Color="#1D4899"/>
+                <StackLayout Orientation="Horizontal">
 
-                <Label Text="Inaktive anzeigen" FontSize="Medium" />
-                <Switch x:Name="showInaktiv" Toggled="inaktivAnzeigenChanged" />
-            </StackLayout>
-            <Label Text="Inaktive Mitglieder werden in der Mitgliederliste der Gruppen angezeigt." FontSize="Small" />
-            <BoxView HorizontalOptions="FillAndExpand" HeightRequest="5" Color="#1D4899"/>
+                    <Label Text="Kleingruppen laden" FontSize="Medium" />
+                    <Switch x:Name="kleingruppenload"  Toggled="kleingruppenChanged" />
+                </StackLayout>
+                <Label Text="Die Namen der Kleingruppen im Stamm werden geladen. Dies erhöht die Ladezeit minimal." FontSize="Small" />
+                <BoxView HorizontalOptions="FillAndExpand" HeightRequest="5" Color="#1D4899"/>
+                <StackLayout Orientation="Horizontal">
 
-
-            <Button Text="Gruppen neu laden" FontSize="Medium" Clicked="gruppenNeuLaden"></Button>
-
-            <Label Text="Deine zugreifbaren Gruppen werden 30 Tage zwischengespeichert. Um die Gruppen direkt neu zu laden, drück diesen Button. Die Änderungen werden nach einem Neustart der App wirksam." FontSize="Small" />
-
-
-
+                    <Label Text="Inaktive anzeigen" FontSize="Medium" />
+                    <Switch x:Name="showInaktiv" Toggled="inaktivAnzeigenChanged" />
+                </StackLayout>
+                <Label Text="Inaktive Mitglieder werden in der Mitgliederliste der Gruppen angezeigt." FontSize="Small" />
+                
+               
 
         </StackLayout>
+            <ActivityIndicator x:Name="activity"  
+                       IsRunning="{Binding IsBusy}"  
+                       IsEnabled="{Binding IsBusy}"
+                       IsVisible="{Binding IsBusy}"
+                       AbsoluteLayout.LayoutFlags="PositionProportional"
+                       AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+                       VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="CenterAndExpand"
+                       Color="Blue"  
+                       BackgroundColor="Transparent">
+                <ActivityIndicator.WidthRequest>
+                    <OnPlatform x:TypeArguments="x:Double" iOS="100" Android="100"  />
+                </ActivityIndicator.WidthRequest>
+            </ActivityIndicator>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -5,6 +5,7 @@ using BdP_MV.Services;
 using BdP_MV.View.MitgliederDetails;
 using BdP_MV.View.MitgliederDetails.Edit;
 using BdP_MV.ViewModel;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,9 +29,12 @@ namespace BdP_MV.View.MasterDetail
         public ItemsPage()
         {
             searchOrigin = false;
-            testpicker.ItemsSource = (List<Gruppe>)App.Current.Properties["Gruppen"];
+            List<Gruppe> alleGruppen = (List<Gruppe>)Application.Current.Properties["Gruppen"];
+            testpicker.ItemsSource = alleGruppen;
             viewModel = new ItemsViewModel(new MainController());
+            viewModel.mainC.groupControl.alleGruppen = alleGruppen;
             BindingContext = viewModel;
+
 
         }
 
@@ -39,11 +43,7 @@ namespace BdP_MV.View.MasterDetail
 
             InitializeComponent();
             searchOrigin = false;
-            testpicker.ItemsSource = (List<Gruppe>)App.Current.Properties["Gruppen"];
-            
-            
-
-
+            testpicker.ItemsSource = mainCo.groupControl.alleGruppen;
             viewModel = new ItemsViewModel(mainCo);
 
             BindingContext = viewModel;

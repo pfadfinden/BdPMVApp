@@ -29,7 +29,7 @@ namespace BdP_MV.View.MasterDetail
             if (item == null)
                 return;
             Page page;
-            if (item.TargetType == typeof(ItemsPage)|| item.TargetType == typeof(Suche))
+            if (item.TargetType == typeof(Suche)|| item.TargetType == typeof(ItemsPage))
             {
                 page = (Page)Activator.CreateInstance(item.TargetType, mainC);
             }
