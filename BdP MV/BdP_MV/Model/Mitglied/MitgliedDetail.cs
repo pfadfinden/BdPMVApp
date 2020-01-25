@@ -80,7 +80,7 @@ namespace BdP_MV.Model.Mitglied
         public string genericField1 { get; set; }
         public string genericField2 { get; set; }
         public string telefax { get; set; }
-        public int beitragsartId { get; set; }
+        public int? beitragsartId { get; set; }
         public string plz { get; set; }
         [JsonIgnore]
         public string gruppe { get; set; }

@@ -130,6 +130,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)View\MitgliederDetails\Edit\NewMitglied.xaml.cs">
       <DependentUpon>NewMitglied.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\PopUps\InfoPopup.xaml.cs">
+      <DependentUpon>InfoPopup.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)MainPage.xaml">
@@ -249,6 +253,11 @@
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\MitgliederDetails\Edit\New_Ausbildung.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\PopUps\InfoPopup.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
