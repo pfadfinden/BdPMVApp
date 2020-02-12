@@ -330,19 +330,23 @@ namespace BdP_MV.Services
             MitgliedDetails mitgliedDetais = new MitgliedDetails();
             APIResponse aPIResponse = JsonConvert.DeserializeObject<APIResponse>(responseString);
             JsonSerializer jSerializer = new JsonSerializer();
-            RootObjectMitgliedDetails listeAllerMitglieder = (RootObjectMitgliedDetails)jSerializer.Deserialize(new JTokenReader(aPIResponse.response), typeof(RootObjectMitgliedDetails));
-            if (listeAllerMitglieder.success == false)
+            RootObjectMitgliedDetails rootMitgliedDetails = (RootObjectMitgliedDetails)jSerializer.Deserialize(new JTokenReader(aPIResponse.response), typeof(RootObjectMitgliedDetails));
+            if (rootMitgliedDetails.success == false)
             {
-                if (listeAllerMitglieder.responseType.Equals("ERROR") && listeAllerMitglieder.message.Equals("Session expired"))
+                if (rootMitgliedDetails.responseType.Equals("ERROR") && rootMitgliedDetails.message.Equals("Session expired"))
                 {
                     throw new NewLoginException("Bitte neu einloggen.");
                 }
-                if (listeAllerMitglieder.responseType.Equals("EXCEPTION") && listeAllerMitglieder.message.Equals("Access denied - no right for requested operation"))
+                if (rootMitgliedDetails.responseType.Equals("EXCEPTION") && rootMitgliedDetails.message.Equals("Access denied - no right for requested operation"))
                 {
                     throw new NoRightsException("Versucht Kontext aufzurufen, für das der Nutzer keine Rechte hat.");
                 }
+                if (rootMitgliedDetails.responseType.Equals("EXCEPTION"))
+                {
+                    throw new NoRightsException("Sonstiger Fehler beim Zugriff");
+                }
             }
-            mitgliedDetais = listeAllerMitglieder.data;
+            mitgliedDetais = rootMitgliedDetails.data;
             
             return mitgliedDetais;
         }
