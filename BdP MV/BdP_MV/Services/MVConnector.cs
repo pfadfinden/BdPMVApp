@@ -343,7 +343,7 @@ namespace BdP_MV.Services
                 }
                 if (rootMitgliedDetails.responseType.Equals("EXCEPTION"))
                 {
-                    throw new NoRightsException("Sonstiger Fehler beim Zugriff");
+                    throw new NoRightsException("Sonstiger Fehler beim Zugriff.");
                 }
             }
             mitgliedDetais = rootMitgliedDetails.data;
