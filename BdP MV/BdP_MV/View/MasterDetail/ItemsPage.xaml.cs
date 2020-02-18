@@ -133,7 +133,7 @@ namespace BdP_MV.View.MasterDetail
         /// <param name="e">The ItemTappedEventArgs</param>
         async void ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            IsBusy = true;
+            viewModel.IsBusy = true;
             try
             {
                 IsBusy = true;
@@ -152,7 +152,7 @@ namespace BdP_MV.View.MasterDetail
                 }
                 // prevents the list from displaying the navigated item as selected when navigating back to the list
                 ((ListView)sender).SelectedItem = null;
-                IsBusy = false;
+                
             }
             catch (NewLoginException ex)
             {
@@ -178,8 +178,7 @@ namespace BdP_MV.View.MasterDetail
                 Console.WriteLine(ex.StackTrace);
 
             }
-            IsBusy = false;
-
+            viewModel.IsBusy = false;
         }
 
         /// <summary>

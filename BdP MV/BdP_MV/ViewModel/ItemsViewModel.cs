@@ -57,7 +57,7 @@ namespace BdP_MV.ViewModel
         public async Task<ItemDetailViewModel> mitgliedDetailsVorladen(int idMitglied, int idGruppe)
 
         {
-            IsBusy = true;
+            
             Task<List<SGB8>> task_sgb8 = mainC.mitgliederController.Sgb8Abrufen(idMitglied);
             Task<List<Ausbildung>> task_ausbildung = mainC.mitgliederController.AusbildungenAbrufen(idMitglied);
             Task<Boolean> task_editable = mainC.groupControl.CheckPermissionForEdit(idGruppe);
@@ -73,7 +73,7 @@ namespace BdP_MV.ViewModel
             viewModelMitgliedDetails.isEditable = await task_editable;
 
             await nachbarbeitung;
-            IsBusy = false;
+            
             return viewModelMitgliedDetails;
 
 
