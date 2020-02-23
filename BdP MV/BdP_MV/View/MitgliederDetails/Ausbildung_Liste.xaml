@@ -33,7 +33,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
-            <ImageButton x:Name="ImageNewButton" Source="edit_bdp.png"
+            <ImageButton x:Name="ImageNewButton" Source="plus_bdp.png"
                             Clicked="newAusbildung_Activated"
                             IsVisible="{Binding isEditable}"
                             AbsoluteLayout.LayoutFlags="PositionProportional"
