@@ -31,6 +31,10 @@ namespace BdP_MV.View.MitgliederDetails.Edit
             InitializeComponent();
             lbl_begruendungMitglied.IsVisible = false;
             lbl_begruendungStamm.IsVisible = false;
+            begruendungStammTooltip.IsVisible = false;
+            begruendungMitglied.IsVisible = false;
+            begruendungMitgliedToolTip.IsVisible = false;
+
         }
         public NewMitglied(MitgliedDetails mitglied)
         {
@@ -45,6 +49,9 @@ namespace BdP_MV.View.MitgliederDetails.Edit
             this.Title = "Mitglied " + mitglied.ansprechname + " bearbeiten";
             lbl_begruendungMitglied.IsVisible = false;
             lbl_begruendungStamm.IsVisible = false;
+            begruendungStammTooltip.IsVisible = false;
+            begruendungMitglied.IsVisible = false;
+            begruendungMitgliedToolTip.IsVisible = false;
         }
        private void fillFelder()
         {
@@ -92,7 +99,9 @@ namespace BdP_MV.View.MitgliederDetails.Edit
                 lbl_begruendungStamm.IsVisible = true;
                 begruendungStamm.IsVisible = true;
                 begruendungStamm.IsEnabled = true;
-
+                begruendungStammTooltip.IsVisible = true;
+                begruendungMitglied.IsVisible = true;
+                begruendungMitgliedToolTip.IsVisible = true;
             }
             else
             {
@@ -105,7 +114,9 @@ namespace BdP_MV.View.MitgliederDetails.Edit
                 lbl_begruendungStamm.IsVisible = true;
                 begruendungStamm.IsVisible = false;
                 begruendungStamm.IsEnabled = false;
-
+                begruendungStammTooltip.IsVisible = false;
+                begruendungMitglied.IsVisible = false;
+                begruendungMitgliedToolTip.IsVisible = false;
             }
 
 
@@ -114,6 +125,19 @@ namespace BdP_MV.View.MitgliederDetails.Edit
         {
             try
             {
+                if (landpicker.SelectedIndex == -1)
+                {
+                    throw new NotAllRequestedFieldsFilledException("Das Land ist ein Pflichtfeld.");
+                }
+                if (geschlechtspicker.SelectedIndex == -1)
+                {
+                    throw new NotAllRequestedFieldsFilledException("Das Geschlecht ist ein Pflichtfeld.");
+                }
+                if (beitragsartpicker.SelectedIndex == -1)
+                {
+                    throw new NotAllRequestedFieldsFilledException("Die Beitragsart ist ein Pflichtfeld.");
+
+                }
                 viewModel.mitglied.vorname = vornameEntry.Text;
                 viewModel.mitglied.nachname = nachnameEntry.Text;
                 viewModel.mitglied.spitzname = spitznameEntry.Text;
@@ -137,6 +161,10 @@ namespace BdP_MV.View.MitgliederDetails.Edit
                 viewModel.mitglied.telefon3 = telefon3.Text;
                 if (newMitglied)
                 {
+                    if (mitgliedsartpicker.SelectedIndex == -1)
+                    {
+                        throw new NotAllRequestedFieldsFilledException("Die Mtigliedsart ist ein Pflichtfeld.");
+                    }
                     viewModel.mitglied.dyn_BegruendungMitglied = begruendungMitglied.Text;
                     viewModel.mitglied.dyn_BegruendungStamm = begruendungStamm.Text;
                     viewModel.mitglied.mglType = ((SelectableItem)mitgliedsartpicker.SelectedItem).descriptor;
@@ -222,9 +250,66 @@ namespace BdP_MV.View.MitgliederDetails.Edit
             {
                 fillFelder();
             }
+            else
+            {
+                landpicker.SelectedItem = ((List<SelectableItem>)viewModel.land).FirstOrDefault(c => c.Id == "1");
+
+            }
 
 
 
+        }
+        async void TooltipKlicked(object sender, EventArgs e)
+        {
+            Console.WriteLine(sender);
+            Console.WriteLine("Klicked!!!");
+
+        }
+
+        async void TooltipTitelKlicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("Titel", "Zum Beispiel Dr.", "OK");
+
+        }
+        async void TooltipVornameKlicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("Vorname", "Vornamen ohne Zusatz.", "OK");
+        }
+        async void TooltipNachnameKlicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("Nachname", "Namenszusatz + Nachname \nz.B: von Meier", "OK");
+        }
+        async void TooltipEintrittsdatumKlicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("Eintrittsdatum", "Unterschriftsdatum des Mitglieds auf dem Aufnahmeantrag.", "OK");
+        }
+        async void TooltipMitgliedsartKlicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("Mitgliedsart", "Aus der gewählten Mitgliedsart wird automatisch die erste Mitgliedstätigkeit erzeugt. „Zweitmitglied (Doppelmitgliedschaft)“ ist beim Anlegen eines neuen Mitgliedes unzulässig.", "OK");
+        }
+        async void TooltipStasseKlicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("Straße", "Postrückläufer werden mit einer # als erstes Zeichen der Straße gekennzeichnet", "OK");
+        }
+        async void TooltipEmail1Klicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("E-Mail", "Bei Funktionsträger/innen auf Landes- und Bundesebene pfadfinden.de-Adresse, deren private E-Mail-Adresse unter E-Mail 2.", "OK");
+        }
+        async void TooltipEmail2Klicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("E-Mail 2", "Bei Funktionsträger/innen auf Landes- und Bundesebene pfadfinden.de-Adresse, private E-Mailadresse. Ggf. Weiterleitungsziel von E-Mail1", "OK");
+        }
+        async void TooltipTelefonKlicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("Telefon", "Format: 01234 567890 / International: +44 1234 567890.", "OK");
+        }
+        async void TooltipBegruendungMitgliedKlicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("Begründung Mitglied", "Hier ist die Begründung des Mitglieds lt. Aufnahmeantrag einzutragen.", "OK");
+        }
+        async void TooltipBegruendungStammKlicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("Stellungnahme Stamm", "Hier ist die Stellungnahme des Stammes lt. Aufnahmeantrag einzutragen.", "OK");
         }
     }
 }
