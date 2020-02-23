@@ -66,7 +66,17 @@ namespace BdP_MV.View.MitgliederDetails
                     details += "\nVeranstalter: " + ausbildung_selected_details.veranstalter;
                 }
                 IsBusy = false;
-                await DisplayAlert(selected.entries_baustein, details, "OK");
+                bool answer = await DisplayAlert(selected.entries_baustein, details, "Ändern", "Schließen");
+                if (answer)
+                {
+                    viewModel.IsBusy = true;
+
+                    NewAusbildung neueAusbidlungsseite = new NewAusbildung(ausbildung_selected_details, viewModel.mitglied);
+                    await neueAusbidlungsseite.LoadPreferences();
+                    viewModel.IsBusy = false;
+                    await Navigation.PushAsync(neueAusbidlungsseite);
+                }
+                
             }
             catch (NewLoginException ex)
             {

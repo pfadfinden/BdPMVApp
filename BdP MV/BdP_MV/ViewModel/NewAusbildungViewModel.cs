@@ -41,8 +41,27 @@ namespace BdP_MV.ViewModel
         {
             bausteine = await mainC.mVConnector.GetItems("module/baustein/");
         }
+        public async Task<String> UpdateExistingAusbildung()
+        {
+            IsBusy = true;
 
-        public async Task<String> CreateNewMitglied(int idGruppe)
+
+                  
+
+            string JSONOutput = JsonConvert.SerializeObject(ausbildung,
+                           Newtonsoft.Json.Formatting.None,
+                           new JsonSerializerSettings
+                           {
+                               DateTimeZoneHandling = DateTimeZoneHandling.Unspecified,
+                               ContractResolver = new NullToEmptyStringResolver()
+
+                           });
+            
+            IsBusy = false;
+
+            return await mainC.mVConnector.PutChangeAusbildung(mitgliedID,ausbildung.id, JSONOutput);
+        }
+        public async Task<String> CreateNewAusbildung()
         {
             IsBusy = true;
 
@@ -67,7 +86,7 @@ namespace BdP_MV.ViewModel
             JSONOutput = JSONOutput.Replace(@"\", @"");
 
             //JSONOutput = JSONOutput.Substring(1, JSONOutput.Length - 1);
-            string result = await mainC.mVConnector.PostNewMitglied(idGruppe, JSONOutput);
+            string result = await mainC.mVConnector.PostNewAusbildung(mitgliedID, JSONOutput);
             IsBusy = false;
 
             return result;

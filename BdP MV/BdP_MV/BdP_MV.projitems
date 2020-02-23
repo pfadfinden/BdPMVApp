@@ -24,6 +24,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\Meta.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Metamodel\APIResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Metamodel\Reports.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Metamodel\RootObj_edit_Ausbildung.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Metamodel\RootObj_edit_Mitglied.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Metamodel\RootObj_new_Mitglied.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\SearchObject.cs" />

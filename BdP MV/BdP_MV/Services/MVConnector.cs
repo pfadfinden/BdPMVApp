@@ -486,15 +486,42 @@ namespace BdP_MV.Services
 
             return "Erfolgreich angelegt" + response.message;
         }
-        public async Task<String> PutChangeMitglied(int idGruppe, int idMitglied, string JSON)
+        public async Task<String> PostNewAusbildung(int idMitglied, string JSON)
         {
 
-            String anfrage = "api/1/2/service/nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/" + idGruppe+"/"+idMitglied;
+            String anfrage = "api/1/2/service/nami/mitglied-ausbildung/filtered-for-navigation/mitglied/mitglied/" + idMitglied;
+            String responseString = await PostApiDataAsync(anfrage, JSON);
+            APIResponse aPIResponse = JsonConvert.DeserializeObject<APIResponse>(responseString);
+            JsonSerializer jSerializer = new JsonSerializer();
+            var response = (RootObj_new_Mitglied)jSerializer.Deserialize(new JTokenReader(aPIResponse.response), typeof(RootObj_new_Mitglied));
+            if (response.success == false)
+            {
+                if (response.responseType.Equals("ERROR") && response.message.Equals("Session expired"))
+                {
+                    throw new NewLoginException("Bitte neu einloggen.");
+                }
+                else if (response.responseType.Equals("EXCEPTION") && response.message.Equals("Benutzer darf sich keine GrpReports ansehen"))
+                {
+                    throw new NoRightsException("Versucht Kontext aufzurufen, für das der Nutzer keine Rechte hat.");
+                }
+                else
+                {
+                    throw new NotAllRequestedFieldsFilledException("Es ist ein Fehler aufgetreten. Wurden alle Pflichtfelder ausgefüllt?");
+                }
+            }
+
+
+            return "Erfolgreich angelegt" + response.message;
+        }
+         public async Task<String> PutChangeAusbildung(int idMitglied, int idAusbildung, string JSON)
+        {
+
+            String anfrage = "api/1/2/service/nami/mitglied-ausbildung/filtered-for-navigation/mitglied/mitglied/" + idMitglied + "/" + idAusbildung;
             String responseString = await PutApiDataAsync(anfrage, JSON);
             APIResponse aPIResponse = JsonConvert.DeserializeObject<APIResponse>(responseString);
             JsonSerializer jSerializer = new JsonSerializer();
-            var response = (RootObj_edit_Mitglied)jSerializer.Deserialize(new JTokenReader(aPIResponse.response), typeof(RootObj_edit_Mitglied));
-           
+            var response = (RootObj_edit_Ausbildung)jSerializer.Deserialize(new JTokenReader(aPIResponse.response), typeof(RootObj_edit_Ausbildung));
+
             if (response.success == false)
             {
                 if (response.responseType.Equals("ERROR") && response.message.Equals("Session expired"))
@@ -514,7 +541,36 @@ namespace BdP_MV.Services
 
             return "Erfolgreich geändert" + response.message;
         }
-        private async Task<HttpWebRequest> CreateWebRequest(string anfrageURL)
+        public async Task<String> PutChangeMitglied(int idGruppe, int idMitglied, string JSON)
+        {
+
+            String anfrage = "api/1/2/service/nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/" + idGruppe + "/" + idMitglied;
+            String responseString = await PutApiDataAsync(anfrage, JSON);
+            APIResponse aPIResponse = JsonConvert.DeserializeObject<APIResponse>(responseString);
+            JsonSerializer jSerializer = new JsonSerializer();
+            var response = (RootObj_edit_Mitglied)jSerializer.Deserialize(new JTokenReader(aPIResponse.response), typeof(RootObj_edit_Mitglied));
+
+            if (response.success == false)
+            {
+                if (response.responseType.Equals("ERROR") && response.message.Equals("Session expired"))
+                {
+                    throw new NewLoginException("Bitte neu einloggen.");
+                }
+                else if (response.responseType.Equals("EXCEPTION") && response.message.Equals("Benutzer darf sich keine GrpReports ansehen"))
+                {
+                    throw new NoRightsException("Versucht Kontext aufzurufen, für das der Nutzer keine Rechte hat.");
+                }
+                else
+                {
+                    throw new NotAllRequestedFieldsFilledException("Es ist ein Fehler aufgetreten. Wurden alle Pflichtfelder ausgefüllt?");
+                }
+            }
+            
+            return "Erfolgreich geändert" + response.message;
+            
+        }
+
+            private async Task<HttpWebRequest> CreateWebRequest(string anfrageURL)
         {
             cookieContainer = new CookieContainer();
             //cookieContainer = (CookieContainer)App.Current.Properties["cookieContainer"];
