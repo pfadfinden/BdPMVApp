@@ -35,8 +35,9 @@ namespace BdP_MV.ViewModel
         }
         public async Task<string> CheckLogin(string username, string passwort)
         {
-            loginData.Username = username;
-            loginData.Password = passwort;
+            loginData.Username = username.Trim();
+            loginData.Password = passwort.Trim();
+            
             IsBusy = true;
             string returnString = "";
             if (String.IsNullOrEmpty(loginData.Username))

@@ -118,7 +118,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="15" />
 
                 </Grid.ColumnDefinitions>
                 <Label VerticalOptions="Center" Text="Titel:" Grid.Row="0" Grid.Column="0" Font="Bold"/>
