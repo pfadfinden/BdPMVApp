@@ -35,6 +35,8 @@ namespace BdP_MV.View.MitgliederDetails.Edit
             newAusbildung = false;
             viewModel = new NewAusbildungViewModel(ausbildung, mitglied);
             InitializeComponent();
+            this.Title = "Ausbildung bearbeiten";
+
         }
         async void Save_Clicked(object sender, EventArgs e)
         {
