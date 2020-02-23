@@ -59,6 +59,8 @@ namespace BdP_MV.View.MasterDetail
             viewModel = new ItemsViewModel(mainCo);
 
             testpicker.IsVisible = false;
+            lbl_Picker.IsVisible = false;
+            groupSelectGrid.HeightRequest = 0;
 
             BindingContext = viewModel;
             viewModel.ausgewaehlteMitglieder = mitgliederliste;

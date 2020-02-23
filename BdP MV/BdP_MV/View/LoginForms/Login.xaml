@@ -32,7 +32,7 @@
                        HorizontalOptions="CenterAndExpand"/>
 
                     <Entry x:Name="usernameEntry" Placeholder="Benutzername" TextColor="#1D4899" PlaceholderColor="#1D4899"/>
-                    <Entry x:Name="passwordEntry" Placeholder="Passwort"  IsPassword="true" TextColor="#1D4899" PlaceholderColor="#1D4899"/>
+                    <Entry x:Name="passwordEntry" Placeholder="Passwort"  IsPassword="true"  Completed="OnLoginButtonClicked" TextColor="#1D4899" PlaceholderColor="#1D4899"/>
                     <Button Text="Login" Clicked="OnLoginButtonClicked" />
                     <Button Text="Passwort Vergessen" Clicked="OnPWLostButtonClicked" />
 
