@@ -140,6 +140,14 @@ namespace BdP_MV.View.MitgliederDetails.Edit
                     throw new NotAllRequestedFieldsFilledException("Die Beitragsart ist ein Pflichtfeld.");
 
                 }
+                if (eintrittsdatumEntry.Date == DateTime.Today)
+                {
+                    bool answer = await DisplayAlert("Eintrittsdatum", "Ist das Eintrittsdatum auf dem Aufnahmeantrag wirklich das heutige Datum?", "Ja", "Nein");
+                    if (!answer)
+                    {
+                        throw new NotAllRequestedFieldsFilledException("Bitte das Eintrittsdatum korrigieren.");
+                    }
+                }
                 viewModel.mitglied.vorname = vornameEntry.Text;
                 viewModel.mitglied.nachname = nachnameEntry.Text;
                 viewModel.mitglied.spitzname = spitznameEntry.Text;

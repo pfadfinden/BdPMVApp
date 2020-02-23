@@ -1,8 +1,12 @@
-﻿using BdP_MV.Model.Mitglied;
+﻿using BdP_MV.Exceptions;
+using BdP_MV.Ext_Packages;
+using BdP_MV.Model.Mitglied;
 using BdP_MV.Services;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace BdP_MV.ViewModel
@@ -36,6 +40,40 @@ namespace BdP_MV.ViewModel
         public async Task loadSelectableItems()
         {
             bausteine = await mainC.mVConnector.GetItems("module/baustein/");
+        }
+
+        public async Task<String> CreateNewMitglied(int idGruppe)
+        {
+            IsBusy = true;
+
+
+           
+           
+
+
+            string JSONOutput = JsonConvert.SerializeObject(ausbildung,
+                           Newtonsoft.Json.Formatting.None,
+                           new JsonSerializerSettings
+                           {
+                               DateTimeZoneHandling = DateTimeZoneHandling.Unspecified,
+                               ContractResolver = new NullToEmptyStringResolver()
+
+                           });
+
+
+            JSONOutput = Regex.Replace(JSONOutput, @"\t|\n|\r", "");
+            JSONOutput = Regex.Unescape(JSONOutput);
+            JSONOutput = Regex.Replace(JSONOutput, @"^""|""$|\\n?", "");
+            JSONOutput = JSONOutput.Replace(@"\", @"");
+
+            //JSONOutput = JSONOutput.Substring(1, JSONOutput.Length - 1);
+            string result = await mainC.mVConnector.PostNewMitglied(idGruppe, JSONOutput);
+            IsBusy = false;
+
+            return result;
+
+
+
         }
     }
 }
