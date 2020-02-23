@@ -52,6 +52,8 @@ namespace BdP_MV.View.MitgliederDetails.Edit
             begruendungStammTooltip.IsVisible = false;
             begruendungMitglied.IsVisible = false;
             begruendungMitgliedToolTip.IsVisible = false;
+            lbl_begruendungStamm.IsVisible = false;
+            lbl_begruendungMitglied.IsVisible = false;
         }
        private void fillFelder()
         {
@@ -105,13 +107,13 @@ namespace BdP_MV.View.MitgliederDetails.Edit
             }
             else
             {
-                lbl_begruendungMitglied.IsVisible = true;
+                lbl_begruendungMitglied.IsVisible = false;
 
                 // lbl_begruendungMitglied.IsEnabled = true;
                 begruendungMitglied.IsVisible = false;
                 begruendungMitglied.IsEnabled = false;
                 //lbl_begruendungStamm.IsEnabled = true;
-                lbl_begruendungStamm.IsVisible = true;
+                lbl_begruendungStamm.IsVisible = false;
                 begruendungStamm.IsVisible = false;
                 begruendungStamm.IsEnabled = false;
                 begruendungStammTooltip.IsVisible = false;
