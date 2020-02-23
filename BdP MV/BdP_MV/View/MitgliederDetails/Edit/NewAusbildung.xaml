@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BdP_MV.View.MitgliederDetails.Edit.NewAusbildung"
+             Title="Neue Ausbildung">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid Margin="10,0,10,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="15" />
+                </Grid.ColumnDefinitions>
+                <Label VerticalOptions="Center" Text="Kursdatum:" Grid.Row="0" Grid.Column="0" Font="Bold"/>
+                <DatePicker x:Name="kursdatumEntry" VerticalOptions="CenterAndExpand" Grid.Row="0" Grid.Column="1" >
+                    <DatePicker.Format>dd.MM.yyyy</DatePicker.Format>
+                </DatePicker>
+                <ImageButton  x:Name="kursdatumTooltip" BorderColor="Transparent"  BackgroundColor="Transparent" Clicked="kursdatumTooltipKlicked" CommandParameter="test"  Source="info.png"  Grid.Row="0" Grid.Column="2" />
+
+                <Label Text="Kurs*:" Grid.Row="1" Grid.Column="0" Font="Bold" VerticalOptions="Center" />
+                <Picker 
+                    x:Name="kursPicker" 
+                    Title="Kurs*"
+                        ItemDisplayBinding="{Binding descriptor}" Grid.Row="1" Grid.Column="1" />
+
+                <Label Text="Abweichender Kursname" Grid.Row="2" Grid.Column="0" Font="Bold" VerticalOptions="Center" />
+                <Entry x:Name="abwKursnameEntry"  Grid.Row="2" Grid.Column="1" />
+                <ImageButton  x:Name="abwKursnameTooltip" BorderColor="Transparent"  BackgroundColor="Transparent" Clicked="abwKursnameTooltipKlicked" CommandParameter="test"  Source="info.png"  Grid.Row="2" Grid.Column="2" />
+
+                <Label Text="Veranstalter:" Grid.Row="3" Grid.Column="0" Font="Bold" VerticalOptions="Center" />
+                <Entry x:Name="veranstalterEntry" Grid.Row="3" Grid.Column="1" />
+                <ImageButton  x:Name="veranstalterTooltip" BorderColor="Transparent"  BackgroundColor="Transparent" Clicked="veranstalterTooltipKlicked" CommandParameter="test"  Source="info.png"  Grid.Row="3" Grid.Column="2" />
+                <Button x:Name="btn_save"  Text="Abschicken" Clicked="Save_Clicked" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"/>
+
+
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,5 +1,6 @@
 ﻿using BdP_MV.Exceptions;
 using BdP_MV.Model.Mitglied;
+using BdP_MV.View.MitgliederDetails.Edit;
 using BdP_MV.ViewModel;
 using System;
 using System.Collections.ObjectModel;
@@ -30,7 +31,15 @@ namespace BdP_MV.View.MitgliederDetails
             BindingContext = this.viewModel = viewModel;
 
         }
+        async void newAusbildung_Activated(object sender, EventArgs e)
+        {
+            viewModel.IsBusy = true;
 
+            NewAusbildung neueAusbidlungsseite = new NewAusbildung(viewModel.mitglied);
+            await neueAusbidlungsseite.LoadPreferences();
+            viewModel.IsBusy = false;
+            await Navigation.PushAsync(neueAusbidlungsseite);
+        }
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (e.Item == null)

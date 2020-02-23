@@ -3,38 +3,59 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BdP_MV.View.MitgliederDetails.Ausbildung_Liste"
                           Title="Ausbildung">
-    <StackLayout Spacing="0" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+    <ContentPage.Content>
+        <AbsoluteLayout x:Name="AbsoluteLayoutWidgets" Grid.Row="4" Padding="0">
 
-        <ActivityIndicator 
+            <StackLayout Spacing="0" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+
+              <ListView x:Name="MyListView"
+                ItemsSource="{Binding ausbildung}"
+                ItemTapped="Handle_ItemTapped"
+                CachingStrategy="RecycleElement"
+                  RowHeight="60">
+
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Padding="10,0,0,0">
+                                    <Label Text="{Binding entries_baustein}" Style="{DynamicResource ListItemTextStyle}"  Font="Bold" />
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Datum"  Style="{DynamicResource ListItemDetailTextStyle}"></Label>
+                                        <Label Text="{Binding entries_vstgTag , StringFormat='{0:dd/MM/yyyy}'}"  Style="{DynamicResource ListItemDetailTextStyle}"></Label>
+
+                                    </StackLayout>
+                                </StackLayout>
+
+                            </ViewCell>
+
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <ImageButton x:Name="ImageNewButton" Source="edit_bdp.png"
+                            Clicked="newAusbildung_Activated"
+                            IsVisible="{Binding isEditable}"
+                            AbsoluteLayout.LayoutFlags="PositionProportional"
+                            AbsoluteLayout.LayoutBounds="1.0,1.0,-1,-1"
+                            Margin="10"
+                            Scale="0.8"
+                            BackgroundColor="Transparent">
+            </ImageButton>
+            <ActivityIndicator x:Name="activity"  
+                       IsRunning="{Binding IsBusy}"  
+                       IsEnabled="{Binding IsBusy}"
                        IsVisible="{Binding IsBusy}"
-                       IsRunning="{Binding IsBusy}"
+                       AbsoluteLayout.LayoutFlags="PositionProportional"
+                       AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
                        VerticalOptions="CenterAndExpand"
                        HorizontalOptions="CenterAndExpand"
-                       RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.33}" />
-
-        <ListView x:Name="MyListView"
-            ItemsSource="{Binding ausbildung}"
-            ItemTapped="Handle_ItemTapped"
-            CachingStrategy="RecycleElement"
-              RowHeight="60">
-
-
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
-                        <StackLayout Padding="10,0,0,0">
-                        <Label Text="{Binding entries_baustein}" Style="{DynamicResource ListItemTextStyle}"  Font="Bold" />
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="Datum"  Style="{DynamicResource ListItemDetailTextStyle}"></Label>
-                            <Label Text="{Binding entries_vstgTag , StringFormat='{0:dd/MM/yyyy}'}"  Style="{DynamicResource ListItemDetailTextStyle}"></Label>
-
-                        </StackLayout>
-                    </StackLayout>
-
-                </ViewCell>
-
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
-    </StackLayout>
+                       Color="Blue"  
+                       BackgroundColor="Transparent">
+                <ActivityIndicator.WidthRequest>
+                    <OnPlatform x:TypeArguments="x:Double" iOS="100" Android="100"  />
+                </ActivityIndicator.WidthRequest>
+            </ActivityIndicator>
+        </AbsoluteLayout>
+    </ContentPage.Content>
 </ContentPage>

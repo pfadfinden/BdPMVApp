@@ -47,6 +47,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\MainController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Mitgleider_Control.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\MVConnector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\NewAusbildungViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\SettingsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\AboutViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\BaseNavigationViewModel.cs" />
@@ -104,8 +105,8 @@
       <DependentUpon>Basisdaten_Mitglied.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)View\MitgliederDetails\Edit\New_Ausbildung.xaml.cs">
-      <DependentUpon>New_Ausbildung.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)View\MitgliederDetails\Edit\NewAusbildung.xaml.cs">
+      <DependentUpon>NewAusbildung.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\MitgliederDetails\Edit\New_Taetigkeit.xaml.cs">
@@ -251,7 +252,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\MitgliederDetails\Edit\New_Ausbildung.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\MitgliederDetails\Edit\NewAusbildung.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

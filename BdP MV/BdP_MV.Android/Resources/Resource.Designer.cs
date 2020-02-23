@@ -6478,16 +6478,13 @@ namespace BdP_MV.Droid
 			public const int settings = 2131165513;
 			
 			// aapt resource value: 0x7F07014A
-			public const int splash = 2131165514;
+			public const int tooltip_frame_dark = 2131165514;
 			
 			// aapt resource value: 0x7F07014B
-			public const int tooltip_frame_dark = 2131165515;
+			public const int tooltip_frame_light = 2131165515;
 			
 			// aapt resource value: 0x7F07014C
-			public const int tooltip_frame_light = 2131165516;
-			
-			// aapt resource value: 0x7F07014D
-			public const int user = 2131165517;
+			public const int user = 2131165516;
 			
 			static Drawable()
 			{
