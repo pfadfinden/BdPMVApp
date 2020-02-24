@@ -35,8 +35,8 @@ namespace BdP_MV.ViewModel
         }
         public async Task<string> CheckLogin(string username, string passwort)
         {
-            loginData.Username = username.Trim();
-            loginData.Password = passwort.Trim();
+            loginData.Username = username;
+            loginData.Password = passwort;
             
             IsBusy = true;
             string returnString = "";
@@ -50,6 +50,8 @@ namespace BdP_MV.ViewModel
             }
             else
             {
+                loginData.Username = loginData.Username.Trim();
+                loginData.Password = loginData.Password.Trim();
                 int answer = await Task.Run(async () => await mainc.mVConnector.LoginMV(loginData));
                 if (answer==1)
                 {
