@@ -5,32 +5,55 @@
     <ContentPage.Content>
         <AbsoluteLayout x:Name="AbsoluteLayoutWidgets" Grid.Row="4" Padding="0">
             <StackLayout VerticalOptions="StartAndExpand" Padding="2,5,2,5">
+                <Grid Margin="10,0,10,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                     </Grid.ColumnDefinitions>
+                    <Label Text="Sortierreihenfolge" FontSize="Medium"  Grid.Row="0" Grid.Column="0" />
+                    <Picker x:Name="reihenfolgePicker"  SelectedIndexChanged="reihenfolgeChanged"  Title="Sortierreihenfolge" ItemsSource="{Binding Sortierreihenfolgen}"  ItemDisplayBinding="{Binding Name}" Grid.Row="1" Grid.Column="0" />
+                    <Label Text="Die beeinflusst die Sortierung der Suchergebnisse und der Mitgliederliste." FontSize="Small" Grid.Row="2" Grid.Column="0"/>
+                </Grid>
 
-                <StackLayout Orientation="Horizontal">
-
-                    <Label Text="Sortierreihenfolge" FontSize="Medium" />
-                    <Picker x:Name="reihenfolgePicker"
-                SelectedIndexChanged="reihenfolgeChanged"
-
-                Title="Sortierreihenfolge"
-                ItemsSource="{Binding Sortierreihenfolgen}"
-                ItemDisplayBinding="{Binding Name}"/>
-                </StackLayout>
-                <Label Text="Die beeinflusst die Sortierung der Suchergebnisse und der Mitgliederliste." FontSize="Small" />
                 <BoxView HorizontalOptions="FillAndExpand" HeightRequest="5" Color="#1D4899"/>
-                <StackLayout Orientation="Horizontal">
+                <Grid Margin="10,0,10,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                    <Label Text="Kleingruppen laden" FontSize="Medium" />
-                    <Switch x:Name="kleingruppenload"  Toggled="kleingruppenChanged" />
-                </StackLayout>
-                <Label Text="Die Namen der Kleingruppen im Stamm werden geladen. Dies erhöht die Ladezeit minimal." FontSize="Small" />
+                    <Label Text="Kleingruppen laden" FontSize="Medium" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+                    <Switch x:Name="kleingruppenload"  Toggled="kleingruppenChanged"  Grid.Row="1" Grid.Column="0"/>
+                    <Label Text="Die Namen der Kleingruppen im Stamm werden geladen. Dies erhöht die Ladezeit minimal." FontSize="Small"  Grid.Row="1" Grid.Column="1" />
+                </Grid>
+                
                 <BoxView HorizontalOptions="FillAndExpand" HeightRequest="5" Color="#1D4899"/>
-                <StackLayout Orientation="Horizontal">
+                <Grid Margin="10,0,10,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                    <Label Text="Inaktive anzeigen" FontSize="Medium" />
-                    <Switch x:Name="showInaktiv" Toggled="inaktivAnzeigenChanged" />
-                </StackLayout>
-                <Label Text="Inaktive Mitglieder werden in der Mitgliederliste der Gruppen angezeigt." FontSize="Small" />
+
+                    <Label Text="Inaktive anzeigen" FontSize="Medium"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
+                    <Switch x:Name="showInaktiv" Toggled="inaktivAnzeigenChanged" Grid.Row="1" Grid.Column="0" />
+                    <Label Text="Inaktive Mitglieder werden in der Mitgliederliste der Gruppen angezeigt." FontSize="Small"  Grid.Row="1" Grid.Column="1" />
+                </Grid>
+                
                 
                
 

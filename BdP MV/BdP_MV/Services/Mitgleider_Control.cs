@@ -273,7 +273,16 @@ namespace BdP_MV.Services
             }
             return gruppe;
 
-            }
-           
         }
+        public async Task<Boolean> CheckPermissionForEditAusbildung(int idMitglied)
+        {
+            Meta_Data meta = await mainC.mVConnector.MetaDataAusbildung(idMitglied).ConfigureAwait(false);
+            var match = meta.actions.FirstOrDefault(stringToCheck => stringToCheck.Contains("CREATE"));
+            if (match != null)
+            { return true; }
+            else
+            { return false; }
+        }
+    }
+
 }

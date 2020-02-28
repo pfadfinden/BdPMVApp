@@ -66,18 +66,25 @@ namespace BdP_MV.View.MitgliederDetails
                     details += "\nVeranstalter: " + ausbildung_selected_details.veranstalter;
                 }
                 IsBusy = false;
-                bool answer = await DisplayAlert(selected.entries_baustein, details, "Ändern", "Schließen");
-                if (answer)
+                if (viewModel.isAusbildungEditable)
                 {
-                    viewModel.IsBusy = true;
+                    bool answer = await DisplayAlert(selected.entries_baustein, details, "Ändern", "Schließen");
+                    if (answer)
+                    {
+                        viewModel.IsBusy = true;
 
-                    NewAusbildung neueAusbidlungsseite = new NewAusbildung(ausbildung_selected_details, viewModel.mitglied);
-                    await neueAusbidlungsseite.LoadPreferences();
-                    viewModel.IsBusy = false;
-                    await Navigation.PushAsync(neueAusbidlungsseite);
+                        NewAusbildung neueAusbidlungsseite = new NewAusbildung(ausbildung_selected_details, viewModel.mitglied);
+                        await neueAusbidlungsseite.LoadPreferences();
+                        viewModel.IsBusy = false;
+                        await Navigation.PushAsync(neueAusbidlungsseite);
+                    }
                 }
-                
-            }
+                else
+                {
+                    await DisplayAlert(selected.entries_baustein, details, "Ok");
+                }
+
+                }
             catch (NewLoginException ex)
             {
                 IsBusy = false;

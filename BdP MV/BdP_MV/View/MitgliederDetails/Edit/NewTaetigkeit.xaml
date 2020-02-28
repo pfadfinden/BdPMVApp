@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BdP_MV.View.MitgliederDetails.Edit.NewTaetigkeit">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid Margin="10,0,10,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="15" />
+                </Grid.ColumnDefinitions>
+                <Label VerticalOptions="Center" Text="Gruppierung:" Grid.Row="0" Grid.Column="0" Font="Bold"/>
+                <Picker 
+                    x:Name="gruppierungPicker" 
+                    Title="Gruppierung*"
+                        ItemDisplayBinding="{Binding descriptor}" Grid.Row="0" Grid.Column="1" />
+                <Label VerticalOptions="Center" Text="Tätigkeit:" Grid.Row="1" Grid.Column="0" Font="Bold"/>
+                <Picker 
+                    x:Name="taetigkeitsPicker" 
+                    Title="Tätigkeit*"
+                        ItemDisplayBinding="{Binding descriptor}" Grid.Row="1" Grid.Column="1" />
+                <Label VerticalOptions="Center" Text="Bereich:" Grid.Row="2" Grid.Column="0" Font="Bold"/>
+                <Picker 
+                    x:Name="bereichsPicker" 
+                    Title="Bereich"
+                        ItemDisplayBinding="{Binding descriptor}" Grid.Row="2" Grid.Column="1" />
+                <ImageButton  x:Name="bereichsTooltip" BorderColor="Transparent"  BackgroundColor="Transparent" Clicked="bereichsTooltipKlicked" CommandParameter="test"  Source="info.png"  Grid.Row="2" Grid.Column="2" />
+                <Label VerticalOptions="Center" Text="Beitragsart:" Grid.Row="3" Grid.Column="0" Font="Bold"/>
+                <Picker 
+                    x:Name="beitragartspicker" 
+                    Title="Beitragsart"
+                        ItemDisplayBinding="{Binding descriptor}" Grid.Row="3" Grid.Column="1" />
+                <Label VerticalOptions="Center" Text="Rechtegruppe:" Grid.Row="3" Grid.Column="0" Font="Bold"/>
+                <ImageButton  x:Name="beitragartTooltip" BorderColor="Transparent"  BackgroundColor="Transparent" Clicked="beitragartTooltipKlicked" CommandParameter="test"  Source="info.png"  Grid.Row="2" Grid.Column="2" />
+                <Picker 
+                    x:Name="rechtegruppepicker" 
+                    Title="Rechtegruppe"
+                        ItemDisplayBinding="{Binding descriptor}" Grid.Row="1" Grid.Column="1" />
+                <Label VerticalOptions="Center" Text="Rechtegruppe - Baum:" Grid.Row="3" Grid.Column="0" Font="Bold"/>
+                <Picker 
+                    x:Name="rechtegruppebaumpicker" 
+                    Title="Rechtegruppe - Baum"
+                        ItemDisplayBinding="{Binding descriptor}" Grid.Row="1" Grid.Column="1" />
+                <Label Text="Aktiv von:" Grid.Row="2" Grid.Column="0" Font="Bold" VerticalOptions="Center" />
+                <DatePicker x:Name="aktivvonDateTime" VerticalOptions="CenterAndExpand" Grid.Row="0" Grid.Column="1" >
+                    <DatePicker.Format>dd.MM.yyyy</DatePicker.Format>
+                </DatePicker>
+                <Label Text="Aktiv bis:" Grid.Row="2" Grid.Column="0" Font="Bold" VerticalOptions="Center" />
+                <DatePicker x:Name="aktivbisDateTime" VerticalOptions="CenterAndExpand" Grid.Row="0" Grid.Column="1" >
+                    <DatePicker.Format>dd.MM.yyyy</DatePicker.Format>
+                </DatePicker>
+                <Button x:Name="btn_save"  Text="Abschicken" Clicked="Save_Clicked" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"/>
+
+
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

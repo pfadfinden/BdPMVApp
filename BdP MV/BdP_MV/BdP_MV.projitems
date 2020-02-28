@@ -110,8 +110,8 @@
       <DependentUpon>NewAusbildung.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)View\MitgliederDetails\Edit\New_Taetigkeit.xaml.cs">
-      <DependentUpon>New_Taetigkeit.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)View\MitgliederDetails\Edit\NewTaetigkeit.xaml.cs">
+      <DependentUpon>NewTaetigkeit.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\MitgliederDetails\MitgliederStammDaten.xaml.cs">
@@ -247,7 +247,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\MitgliederDetails\Edit\New_Taetigkeit.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\MitgliederDetails\Edit\NewTaetigkeit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

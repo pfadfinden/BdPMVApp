@@ -32,6 +32,7 @@ namespace BdP_MV.ViewModel
         public List<Ausbildung> ausbildung { set; get; }
         public String latestSGB8 { set; get; }
         public bool isEditable { set; get; }
+        public bool isAusbildungEditable { set; get; }
 
 
         public bool HasPhoneNumber => !string.IsNullOrWhiteSpace(mitglied?.telefon1);
@@ -43,7 +44,7 @@ namespace BdP_MV.ViewModel
         public bool HasEmailAddress2 => !string.IsNullOrWhiteSpace(mitglied?.dyn_eMail2);
 
         public bool HasParentEmailAddress => !string.IsNullOrWhiteSpace(mitglied?.emailVertretungsberechtigter);
-        public bool IsEditable = true;
+        
         public string pfadeJaNein{ private set; get; }
 
 

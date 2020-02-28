@@ -51,7 +51,7 @@ namespace BdP_MV.Services
         }
         public async Task<Boolean> CheckPermissionForNew(int idGruppe)
         {
-            Meta_Data meta = await mainC.mVConnector.MetaData(idGruppe).ConfigureAwait(false);
+            Meta_Data meta = await mainC.mVConnector.MetaDataGruppierung(idGruppe).ConfigureAwait(false);
             var match = meta.actions.FirstOrDefault(stringToCheck => stringToCheck.Contains("CREATE"));
             if (match != null)
             { return true; }
@@ -60,7 +60,7 @@ namespace BdP_MV.Services
         }
         public async Task<Boolean> CheckPermissionForEdit(int idGruppe)
         {
-            Meta_Data meta = await mainC.mVConnector.MetaData(idGruppe).ConfigureAwait(false);
+            Meta_Data meta = await mainC.mVConnector.MetaDataGruppierung(idGruppe).ConfigureAwait(false);
             var match = meta.actions.FirstOrDefault(stringToCheck => stringToCheck.Contains("UPDATE"));
             if (match != null)
             { return true; }

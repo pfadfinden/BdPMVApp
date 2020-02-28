@@ -4,7 +4,9 @@
              xmlns:htmlLabel="clr-namespace:LabelHtml.Forms.Plugin.Abstractions;assembly=HtmlLabel.Forms.Plugin"
              x:Class="BdP_MV.View.MasterDetail.MasterDetail_MainDetail"
              Title="News">
-    <StackLayout Padding="10">
-        <htmlLabel:HtmlLabel x:Name="HTMLabel" Text="{Binding htmlString}"/>
-    </StackLayout>
+    <ScrollView>
+        <StackLayout Padding="10">
+            <htmlLabel:HtmlLabel x:Name="HTMLabel" Text="{Binding htmlString}"/>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

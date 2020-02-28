@@ -12,9 +12,9 @@ using Xamarin.Forms.Xaml;
 namespace BdP_MV.View.MitgliederDetails.Edit
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class New_Taetigkeit : ContentPage
+	public partial class NewTaetigkeit : ContentPage
     {
-		public New_Taetigkeit ()
+		public NewTaetigkeit ()
 		{
 			InitializeComponent ();
 		}
@@ -69,6 +69,14 @@ namespace BdP_MV.View.MitgliederDetails.Edit
 
             }
 
+        }
+        async void bereichsTooltipKlicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("Bereich", "Stufe oder Bereich für die Tätigkeit. Je nach Konfiguration der Tätigkeit ist hier eine Stufe oder Abteilung verpflichtend, optional oder nicht möglich.", "OK");
+        }
+        async void beitragartTooltipKlicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("Beitragsart", "z.B. Region Nord (Grundkurs) oder LV Bayern (bei Teilnahme in anderem LV)", "OK");
         }
     }
 }

@@ -31,13 +31,14 @@ namespace BdP_MV.View.MasterDetail
         }
         async void OnSearchButtonClicked(object sender, EventArgs e)
         {
-            IsBusy = true;
+            viewModel.IsBusy = true;
 
             //inProgress.IsRunning = true;
             //inProgress.IsEnabled = true;
             //inProgress.IsVisible = true;
             try
             {
+                
                 viewModel.suche.vorname = firstnameEntry.Text;
                 viewModel.suche.nachname = lastnameEntry.Text;
                 viewModel.suche.mglWohnort = wohnortEntry.Text;
@@ -81,7 +82,7 @@ namespace BdP_MV.View.MasterDetail
                 Console.WriteLine(b.StackTrace);
 
             }
-            IsBusy = false;
+            viewModel.IsBusy = false;
             //inProgress.IsRunning = IsBusy;
             //inProgress.IsEnabled = IsBusy;
             //inProgress.IsEnabled = IsVisible;

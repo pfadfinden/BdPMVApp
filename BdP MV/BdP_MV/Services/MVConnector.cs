@@ -297,7 +297,7 @@ namespace BdP_MV.Services
             List<Taetigkeit> taetigkeiten = rootObjectTaetigkeiten.data;
             return taetigkeiten;
         }
-        public async Task<Meta_Data> MetaData(int idGruppe)
+        public async Task<Meta_Data> MetaDataGruppierung(int idGruppe)
         {
             string anfrage = "api/1/2/service/nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/" + idGruppe + "/META";
             string responseString = await GetApiResultStringAsync(anfrage).ConfigureAwait(false);
@@ -306,6 +306,19 @@ namespace BdP_MV.Services
             RootObject_Meta_Data rootObjectMetadata = (RootObject_Meta_Data)jSerializer.Deserialize(new JTokenReader(aPIResponse.response), typeof(RootObject_Meta_Data));
 
             
+
+            Meta_Data metaData = rootObjectMetadata.data;
+            return metaData;
+        }
+        public async Task<Meta_Data> MetaDataAusbildung(int idMitglied)
+        {
+            string anfrage = "api/1/2/service/nami/mitglied-ausbildung/filtered-for-navigation/mitglied/mitglied/" + idMitglied + "/META";
+            string responseString = await GetApiResultStringAsync(anfrage).ConfigureAwait(false);
+            APIResponse aPIResponse = JsonConvert.DeserializeObject<APIResponse>(responseString);
+            JsonSerializer jSerializer = new JsonSerializer();
+            RootObject_Meta_Data rootObjectMetadata = (RootObject_Meta_Data)jSerializer.Deserialize(new JTokenReader(aPIResponse.response), typeof(RootObject_Meta_Data));
+
+
 
             Meta_Data metaData = rootObjectMetadata.data;
             return metaData;

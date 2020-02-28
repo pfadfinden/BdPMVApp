@@ -61,6 +61,7 @@ namespace BdP_MV.ViewModel
             Task<List<SGB8>> task_sgb8 = mainC.mitgliederController.Sgb8Abrufen(idMitglied);
             Task<List<Ausbildung>> task_ausbildung = mainC.mitgliederController.AusbildungenAbrufen(idMitglied);
             Task<Boolean> task_editable = mainC.groupControl.CheckPermissionForEdit(idGruppe);
+            Task<Boolean> task_editableAusbildung = mainC.mitgliederController.CheckPermissionForEditAusbildung(idMitglied);
             Task<List<Taetigkeit>> task_taetigkeiten = mainC.mitgliederController.TaetigkeitenAbrufen(idMitglied);
             MitgliedDetails mitgliedDetails = await Task.Run(async () => await mainC.mitgliederController.MitgliedDetailsAbrufen(idMitglied, idGruppe)); 
             ItemDetailViewModel viewModelMitgliedDetails = new ItemDetailViewModel(mitgliedDetails, mainC);
@@ -71,6 +72,7 @@ namespace BdP_MV.ViewModel
                       
             viewModelMitgliedDetails.ausbildung = await task_ausbildung;
             viewModelMitgliedDetails.isEditable = await task_editable;
+            viewModelMitgliedDetails.isAusbildungEditable = await task_editableAusbildung;
 
             await nachbarbeitung;
             

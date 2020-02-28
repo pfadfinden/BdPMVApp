@@ -35,7 +35,7 @@
             </StackLayout>
             <ImageButton x:Name="ImageNewButton" Source="plus_bdp.png"
                             Clicked="newAusbildung_Activated"
-                            IsVisible="{Binding isEditable}"
+                            IsVisible="{Binding isAusbildungEditable}"
                             AbsoluteLayout.LayoutFlags="PositionProportional"
                             AbsoluteLayout.LayoutBounds="1.0,1.0,-1,-1"
                             Margin="10"
