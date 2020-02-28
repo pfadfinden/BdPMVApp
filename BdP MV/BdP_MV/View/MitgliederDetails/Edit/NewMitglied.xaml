@@ -5,7 +5,7 @@
 	</ContentPage.ToolbarItems>
 	<ContentPage.Content>
         <ScrollView>
-            <Grid>
+            <Grid Margin="10,0,10,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -51,12 +51,12 @@
                 <ImageButton  x:Name="nachnameTooltip"  BorderColor="Transparent"  BackgroundColor="Transparent" Clicked="TooltipNachnameKlicked" Source="info.png" Aspect="AspectFit"  Grid.Row="2" Grid.Column="2"/>
                 
                 <Label Text="Spitzname:" Grid.Row="3" Grid.Column="0" Font="Bold" VerticalOptions="Center" />
-                <Entry x:Name="spitznameEntry" Placeholder="Spitzname" Grid.Row="3" Grid.Column="1" />
+                <Entry x:Name="spitznameEntry"  Grid.Row="3" Grid.Column="1" />
 
                 <Label Text="Geschlecht*:" Grid.Row="4" Grid.Column="0" Font="Bold" VerticalOptions="Center" />
                 <Picker 
                     x:Name="geschlechtspicker" 
-                    Title="Geschlecht*"
+                    
                         ItemDisplayBinding="{Binding descriptor}" Grid.Row="4" Grid.Column="1" />
 
                 <Label Text="Eintrittsdatum*:" Grid.Row="5" Grid.Column="0" Font="Bold" VerticalOptions="Center" />
@@ -75,17 +75,17 @@
                 <Label Text="Versand Pfade:" Grid.Row="7" Grid.Column="0" Font="Bold" VerticalOptions="Center" />
                 <Switch x:Name="zeitschriftenversand" IsToggled="true"  Grid.Row="7" Grid.Column="1" HorizontalOptions="StartAndExpand"  />
                 
-                <Label Text="Beitragsart:" Grid.Row="8" Grid.Column="0" Font="Bold" VerticalOptions="Center" />
+                <Label Text="Beitragsart*:" Grid.Row="8" Grid.Column="0" Font="Bold" VerticalOptions="Center" />
                 <Picker 
                     x:Name="beitragsartpicker" 
-                    Title="Beitragsart*"
+                    
                     ItemDisplayBinding="{Binding descriptor}"
                     Grid.Row="8" Grid.Column="1" />
 
               <Label Text="Mitgliedstyp*:" x:Name="lbl_mitgliedsartpicker" Grid.Row="9" Grid.Column="0" Font="Bold" VerticalOptions="Center" />
               <Picker
                     x:Name="mitgliedsartpicker"
-                    Title="Mitgliedstyp*"
+                    
                     ItemDisplayBinding="{Binding descriptor}"
                     Grid.Row="9" Grid.Column="1" />
                 <ImageButton  x:Name="mitgliedsartTooltip"  BorderColor="Transparent"  BackgroundColor="Transparent" Clicked="TooltipMitgliedsartKlicked" Source="info.png" Aspect="AspectFit" HeightRequest="10" WidthRequest="10" Grid.Row="9" Grid.Column="2"/>
