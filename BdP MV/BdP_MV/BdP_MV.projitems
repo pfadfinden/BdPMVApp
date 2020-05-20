@@ -67,6 +67,9 @@
       <DependentUpon>ForgotPW.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)View\MasterDetail\Datenschutz.xaml.cs">
+      <DependentUpon>Datenschutz.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View\MasterDetail\Einstellungen.xaml.cs">
       <DependentUpon>Einstellungen.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -145,6 +148,10 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)View\MasterDetail\Datenschutz.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

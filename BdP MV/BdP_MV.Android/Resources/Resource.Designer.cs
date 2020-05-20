@@ -15,7 +15,7 @@ namespace BdP_MV.Droid
 {
 	
 	
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "1.0.0.0")]
+	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "1.0.0.0")]
 	public partial class Resource
 	{
 		
@@ -5806,7 +5806,7 @@ namespace BdP_MV.Droid
 			public const int fab_add = 2131165289;
 			
 			// aapt resource value: 0x7F07011E
-			public const int Icon = 2131165470;
+			public const int icon = 2131165470;
 			
 			// aapt resource value: 0x7F07006A
 			public const int ic_audiotrack_dark = 2131165290;

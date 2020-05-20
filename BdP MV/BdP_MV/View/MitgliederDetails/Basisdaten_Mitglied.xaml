@@ -25,7 +25,7 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
-
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -38,8 +38,8 @@
                                 <Label Text="{Binding mitglied.nachname}" Grid.Row="1" Grid.Column="1" />
                                 <Label Text="Spitzname:" Grid.Row="2" Grid.Column="0" Font="Bold"/>
                                 <Label Text="{Binding mitglied.spitzname}" Grid.Row="2" Grid.Column="1" />
-                                
-                                <Label Text="Mitglieds ID:" Grid.Row="3" Grid.Column="0" Font="Bold"/>
+
+                                <Label Text="Mitgliedsnr:" Grid.Row="3" Grid.Column="0" Font="Bold"/>
                                 <Label Text="{Binding mitglied.id}" Grid.Row="3" Grid.Column="1" />
                                 <Label Text="Status:" Grid.Row="4" Grid.Column="0"  Font="Bold"/>
                                 <Label Text="{Binding mitglied.status}"  Grid.Row="4" Grid.Column="1" />
@@ -61,9 +61,11 @@
                                 <Label Text="{Binding mitglied.status}"  Grid.Row="12" Grid.Column="1" ></Label>
                                 <Label Text="Versand Pfade:" Font="Bold"  Grid.Row="13" Grid.Column="0"></Label>
                                 <Label Text="{Binding pfadeJaNein}"  Grid.Row="13" Grid.Column="1" ></Label>
-                                <Label Text="SGB8:" Font="Bold"  Grid.Row="14" Grid.Column="0"></Label>
+                                <Label Text="SGB VIII FZ:" Font="Bold"  Grid.Row="14" Grid.Column="0"></Label>
                                 <Label Text="{Binding latestSGB8}"  Grid.Row="14" Grid.Column="1" ></Label>
-                            </Grid>
+                                <Label Text="Bemerkungen:" Font="Bold"  Grid.Row="15" Grid.Column="0"></Label>
+                                <Label Text="{Binding mitglied.dyn_Bemerkung}"  Grid.Row="15" Grid.Column="1" ></Label>
+                    </Grid>
                            
                           
                           

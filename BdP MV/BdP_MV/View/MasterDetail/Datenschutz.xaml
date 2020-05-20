@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:htmlLabel="clr-namespace:LabelHtml.Forms.Plugin.Abstractions;assembly=HtmlLabel.Forms.Plugin"
+             x:Class="BdP_MV.View.MasterDetail.Datenschutz"
+             Title="Datenschutz">
+    
+        <StackLayout Padding="10">
+            <ProgressBar Progress="0.2"  
+                 HorizontalOptions="FillAndExpand"  
+                 x:Name="progress"  
+                 IsVisible="True"/>
+            <WebView x:Name="Webview"  
+             HeightRequest="1000"  
+             WidthRequest="1000"  
+             Navigating="OnNavigating"  
+             Navigated="OnNavigated"  
+             VerticalOptions="FillAndExpand"/>
+        </StackLayout>
+    
+</ContentPage>

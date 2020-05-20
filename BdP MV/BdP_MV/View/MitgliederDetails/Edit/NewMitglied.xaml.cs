@@ -307,7 +307,7 @@ namespace BdP_MV.View.MitgliederDetails.Edit
         }
         async void TooltipEmail2Klicked(object sender, EventArgs e)
         {
-            await DisplayAlert("E-Mail 2", "Bei Funktionsträger/innen auf Landes- und Bundesebene pfadfinden.de-Adresse, private E-Mailadresse. Ggf. Weiterleitungsziel von E-Mail1", "OK");
+            await DisplayAlert("E-Mail 2", "Bei Funktionsträger/innen auf Landes- und Bundesebene private E-Mail-Adresse, ggf. Weiterleitungsziel von E-Mail 1", "OK");
         }
         async void TooltipTelefonKlicked(object sender, EventArgs e)
         {
