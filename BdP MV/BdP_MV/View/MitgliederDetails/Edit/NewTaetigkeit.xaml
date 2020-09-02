@@ -40,26 +40,26 @@
                     x:Name="beitragartspicker" 
                     Title="Beitragsart"
                         ItemDisplayBinding="{Binding descriptor}" Grid.Row="3" Grid.Column="1" />
-                <Label VerticalOptions="Center" Text="Rechtegruppe:" Grid.Row="3" Grid.Column="0" Font="Bold"/>
+                <Label VerticalOptions="Center" Text="Rechtegruppe:" Grid.Row="4" Grid.Column="0" Font="Bold"/>
                 <ImageButton  x:Name="beitragartTooltip" BorderColor="Transparent"  BackgroundColor="Transparent" Clicked="beitragartTooltipKlicked" CommandParameter="test"  Source="info.png"  Grid.Row="2" Grid.Column="2" />
                 <Picker 
                     x:Name="rechtegruppepicker" 
                     Title="Rechtegruppe"
-                        ItemDisplayBinding="{Binding descriptor}" Grid.Row="1" Grid.Column="1" />
-                <Label VerticalOptions="Center" Text="Rechtegruppe - Baum:" Grid.Row="3" Grid.Column="0" Font="Bold"/>
+                        ItemDisplayBinding="{Binding descriptor}" Grid.Row="4" Grid.Column="1" />
+                <Label VerticalOptions="Center" Text="Rechtegruppe - Baum:" Grid.Row="5" Grid.Column="0" Font="Bold"/>
                 <Picker 
                     x:Name="rechtegruppebaumpicker" 
                     Title="Rechtegruppe - Baum"
-                        ItemDisplayBinding="{Binding descriptor}" Grid.Row="1" Grid.Column="1" />
-                <Label Text="Aktiv von:" Grid.Row="2" Grid.Column="0" Font="Bold" VerticalOptions="Center" />
-                <DatePicker x:Name="aktivvonDateTime" VerticalOptions="CenterAndExpand" Grid.Row="0" Grid.Column="1" >
+                        ItemDisplayBinding="{Binding descriptor}" Grid.Row="5" Grid.Column="1" />
+                <Label Text="Aktiv von:" Grid.Row="6" Grid.Column="0" Font="Bold" VerticalOptions="Center" />
+                <DatePicker x:Name="aktivvonDateTime" VerticalOptions="CenterAndExpand" Grid.Row="6" Grid.Column="1" >
                     <DatePicker.Format>dd.MM.yyyy</DatePicker.Format>
                 </DatePicker>
-                <Label Text="Aktiv bis:" Grid.Row="2" Grid.Column="0" Font="Bold" VerticalOptions="Center" />
-                <DatePicker x:Name="aktivbisDateTime" VerticalOptions="CenterAndExpand" Grid.Row="0" Grid.Column="1" >
+                <Label Text="Aktiv bis:" Grid.Row="7" Grid.Column="0" Font="Bold" VerticalOptions="Center" />
+                <DatePicker x:Name="aktivbisDateTime" VerticalOptions="CenterAndExpand" Grid.Row="7" Grid.Column="1" >
                     <DatePicker.Format>dd.MM.yyyy</DatePicker.Format>
                 </DatePicker>
-                <Button x:Name="btn_save"  Text="Abschicken" Clicked="Save_Clicked" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"/>
+                <Button x:Name="btn_save"  Text="Abschicken" Clicked="Save_Clicked" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2"/>
 
 
             </Grid>

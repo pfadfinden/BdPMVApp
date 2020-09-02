@@ -15,6 +15,7 @@ namespace BdP_MV.ViewModel
     {
         public MainController mainC;
         public List<SelectableItem> bausteine;
+        
 
         public int mitgliedID;
         private int gruppierungsID;

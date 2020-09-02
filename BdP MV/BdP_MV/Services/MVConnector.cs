@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using BdP_MV.Exceptions;
+﻿using BdP_MV.Exceptions;
 using BdP_MV.Model;
 using BdP_MV.Model.Metamodel;
 using BdP_MV.Model.Mitglied;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
+using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 
 namespace BdP_MV.Services
@@ -17,7 +17,7 @@ namespace BdP_MV.Services
     public class MVConnector
     {
         private bool isLoggedIn = false;
-        private CookieContainer cookieContainer = new CookieContainer();
+        private CookieContainer cookieContainer = App.cookieContainer;
         private bool debug = false;
         Boolean qa = false;
 
@@ -86,13 +86,13 @@ namespace BdP_MV.Services
 
                 HttpWebResponse response_nachricht = (HttpWebResponse)await request_nachricht.GetResponseAsync().ConfigureAwait(false);
                 CookieCollection cookieContainerCollection;
-                
+
                 cookieContainerCollection = cookieContainer.GetCookies(response_nachricht.ResponseUri);
 
                 String cookiecontent = cookieContainerCollection["JSESSIONID"]?.Value;
-                String cookiepath= cookieContainerCollection["JSESSIONID"]?.Path;
+                String cookiepath = cookieContainerCollection["JSESSIONID"]?.Path;
                 String cookiedomain = cookieContainerCollection["JSESSIONID"]?.Domain;
-               
+
                 try
                 {
                     await SecureStorage.SetAsync("cookiecontent", cookiecontent);
@@ -110,7 +110,7 @@ namespace BdP_MV.Services
                 }
                 Nachricht nachricht = JsonConvert.DeserializeObject<Nachricht>(response_nachricht_String);
                 int cookieCount = cookieContainer.Count;
-                
+
 
 
 
@@ -170,7 +170,7 @@ namespace BdP_MV.Services
                 request.Method = "POST";
                 request.CookieContainer = cookieContainer;
                 request.ContentType = "application/x-www-form-urlencoded; charset=utf-8";
-                string postData = "mitgliedsNummer=" + resetPassword.MitgliedsNummer + "&geburtsDatum=" + resetPassword.geburtsDatum + "&emailTo=" + resetPassword.emailTo+"&Login=Neues+Passwort+zusenden";
+                string postData = "mitgliedsNummer=" + resetPassword.MitgliedsNummer + "&geburtsDatum=" + resetPassword.geburtsDatum + "&emailTo=" + resetPassword.emailTo + "&Login=Neues+Passwort+zusenden";
                 Encoding iso = Encoding.GetEncoding("ISO-8859-1");
                 byte[] bytes = iso.GetBytes(postData);
                 request.ContentLength = bytes.Length;
@@ -181,12 +181,17 @@ namespace BdP_MV.Services
                 WebResponse response = (HttpWebResponse)await request.GetResponseAsync();
                 string responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
                 if (responseString.Contains("Ein neues Passwort wurde an Ihre hinterlegte E-Mail-Adresse versendet"))
+                {
                     return 0;
+                }
                 else if (responseString.Contains("Ihre Angaben sind nicht korrekt"))
+                {
                     return 2;
-                else return 3;
-               
-
+                }
+                else
+                {
+                    return 3;
+                }
             }
             catch (Exception e)
             {
@@ -204,7 +209,7 @@ namespace BdP_MV.Services
 
             return items;
         }
-        public async Task<List<Gruppe>>  GetGroups(int id)
+        public async Task<List<Gruppe>> GetGroups(int id)
 
         {
             string idname;
@@ -235,10 +240,10 @@ namespace BdP_MV.Services
             List<Gruppe> gruppen = new List<Gruppe>();
             APIResponse aPIResponse = JsonConvert.DeserializeObject<APIResponse>(responseString);
             JsonSerializer jSerializer = new JsonSerializer();
-            GroupList listeAllerUntergruppen = (GroupList)jSerializer.Deserialize(new JTokenReader(aPIResponse.response),typeof(GroupList));
-            if (listeAllerUntergruppen.success==false)
+            GroupList listeAllerUntergruppen = (GroupList)jSerializer.Deserialize(new JTokenReader(aPIResponse.response), typeof(GroupList));
+            if (listeAllerUntergruppen.success == false)
             {
-                if (listeAllerUntergruppen.responseType.Equals("ERROR")&& listeAllerUntergruppen.message.Equals("Session expired"))
+                if (listeAllerUntergruppen.responseType.Equals("ERROR") && listeAllerUntergruppen.message.Equals("Session expired"))
                 {
                     throw new NewLoginException("Bitte neu einloggen.");
                 }
@@ -266,11 +271,11 @@ namespace BdP_MV.Services
 
         public async Task<List<Mitglied>> Mitglieder(string suchanfrage)
         {
-            String anfrage = "nami/search-multi/result-list?searchedValues=" + suchanfrage +"&page=1&start=0&limit=9999999";
+            String anfrage = "nami/search-multi/result-list?searchedValues=" + suchanfrage + "&page=1&start=0&limit=9999999";
             string responseString = await GetApiResultStringAsync(anfrage).ConfigureAwait(false);
             List<Mitglied> mitglieder = new List<Mitglied>();
             MitgliederListe listeAllerMitglieder = JsonConvert.DeserializeObject<MitgliederListe>(responseString);
-            
+
             mitglieder = listeAllerMitglieder.data;
 
             return mitglieder;
@@ -285,15 +290,15 @@ namespace BdP_MV.Services
             List<SGB8> fuehrungszeugnisse = rootFZ.data;
             return fuehrungszeugnisse;
         }
-        
-        public async Task<List<Taetigkeit>> Taetigkeiten (int idMitglied)
+
+        public async Task<List<Taetigkeit>> Taetigkeiten(int idMitglied)
         {
             string anfrage = "api/1/2/service/nami/zugeordnete-taetigkeiten/filtered-for-navigation/gruppierung-mitglied/mitglied/" + idMitglied + "/flist";
             string responseString = await GetApiResultStringAsync(anfrage).ConfigureAwait(false);
             APIResponse aPIResponse = JsonConvert.DeserializeObject<APIResponse>(responseString);
             JsonSerializer jSerializer = new JsonSerializer();
             RootObject_Taetigkeit rootObjectTaetigkeiten = (RootObject_Taetigkeit)jSerializer.Deserialize(new JTokenReader(aPIResponse.response), typeof(RootObject_Taetigkeit));
-            
+
             List<Taetigkeit> taetigkeiten = rootObjectTaetigkeiten.data;
             return taetigkeiten;
         }
@@ -305,7 +310,7 @@ namespace BdP_MV.Services
             JsonSerializer jSerializer = new JsonSerializer();
             RootObject_Meta_Data rootObjectMetadata = (RootObject_Meta_Data)jSerializer.Deserialize(new JTokenReader(aPIResponse.response), typeof(RootObject_Meta_Data));
 
-            
+
 
             Meta_Data metaData = rootObjectMetadata.data;
             return metaData;
@@ -336,8 +341,8 @@ namespace BdP_MV.Services
 
         public async Task<MitgliedDetails> MitgliedDetails(int idMitglied, int idGruppe)
         {
-            
-            String anfrage = "api/1/2/service/nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/" + idGruppe+"/"+idMitglied;
+
+            String anfrage = "api/1/2/service/nami/mitglied/filtered-for-navigation/gruppierung/gruppierung/" + idGruppe + "/" + idMitglied;
             String responseString = await GetApiResultStringAsync(anfrage).ConfigureAwait(false);
 
             MitgliedDetails mitgliedDetais = new MitgliedDetails();
@@ -360,7 +365,7 @@ namespace BdP_MV.Services
                 }
             }
             mitgliedDetais = rootMitgliedDetails.data;
-            
+
             return mitgliedDetais;
         }
         public async Task<Ausbildung_Details> AusbildungDetails(int idAusbildung, int idMitglied)
@@ -391,10 +396,10 @@ namespace BdP_MV.Services
         public async Task<List<Report_Data>> ReportData(int idGruppe)
         {
 
-            String anfrage = "api/1/2/service/nami/grp-reports/filtered-for-grpadmin/gruppierung/crtGruppierung/" + idGruppe+"/flist";
+            String anfrage = "api/1/2/service/nami/grp-reports/filtered-for-grpadmin/gruppierung/crtGruppierung/" + idGruppe + "/flist";
             String responseString = await GetApiResultStringAsync(anfrage).ConfigureAwait(false);
 
-            List <Report_Data> reportList = new List<Report_Data>();
+            List<Report_Data> reportList = new List<Report_Data>();
             APIResponse aPIResponse = JsonConvert.DeserializeObject<APIResponse>(responseString);
             JsonSerializer jSerializer = new JsonSerializer();
             Report_RootObject root_Reports = (Report_RootObject)jSerializer.Deserialize(new JTokenReader(aPIResponse.response), typeof(Report_RootObject));
@@ -429,12 +434,12 @@ namespace BdP_MV.Services
 
 
         }
-        
+
         private async Task<String> PostApiDataAsync(string anfrageURL, string postData)
         {
             HttpWebRequest request = await CreateWebRequest(anfrageURL);
             request.Method = "POST";
-            
+
             request.ContentType = "application/json; charset=utf-8";
             Encoding iso = Encoding.UTF8;
             var bytes = iso.GetBytes(postData);
@@ -454,7 +459,7 @@ namespace BdP_MV.Services
         private async Task<String> PutApiDataAsync(string anfrageURL, string postData)
         {
             HttpWebRequest request = await CreateWebRequest(anfrageURL);
-            
+
             request.Method = "PUT";
             request.ContentType = "application/json; charset=utf-8";
             Encoding iso = Encoding.UTF8;
@@ -495,7 +500,7 @@ namespace BdP_MV.Services
                     throw new NotAllRequestedFieldsFilledException("Es ist ein Fehler aufgetreten. Wurden alle Pflichtfelder ausgefüllt?");
                 }
             }
-     
+
 
             return "Erfolgreich angelegt" + response.message;
         }
@@ -526,7 +531,7 @@ namespace BdP_MV.Services
 
             return "Erfolgreich angelegt" + response.message;
         }
-         public async Task<String> PutChangeAusbildung(int idMitglied, int idAusbildung, string JSON)
+        public async Task<String> PutChangeAusbildung(int idMitglied, int idAusbildung, string JSON)
         {
 
             String anfrage = "api/1/2/service/nami/mitglied-ausbildung/filtered-for-navigation/mitglied/mitglied/" + idMitglied + "/" + idAusbildung;
@@ -578,12 +583,12 @@ namespace BdP_MV.Services
                     throw new NotAllRequestedFieldsFilledException("Es ist ein Fehler aufgetreten. Wurden alle Pflichtfelder ausgefüllt?");
                 }
             }
-            
+
             return "Erfolgreich geändert" + response.message;
-            
+
         }
 
-            private async Task<HttpWebRequest> CreateWebRequest(string anfrageURL)
+        private async Task<HttpWebRequest> CreateWebRequest(string anfrageURL)
         {
             cookieContainer = new CookieContainer();
             //cookieContainer = (CookieContainer)App.Current.Properties["cookieContainer"];

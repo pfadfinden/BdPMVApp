@@ -1,15 +1,18 @@
 ﻿using BdP_MV.Services;
 using BdP_MV.View.LoginForms;
-
+using System.Net;
 using Xamarin.Forms;
 
 namespace BdP_MV
 {
+    
     public partial class App : Application
     {
+        public static CookieContainer cookieContainer;
+
         public App()
         {
-            MainController mainC = new MainController();
+            App.cookieContainer = new CookieContainer();
             InitializeComponent();
 
             if (Device.RuntimePlatform == Device.iOS)
