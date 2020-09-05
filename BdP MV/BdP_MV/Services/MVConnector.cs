@@ -44,14 +44,14 @@ namespace BdP_MV.Services
 
                 //HttpWebResponse response_first = (HttpWebResponse)await request_first.GetResponseAsync();
                 //int cookieCount = cookieContainer.Count;
-                String url;
-                if(qa)
+                Uri url;
+                if (qa)
                 {
-                     url = "https://qa.mv.meinbdp.de/ica/rest/nami/auth/manual/sessionStartup";
+                    url = new Uri("https://qa.mv.meinbdp.de/ica/rest/nami/auth/manual/sessionStartup");
                 }
                 else
                 {
-                     url = "https://mv.meinbdp.de/ica/rest/nami/auth/manual/sessionStartup";
+                    url = new Uri("https://mv.meinbdp.de/ica/rest/nami/auth/manual/sessionStartup");
                 }
                 App.client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 FormUrlEncodedContent formContent = new FormUrlEncodedContent(new[]
@@ -71,11 +71,11 @@ namespace BdP_MV.Services
                 
                 if (qa)
                 {
-                    url="https://qa.mv.meinbdp.de/ica/rest/dashboard/botschaft/current-message";
+                    url = new Uri("https://qa.mv.meinbdp.de/ica/rest/dashboard/botschaft/current-message");
                 }
                 else
                 {
-                    url = "https://mv.meinbdp.de/ica/rest/dashboard/botschaft/current-message";
+                    url = new Uri("https://mv.meinbdp.de/ica/rest/dashboard/botschaft/current-message");
                 }
 
                 HttpResponseMessage response_nachricht = await App.client.GetAsync(url);
@@ -117,25 +117,26 @@ namespace BdP_MV.Services
                 {
                     return 1; //Ist Bereits eingeloggt
                 }
-                String url;
+                
+                Uri url;
 
                 if (qa)
                 {
-                    url = "https://qa.mv.meinbdp.de/";
+                    url = new Uri("https://qa.mv.meinbdp.de/");
                 }
                 else
                 {
-                    url = "https://mv.meinbdp.de/";
+                    url = new Uri("https://mv.meinbdp.de/");
                 }
                 HttpResponseMessage response_first = await App.client.GetAsync(url);
                 
                 if (qa)
                 {
-                    url ="https://qa.mv.meinbdp.de/ica/rest/nami/auth/resetPassword";
+                    url = new Uri("https://qa.mv.meinbdp.de/ica/rest/nami/auth/resetPassword");
                 }
                 else
                 {
-                    url = "https://mv.meinbdp.de/ica/rest/nami/auth/resetPassword";
+                    url = new Uri("https://mv.meinbdp.de/ica/rest/nami/auth/resetPassword");
                 }
                 
                 string postData = "mitgliedsNummer=" + resetPassword.MitgliedsNummer + "&geburtsDatum=" + resetPassword.geburtsDatum + "&emailTo=" + resetPassword.emailTo + "&Login=Neues+Passwort+zusenden";
