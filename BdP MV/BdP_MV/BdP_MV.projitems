@@ -19,6 +19,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Ext_Packages\BaseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ext_Packages\Grouping.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ext_Packages\ObservableObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ext_Packages\ObservableRangeCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ext_Packages\Utils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Connector_LoginDaten.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Gruppierung.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Meta.cs" />
@@ -27,28 +32,24 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\Metamodel\RootObj_edit_Ausbildung.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Metamodel\RootObj_edit_Mitglied.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Metamodel\RootObj_new_Mitglied.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Model\SearchObject.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Model\SelectableItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Mitglied\Ausbildung.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Mitglied\Ausbildung_Details.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Mitglied\Mitglied.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Mitglied\MitgliedDetail.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Mitglied\SGB8.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Mitglied\Taetigkeit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Nachricht.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\ResetPassword.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Model\Settings\Settings.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Ext_Packages\BaseViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Ext_Packages\Grouping.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Ext_Packages\ObservableObject.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Ext_Packages\ObservableRangeCollection.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Ext_Packages\Utils.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Model\Mitglied\Taetigkeit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\SearchObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\SelectableItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Settings\SettingKeyValue.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Settings\Settings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Group_Control.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\MainController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Mitgleider_Control.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\MVConnector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\NewAusbildungViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\NewTaetigkeitViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\SettingsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\AboutViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\BaseNavigationViewModel.cs" />

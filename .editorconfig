@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CA1707: Entfernen Sie die Unterstriche aus dem Membernamen "BdP_MV.Model.Mitglied.Ausbildung.entries_vstgTag".
+dotnet_diagnostic.CA1707.severity = none
