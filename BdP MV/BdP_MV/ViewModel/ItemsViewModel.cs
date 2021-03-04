@@ -1,27 +1,11 @@
 using BdP_MV.Model;
-using BdP_MV.Model;
-
-/* Nicht gemergte Änderung aus Projekt "BdP_MV.iOS"
-Vor:
-using BdP_MV.Model;
-Nach:
 using BdP_MV.Model.Mitglied;
-*/
 using BdP_MV.Services;
 using System;
-
-/* Nicht gemergte Änderung aus Projekt "BdP_MV.iOS"
-Vor:
-using Xamarin.Forms;
-Nach:
-using System;
-using System.Collections.Generic;
-using System.Linq;
-*/
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
-using Xamarin.Forms;
+
 
 namespace BdP_MV.ViewModel
 {
