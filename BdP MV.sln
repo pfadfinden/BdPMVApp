@@ -9,6 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BdP_MV.Android", "BdP MV\Bd
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BdP_MV.iOS", "BdP MV\BdP_MV.iOS\BdP_MV.iOS.csproj", "{57F1B910-0866-490C-A795-D48A14756AFF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7CE40B50-62B8-4E7C-885B-7BFA586820E7}"
+	ProjectSection(SolutionItems) = preProject
+		pipline.yml = pipline.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		BdP MV\BdP_MV\BdP_MV.projitems*{080092ff-5705-40c9-83c8-54c653743fef}*SharedItemsImports = 13
