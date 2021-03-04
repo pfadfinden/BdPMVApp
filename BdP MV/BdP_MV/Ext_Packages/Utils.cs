@@ -18,7 +18,7 @@ namespace MvvmHelpers
         /// <param name="task">Task.</param>
         /// <param name="timeoutInMilliseconds">Timeout duration in Milliseconds.</param>
         /// <typeparam name="T">The 1st type parameter.</typeparam>
-        public async static Task<T> WithTimeout<T>(this Task<T> task, int timeoutInMilliseconds)
+        public static async Task<T> WithTimeout<T>(this Task<T> task, int timeoutInMilliseconds)
         {
             var retTask = await Task.WhenAny(task, Task.Delay(timeoutInMilliseconds))
                 .ConfigureAwait(false);
@@ -35,7 +35,7 @@ namespace MvvmHelpers
         /// <typeparam name="T">The 1st type parameter.</typeparam>
         public static Task<T> WithTimeout<T>(this Task<T> task, TimeSpan timeout) =>
             WithTimeout(task, (int)timeout.TotalMilliseconds);
-        
+
     }
     public class InverseBoolConverter : IValueConverter, IMarkupExtension
     {

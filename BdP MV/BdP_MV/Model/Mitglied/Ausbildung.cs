@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BdP_MV.Model.Mitglied
 {
@@ -18,7 +17,7 @@ namespace BdP_MV.Model.Mitglied
     }
 
 
-   
+
 
     public class RootObject_Ausbildung
     {

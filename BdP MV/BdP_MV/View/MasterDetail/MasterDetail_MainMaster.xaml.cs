@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -28,7 +23,7 @@ namespace BdP_MV.View.MasterDetail
         class MasterDetail_MainMasterViewModel : INotifyPropertyChanged
         {
             public ObservableCollection<MasterDetail_MainMenuItem> MenuItems { get; set; }
-            
+
             public MasterDetail_MainMasterViewModel()
             {
                 MenuItems = new ObservableCollection<MasterDetail_MainMenuItem>(new[]
@@ -40,13 +35,15 @@ namespace BdP_MV.View.MasterDetail
                     new MasterDetail_MainMenuItem { Id = 4, Title = "Datenschutz",TargetType=typeof(Datenschutz)}
                 });
             }
-            
+
             #region INotifyPropertyChanged Implementation
             public event PropertyChangedEventHandler PropertyChanged;
             void OnPropertyChanged([CallerMemberName] string propertyName = "")
             {
                 if (PropertyChanged == null)
+                {
                     return;
+                }
 
                 PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }

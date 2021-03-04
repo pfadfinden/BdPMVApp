@@ -1,12 +1,10 @@
 ﻿using BdP_MV.Exceptions;
 using BdP_MV.Ext_Packages;
-using BdP_MV.Model;
 using BdP_MV.Model.Mitglied;
 using BdP_MV.Services;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -35,7 +33,7 @@ namespace BdP_MV.ViewModel
             mainC = new MainController();
             mitglied = mitgliedDetail;
             gruppierungsID = mitglied.gruppierungId;
-            
+
 
         }
         public async Task<String> CreateNewMitglied(int idGruppe)
@@ -91,7 +89,7 @@ namespace BdP_MV.ViewModel
 
             return result;
 
-                  
+
 
         }
 
@@ -109,13 +107,13 @@ namespace BdP_MV.ViewModel
                 throw new NotAllRequestedFieldsFilledException("Ein Zeitschriftenversand ist ohne komplette Adressangabe nicht möglich.");
 
             }
-            if (mitglied.geburtsDatum==DateTime.Today)
+            if (mitglied.geburtsDatum == DateTime.Today)
             {
                 throw new NotAllRequestedFieldsFilledException("Ein Mitglied mit dem heutigen Geburtsdatum ist nicht möglich.");
 
             }
             int age = mainC.mitgliederController.GetAgeFromDate((DateTime)mitglied.geburtsDatum);
-           
+
 
             string JSONOutput = JsonConvert.SerializeObject(mitglied,
                            Newtonsoft.Json.Formatting.None,
@@ -125,23 +123,23 @@ namespace BdP_MV.ViewModel
                                ContractResolver = new NullToEmptyStringResolver()
 
                            });
-            
+
             IsBusy = false;
 
-            return await mainC.mVConnector.PutChangeMitglied(mitglied.gruppierungId,mitglied.id, JSONOutput);
+            return await mainC.mVConnector.PutChangeMitglied(mitglied.gruppierungId, mitglied.id, JSONOutput);
         }
         public async Task loadSelectableItems()
         {
-            Task <List<SelectableItem>> taskGeschlechter = mainC.mVConnector.GetItems("baseadmin/geschlecht/");
-            Task<List<SelectableItem>> taskBeitragsart = mainC.mVConnector.GetItems("namiBeitrag/beitragsartmgl/gruppierung/"+gruppierungsID+"/");
-            Task<List<SelectableItem>> taskMitgliedstyp = mainC.mVConnector.GetItems("nami/taetigkeitaufgruppierung/filtered/gruppierung/erste-taetigkeit/gruppierung/"+gruppierungsID);
+            Task<List<SelectableItem>> taskGeschlechter = mainC.mVConnector.GetItems("baseadmin/geschlecht/");
+            Task<List<SelectableItem>> taskBeitragsart = mainC.mVConnector.GetItems("namiBeitrag/beitragsartmgl/gruppierung/" + gruppierungsID + "/");
+            Task<List<SelectableItem>> taskMitgliedstyp = mainC.mVConnector.GetItems("nami/taetigkeitaufgruppierung/filtered/gruppierung/erste-taetigkeit/gruppierung/" + gruppierungsID);
             Task<List<SelectableItem>> taskLand = mainC.mVConnector.GetItems("baseadmin/land/");
             await Task.WhenAll(taskGeschlechter, taskBeitragsart, taskMitgliedstyp, taskLand);
-             geschlechter = await taskGeschlechter;
+            geschlechter = await taskGeschlechter;
             beitragsart = await taskBeitragsart;
             mitgltype = await taskMitgliedstyp;
             land = await taskLand;
-         }
+        }
 
 
     }

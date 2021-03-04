@@ -2,26 +2,22 @@
 using BdP_MV.Model;
 using BdP_MV.ViewModel;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace BdP_MV.View.MasterDetail
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class Reports : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class Reports : ContentPage
 
-	{
+    {
         ReportViewModel viewModel;
-		public Reports ()
-		{
-			InitializeComponent ();
-		}
+        public Reports()
+        {
+            InitializeComponent();
+        }
         public async void thePickerSelectedIndexChanged(object sender, EventArgs e)
         {
 

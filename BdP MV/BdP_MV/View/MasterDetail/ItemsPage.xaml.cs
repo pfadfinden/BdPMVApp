@@ -2,16 +2,11 @@
 using BdP_MV.Model;
 using BdP_MV.Model.Mitglied;
 using BdP_MV.Services;
-using BdP_MV.View.MitgliederDetails;
 using BdP_MV.View.MitgliederDetails.Edit;
 using BdP_MV.ViewModel;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -48,7 +43,7 @@ namespace BdP_MV.View.MasterDetail
 
             BindingContext = viewModel;
 
-            
+
         }
         public ItemsPage(MainController mainCo, List<Mitglied> mitgliederliste)
         {
@@ -65,14 +60,14 @@ namespace BdP_MV.View.MasterDetail
             BindingContext = viewModel;
             viewModel.ausgewaehlteMitglieder = mitgliederliste;
             MitgliedView.ItemsSource = viewModel.ausgewaehlteMitglieder;
-            this.Title = "Suchergebnis";
+            Title = "Suchergebnis";
 
 
         }
 
 
 
-       
+
         public async void thePickerSelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -81,16 +76,16 @@ namespace BdP_MV.View.MasterDetail
                 //await DisplayAlert("Ausgewählte Gruppe", viewModel.aktGruppe.id.ToString(), "OK");//Method call every time when picker selection changed
 
 
-                this.IsBusy = true;
+                IsBusy = true;
                 viewModel.aktGruppe = (Gruppe)testpicker.SelectedItem;
 
-                await this.viewModel.MitgliederAusGruppeLaden();
+                await viewModel.MitgliederAusGruppeLaden();
                 ImageNewButton.IsVisible = viewModel.isNewMitgliedEnabled;
                 MitgliedView.ItemsSource = viewModel.ausgewaehlteMitglieder;
-                this.IsBusy = false;
-                
-                
-                
+                IsBusy = false;
+
+
+
 
             }
 
@@ -154,7 +149,7 @@ namespace BdP_MV.View.MasterDetail
                 }
                 // prevents the list from displaying the navigated item as selected when navigating back to the list
                 ((ListView)sender).SelectedItem = null;
-                
+
             }
             catch (NewLoginException ex)
             {
@@ -190,12 +185,12 @@ namespace BdP_MV.View.MasterDetail
         /// <param name="e">The EventArgs</param>
         async void NewMitglied_Activated(object sender, EventArgs e)
         {
-                viewModel.IsBusy = true;
+            viewModel.IsBusy = true;
 
-                NewMitglied neueMitgliesseite = new MitgliederDetails.Edit.NewMitglied(viewModel.aktGruppe.id);
-                await neueMitgliesseite.LoadPreferences();
-                viewModel.IsBusy = false;
-                await Navigation.PushAsync(neueMitgliesseite);
+            NewMitglied neueMitgliesseite = new MitgliederDetails.Edit.NewMitglied(viewModel.aktGruppe.id);
+            await neueMitgliesseite.LoadPreferences();
+            viewModel.IsBusy = false;
+            await Navigation.PushAsync(neueMitgliesseite);
         }
 
 

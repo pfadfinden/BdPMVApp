@@ -18,7 +18,7 @@ namespace BdP_MV.Services
         private bool isLoggedIn = false;
         private bool debug = false;
         Boolean qa = false;
-        
+
         public bool IsLoggedIn { get => isLoggedIn; }
 
         public async Task<int> LoginMV(Connector_LoginDaten LoginDaten)
@@ -68,7 +68,7 @@ namespace BdP_MV.Services
                 {
                     Console.WriteLine(responseString);
                 }
-                
+
                 if (qa)
                 {
                     url = new Uri("https://qa.mv.meinbdp.de/ica/rest/dashboard/botschaft/current-message");
@@ -79,7 +79,7 @@ namespace BdP_MV.Services
                 }
 
                 HttpResponseMessage response_nachricht = await App.client.GetAsync(url);
-                
+
                 string response_nachricht_String = await response_nachricht.Content.ReadAsStringAsync();
                 if (debug)
                 {
@@ -117,7 +117,7 @@ namespace BdP_MV.Services
                 {
                     return 1; //Ist Bereits eingeloggt
                 }
-                
+
                 Uri url;
 
                 if (qa)
@@ -129,7 +129,7 @@ namespace BdP_MV.Services
                     url = new Uri("https://mv.meinbdp.de/");
                 }
                 HttpResponseMessage response_first = await App.client.GetAsync(url);
-                
+
                 if (qa)
                 {
                     url = new Uri("https://qa.mv.meinbdp.de/ica/rest/nami/auth/resetPassword");
@@ -138,7 +138,7 @@ namespace BdP_MV.Services
                 {
                     url = new Uri("https://mv.meinbdp.de/ica/rest/nami/auth/resetPassword");
                 }
-                
+
                 string postData = "mitgliedsNummer=" + resetPassword.MitgliedsNummer + "&geburtsDatum=" + resetPassword.geburtsDatum + "&emailTo=" + resetPassword.emailTo + "&Login=Neues+Passwort+zusenden";
 
 
@@ -410,9 +410,9 @@ namespace BdP_MV.Services
             }
             else
             {
-                url = new Uri( "https://mv.meinbdp.de/ica/rest/" + anfrageURL);
+                url = new Uri("https://mv.meinbdp.de/ica/rest/" + anfrageURL);
             }
-            HttpResponseMessage response = await App.client.PostAsync(url,new StringContent(postData, Encoding.UTF8, "application/json"));
+            HttpResponseMessage response = await App.client.PostAsync(url, new StringContent(postData, Encoding.UTF8, "application/json"));
             //WebResponse response =  (WebResponse)request.GetResponse();
             string responseString = await response.Content.ReadAsStringAsync();
             if (debug)

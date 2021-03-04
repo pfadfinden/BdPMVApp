@@ -1,8 +1,6 @@
 ﻿using BdP_MV.Model;
 using BdP_MV.Services;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BdP_MV.ViewModel
@@ -24,7 +22,7 @@ namespace BdP_MV.ViewModel
             pwData.geburtsDatum = gebDatum;
             pwData.MitgliedsNummer = username;
             String rueckmeldung;
-            if (String.IsNullOrEmpty(pwData.emailTo)||String.IsNullOrEmpty(pwData.MitgliedsNummer))
+            if (String.IsNullOrEmpty(pwData.emailTo) || String.IsNullOrEmpty(pwData.MitgliedsNummer))
             {
                 rueckmeldung = "Bitte fülle alle Felder aus";
             }
@@ -32,11 +30,11 @@ namespace BdP_MV.ViewModel
             else
             {
                 int result = await mainC.mVConnector.RequestNewPassword(pwData);
-                if (result ==2)
+                if (result == 2)
                 {
                     rueckmeldung = "Das Passwort konnte nicht zurück gesetzt werden, bitte gib korrekte Daten ein.";
                 }
-                else if (result ==3)
+                else if (result == 3)
                 {
                     rueckmeldung = " Fehler bei der Internetanbindung";
                 }
@@ -44,7 +42,7 @@ namespace BdP_MV.ViewModel
                 {
                     rueckmeldung = "";
                 }
-                
+
             }
 
             IsBusy = false;

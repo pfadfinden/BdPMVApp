@@ -32,7 +32,11 @@ namespace BdP_MV.Ext_Packages
         public object GetValue(object target)
         {
             object result = _MemberInfo.GetValue(target);
-            if (_MemberInfo.PropertyType == typeof(string) && result == null) result = "";
+            if (_MemberInfo.PropertyType == typeof(string) && result == null)
+            {
+                result = "";
+            }
+
             return result;
 
         }

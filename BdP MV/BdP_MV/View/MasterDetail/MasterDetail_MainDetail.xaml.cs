@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -22,7 +18,7 @@ namespace BdP_MV.View.MasterDetail
                 htmlString = (String)App.Current.Properties["news"];
                 HTMLabel.Text = htmlString;
             }
-            catch (Exception e)
+            catch (Exception)
             {
             }
         }

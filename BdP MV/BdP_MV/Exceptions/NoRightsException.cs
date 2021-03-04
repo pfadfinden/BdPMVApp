@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.Serialization;
-using System.Text;
 
 namespace BdP_MV.Exceptions
 {
-    class NoRightsException:Exception
+    class NoRightsException : Exception
     {
         public NoRightsException()
             : base() { }

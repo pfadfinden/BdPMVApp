@@ -1,13 +1,10 @@
 ﻿using BdP_MV.Exceptions;
-using BdP_MV.Ext_Packages;
 using BdP_MV.Model.Mitglied;
 using BdP_MV.Services;
 using BdP_MV.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -37,8 +34,19 @@ namespace BdP_MV.View.MasterDetail
             //inProgress.IsEnabled = true;
             //inProgress.IsVisible = true;
             try
+
+/* Nicht gemergte Änderung aus Projekt "BdP_MV.iOS"
+Vor:
             {
                 
+                viewModel.suche.vorname = firstnameEntry.Text;
+Nach:
+            {
+
+                viewModel.suche.vorname = firstnameEntry.Text;
+*/
+            {
+
                 viewModel.suche.vorname = firstnameEntry.Text;
                 viewModel.suche.nachname = lastnameEntry.Text;
                 viewModel.suche.mglWohnort = wohnortEntry.Text;
@@ -50,7 +58,7 @@ namespace BdP_MV.View.MasterDetail
                 //Da wird die Reaktion gecheckt. Wenn kein Result, dann ist wird eine Meludung geschickt. Bei nur einem Mitglied als Result, wird das Mitglied direkt in der Detailsansicht geladen und bei mehreren Mitgliedern im Result wird die Mitgliedsliste geladen.
                 if (mitglieder.Count() == 0)
                 {
-                    await DisplayAlert("Keine Mitglieder gefunden","Bitte versuch es mit anderen Suchkriterien erneut.", "OK");
+                    await DisplayAlert("Keine Mitglieder gefunden", "Bitte versuch es mit anderen Suchkriterien erneut.", "OK");
 
                 }
                 else if (mitglieder.Count() == 1)
@@ -63,8 +71,8 @@ namespace BdP_MV.View.MasterDetail
                 {
                     await Navigation.PushAsync(new ItemsPage(viewModel.mainc, mitglieder)).ConfigureAwait(false);
                 }
-                       
-                
+
+
             }
             catch (NewLoginException b)
             {

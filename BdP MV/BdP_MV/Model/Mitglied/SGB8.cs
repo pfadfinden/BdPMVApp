@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BdP_MV.Model.Mitglied
 {
@@ -20,7 +19,7 @@ namespace BdP_MV.Model.Mitglied
         public string entries_autor { get; set; }
     }
 
-  
+
     public class RootObject_SGB8
     {
         public bool success { get; set; }

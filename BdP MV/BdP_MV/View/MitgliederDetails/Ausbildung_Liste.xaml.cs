@@ -3,12 +3,8 @@ using BdP_MV.Model.Mitglied;
 using BdP_MV.View.MitgliederDetails.Edit;
 using BdP_MV.ViewModel;
 using System;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Globalization;
-using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -43,7 +39,10 @@ namespace BdP_MV.View.MitgliederDetails
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (e.Item == null)
+            {
                 return;
+            }
+
             IsBusy = true;
             try
             {
@@ -56,7 +55,7 @@ namespace BdP_MV.View.MitgliederDetails
                 DateTime datum;
                 datum = (DateTime)ausbildung_selected_details.vstgTag;
                 details += "\nKursdatum: " + datum.ToString("d", ci);
-                
+
                 if (!string.IsNullOrWhiteSpace(ausbildung_selected_details.vstgName))
                 {
                     details += "\nAbweichender Kursname: " + ausbildung_selected_details.vstgName;
@@ -84,7 +83,7 @@ namespace BdP_MV.View.MitgliederDetails
                     await DisplayAlert(selected.entries_baustein, details, "Ok");
                 }
 
-                }
+            }
             catch (NewLoginException ex)
             {
                 IsBusy = false;
@@ -93,7 +92,7 @@ namespace BdP_MV.View.MitgliederDetails
                 Console.WriteLine(ex.Message);
                 Console.WriteLine(ex.StackTrace);
                 await Navigation.PopAsync();
-                
+
 
 
             }

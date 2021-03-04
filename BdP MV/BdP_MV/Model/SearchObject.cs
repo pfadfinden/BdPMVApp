@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BdP_MV.Model
+﻿namespace BdP_MV.Model
 {
     public class SearchObject
     {

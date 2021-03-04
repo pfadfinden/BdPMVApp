@@ -1,12 +1,7 @@
 ﻿using BdP_MV.Model;
 using BdP_MV.Services;
-using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
 namespace BdP_MV.ViewModel
 {
@@ -24,12 +19,12 @@ namespace BdP_MV.ViewModel
         public async Task LoadGroups()
         {
             IsBusy = true;
-            
+
             await mainc.groupControl.AlleGruppenAbrufen(0, "");
-               
-    
-            
-            
+
+
+
+
             IsBusy = false;
             return;
         }
@@ -37,7 +32,7 @@ namespace BdP_MV.ViewModel
         {
             loginData.Username = username;
             loginData.Password = passwort;
-            
+
             IsBusy = true;
             string returnString = "";
             if (String.IsNullOrEmpty(loginData.Username))
@@ -53,11 +48,11 @@ namespace BdP_MV.ViewModel
                 loginData.Username = loginData.Username.Trim();
                 loginData.Password = loginData.Password.Trim();
                 int answer = await Task.Run(async () => await mainc.mVConnector.LoginMV(loginData));
-                if (answer==1)
+                if (answer == 1)
                 {
                     returnString += "Du bist schon vorher eingeloggt gewesen";
                 }
-                else if (answer ==2)
+                else if (answer == 2)
                 {
                     returnString += "Die eingegebenen Logindaten sind falsch";
 
@@ -69,8 +64,8 @@ namespace BdP_MV.ViewModel
                 }
                 else if (answer == 0)
                 {
-                    
-                    
+
+
 
                 }
                 else
@@ -81,11 +76,11 @@ namespace BdP_MV.ViewModel
             IsBusy = false;
 
             return returnString;
-            
+
 
 
         }
-       
+
 
     }
 }

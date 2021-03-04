@@ -1,11 +1,7 @@
 ﻿using BdP_MV.Model.Mitglied;
 using BdP_MV.ViewModel;
 using System;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -32,7 +28,10 @@ namespace BdP_MV.View.MitgliederDetails
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (e.Item == null)
+            {
                 return;
+            }
+
             Taetigkeit selectedTaetigkeit = (Taetigkeit)MyListView.SelectedItem;
             String status;
             CultureInfo ci = new CultureInfo("de-DE");
@@ -52,7 +51,7 @@ namespace BdP_MV.View.MitgliederDetails
                 DateTime bis;
                 bis = (DateTime)selectedTaetigkeit.entries_aktivBis;
 
-                zeitraum = "Von " + von.ToString("d", ci)+ " bis "+ bis.ToString("d", ci);
+                zeitraum = "Von " + von.ToString("d", ci) + " bis " + bis.ToString("d", ci);
             }
             String infos;
             if (!string.IsNullOrWhiteSpace(selectedTaetigkeit.entries_untergliederung))
@@ -68,7 +67,7 @@ namespace BdP_MV.View.MitgliederDetails
             {
                 infos += "\nRechtegruppe: " + selectedTaetigkeit.entries_caeaGroup;
             }
-            
+
             await DisplayAlert(selectedTaetigkeit.entries_taetigkeit, infos, "OK");
 
             //Deselect Item

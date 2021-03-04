@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BdP_MV.Model.Metamodel
+﻿namespace BdP_MV.Model.Metamodel
 {
     class RootObj_new_Mitglied
     {

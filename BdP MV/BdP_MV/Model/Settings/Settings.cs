@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace BdP_MV.Model.Settings
@@ -17,14 +13,15 @@ namespace BdP_MV.Model.Settings
         {
             if (Application.Current.Properties.ContainsKey("settings"))
             {
-                 Einstellungen loadsetting = (Einstellungen)Application.Current.Properties["settings"] ;
-                this.loadKleingruppen = loadsetting.loadKleingruppen;
-                this.aktuelleGruppe = loadsetting.aktuelleGruppe;
-                this.sortierreihenfolge = loadsetting.sortierreihenfolge;
-                this.inaktiveAnzeigen = loadsetting.inaktiveAnzeigen;
+                Einstellungen loadsetting = (Einstellungen)Application.Current.Properties["settings"];
+                loadKleingruppen = loadsetting.loadKleingruppen;
+                aktuelleGruppe = loadsetting.aktuelleGruppe;
+                sortierreihenfolge = loadsetting.sortierreihenfolge;
+                inaktiveAnzeigen = loadsetting.inaktiveAnzeigen;
             }
-          else
-            { sortierreihenfolge = 1;
+            else
+            {
+                sortierreihenfolge = 1;
                 loadKleingruppen = true;
                 aktuelleGruppe = 0;
                 inaktiveAnzeigen = false;

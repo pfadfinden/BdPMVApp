@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Collections.Generic;
 
 namespace MvvmHelpers
 {
@@ -21,11 +21,13 @@ namespace MvvmHelpers
         /// <typeparam name="T">The 1st type parameter.</typeparam>
         protected virtual bool SetProperty<T>(
             ref T backingStore, T value,
-            [CallerMemberName]string propertyName = "",
+            [CallerMemberName] string propertyName = "",
             Action onChanged = null)
         {
             if (EqualityComparer<T>.Default.Equals(backingStore, value))
+            {
                 return false;
+            }
 
             backingStore = value;
             onChanged?.Invoke();
@@ -37,12 +39,12 @@ namespace MvvmHelpers
         /// Occurs when property changed.
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
-        
+
         /// <summary>
         /// Raises the property changed event.
         /// </summary>
         /// <param name="propertyName">Property name.</param>
-        protected virtual void OnPropertyChanged([CallerMemberName]string propertyName = "") =>
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "") =>
          PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
     }

@@ -44,19 +44,19 @@ namespace BdP_MV.ViewModel
         public bool HasEmailAddress2 => !string.IsNullOrWhiteSpace(mitglied?.dyn_eMail2);
 
         public bool HasParentEmailAddress => !string.IsNullOrWhiteSpace(mitglied?.emailVertretungsberechtigter);
-        
-        public string pfadeJaNein{ private set; get; }
+
+        public string pfadeJaNein { private set; get; }
 
 
 
-    // this is just a utility service that we're using in this demo app to mitigate some limitations of the iOS simulator
+        // this is just a utility service that we're using in this demo app to mitigate some limitations of the iOS simulator
 
 
 
-    public async Task Nachbearbeitung()
+        public async Task Nachbearbeitung()
         {
             Task<String> t1 = Task<String>.Run(() => mainC.mitgliederController.latestSGB8(sgb8));
-            Boolean loadKleingruppen=Preferences.Get("loadKleingruppen", true);
+            Boolean loadKleingruppen = Preferences.Get("loadKleingruppen", true);
             if (loadKleingruppen)
             {
 
@@ -69,7 +69,7 @@ namespace BdP_MV.ViewModel
             }
             latestSGB8 = await t1;
 
-            
+
             HasKleingruppe = !string.IsNullOrWhiteSpace(mitglied?.kleingruppe);
             TaetigkeitenFilter();
             Regex reg_Gruppe = new Regex(@"(\s)*([0-9]+)");
@@ -89,10 +89,10 @@ namespace BdP_MV.ViewModel
 
 
         }
-        
 
 
-      
+
+
 
 
         Command _DialNumberCommand;
@@ -107,7 +107,9 @@ namespace BdP_MV.ViewModel
         void ExecuteDialNumberCommand()
         {
             if (string.IsNullOrWhiteSpace(mitglied.telefon1))
+            {
                 return;
+            }
             else
             {
                 Device.OpenUri(new Uri("tel:" + mitglied.telefon1.ToString()));
@@ -124,9 +126,9 @@ namespace BdP_MV.ViewModel
         void ExecuteMessageNumberCommand()
         {
             if (string.IsNullOrWhiteSpace(mitglied.telefon1))
+            {
                 return;
-
-
+            }
         }
         Command _DialCellphoneNumberCommand;
 
@@ -136,7 +138,9 @@ namespace BdP_MV.ViewModel
         void ExecuteDialCellphoneNumberCommand()
         {
             if (string.IsNullOrWhiteSpace(mitglied.telefon3))
+            {
                 return;
+            }
             else
             {
 
@@ -153,7 +157,9 @@ namespace BdP_MV.ViewModel
         void ExecuteCellphoneMessageNumberCommand()
         {
             if (string.IsNullOrWhiteSpace(mitglied.telefon3))
+            {
                 return;
+            }
             else
             {
                 Device.OpenUri(new Uri("sms:" + mitglied.telefon3.ToString()));
@@ -168,7 +174,9 @@ namespace BdP_MV.ViewModel
         void ExecuteEmailCommandCommand()
         {
             if (string.IsNullOrWhiteSpace(mitglied.email))
+            {
                 return;
+            }
             else
             {
                 Device.OpenUri(new Uri("mailto:" + mitglied.email));
@@ -184,7 +192,9 @@ namespace BdP_MV.ViewModel
         void ExecuteEmail2CommandCommand()
         {
             if (string.IsNullOrWhiteSpace(mitglied.email))
+            {
                 return;
+            }
             else
             {
                 Device.OpenUri(new Uri("mailto:" + mitglied.dyn_eMail2));
@@ -200,7 +210,9 @@ namespace BdP_MV.ViewModel
         void ExecuteParentEmailCommandCommand()
         {
             if (string.IsNullOrWhiteSpace(mitglied.emailVertretungsberechtigter))
+            {
                 return;
+            }
             else
             {
                 Device.OpenUri(new Uri("mailto:" + mitglied.emailVertretungsberechtigter));
@@ -241,9 +253,13 @@ namespace BdP_MV.ViewModel
             for (int i = 0; i < address.Length; i++)
             {
                 if (char.IsDigit(address[i]))
+                {
                     endingIndex = i;
+                }
                 else
+                {
                     break;
+                }
             }
 
             return endingIndex;

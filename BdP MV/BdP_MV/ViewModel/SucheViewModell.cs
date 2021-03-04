@@ -26,7 +26,7 @@ namespace BdP_MV.ViewModel
         }
         public async Task<List<Mitglied>> SuchDuApp()
         {
-           
+
             if (nurAktiv)
             {
                 suche.mglStatusId = "AKTIV";
@@ -37,7 +37,7 @@ namespace BdP_MV.ViewModel
             }
 
             List<Mitglied> mitglieder = await mainc.mitgliederController.MitgliederAbrufenBySearch(suche);
-          
+
             return mitglieder;
 
         }

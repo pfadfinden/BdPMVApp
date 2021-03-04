@@ -1,11 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace BdP_MV.Model.Metamodel
+
+/* Nicht gemergte Änderung aus Projekt "BdP_MV.iOS"
+Vor:
 {
     
     
+    public class Report_Data
+Nach:
+{
+
+
+    public class Report_Data
+*/
+{
+
+
     public class Report_Data
     {
         public int entries_displayOrder { get; set; }
@@ -51,7 +62,7 @@ namespace BdP_MV.Model.Metamodel
         public int totalEntries { get; set; }
         public Report_MetaData metaData { get; set; }
         public string message { get; set; }
-    
+
     }
 
 

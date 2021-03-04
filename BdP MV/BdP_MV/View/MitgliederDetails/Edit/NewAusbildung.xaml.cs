@@ -2,10 +2,8 @@
 using BdP_MV.Model.Mitglied;
 using BdP_MV.ViewModel;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -13,17 +11,17 @@ using Xamarin.Forms.Xaml;
 
 namespace BdP_MV.View.MitgliederDetails.Edit
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class NewAusbildung : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class NewAusbildung : ContentPage
+    {
         public NewAusbildungViewModel viewModel;
         int idGruppe;
         Boolean newAusbildung;
 
-        public NewAusbildung ()
-		{
-			InitializeComponent ();
-		}
+        public NewAusbildung()
+        {
+            InitializeComponent();
+        }
         public NewAusbildung(MitgliedDetails mitglied)
         {
             newAusbildung = true;
@@ -35,7 +33,7 @@ namespace BdP_MV.View.MitgliederDetails.Edit
             newAusbildung = false;
             viewModel = new NewAusbildungViewModel(ausbildung, mitglied);
             InitializeComponent();
-            this.Title = "Ausbildung bearbeiten";
+            Title = "Ausbildung bearbeiten";
 
         }
         async void Save_Clicked(object sender, EventArgs e)
@@ -130,14 +128,14 @@ namespace BdP_MV.View.MitgliederDetails.Edit
         private void fillFelder()
         {
             veranstalterEntry.Text = viewModel.ausbildung.veranstalter;
-            abwKursnameEntry.Text= viewModel.ausbildung.vstgName;
-            
+            abwKursnameEntry.Text = viewModel.ausbildung.vstgName;
+
             try
             {
-                kursPicker.SelectedItem = ((List<SelectableItem>)viewModel.bausteine).FirstOrDefault(c => c.Id == viewModel.ausbildung.bausteinId.ToString());
+                kursPicker.SelectedItem = viewModel.bausteine.FirstOrDefault(c => c.Id == viewModel.ausbildung.bausteinId.ToString());
                 kursdatumEntry.Date = (DateTime)viewModel.ausbildung.vstgTag;
             }
-            catch (Exception e)
+            catch (Exception)
             {
 
             }
@@ -146,12 +144,12 @@ namespace BdP_MV.View.MitgliederDetails.Edit
         {
             await viewModel.loadSelectableItems();
             kursPicker.ItemsSource = viewModel.bausteine;
-            
+
             if (!newAusbildung)
             {
                 fillFelder();
             }
-            
+
 
 
 

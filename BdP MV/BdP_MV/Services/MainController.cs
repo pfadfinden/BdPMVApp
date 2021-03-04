@@ -1,10 +1,4 @@
-﻿using BdP_MV.Model;
-using BdP_MV.Model.Settings;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BdP_MV.Services
+﻿namespace BdP_MV.Services
 {
     public class MainController
     {
@@ -17,6 +11,6 @@ namespace BdP_MV.Services
             groupControl = new Group_Control(this);
             mitgliederController = new Mitglieder_Control(this);
         }
-          
+
     }
 }

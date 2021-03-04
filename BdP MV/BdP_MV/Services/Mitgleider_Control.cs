@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -31,12 +30,12 @@ namespace BdP_MV.Services
             AktiveMitglieder = new List<Mitglied>();
             if (AlleMitglieder != null)
             {
-                Boolean inaktiveAnzeigen =  Preferences.Get("inaktiveAnzeigen", true);
+                Boolean inaktiveAnzeigen = Preferences.Get("inaktiveAnzeigen", true);
                 if (inaktiveAnzeigen == false)
-                { 
+                {
                     foreach (Mitglied aktuellesMitglied in AlleMitglieder)
                     {
-                                     
+
                         if (aktuellesMitglied.entries_status.Equals("Aktiv"))
                         {
                             //aktuellesMitglied.alleTaetigkeiten = mainC.MvConnector.Taetigkeiten(aktuellesMitglied.id);
@@ -77,9 +76,9 @@ namespace BdP_MV.Services
             return mitglieder;
 
         }
-        private List<Mitglied> MitgliederSort (List<Mitglied> mitglieder)
+        private List<Mitglied> MitgliederSort(List<Mitglied> mitglieder)
         {
-            int sortierreihenfolge = Preferences.Get("sortierreihenfolge",1);
+            int sortierreihenfolge = Preferences.Get("sortierreihenfolge", 1);
             if (sortierreihenfolge == 1)
             {
                 mitglieder = new List<Mitglied>(mitglieder.OrderBy(mitglied => mitglied.entries_nachname).ThenBy(mitglied => mitglied.entries_vorname));
@@ -123,7 +122,7 @@ namespace BdP_MV.Services
             return ansprechname;
 
         }
-        public  int GetAgeFromDate(DateTime birthday)
+        public int GetAgeFromDate(DateTime birthday)
         {
             int years = DateTime.Now.Year - birthday.Year;
             birthday = birthday.AddYears(years);
@@ -141,7 +140,7 @@ namespace BdP_MV.Services
                 DateTime geburtsDatum = (DateTime)mitglied.geburtsDatum;
                 mitglied.alter = GetAgeFromDate(geburtsDatum);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 mitglied.alter = 0;
             }
@@ -215,14 +214,14 @@ namespace BdP_MV.Services
             String returnString;
             CultureInfo ci = new CultureInfo("de-DE");
 
-            if (fuehrungszeugnisse.Count==0)
+            if (fuehrungszeugnisse.Count == 0)
             {
                 returnString = "Kein Führungszeugnis eingesehen";
             }
             else
             {
                 DateTime letztesFZ = (DateTime)fuehrungszeugnisse.First<SGB8>().entries_fzDatum;
-               
+
                 returnString = "Letztes FZ ist " + GetAgeFromDate(letztesFZ) + " Jahre alt. (Datum: " + letztesFZ.ToString("d", ci) + ")";
             }
             return returnString;
@@ -232,7 +231,7 @@ namespace BdP_MV.Services
         {
             //AlleMitglieder = await Task<List<Mitglied>>.Run(() => mainC.MvConnector.Mitglieder(mainC.gruppencontroller.AktuelleGruppe, true));
 
-            int aktuelleGruppe =  Preferences.Get("aktuelleGruppe", 0);
+            int aktuelleGruppe = Preferences.Get("aktuelleGruppe", 0);
             AlleMitglieder = await mainC.mVConnector.Mitglieder(aktuelleGruppe, true);
             MitgliederNachbearbeiten();
 
@@ -247,7 +246,7 @@ namespace BdP_MV.Services
             suchobjektJSON = Regex.Replace(suchobjektJSON, @"\t|\n|\r", "");
             suchobjektJSON = suchobjektJSON.Replace(" ", "");
             suchobjektJSON = suchobjektJSON.Replace(@"\", @"");
-            List<Mitglied> mitglieder=await mainC.mVConnector.Mitglieder(suchobjektJSON);
+            List<Mitglied> mitglieder = await mainC.mVConnector.Mitglieder(suchobjektJSON);
             mitglieder = MitgliederNachbearbeiten(mitglieder);
             return mitglieder;
 

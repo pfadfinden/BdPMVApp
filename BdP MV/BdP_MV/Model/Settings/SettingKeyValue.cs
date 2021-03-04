@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BdP_MV.Model.Settings
+﻿namespace BdP_MV.Model.Settings
 {
     public class SettingKeyValue
     {

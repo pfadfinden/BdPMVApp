@@ -1,29 +1,25 @@
 ﻿using BdP_MV.Exceptions;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace BdP_MV.View.MitgliederDetails.Edit
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class NewTaetigkeit : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class NewTaetigkeit : ContentPage
     {
-		public NewTaetigkeit ()
-		{
-			InitializeComponent ();
-		}
+        public NewTaetigkeit()
+        {
+            InitializeComponent();
+        }
         async void Save_Clicked(object sender, EventArgs e)
         {
             try
             {
             }
-              
+
             catch (NewLoginException ex)
             {
                 await DisplayAlert("Fehler", "Deine Sitzung ist abgelaufen. Bitte logge dich neu in die App ein.", "OK");
@@ -38,7 +34,7 @@ namespace BdP_MV.View.MitgliederDetails.Edit
                 await DisplayAlert("Fehler", "Fehler beim Herstellen der Internetverbindung", "OK");
                 Console.WriteLine(ex.Message);
                 Console.WriteLine(ex.StackTrace);
-   //             btn_save.IsEnabled = true;
+                //             btn_save.IsEnabled = true;
 
 
 
@@ -55,7 +51,7 @@ namespace BdP_MV.View.MitgliederDetails.Edit
                 await DisplayAlert("Fehler", ex.Message, "OK");
                 Console.WriteLine(ex.Message);
                 Console.WriteLine(ex.StackTrace);
- //               btn_save.IsEnabled = true;
+                //               btn_save.IsEnabled = true;
 
 
             }

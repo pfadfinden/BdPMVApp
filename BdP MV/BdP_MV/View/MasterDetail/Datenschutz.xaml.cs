@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -11,8 +7,21 @@ namespace BdP_MV.View.MasterDetail
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Datenschutz : ContentPage
+
+/* Nicht gemergte Änderung aus Projekt "BdP_MV.iOS"
+Vor:
     {
         
+
+        public Datenschutz()
+Nach:
+    {
+
+
+        public Datenschutz()
+*/
+    {
+
 
         public Datenschutz()
         {
@@ -21,11 +30,11 @@ namespace BdP_MV.View.MasterDetail
             {
                 Webview.Source = "https://meinbdp.de/display/MVHILFE/Datenschutz";
             }
-            catch (Exception e)
+            catch (Exception)
             {
             }
         }
-        protected async override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
 

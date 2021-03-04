@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BdP_MV.Model.Mitglied
 {
@@ -16,7 +14,7 @@ namespace BdP_MV.Model.Mitglied
         public object lastModifiedFrom { get; set; }
     }
 
-    public class RootObject_Ausbildung_Details  
+    public class RootObject_Ausbildung_Details
     {
         public bool success { get; set; }
         public Ausbildung_Details data { get; set; }

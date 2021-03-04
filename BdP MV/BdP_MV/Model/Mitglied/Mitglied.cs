@@ -48,7 +48,7 @@ namespace BdP_MV.Model.Mitglied
         public string entries_genericField2 { get; set; }
         public string entries_telefax { get; set; }
         public string ansprechname { get; set; }
-        
+
         public string Gruppe { get; set; }
     }
 

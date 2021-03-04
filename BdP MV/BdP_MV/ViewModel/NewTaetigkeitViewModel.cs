@@ -1,11 +1,9 @@
-﻿using BdP_MV.Exceptions;
-using BdP_MV.Ext_Packages;
+﻿using BdP_MV.Ext_Packages;
 using BdP_MV.Model.Mitglied;
 using BdP_MV.Services;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -14,8 +12,21 @@ namespace BdP_MV.ViewModel
     public class NewTaetigkeitViewModel : BaseNavigationViewModel
     {
         public MainController mainC;
+
+/* Nicht gemergte Änderung aus Projekt "BdP_MV.iOS"
+Vor:
         public List<SelectableItem> bausteine;
         
+
+        public int mitgliedID;
+Nach:
+        public List<SelectableItem> bausteine;
+
+
+        public int mitgliedID;
+*/
+        public List<SelectableItem> bausteine;
+
 
         public int mitgliedID;
         private int gruppierungsID;
@@ -47,7 +58,7 @@ namespace BdP_MV.ViewModel
             IsBusy = true;
 
 
-                  
+
 
             string JSONOutput = JsonConvert.SerializeObject(ausbildung,
                            Newtonsoft.Json.Formatting.None,
@@ -57,18 +68,18 @@ namespace BdP_MV.ViewModel
                                ContractResolver = new NullToEmptyStringResolver()
 
                            });
-            
+
             IsBusy = false;
 
-            return await mainC.mVConnector.PutChangeAusbildung(mitgliedID,ausbildung.id, JSONOutput);
+            return await mainC.mVConnector.PutChangeAusbildung(mitgliedID, ausbildung.id, JSONOutput);
         }
         public async Task<String> CreateNewAusbildung()
         {
             IsBusy = true;
 
 
-           
-           
+
+
 
 
             string JSONOutput = JsonConvert.SerializeObject(ausbildung,

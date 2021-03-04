@@ -1,12 +1,21 @@
 ﻿using BdP_MV.Model.Settings;
-using MvvmHelpers;
 using BdP_MV.Services;
+using MvvmHelpers;
 using System;
+
+/* Nicht gemergte Änderung aus Projekt "BdP_MV.iOS"
+Vor:
 using System.Windows.Input;
 
 using Xamarin.Forms;
 using System.Collections.Generic;
-using Xamarin.Essentials;
+Nach:
+using System.Collections.Generic;
+using System.Windows.Input;
+using Xamarin.Generic;
+*/
+using System.Collections.Essentials;
+using Xamarin.Forms;
 
 namespace BdP_MV.ViewModel
 {
@@ -18,8 +27,19 @@ namespace BdP_MV.ViewModel
         new SettingKeyValue(){Name = "Vorname, Nachname",Value = 2},
         new SettingKeyValue(){Name = "Spitz-/Vorname, Nachname",Value = 3}
     };
+
+/* Nicht gemergte Änderung aus Projekt "BdP_MV.iOS"
+Vor:
         public MainController mainC = new MainController();
         
+        public Boolean loadKleingruppen { get; set; }
+Nach:
+        public MainController mainC = new MainController();
+
+        public Boolean loadKleingruppen { get; set; }
+*/
+        public MainController mainC = new MainController();
+
         public Boolean loadKleingruppen { get; set; }
         public Boolean inaktiveAnzeigen { get; set; }
         public int sortierreihenfolge { get; set; }
@@ -52,8 +72,8 @@ namespace BdP_MV.ViewModel
             Preferences.Set("sortierreihenfolge", sortierreihenfolge);
             Preferences.Set("loadKleingruppen", loadKleingruppen);
             Preferences.Set("inaktiveAnzeigen", inaktiveAnzeigen);
-            
-            
+
+
 
         }
 

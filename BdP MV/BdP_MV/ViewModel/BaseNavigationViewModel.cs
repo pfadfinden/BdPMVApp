@@ -1,9 +1,9 @@
 
 
-using Xamarin.Forms;
-using System.Threading.Tasks;
-using System.Collections.Generic;
 using MvvmHelpers;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace BdP_MV.ViewModel
 {
@@ -30,7 +30,9 @@ namespace BdP_MV.ViewModel
         {
             var task = _Navigation?.PushAsync(page);
             if (task != null)
+            {
                 await task.ConfigureAwait(false);
+            }
         }
 
         public async Task<Page> PopAsync()
@@ -43,14 +45,18 @@ namespace BdP_MV.ViewModel
         {
             var task = _Navigation?.PopToRootAsync();
             if (task != null)
+            {
                 await task;
+            }
         }
 
         public async Task PushModalAsync(Page page)
         {
             var task = _Navigation?.PushModalAsync(page);
             if (task != null)
+            {
                 await task;
+            }
         }
 
         public async Task<Page> PopModalAsync()
@@ -63,7 +69,9 @@ namespace BdP_MV.ViewModel
         {
             var task = _Navigation?.PushAsync(page, animated);
             if (task != null)
+            {
                 await task;
+            }
         }
 
         public async Task<Page> PopAsync(bool animated)
@@ -76,14 +84,18 @@ namespace BdP_MV.ViewModel
         {
             var task = _Navigation?.PopToRootAsync(animated);
             if (task != null)
+            {
                 await task;
+            }
         }
 
         public async Task PushModalAsync(Page page, bool animated)
         {
             var task = _Navigation?.PushModalAsync(page, animated);
             if (task != null)
+            {
                 await task;
+            }
         }
 
         public async Task<Page> PopModalAsync(bool animated)

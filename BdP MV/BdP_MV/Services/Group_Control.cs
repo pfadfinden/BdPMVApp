@@ -24,7 +24,7 @@ namespace BdP_MV.Services
                 bool b = descriptor.EndsWith("00");
                 return (!b);
             }
-            catch (ArgumentNullException e)
+            catch (ArgumentNullException)
             {
                 return false;
             }
@@ -36,6 +36,7 @@ namespace BdP_MV.Services
             tempGruppen = await mainC.mVConnector.GetGroups(id);
             Regex reg = new Regex(@"(\s)*([0-9]+)");
             if (tempGruppen.Count > 0)
+            {
                 foreach (Gruppe aktGruppe in tempGruppen)
                 {
                     bool isEndofTree = isGroupEndOfTree(aktGruppe);
@@ -47,7 +48,7 @@ namespace BdP_MV.Services
                         await AlleGruppenAbrufen(aktGruppe.id, prefix + "- ").ConfigureAwait(false);
                     }
                 }
-
+            }
         }
         public async Task<Boolean> CheckPermissionForNew(int idGruppe)
         {

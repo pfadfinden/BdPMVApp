@@ -1,32 +1,28 @@
 ﻿using BdP_MV.Model.Settings;
-using BdP_MV.Services;
 using BdP_MV.ViewModel;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace BdP_MV.View.MasterDetail
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class Einstellungen : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class Einstellungen : ContentPage
+    {
         private SettingsViewModel viewModel;
-		public Einstellungen ()
-		{
-		
+        public Einstellungen()
+        {
+
             viewModel = new SettingsViewModel();
             BindingContext = viewModel;
 
             InitializeComponent();
             try
             {
-                viewModel.Sortierreihenfolge = ((List<SettingKeyValue>)viewModel.Sortierreihenfolgen).FirstOrDefault(c => c.Value == viewModel.sortierreihenfolge);
+                viewModel.Sortierreihenfolge = viewModel.Sortierreihenfolgen.FirstOrDefault(c => c.Value == viewModel.sortierreihenfolge);
                 reihenfolgePicker.SelectedItem = viewModel.Sortierreihenfolge;
             }
             catch (Exception ex)

@@ -1,6 +1,5 @@
 ﻿using BdP_MV.Exceptions;
 using BdP_MV.Model.Mitglied;
-using BdP_MV.Services;
 using BdP_MV.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -25,7 +24,7 @@ namespace BdP_MV.View.MitgliederDetails.Edit
             //   InitializeComponent();
             // this.viewModel = new NewMitgliedViewModel(new Services.MainController());
             viewModel = new NewMitgliedViewModel(idgrp);
-            
+
             idGruppe = idgrp;
             newMitglied = true;
             InitializeComponent();
@@ -42,11 +41,11 @@ namespace BdP_MV.View.MitgliederDetails.Edit
             // this.viewModel = new NewMitgliedViewModel(new Services.MainController());
             viewModel = new NewMitgliedViewModel(mitglied);
             newMitglied = false;
-            
 
-            
+
+
             InitializeComponent();
-            this.Title = "Mitglied " + mitglied.ansprechname + " bearbeiten";
+            Title = "Mitglied " + mitglied.ansprechname + " bearbeiten";
             lbl_begruendungMitglied.IsVisible = false;
             lbl_begruendungStamm.IsVisible = false;
             begruendungStammTooltip.IsVisible = false;
@@ -55,10 +54,10 @@ namespace BdP_MV.View.MitgliederDetails.Edit
             lbl_begruendungStamm.IsVisible = false;
             lbl_begruendungMitglied.IsVisible = false;
         }
-       private void fillFelder()
+        private void fillFelder()
         {
             vornameEntry.Text = viewModel.mitglied.vorname;
-             nachnameEntry.Text = viewModel.mitglied.nachname;
+            nachnameEntry.Text = viewModel.mitglied.nachname;
             spitznameEntry.Text = viewModel.mitglied.spitzname;
             geburtsdatumEntry.Date = (DateTime)viewModel.mitglied.geburtsDatum;
             eintrittsdatumEntry.Date = (DateTime)viewModel.mitglied.eintrittsdatum;
@@ -68,13 +67,13 @@ namespace BdP_MV.View.MitgliederDetails.Edit
             emailVertretungsberechtigter.Text = viewModel.mitglied.emailVertretungsberechtigter;
             try
             {
-                landpicker.SelectedItem = ((List<SelectableItem>)viewModel.land).FirstOrDefault(c => c.Id == viewModel.mitglied.landId.ToString());
-                geschlechtspicker.SelectedItem = ((List<SelectableItem>)viewModel.geschlechter).FirstOrDefault(c => c.Id == viewModel.mitglied.geschlechtId.ToString());
-                beitragsartpicker.SelectedItem = ((List<SelectableItem>)viewModel.beitragsart).FirstOrDefault(c => c.Id == viewModel.mitglied.beitragsartId.ToString());
+                landpicker.SelectedItem = viewModel.land.FirstOrDefault(c => c.Id == viewModel.mitglied.landId.ToString());
+                geschlechtspicker.SelectedItem = viewModel.geschlechter.FirstOrDefault(c => c.Id == viewModel.mitglied.geschlechtId.ToString());
+                beitragsartpicker.SelectedItem = viewModel.beitragsart.FirstOrDefault(c => c.Id == viewModel.mitglied.beitragsartId.ToString());
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                
+
             }
             strasse.Text = viewModel.mitglied.strasse;
             plz.Text = viewModel.mitglied.plz;
@@ -91,7 +90,7 @@ namespace BdP_MV.View.MitgliederDetails.Edit
         {
             DateTime gebDatum = geburtsdatumEntry.Date;
             int age = viewModel.mainC.mitgliederController.GetAgeFromDate(gebDatum);
-            if (age>17 && newMitglied)
+            if (age > 17 && newMitglied)
             {
                 begruendungMitglied.IsVisible = true;
                 lbl_begruendungMitglied.IsVisible = true;
@@ -262,7 +261,7 @@ namespace BdP_MV.View.MitgliederDetails.Edit
             }
             else
             {
-                landpicker.SelectedItem = ((List<SelectableItem>)viewModel.land).FirstOrDefault(c => c.Id == "1");
+                landpicker.SelectedItem = viewModel.land.FirstOrDefault(c => c.Id == "1");
 
             }
 

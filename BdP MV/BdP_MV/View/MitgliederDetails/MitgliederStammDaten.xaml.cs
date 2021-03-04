@@ -1,7 +1,6 @@
 ﻿using BdP_MV.View.MitgliederDetails.Edit;
 using BdP_MV.ViewModel;
 using System;
-using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -49,7 +48,7 @@ namespace BdP_MV.View.MitgliederDetails
         }
         async void AdressTipped(object sender, EventArgs e)
         {
-            await Clipboard.SetTextAsync(viewModel.mitglied.strasse+", "+viewModel.mitglied.plz+" "+viewModel.mitglied.ort);
+            await Clipboard.SetTextAsync(viewModel.mitglied.strasse + ", " + viewModel.mitglied.plz + " " + viewModel.mitglied.ort);
             await DisplayAlert("Adresse kopiert", "Die Adresse wurde in die Zwischenablage kopiert", "OK");
 
         }
