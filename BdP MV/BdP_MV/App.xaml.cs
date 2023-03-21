@@ -11,9 +11,9 @@ namespace BdP_MV
     {
         public static HttpClient client;
 
-        public App()
+        public App( HttpClient client)
         {
-            App.client = new HttpClient();
+            App.client = client;
             InitializeComponent();
 
             if (Device.RuntimePlatform == Device.iOS)

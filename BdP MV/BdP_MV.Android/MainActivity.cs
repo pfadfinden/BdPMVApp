@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using LabelHtml.Forms.Plugin.Droid;
+using System.Net.Http;
 //using LabelHtml.Forms.Plugin.Droid;
 
 namespace BdP_MV.Droid
@@ -22,7 +23,9 @@ namespace BdP_MV.Droid
 			base.OnCreate (bundle);
             HtmlLabelRenderer.Initialize();
             global::Xamarin.Forms.Forms.Init (this, bundle);
-			LoadApplication (new BdP_MV.App ());
+            HttpClient client = new HttpClient(new Xamarin.Android.Net.AndroidClientHandler());
+
+            LoadApplication(new BdP_MV.App (client));
 		}
 	}
 }

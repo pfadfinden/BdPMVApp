@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Net.Http;
 using Foundation;
 using LabelHtml.Forms.Plugin.iOS;
 using UIKit;
@@ -26,7 +26,8 @@ namespace BdP_MV.iOS
 		{
             HtmlLabelRenderer.Initialize();
             global::Xamarin.Forms.Forms.Init ();
-			LoadApplication (new BdP_MV.App ());
+			HttpClient client = new HttpClient();	
+			LoadApplication (new BdP_MV.App (client));
 
 			return base.FinishedLaunching (app, options);
 		}
